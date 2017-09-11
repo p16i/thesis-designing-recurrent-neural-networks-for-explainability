@@ -5,3 +5,6 @@ pip-selfcheck.json
 .Python
 *.ipynb_checkpoints
 *__pycache__
+*.iml
+*.idea
+venv
