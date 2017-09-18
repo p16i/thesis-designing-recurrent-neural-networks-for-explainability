@@ -6,5 +6,6 @@ setup(name='Thesis',
       author='Pattarawat Chormai',
       author_email='pat.chormai@gmail.com',
       url='https://github.com/heytitle/thesis-designing-recurrent-neural-networks-for-explainability',
-      package_dir={'': 'src'}
+      packages=['src', 'tests'],
+      package_dir={'src': 'src'}
       )
