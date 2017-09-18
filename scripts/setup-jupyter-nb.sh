@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pip install jupyter
+
 # install extension package
 pip install jupyter_contrib_nbextensions
 
