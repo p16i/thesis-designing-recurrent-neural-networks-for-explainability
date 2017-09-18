@@ -1,6 +1,6 @@
 import unittest
 
-from dummy_module import foo
+from dummy_module.foo import foo
 
 
 class TestFoo(unittest.TestCase):
