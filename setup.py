@@ -1,4 +1,4 @@
-from distutils.core import setup, find_package
+from distutils.core import setup, find_packages
 
 setup(name='Thesis',
       version='1.0',
@@ -6,5 +6,5 @@ setup(name='Thesis',
       author='Pattarawat Chormai',
       author_email='pat.chormai@gmail.com',
       url='https://github.com/heytitle/thesis-designing-recurrent-neural-networks-for-explainability',
-      packages=find_package()
+      packages=find_packages()
       )
