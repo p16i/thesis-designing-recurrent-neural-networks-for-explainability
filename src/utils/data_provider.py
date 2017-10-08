@@ -21,7 +21,7 @@ def get_mnist(dataset, dir_path='./data/mnist'):
 
     with open(x_path) as xf:
         with open(y_path) as yf:
-            x = np.fromfile(xf, dtype='ubyte', count=-1)[16:].reshape((-1, 784))
+            x = np.fromfile(xf, dtype='ubyte', count=-1)[16:].reshape((-1, 784)) / 255
             y = np.fromfile(yf, dtype='ubyte', count=-1)[8:]
             y = (y[:, np.newaxis] == np.arange(10)) * 1.0
     return x, y
