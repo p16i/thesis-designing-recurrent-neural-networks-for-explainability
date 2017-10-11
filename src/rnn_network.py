@@ -1,8 +1,11 @@
 import logging
-
+import yaml
 import tensorflow as tf
 import numpy as np
+import inspect
 
+
+from datetime import datetime
 from utils import logging as lg
 from utils import data_provider
 from utils import network_architecture
@@ -10,6 +13,7 @@ from utils import network_architecture
 from notebook_utils import plot
 
 lg.set_logging()
+
 
 class Layer:
     def __init__(self, dims, name, stddev=0.1):
@@ -28,11 +32,17 @@ class Layer:
 
 
 class RNNNetwork(object):
+    @staticmethod
+    def experiment_name():
+        return datetime.now().strftime('rnn-%Y-%m-%d--%H-%M')
 
     def s2_network(self, seq_length=1, epoch=1, lr=0.01, batch=100,
-                   architecture_str='in1:_|hidden:_|out1:_|out2:_|--recur:_', verbose=False):
+                   architecture_str='in1:_|hidden:_|out1:_|out2:_|--recur:_',
+                   verbose=False, result_dir='./experiment-results'):
 
+        experiment_name = self.experiment_name()
         logging.info('Train sprint2 network')
+        logging.info('Experiment name : %s' % experiment_name)
         mnist = data_provider.MNISTData()
 
         # no.rows and cols
@@ -55,11 +65,11 @@ class RNNNetwork(object):
 
         # define placeholders
         rx = tf.placeholder(tf.float32, shape=(None, architecture['recur']), name='recurrent_input')
-        x = tf.placeholder(tf.float32, shape=(None, dims, dims),
-                           name='data_input')
+        x = tf.placeholder(tf.float32, shape=(None, dims, dims), name='data_input')
         y_target = tf.placeholder(tf.float32, [None, 10], name='output_target')
 
         rr = rx
+
         # define  dag
         for i in range(0, max_seq_length, no_input_cols):
             ii = tf.reshape(x[:, i:i + no_input_cols], [-1, no_input_cols * dims])
@@ -102,14 +112,22 @@ class RNNNetwork(object):
 
             logging.info('Calculating test accuracy')
             rx0 = np.zeros((len(mnist.test2d.y), architecture['recur']))
-            acc = sess.run(accuracy, feed_dict={x: mnist.test2d.x, y_target: mnist.test2d.y, rx: rx0})
+            acc = float(sess.run(accuracy, feed_dict={x: mnist.test2d.x, y_target: mnist.test2d.y, rx: rx0}))
 
             res = dict(
+                experiment_name=experiment_name,
                 seq_length=seq_length,
                 epoch=epoch,
                 column_at_a_time=no_input_cols,
                 accuracy=acc,
-                **dict([('layer_%s' % k, v) for k, v in architecture.items()])
+                lr=lr,
+                **dict([('layer_%s' % k, v) for k, v in architecture.items()]),
+                architecture_name=inspect.currentframe().f_code.co_name
             )
 
-            logging.info("\n%s\n", plot.tabularize_params(res))
+            logging.info('\n%s\n', plot.tabularize_params(res))
+
+            result_path = '%s/%s.yaml' % (result_dir, experiment_name)
+            logging.info('Saving result to %s' % result_path)
+            with open(result_path, 'w') as outfile:
+                yaml.dump(res, outfile, default_flow_style=False)

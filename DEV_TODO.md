@@ -16,10 +16,19 @@
 - [x] v2 network 
 - [x] train k columns at a time
 - [x] AdamOptimizer
-- [ ] ask for server access
-- [ ] additional layer between (input and cell
-- [ ] additional layer between (cell and output)
-- [ ] port code to Python 
-- [ ] Experiment with different values of seq_length
-    - fix epoch 
+- [x] ask for server access
+    - [ ] waiting for reply
+- [x] additional layer between (input and cell
+- [x] additional layer between (cell and output)
+- [x] port code to Python 
+- [x] Experiment with different values of seq_length
+    - seq_length, 7, 14, 28
 - [ ] Prepare a weekly presentation
+    - [x] update network figure
+    - [ ] write summary
+
+
+## Sprint 4 : 12-19/10/2017
+- [ ] Split train, validate and test data
+- [ ] Run experiments on server
+- [ ] Play with TFRecord

@@ -1,0 +1,11 @@
+accuracy: 0.9455000162124634
+architecture_name: s3_network
+column_at_a_time: 4
+epoch: 20
+experiment_name: rnn-2017-10-11--00-24
+layer_hidden: 60
+layer_in1: 80
+layer_out1: 50
+layer_out2: 10
+layer_recur: 10
+seq_length: 7
