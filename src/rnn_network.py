@@ -36,7 +36,7 @@ class RNNNetwork(object):
     def experiment_name():
         return datetime.now().strftime('rnn-%Y-%m-%d--%H-%M')
 
-    def s2_network(self, seq_length=1, epoch=1, lr=0.01, batch=100,
+    def s3_network(self, seq_length=1, epoch=1, lr=0.01, batch=100,
                    architecture_str='in1:_|hidden:_|out1:_|out2:_|--recur:_',
                    verbose=False, result_dir='./experiment-results'):
 
