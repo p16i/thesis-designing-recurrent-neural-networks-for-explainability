@@ -23,12 +23,36 @@
 - [x] port code to Python 
 - [x] Experiment with different values of seq_length
     - seq_length, 7, 14, 28
-- [ ] Prepare a weekly presentation
+- [x] Prepare a weekly presentation
     - [x] update network figure
-    - [ ] write summary
+    - [x] write summary
 
 
 ## Sprint 4 : 12-19/10/2017
-- [ ] Split train, validate and test data
-- [ ] Run experiments on server
-- [ ] Play with TFRecord
+- [x] Save/Load model artifact
+- [x] Run experiments with the shallow network(s2) (1 day)
+- [X] LWR Implementation (1 day))
+    - Network Class
+        - Input/Output
+        - Main Parameter
+        - DAG
+        - LWR
+           
+- [x] Dropout apply (2 hours)
+- [x] Set experiment for s2,s3 network
+    - s2:
+        - seq_length: [7, 14, 28]
+        - recurr: [10,50,100]
+    - s3
+        - seq_length: [7, 14, 28]
+        - recurr: [7,15,30]
+- [x] Split train, validate and test data (1 hour)
+
+Optional
+- [ ] Save/Load model from object storage(4 hours)
+- [ ] Implement result viewers (4 hours)
+- [ ] Run experiments on server (2 hours)
+- [ ] Play with TFRecord (1 day)
+
+## Sprint 5 : 19-26/10/2017
+- [ ] ..
