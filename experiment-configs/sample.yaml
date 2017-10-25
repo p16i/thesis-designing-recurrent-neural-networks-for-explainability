@@ -1,0 +1,7 @@
+parameters:
+  lr: [0.1,0.005,001]
+  dropout: [0.8,1]
+  epoch: [1]
+
+command: |
+  echo "this is param dropout={dropout} lr={lr} epoch={epoch}"

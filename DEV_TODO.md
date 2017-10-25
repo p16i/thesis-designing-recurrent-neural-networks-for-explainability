@@ -48,11 +48,13 @@
         - recurr: [7,15,30]
 - [x] Split train, validate and test data (1 hour)
 
-Optional
-- [ ] Save/Load model from object storage(4 hours)
-- [ ] Implement result viewers (4 hours)
-- [ ] Run experiments on server (2 hours)
-- [ ] Play with TFRecord (1 day)
-
 ## Sprint 5 : 19-26/10/2017
-- [ ] ..
+- [x] Find  good models for s2/s3 network ( acc > 98%)) (~ 1 day)
+    - [ ] Bayesian optimization
+- [ ] Visualize First layers for both network (1 days?)
+- [ ] Save/Load model from object storage(~1 day)
+- [ ] Run experiments on server (..waiting for the access)
+
+Optional
+- [ ] Implement result viewers (4 hours)
+- [ ] Play with TFRecord (1 day)

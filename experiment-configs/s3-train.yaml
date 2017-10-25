@@ -1,0 +1,15 @@
+parameters:
+  hidden_units: [200, 400]
+  recurrent_units: [50, 100]
+  in1_units: [400, 800, 1000]
+  out1_units: [200, 400]
+  keep_prob: [0.5, 0.8, 1]
+
+command: |
+  python scripts/train.py s3_network \
+    --seq-length 7 \
+    --epoch 50 \
+    --lr 0.001 \
+    --batch 100 \
+    --architecture-str 'in1:{in1_units}|hidden:{hidden_units}|out1:{out1_units}|out2:10--recur:{recurrent_units}' \
+    --keep_prob {keep_prob} --verbose --output_dir ./experiment-results/sprint-5
