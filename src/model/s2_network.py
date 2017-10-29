@@ -22,6 +22,7 @@ S2Architecture = namedtuple('S2Architecture', ['hidden', 'out', 'recur'])
 class S2NetworkDAG:
     def __init__(self, no_input_cols, dims, max_seq_length, architecture: S2Architecture):
         # define layers
+        self.architecture = architecture
 
         self.ly_input = Layer((dims*no_input_cols + architecture.recur, architecture.hidden), 's2__input')
 
@@ -70,6 +71,9 @@ class S2NetworkDAG:
 
         correct_prediction = tf.equal(tf.argmax(self.y_target, 1), tf.argmax(self.y_pred, 1))
         self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+    def no_variables(self):
+        return self.ly_input.get_no_variables() + self.ly_output.get_no_variables() + self.ly_recurrent.get_no_variables()
 
 
 class S2Network:

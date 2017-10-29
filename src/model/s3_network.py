@@ -76,6 +76,11 @@ class S3NetworkDAG(base.BaseDag):
 
         self.setup_loss_and_opt()
 
+    def no_variables(self):
+        return self.ly_input_1.get_no_variables() + self.ly_input_to_cell.get_no_variables() \
+            + self.ly_output_from_cell.get_no_variables() + self.ly_output_2.get_no_variables() \
+            + self.ly_recurrent.get_no_variables()
+
 
 class S3Network(base.BaseNetwork):
     def __init__(self, artifact: experiment_artifact.Artifact):

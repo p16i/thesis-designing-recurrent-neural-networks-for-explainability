@@ -33,6 +33,9 @@ class Layer:
         self.W = weights
         self.b = bias
 
+    def get_no_variables(self):
+        return self.W.shape[0] * self.W.shape[1] + self.b.shape[0]
+
 
 class RNNNetwork(object):
     @staticmethod
