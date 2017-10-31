@@ -2,7 +2,9 @@ import tensorflow as tf
 
 
 class BaseDag:
-    def __init__(self, architecture, dims, max_seq_length):
+    def __init__(self, architecture, dims, max_seq_length, optimizer):
+        tf.reset_default_graph()
+
         self.rx = tf.placeholder(tf.float32, shape=(None, architecture.recur), name='recurrent_input')
         self.x = tf.placeholder(tf.float32, shape=(None, dims, max_seq_length), name='input')
         self.y_target = tf.placeholder(tf.float32, [None, 10], name='output_target')
@@ -14,10 +16,14 @@ class BaseDag:
         self.init_op = None
         self.accuracy = None
 
+        self.optimizer = optimizer
+
     def setup_loss_and_opt(self):
         self.loss_op = tf.reduce_mean(
             tf.nn.softmax_cross_entropy_with_logits(logits=self.y_pred, labels=self.y_target))
-        self.train_op = tf.train.AdamOptimizer(learning_rate=self.lr).minimize(self.loss_op)
+
+        optimizer = getattr(tf.train, self.optimizer)
+        self.train_op = optimizer(learning_rate=self.lr).minimize(self.loss_op)
         self.init_op = tf.global_variables_initializer()
 
         correct_prediction = tf.equal(tf.argmax(self.y_target, 1), tf.argmax(self.y_pred, 1))

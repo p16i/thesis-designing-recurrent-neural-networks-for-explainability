@@ -21,9 +21,13 @@ lg.set_logging()
 S3Architecture = namedtuple('S3Architecture', ['in1', 'hidden', 'out1', 'out2', 'recur'])
 
 
+def load(model_path):
+    return S3Network.load(model_path)
+
+
 class S3NetworkDAG(base.BaseDag):
-    def __init__(self, no_input_cols, dims, max_seq_length, architecture: S3Architecture):
-        super(S3NetworkDAG, self).__init__(architecture, dims, max_seq_length)
+    def __init__(self, no_input_cols, dims, max_seq_length, architecture: S3Architecture, optimizer):
+        super(S3NetworkDAG, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer)
 
         # define layers
         self.ly_input_1 = Layer((dims*no_input_cols, architecture.in1), 's3__input_1')
@@ -87,7 +91,7 @@ class S3Network(base.BaseNetwork):
         super(S3Network, self).__init__(artifact)
 
         self.architecture = S3Architecture(**network_architecture.parse(artifact.architecture))
-        self.dag = S3NetworkDAG(artifact.column_at_a_time, 28, 28, self.architecture)
+        self.dag = S3NetworkDAG(artifact.column_at_a_time, 28, 28, self.architecture, artifact.optimizer)
 
         self.experiment_artifact = artifact
         self._ = artifact
@@ -105,7 +109,7 @@ class S3Network(base.BaseNetwork):
 
     @staticmethod
     def train(seq_length=1, epoch=1, lr=0.01, batch=100, architecture_str='in1:_|hidden:_|out1:_|out2:_|--recur:_',
-              keep_prob=0.5, verbose=False, output_dir='./experiment-result'
+              keep_prob=0.5, verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer'
               ):
 
         experiment_name = experiment_artifact.get_experiment_name()
@@ -119,10 +123,12 @@ class S3Network(base.BaseNetwork):
         logging.debug('Network architecture')
         logging.debug(architecture)
 
+        logging.debug('Optimizer %s' % optimizer)
+
         no_input_cols = max_seq_length // seq_length
         logging.debug('Training %d columns at a time' % no_input_cols)
 
-        dag = S3NetworkDAG(no_input_cols, dims, max_seq_length, architecture)
+        dag = S3NetworkDAG(no_input_cols, dims, max_seq_length, architecture, optimizer)
 
         with tf.Session() as sess:
             sess.run(dag.init_op)
@@ -152,7 +158,7 @@ class S3Network(base.BaseNetwork):
             rx0 = np.zeros((len(mnist.test2d.y), architecture.recur))
             acc = float(sess.run(dag.accuracy,
                                  feed_dict={dag.x: mnist.test2d.x, dag.y_target: mnist.test2d.y,
-                                            dag.rx: rx0, dag.keep_prob:1}))
+                                            dag.rx: rx0, dag.keep_prob: 1}))
 
             res = dict(
                 experiment_name=experiment_name,
@@ -166,7 +172,8 @@ class S3Network(base.BaseNetwork):
                 architecture_name='s3_network',
                 dims=dims,
                 max_seq_length=max_seq_length,
-                keep_prob=keep_prob
+                keep_prob=keep_prob,
+                optimizer=optimizer
             )
 
             logging.debug('\n%s\n', plot.tabularize_params(res))
@@ -184,65 +191,69 @@ class S3Network(base.BaseNetwork):
             layer_weights = sess.run([self.dag.layers[k].W for k in layer_keys])
             weights = dict(zip(layer_keys, layer_weights))
 
-            rx = np.zeros((1, self.architecture.recur))
+            rx = np.zeros((x_3d.shape[0], self.architecture.recur))
             data = sess.run(
                 self.dag.input_to_cell_activations + self.dag.ha_activations
                 + self.dag.output_from_cell_activations
                 + [self.dag.y_pred],
                 feed_dict={self.dag.x: x_3d, self.dag.rx: rx, self.dag.keep_prob: 1})
 
-            input_to_cell_activations = data[:self._.seq_length]
-            ha_activations = data[self._.seq_length:self._.seq_length*2]
-            output_from_cell_activations = data[self._.seq_length*2:self._.seq_length*3]
-            pred = data[-1][0]
+            input_to_cell_activations = np.array(data[:self._.seq_length]).transpose([1, 2, 0])
+            ha_activations = np.array(data[self._.seq_length:self._.seq_length*2]).transpose([1, 2, 0])
+            output_from_cell_activations = np.array(data[self._.seq_length*2:self._.seq_length*3]).transpose([1, 2, 0])
 
-            mark = np.zeros(len(pred))
-            mark[np.argmax(pred)] = 1
-
+            pred = data[-1]
+            mark = np.zeros(pred.shape)
+            mark[range(pred.shape[0]), np.argmax(pred, axis=1)] = 1
             relevance = pred * mark
 
             dims = self.experiment_artifact.dims
 
-            RR_of_hiddens = np.zeros(
-                (self.architecture.hidden, self._.seq_length))
-            RR_of_input1 = np.zeros((self.architecture.in1, self._.seq_length))
-            RR_of_pixels = np.zeros((dims * self.experiment_artifact.column_at_a_time, self._.seq_length))
-            RR_of_rr = np.zeros((self.architecture.recur, self._.seq_length+1))
+            RR_of_hiddens = np.zeros((x_3d.shape[0], self.architecture.hidden, self._.seq_length))
+            RR_of_input1 = np.zeros((x_3d.shape[0], self.architecture.in1, self._.seq_length))
+            RR_of_pixels = np.zeros((x_3d.shape[0], dims * self.experiment_artifact.column_at_a_time, self._.seq_length))
+            RR_of_rr = np.zeros((x_3d.shape[0], self.architecture.recur, self._.seq_length+1))
 
-            RR_of_output_from_cell = lwr.z_plus_prop(output_from_cell_activations[-1], weights['output_2'], relevance)
-            RR_of_hiddens[:, -1] = lwr.z_plus_prop(ha_activations[-1], weights['output_from_cell'],
+            # lwr start here
+            RR_of_output_from_cell = lwr.z_plus_prop(
+                output_from_cell_activations[:, :, -1], weights['output_2'], relevance)
+            RR_of_hiddens[:, :, -1] = lwr.z_plus_prop(ha_activations[:, :, -1], weights['output_from_cell'],
                                                    RR_of_output_from_cell)
 
-            temp = lwr.z_plus_prop(input_to_cell_activations[-1]
-                                   , weights['input_to_cell'], RR_of_hiddens[:, -1])
-            temp = np.squeeze(temp)
+            temp = lwr.z_plus_prop(input_to_cell_activations[:, :, -1]
+                                   , weights['input_to_cell'], RR_of_hiddens[:, :, -1])
+            # temp = np.squeeze(temp)
 
-            RR_of_input1[:, -1] = temp[:-self.architecture.recur]
-            RR_of_rr[:, -2] = temp[-self.architecture.recur:]
+            RR_of_input1[:, :, -1] = temp[:, :-self.architecture.recur]
+            RR_of_rr[:, :, -2] = temp[:, -self.architecture.recur:]
 
-            RR_of_pixels[:, -1] = lwr.z_beta_prop(
-                x_3d[:, :, -self.experiment_artifact.column_at_a_time:].reshape(1, -1),
-                weights['input_1'], RR_of_input1[:, -1]
+            RR_of_pixels[:, :, -1] = lwr.z_beta_prop(
+                x_3d[:, :, -self.experiment_artifact.column_at_a_time:].reshape(x_3d.shape[0], -1),
+                weights['input_1'], RR_of_input1[:, :, -1]
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
-                RR_of_hiddens[:, i] = lwr.z_plus_prop(ha_activations[i], weights['recurrent'], RR_of_rr[:, i + 1])
+                RR_of_hiddens[:, :, i] = lwr.z_plus_prop(ha_activations[:, :, i],
+                                                      weights['recurrent'], RR_of_rr[:, :, i + 1])
 
-                temp = lwr.z_plus_prop(input_to_cell_activations[i], weights['input_to_cell'], RR_of_hiddens[:, i])
-                temp = np.squeeze(temp)
+                temp = lwr.z_plus_prop(input_to_cell_activations[:, :, i],
+                                       weights['input_to_cell'], RR_of_hiddens[:, :, i])
+                # temp = np.squeeze(temp)
 
-                RR_of_input1[:, i] = temp[:-self.architecture.recur]
-                RR_of_rr[:, i] = temp[-self.architecture.recur:]
+                RR_of_input1[:, :, i] = temp[:, :-self.architecture.recur]
+                RR_of_rr[:, :, i] = temp[:, -self.architecture.recur:]
 
                 c_i = self._.column_at_a_time * i
                 c_j = c_i + self._.column_at_a_time
 
-                RR_of_pixels[:, i] = lwr.z_beta_prop(
-                    x_3d[:, :, c_i:c_j].reshape(1, -1),
-                    weights['input_1'], RR_of_input1[:, i]
+                RR_of_pixels[:, :, i] = lwr.z_beta_prop(
+                    x_3d[:, :, c_i:c_j].reshape(x_3d.shape[0], -1),
+                    weights['input_1'], RR_of_input1[:, :, i]
                 )
 
             if debug:
+                logging.debug('Prediction before softmax \n%s' % list(zip(mark,pred)))
+
                 logging.debug('Relevance %f' % np.sum(relevance))
                 logging.debug('RR_of_ha')
                 logging.debug(np.sum(RR_of_hiddens, axis=0))
@@ -254,10 +265,15 @@ class S3Network(base.BaseNetwork):
                 logging.debug(np.sum(RR_of_input1, axis=0))
                 logging.debug('RR_of_rr')
                 logging.debug(np.sum(RR_of_rr, axis=0))
+                logging.debug('===========')
+                logging.debug('Total Relevance of input pixels %f', np.sum(RR_of_pixels))
 
-        heatmap = data_provider.get_empty_data()
-        for i in range(0, heatmap.shape[1], self._.column_at_a_time):
+        heatmaps = np.zeros(x_3d.shape)
+        for i in range(0, heatmaps.shape[2], self._.column_at_a_time):
             t_idx = int(i / self._.column_at_a_time)
-            heatmap[:, i:(i + self._.column_at_a_time)] = RR_of_pixels[:, t_idx].reshape(heatmap.shape[0], -1)
+            heatmaps[:, :, i:(i + self._.column_at_a_time)] = RR_of_pixels[:, :, t_idx] \
+                .reshape(heatmaps.shape[0], heatmaps.shape[1], -1)
 
-        return np.argmax(pred), heatmap
+        # max value in a row
+        return np.argmax(pred, axis=1), heatmaps
+

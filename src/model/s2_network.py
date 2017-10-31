@@ -13,6 +13,8 @@ from notebook_utils import plot
 
 from utils import experiment_artifact
 
+from model import base
+
 lg.set_logging()
 
 
@@ -23,10 +25,9 @@ def load(model_path):
     return S2Network.load(model_path)
 
 
-class S2NetworkDAG:
-    def __init__(self, no_input_cols, dims, max_seq_length, architecture: S2Architecture):
-        # define layers
-        self.architecture = architecture
+class S2NetworkDAG(base.BaseDag):
+    def __init__(self, no_input_cols, dims, max_seq_length, architecture: S2Architecture, optimizer):
+        super(S2NetworkDAG, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer)
 
         self.ly_input = Layer((dims*no_input_cols + architecture.recur, architecture.hidden), 's2__input')
 
@@ -68,35 +69,23 @@ class S2NetworkDAG:
 
         self.y_pred = ot
 
-        self.loss_op = tf.reduce_mean(
-            tf.nn.softmax_cross_entropy_with_logits(logits=self.y_pred, labels=self.y_target))
-        self.train_op = tf.train.AdamOptimizer(learning_rate=self.lr).minimize(self.loss_op)
-        self.init_op = tf.global_variables_initializer()
-
-        correct_prediction = tf.equal(tf.argmax(self.y_target, 1), tf.argmax(self.y_pred, 1))
-        self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+        self.setup_loss_and_opt()
 
     def no_variables(self):
         return self.ly_input.get_no_variables() + self.ly_output.get_no_variables() + self.ly_recurrent.get_no_variables()
 
 
-class S2Network:
+class S2Network(base.BaseNetwork):
     def __init__(self, artifact: experiment_artifact.Artifact):
+        super(S2Network, self).__init__(artifact)
+
         self.architecture = S2Architecture(**network_architecture.parse(artifact.architecture))
 
         tf.reset_default_graph()
-        self.dag = S2NetworkDAG(artifact.column_at_a_time, 28, 28, self.architecture)
+        self.dag = S2NetworkDAG(artifact.column_at_a_time, 28, 28, self.architecture, artifact.optimizer)
 
         self.experiment_artifact = artifact
         self._ = artifact
-
-    def get_session(self):
-
-        saver = tf.train.Saver()
-        sess = tf.Session()
-        saver.restore(sess, '%s/model.ckpt' % self._.path)
-
-        return sess
 
     @staticmethod
     def load(path):
@@ -111,7 +100,7 @@ class S2Network:
 
     @staticmethod
     def train(seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, architecture_str='hidden:_|out:_|--recur:_',
-              verbose=False, output_dir='./experiment-result'
+              verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer'
               ):
 
         experiment_name = experiment_artifact.get_experiment_name()
@@ -127,8 +116,9 @@ class S2Network:
 
         no_input_cols = max_seq_length // seq_length
         logging.debug('Training %d columns at a time' % no_input_cols)
+        logging.debug('Optimizer %s' % optimizer)
 
-        dag = S2NetworkDAG(no_input_cols, dims, max_seq_length, architecture)
+        dag = S2NetworkDAG(no_input_cols, dims, max_seq_length, architecture, optimizer)
 
         with tf.Session() as sess:
             sess.run(dag.init_op)
@@ -163,7 +153,7 @@ class S2Network:
             rx0 = np.zeros((len(mnist.test2d.y), architecture.recur))
             acc = float(sess.run(dag.accuracy,
                                  feed_dict={dag.x: mnist.test2d.x, dag.y_target: mnist.test2d.y,
-                                            dag.rx: rx0, dag.keep_prob:1}))
+                                            dag.rx: rx0, dag.keep_prob: 1}))
 
             res = dict(
                 experiment_name=experiment_name,
@@ -177,7 +167,8 @@ class S2Network:
                 architecture_name='s2_network',
                 dims=dims,
                 max_seq_length=max_seq_length,
-                keep_prob=keep_prob
+                keep_prob=keep_prob,
+                optimizer=optimizer
             )
 
             logging.debug('\n%s\n', plot.tabularize_params(res))
@@ -228,7 +219,7 @@ class S2Network:
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
-                RR_of_hiddens[:, i] = lwr.z_plus_prop(ha_activations[:, i], weights['recurrent'], RR_of_rr[:, :, i + 1])
+                RR_of_hiddens[:, :, i] = lwr.z_plus_prop(ha_activations[:, :, i], weights['recurrent'], RR_of_rr[:, :, i + 1])
 
                 c_i = self._.column_at_a_time * i
                 c_j = c_i + self._.column_at_a_time
@@ -236,7 +227,7 @@ class S2Network:
                 RR_of_rr[:, :, i], RR_of_pixels[:, :, i] = lwr.z_plus_beta_prop(
                     rr_activations[:, :, i],
                     weight_rr_parts,
-                    x_3d[:, :, c_i:c_j].reshape(1, -1),
+                    x_3d[:, :, c_i:c_j].reshape(x_3d.shape[0], -1),
                     weight_px_parts,
                     RR_of_hiddens[:, :, i]
                 )
