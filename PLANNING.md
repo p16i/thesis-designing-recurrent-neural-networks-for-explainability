@@ -48,12 +48,15 @@
         - recurr: [7,15,30]
 - [x] Split train, validate and test data (1 hour)
 
-## Sprint 5 : 19-26/10/2017
+## Sprint 5 : 19/10/2017-04/11/2017
 - [x] Find  good models for s2/s3 network ( acc > 98%)) (~ 1 day)
     - [ ] Bayesian optimization
-- [ ] Visualize First layers for both network (1 days?)
+- [x] Visualize First layers for both network (1 days?)
+    - [ ] 28 cols at a time network
+- [ ] Write test for LWR
+- [ ] Implement overlapping column
+- [ ] Set up /Run experiments on server (..waiting for the access)
 - [ ] Save/Load model from object storage(~1 day)
-- [ ] Run experiments on server (..waiting for the access)
 
 Optional
 - [ ] Implement result viewers (4 hours)
