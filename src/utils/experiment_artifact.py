@@ -16,7 +16,7 @@ lg.set_logging()
 Artifact = namedtuple('ExperimentArtifact',
                       ['accuracy', 'architecture', 'batch', 'column_at_a_time', 'dims', 'epoch',
                        'experiment_name', 'lr', 'max_seq_length', 'seq_length', 'path', 'architecture_name',
-                       'keep_prob']
+                       'keep_prob', 'optimizer']
                       )
 
 def get_results(path):
@@ -67,6 +67,8 @@ def get_result(dir):
 
     if 'keep_prob' not in res.keys():
         res['keep_prob'] = 1
+    if 'optimizer' not in res.keys():
+        res['optimizer'] = 'AdamOptimizer'
 
     return Artifact(**res)
 
