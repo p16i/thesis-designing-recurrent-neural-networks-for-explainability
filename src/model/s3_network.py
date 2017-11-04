@@ -55,7 +55,7 @@ class S3NetworkDAG(base.BaseDag):
         self.output_from_cell_activations = []
         # define  dag
         for i in range(0, max_seq_length, no_input_cols):
-            ii = tf.reshape(self.x[:, i:i + no_input_cols], [-1, no_input_cols * dims])
+            ii = tf.reshape(self.x[:, :, i:i + no_input_cols], [-1, no_input_cols * dims])
             itc = tf.nn.relu(tf.matmul(ii, self.ly_input_1.W) - tf.nn.relu(self.ly_input_1.b))
             self.input_1_activations.append(itc)
 
@@ -67,7 +67,7 @@ class S3NetworkDAG(base.BaseDag):
             ha = tf.nn.relu(tf.matmul(xr, self.ly_input_to_cell.W) - tf.nn.relu(self.ly_input_to_cell.b))
             self.ha_activations.append(ha)
 
-            ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
+            ha_do = ha
 
             rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.relu(self.ly_recurrent.b))
             self.rr_activations.append(rr)
@@ -95,17 +95,6 @@ class S3Network(base.BaseNetwork):
 
         self.experiment_artifact = artifact
         self._ = artifact
-
-    @staticmethod
-    def load(path):
-        logging.debug('Load s3-network from %s' % path)
-        artifact = experiment_artifact.get_result(path)
-
-        logging.info(artifact)
-
-        network = S3Network(artifact)
-
-        return network
 
     @staticmethod
     def train(seq_length=1, epoch=1, lr=0.01, batch=100, architecture_str='in1:_|hidden:_|out1:_|out2:_|--recur:_',
@@ -238,7 +227,6 @@ class S3Network(base.BaseNetwork):
 
                 temp = lwr.z_plus_prop(input_to_cell_activations[:, :, i],
                                        weights['input_to_cell'], RR_of_hiddens[:, :, i])
-                # temp = np.squeeze(temp)
 
                 RR_of_input1[:, :, i] = temp[:, :-self.architecture.recur]
                 RR_of_rr[:, :, i] = temp[:, -self.architecture.recur:]

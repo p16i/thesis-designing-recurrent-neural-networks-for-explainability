@@ -55,7 +55,7 @@ class S2NetworkDAG(base.BaseDag):
 
         # define  dag
         for i in range(0, max_seq_length, no_input_cols):
-            ii = tf.reshape(self.x[:, i:i + no_input_cols], [-1, no_input_cols * dims])
+            ii = tf.reshape(self.x[:, :, i:i + no_input_cols], [-1, no_input_cols * dims])
 
             xr = tf.concat([ii, rr], axis=1)
             ha = tf.nn.relu(tf.matmul(xr, self.ly_input.W) - tf.nn.softplus(self.ly_input.b))
@@ -86,17 +86,6 @@ class S2Network(base.BaseNetwork):
 
         self.experiment_artifact = artifact
         self._ = artifact
-
-    @staticmethod
-    def load(path):
-        logging.debug('Load s2-network from %s' % path)
-        artifact = experiment_artifact.get_result(path)
-
-        logging.info(artifact)
-
-        network = S2Network(artifact)
-
-        return network
 
     @staticmethod
     def train(seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, architecture_str='hidden:_|out:_|--recur:_',
