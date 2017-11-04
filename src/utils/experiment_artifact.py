@@ -73,8 +73,10 @@ def get_result(dir):
     return Artifact(**res)
 
 
-def get_experiment_name():
-    return datetime.now().strftime('rnn-%Y-%m-%d--%H-%M')
+def get_experiment_name(prefix='rnn'):
+    timestamp = datetime.now().strftime('%Y-%m-%d--%H-%M')
+
+    return '%s-%s' % (prefix, timestamp)
 
 
 # class Artifact:

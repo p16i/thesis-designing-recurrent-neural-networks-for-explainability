@@ -9,8 +9,6 @@ from utils import logging as lg
 from utils import data_provider
 from utils import network_architecture
 
-from notebook_utils import plot
-
 from utils import experiment_artifact
 
 from model import base
@@ -92,7 +90,7 @@ class S2Network(base.BaseNetwork):
               verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer'
               ):
 
-        experiment_name = experiment_artifact.get_experiment_name()
+        experiment_name = experiment_artifact.get_experiment_name('s2-seq-%d--' % seq_length)
         logging.debug('Train s2 network')
         logging.debug('Experiment name : %s' % experiment_name)
         mnist = data_provider.MNISTData()
@@ -160,7 +158,7 @@ class S2Network(base.BaseNetwork):
                 optimizer=optimizer
             )
 
-            logging.debug('\n%s\n', plot.tabularize_params(res))
+            logging.debug('\n%s\n', lg.tabularize_params(res))
 
             output_dir = '%s/%s' % (output_dir, experiment_name)
 

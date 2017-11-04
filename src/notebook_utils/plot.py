@@ -1,9 +1,5 @@
 import logging
 import matplotlib.pyplot as plt
-import pandas as pd
-
-from prettytable import PrettyTable
-
 
 from utils import logging as lg
 
@@ -24,20 +20,4 @@ def show_and_save(title=""):
         logging.debug('save fig to %s' % path)
         plt.savefig(path)
     plt.show()
-
-
-def tabularize_params(dict_params):
-    '''
-    :param dict_params:
-    :return: Pandas dataframe with key, value columns
-    '''
-    table = PrettyTable()
-    table._set_field_names(['attribute', 'value'])
-    table.align = 'l'
-
-    for k in sorted(dict_params):
-        table.add_row([k, dict_params[k]])
-
-    return table.get_string()
-
 
