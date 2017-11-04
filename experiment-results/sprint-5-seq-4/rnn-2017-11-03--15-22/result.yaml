@@ -1,0 +1,13 @@
+accuracy: 0.7099999785423279
+architecture: in1:200|hidden:30|out1:20|out2:10--recur:50
+architecture_name: s3_network
+batch: 50
+column_at_a_time: 7
+dims: 28
+epoch: 50
+experiment_name: rnn-2017-11-03--15-22
+keep_prob: 0.01
+lr: 0.0001
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 4

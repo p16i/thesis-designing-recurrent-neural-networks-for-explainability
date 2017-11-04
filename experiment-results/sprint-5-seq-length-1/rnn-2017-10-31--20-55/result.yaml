@@ -1,0 +1,13 @@
+accuracy: 0.9722999930381775
+architecture: hidden:300|out:10--recur:100
+architecture_name: s2_network
+batch: 50
+column_at_a_time: 28
+dims: 28
+epoch: 50
+experiment_name: rnn-2017-10-31--20-55
+keep_prob: 0.8
+lr: 0.001
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 1

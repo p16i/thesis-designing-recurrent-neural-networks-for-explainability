@@ -50,10 +50,18 @@
 
 ## Sprint 5 : 19/10/2017-04/11/2017
 - [x] Find  good models for s2/s3 network ( acc > 98%)) (~ 1 day)
-    - [ ] Bayesian optimization
 - [x] Visualize First layers for both network (1 days?)
-    - [ ] 28 cols at a time network
+    - [x] 28 cols at a time network 
+- [x] Experiments
+    - keep_prob ~ 0.1 and train s2, s3 with acc > 0.98
+    - change optimizer to adams
+    - summarize the relationship between dropout and clearity of heatmap
+- [x] Make LWR work in batch
+
+## Sprint 6 : 04-10/11/2017
 - [ ] Write test for LWR
+- [ ] Train model with seq 1, 2, 4, 7
+    - [ ] Bayesian optimization
 - [ ] Implement overlapping column
 - [ ] Set up /Run experiments on server (..waiting for the access)
 - [ ] Save/Load model from object storage(~1 day)
