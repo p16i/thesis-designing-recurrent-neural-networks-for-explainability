@@ -23,7 +23,7 @@ class TestLRP(unittest.TestCase):
         data = data_provider.MNISTData(dir_path='../data/mnist')
         model = provider.load(model)
 
-        model.lwr(data.test2d.x[:NO_TESTING_DATA, :, :], debug=True)
+        model.lrp(data.test2d.x[:NO_TESTING_DATA, :, :], debug=True)
 
 
 if __name__ == '__main__':

@@ -1,17 +1,16 @@
 import logging
-import tensorflow as tf
-import numpy as np
 from collections import namedtuple
 
-import lwr
-from rnn_network import Layer
-from utils import logging as lg
-from utils import data_provider
-from utils import network_architecture
-
-from utils import experiment_artifact
+import numpy as np
+import tensorflow as tf
 
 from model import base
+from model.components import lrp
+from model.components.layer import Layer
+from utils import data_provider
+from utils import experiment_artifact
+from utils import logging as lg
+from utils import network_architecture
 
 lg.set_logging()
 
@@ -164,7 +163,7 @@ class S2Network(base.BaseNetwork):
 
             experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
 
-    def lwr(self, x, debug=False):
+    def lrp(self, x, debug=False):
 
         x_3d = x.reshape(-1, 28, 28)
         with self.get_session() as sess:
@@ -193,11 +192,11 @@ class S2Network(base.BaseNetwork):
             RR_of_rr = np.zeros((x_3d.shape[0], self.architecture.recur, self._.seq_length+1))
 
             # lwr start here
-            RR_of_hiddens[:, :, -1] = lwr.z_plus_prop(ha_activations[:, :, -1], weights['output'], relevance)
+            RR_of_hiddens[:, :, -1] = lrp.z_plus_prop(ha_activations[:, :, -1], weights['output'], relevance)
 
             weight_px_parts = weights['input'][:-self.architecture.recur, :]
             weight_rr_parts = weights['input'][-self.architecture.recur:, :]
-            RR_of_rr[:, :, -2], RR_of_pixels[:, :, -1] = lwr.z_plus_beta_prop(
+            RR_of_rr[:, :, -2], RR_of_pixels[:, :, -1] = lrp.z_plus_beta_prop(
                 rr_activations[:, :, -2],
                 weight_rr_parts,
                 x_3d[:, :, -self.experiment_artifact.column_at_a_time:].reshape(x_3d.shape[0], -1),
@@ -206,12 +205,12 @@ class S2Network(base.BaseNetwork):
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
-                RR_of_hiddens[:, :, i] = lwr.z_plus_prop(ha_activations[:, :, i], weights['recurrent'], RR_of_rr[:, :, i + 1])
+                RR_of_hiddens[:, :, i] = lrp.z_plus_prop(ha_activations[:, :, i], weights['recurrent'], RR_of_rr[:, :, i + 1])
 
                 c_i = self._.column_at_a_time * i
                 c_j = c_i + self._.column_at_a_time
 
-                RR_of_rr[:, :, i], RR_of_pixels[:, :, i] = lwr.z_plus_beta_prop(
+                RR_of_rr[:, :, i], RR_of_pixels[:, :, i] = lrp.z_plus_beta_prop(
                     rr_activations[:, :, i],
                     weight_rr_parts,
                     x_3d[:, :, c_i:c_j].reshape(x_3d.shape[0], -1),
