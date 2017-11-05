@@ -9,6 +9,9 @@ from utils import logging as lg
 lg.set_logging()
 
 
+import os
+
+
 def get_mnist(dataset, dir_path='./data/mnist'):
 
     if dataset == 'train':
@@ -47,7 +50,9 @@ class DataSet:
 
 
 class MNISTData:
-    def __init__(self, dir_path='./data/mnist'):
+    def __init__(self, dir_path='/'.join(os.path.abspath(__file__).split('/')[:-3]) + '/data/mnist'):
+
+        print(dir_path)
 
         x_train, y_train = get_mnist('train', dir_path=dir_path)
         x_test, y_test = get_mnist('test', dir_path=dir_path)

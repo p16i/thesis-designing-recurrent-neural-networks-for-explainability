@@ -20,7 +20,7 @@ class TestLRP(unittest.TestCase):
 
     @staticmethod
     def _test_lrp(model):
-        data = data_provider.MNISTData(dir_path='../data/mnist')
+        data = data_provider.MNISTData()
         model = provider.load(model)
 
         model.lrp(data.test2d.x[:NO_TESTING_DATA, :, :], debug=True)
