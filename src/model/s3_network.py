@@ -238,21 +238,43 @@ class S3Network(base.BaseNetwork):
                 )
 
             if debug:
-                logging.debug('Prediction before softmax \n%s' % list(zip(mark,pred)))
+                # logging.debug('Prediction before softmax \n%s' % list(zip(mark,pred)))
+                #
+                # logging.debug('Relevance %f' % np.sum(relevance))
+                # logging.debug('RR_of_ha')
+                # logging.debug(np.sum(RR_of_hiddens, axis=0))
+                #
+                # logging.debug('RR_of_rr + input1')
+                # logging.debug(np.sum(RR_of_rr[:, :-1], axis=0) + np.sum(RR_of_input1, axis=0))
+                # logging.debug('----------')
+                # logging.debug('RR_of_input1')
+                # logging.debug(np.sum(RR_of_input1, axis=0))
+                # logging.debug('RR_of_rr')
+                # logging.debug(np.sum(RR_of_rr, axis=0))
+                # logging.debug('===========')
+                # logging.debug('Total Relevance of input pixels %f', np.sum(RR_of_pixels))
 
-                logging.debug('Relevance %f' % np.sum(relevance))
+                logging.debug('Prediction before softmax \n%s' % list(zip(mark, pred)))
+                logging.debug('Relevance')
+                logging.debug(relevance)
+                total_relevance = np.sum(relevance, axis=1)
+                logging.debug(total_relevance)
+
                 logging.debug('RR_of_ha')
-                logging.debug(np.sum(RR_of_hiddens, axis=0))
+                logging.debug(RR_of_hiddens.shape)
 
-                logging.debug('RR_of_rr + input1')
-                logging.debug(np.sum(RR_of_rr[:, :-1], axis=0) + np.sum(RR_of_input1, axis=0))
-                logging.debug('----------')
-                logging.debug('RR_of_input1')
-                logging.debug(np.sum(RR_of_input1, axis=0))
-                logging.debug('RR_of_rr')
-                logging.debug(np.sum(RR_of_rr, axis=0))
-                logging.debug('===========')
-                logging.debug('Total Relevance of input pixels %f', np.sum(RR_of_pixels))
+                total_relevance_hidden_units = np.sum(RR_of_hiddens, axis=1)
+                logging.debug(total_relevance_hidden_units)
+                logging.debug(np.sum(total_relevance_hidden_units[:, :-1], axis=1))
+
+                logging.debug('RR_of_pixels')
+                total_relevance_pixels = np.sum(RR_of_pixels, axis=(1, 2))
+                logging.debug(total_relevance_pixels)
+
+                np.testing.assert_allclose(total_relevance_pixels, total_relevance,
+                                           rtol=1e-6, atol=0,
+                                           err_msg='Conservation property isn`t hold\n'
+                                                   ': Sum of relevance from pixels is not equal to output relevance.')
 
         heatmaps = np.zeros(x_3d.shape)
         for i in range(0, heatmaps.shape[2], self._.column_at_a_time):
