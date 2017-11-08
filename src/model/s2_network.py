@@ -57,12 +57,12 @@ class S2NetworkDAG(base.BaseDag):
             xr = tf.concat([ii, rr], axis=1)
             ha = tf.nn.relu(tf.matmul(xr, self.ly_input.W) - tf.nn.softplus(self.ly_input.b))
             self.ha_activations.append(ha)
-            ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
 
-            rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
+            rr = tf.nn.relu(tf.matmul(ha, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
             self.rr_activations.append(rr)
 
-            ot = tf.nn.relu(tf.matmul(ha, self.ly_output.W) - tf.nn.softplus(self.ly_output.b))
+            ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
+            ot = tf.nn.relu(tf.matmul(ha_do, self.ly_output.W) - tf.nn.softplus(self.ly_output.b))
 
         self.y_pred = ot
 
@@ -141,6 +141,9 @@ class S2Network(base.BaseNetwork):
                                  feed_dict={dag.x: mnist.test2d.x, dag.y_target: mnist.test2d.y,
                                             dag.rx: rx0, dag.keep_prob: 1}))
 
+            rx0 = np.zeros((len(mnist.val2d.y), architecture.recur))
+            val_acc = sess.run(dag.accuracy, feed_dict={dag.x: mnist.val2d.x, dag.y_target: mnist.val2d.y,
+                                                        dag.rx: rx0, dag.keep_prob: 1})
             res = dict(
                 experiment_name=experiment_name,
                 seq_length=seq_length,
@@ -154,14 +157,15 @@ class S2Network(base.BaseNetwork):
                 dims=dims,
                 max_seq_length=max_seq_length,
                 keep_prob=keep_prob,
-                optimizer=optimizer
+                optimizer=optimizer,
+                val_accuracy=val_acc
             )
 
             logging.debug('\n%s\n', lg.tabularize_params(res))
 
             output_dir = '%s/%s' % (output_dir, experiment_name)
 
-            experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
+            return experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
 
     def lrp(self, x, debug=False):
 

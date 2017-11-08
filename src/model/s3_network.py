@@ -146,6 +146,10 @@ class S3Network(base.BaseNetwork):
                                  feed_dict={dag.x: mnist.test2d.x, dag.y_target: mnist.test2d.y,
                                             dag.rx: rx0, dag.keep_prob: 1}))
 
+            rx0 = np.zeros((len(mnist.val2d.y), architecture.recur))
+            val_acc = sess.run(dag.accuracy, feed_dict={dag.x: mnist.val2d.x, dag.y_target: mnist.val2d.y,
+                                                        dag.rx: rx0, dag.keep_prob: 1})
+
             res = dict(
                 experiment_name=experiment_name,
                 seq_length=seq_length,
@@ -159,14 +163,15 @@ class S3Network(base.BaseNetwork):
                 dims=dims,
                 max_seq_length=max_seq_length,
                 keep_prob=keep_prob,
-                optimizer=optimizer
+                optimizer=optimizer,
+                val_accuracy=val_acc
             )
 
             logging.debug('\n%s\n', lg.tabularize_params(res))
 
             output_dir = '%s/%s' % (output_dir, experiment_name)
 
-            experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
+            return experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
 
     def lrp(self, x, debug=False):
 
