@@ -1,0 +1,30 @@
+accuracy: 0.8852999806404114
+architecture: hidden:800|out:10--recur:50
+architecture_name: s2_network
+batch: 50
+column_at_a_time: 4
+dims: 28
+epoch: 100
+experiment_name: s2-seq-7---2017-11-05--22-23-07
+keep_prob: 0.5
+lr: 0.0001
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 7
+val_accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+- !!python/object/apply:numpy.dtype
+  args:
+  - f4
+  - 0
+  - 1
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  IbBiPw==
