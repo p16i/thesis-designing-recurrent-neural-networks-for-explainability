@@ -16,7 +16,7 @@ lg.set_logging()
 Artifact = namedtuple('ExperimentArtifact',
                       ['accuracy', 'architecture', 'batch', 'column_at_a_time', 'dims', 'epoch',
                        'experiment_name', 'lr', 'max_seq_length', 'seq_length', 'path', 'architecture_name',
-                       'keep_prob', 'optimizer']
+                       'val_accuracy', 'keep_prob', 'optimizer']
                       )
 
 def get_results(path):
@@ -53,6 +53,10 @@ def save_artifact(tf_session, result, output_dir):
     logging.debug('Saving model to %s' % model_path)
     tf.train.Saver().save(tf_session, model_path)
 
+    result['path'] = result_path
+
+    return Artifact(**result)
+
 
 def get_result(dir):
     result_path = '%s/result.yaml' % dir
@@ -67,14 +71,18 @@ def get_result(dir):
 
     if 'keep_prob' not in res.keys():
         res['keep_prob'] = 1
+
     if 'optimizer' not in res.keys():
         res['optimizer'] = 'AdamOptimizer'
+
+    if 'val_accuracy' not in res.keys():
+        res['val_accuracy'] = -1
 
     return Artifact(**res)
 
 
 def get_experiment_name(prefix='rnn'):
-    timestamp = datetime.now().strftime('%Y-%m-%d--%H-%M')
+    timestamp = datetime.now().strftime('%Y-%m-%d--%H-%M-%S')
 
     return '%s-%s' % (prefix, timestamp)
 
