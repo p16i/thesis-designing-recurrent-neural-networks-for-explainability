@@ -59,12 +59,43 @@
 - [x] Make LWR work in batch
 
 ## Sprint 6 : 04-10/11/2017
-- [ ] Write test for LWR
-- [ ] Train model with seq 1, 2, 4, 7
-    - [ ] Bayesian optimization
+- [x] Write test for LWR
+- [x] Train model with 
+    - seq 1, 2 4 : s2, s3
+    - seq 7, 14, 28 : s3 only 
+    - [x] Bayesian optimization
 - [ ] Implement overlapping column
 - [ ] Set up /Run experiments on server (..waiting for the access)
 - [ ] Save/Load model from object storage(~1 day)
+
+## Sprint 7 : 10-17/11/2017
+- [ ] S3 Experiments
+    - effect of dropout rate to heatmap
+    - effect of size of input_1 layer 
+- [ ] new architecture?
+
+- [ ]
+
+## Sprint 8 : 17/11-5/12/2017
+## Sprint 9 : 5-15/12/2017
+## Sprint 10 : 15-25/12/2017
+- Start report
+
+## Sprint 11 : 4-12/01/2018
+## Sprint 12 : 12-19/01/2018
+## Sprint 13 : 19-26/01/2018
+
+## Sprint 14 : 26/01-2/02/2018
+## Sprint 15 : 2-9/02/2018
+## Sprint 16 : 9-16/02/2018
+## Sprint 17 : 16-23/02/2018
+
+## Sprint 18 : 23/02-2/03/2018
+## Sprint 19 : 2-9/03/2018
+## Sprint 20 : 9-16/03/2018
+## Sprint 21 : 16-23/03/2018
+
+## Sprint 22 : 23-30/03/2018 <- LAST ONE?
 
 Optional
 - [ ] Implement result viewers (4 hours)
