@@ -69,6 +69,7 @@
 - [ ] ~~Save/Load model from object storage(~1 day)~~ postpone
 
 ## Sprint 7 : 10-17/11/2017
+- [ ] Fix dropout
 - [ ] Relevance distribution for each class and per architecture
     - seq 4, 7, 14
 - [ ] Proportion / positive and negative weights 
