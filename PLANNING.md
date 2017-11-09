@@ -64,17 +64,23 @@
     - seq 1, 2 4 : s2, s3
     - seq 7, 14, 28 : s3 only 
     - [x] Bayesian optimization
-- [ ] Implement overlapping column
-- [ ] Set up /Run experiments on server (..waiting for the access)
-- [ ] Save/Load model from object storage(~1 day)
+- [ ] ~~Implement overlapping column~~ not relevant
+- [x] Set up /Run experiments on server (..waiting for the access)
+- [ ] ~~Save/Load model from object storage(~1 day)~~ postpone
 
 ## Sprint 7 : 10-17/11/2017
-- [ ] S3 Experiments
-    - effect of dropout rate to heatmap
-    - effect of size of input_1 layer 
-- [ ] new architecture?
+- [ ] Relevance distribution for each class and per architecture
+    - seq 4, 7, 14
+- [ ] Proportion / positive and negative weights 
+- [ ] New propagation rules
+- [ ] UFI Dataset(http://ufi.kiv.zcu.cz/)
+    - TF Record 
+- [ ] continuous training
+    - use bayesian to explore space and load the best model from bayesion opt and train futher
 
-- [ ]
+Optional
+- [ ] Implement result viewers (4 hours)
+- [ ] Play with TFRecord (1 day)
 
 ## Sprint 8 : 17/11-5/12/2017
 ## Sprint 9 : 5-15/12/2017
@@ -97,6 +103,3 @@
 
 ## Sprint 22 : 23-30/03/2018 <- LAST ONE?
 
-Optional
-- [ ] Implement result viewers (4 hours)
-- [ ] Play with TFRecord (1 day)
