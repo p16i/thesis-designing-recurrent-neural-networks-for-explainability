@@ -1,0 +1,49 @@
+accuracy: 0.09799999743700027
+architecture: hidden:200|out:10--recur:100
+architecture_name: s2_network
+batch: 50
+column_at_a_time: 2
+dims: 28
+epoch: 10
+experiment_name: s2-seq-14---2017-11-07--00-27-01
+keep_prob: !!python/object/apply:numpy.core.multiarray.scalar
+- &id001 !!python/object/apply:numpy.dtype
+  args:
+  - f8
+  - 0
+  - 1
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  Zc3qZ8am5z8=
+lr: !!python/object/apply:numpy.core.multiarray.scalar
+- *id001
+- !!binary |
+  sZHyWtvVRz8=
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 14
+val_accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+- !!python/object/apply:numpy.dtype
+  args:
+  - f4
+  - 0
+  - 1
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  FK7HPQ==

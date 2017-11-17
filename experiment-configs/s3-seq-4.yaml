@@ -1,0 +1,9 @@
+parameters:
+  recur: [20, 50]
+  in1: [100,200]
+  keep_prob: [0.01, 0.05]
+
+command: |
+  python scripts/train.py s3_network --seq-length 4 --epoch 500 --lr 0.00025 --batch 50 \
+    --architecture-str 'in1:{in1}|hidden:30|out1:20|out2:10--recur:{recur}' \
+    --keep_prob {keep_prob} --verbose --output_dir ./experiment-results/sprint-5-seq-4

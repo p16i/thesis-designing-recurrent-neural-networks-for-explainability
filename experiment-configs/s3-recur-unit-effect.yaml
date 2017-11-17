@@ -1,0 +1,7 @@
+parameters:
+  recur: [1, 5, 10, 30]
+
+command: |
+  python scripts/train.py s3_network --seq-length 2 --epoch 200 --lr 0.00005 --batch 50 \
+    --architecture-str 'in1:100|hidden:75|out1:25|out2:10--recur:{recur}' \
+    --keep_prob 0.2 --verbose --output_dir ./experiment-results/sprint-5-seq-2-recur-effect
