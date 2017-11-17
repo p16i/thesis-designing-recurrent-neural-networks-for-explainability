@@ -1,4 +1,9 @@
 import tensorflow as tf
+import logging
+import numpy as np
+from utils import logging as lg
+
+lg.set_logging()
 
 
 class BaseDag:
@@ -44,4 +49,52 @@ class BaseNetwork:
         saver.restore(sess, '%s/model.ckpt' % self._.path)
 
         return sess
+
+    def compute_grad_wrt_x(self, x, debug=False):
+        x_3d = x.reshape(-1, 28, 28)
+        logging.info('Compute grad wrt. X shape %s' % (x_3d.shape,))
+
+        with self.get_session() as sess:
+            rx = np.zeros((x_3d.shape[0], self.architecture.recur))
+
+            max_y_pred = tf.reduce_max(self.dag.y_pred, axis=1)
+
+            grad = tf.gradients(max_y_pred, self.dag.x)
+
+            pred, grad_res = sess.run([self.dag.y_pred, grad],
+                                      feed_dict={self.dag.x: x_3d, self.dag.rx: rx, self.dag.keep_prob: 1})
+
+            grad_res = grad_res[0]
+
+            logging.info('Grad result in shape %s' % (grad_res.shape,))
+
+            return np.argmax(pred, axis=1), grad_res
+
+    def rel_sensitivity(self, x, debug=False):
+        pred, grad = self.compute_grad_wrt_x(x, debug)
+        return pred, np.power(grad, 2)
+
+    def rel_simple_taylor(self, x, debug=False):
+        x_3d = x.reshape(-1, 28, 28)
+
+        pred, grad = self.compute_grad_wrt_x(x_3d, debug)
+
+        return pred, grad * x_3d
+
+    def rel_lrp_deep_taylor(self, x, debug=False):
+        return self.lrp(x, debug)
+
+
+
+
+    def _get_relevance(self, x_3d):
+        rx = np.zeros((x_3d.shape[0], self.architecture.recur))
+
+        pred = sess.run(self.dag.y_pred, feed_dict={self.dag.x: x_3d, self.dag.rx: rx, self.dag.keep_prob: 1})
+        mark = np.zeros(pred.shape)
+        mark[range(pred.shape[0]), np.argmax(pred, axis=1)] = 1
+
+        relevance = pred * mark
+
+        return relevance
 

@@ -60,18 +60,20 @@ class S3NetworkDAG(base.BaseDag):
 
             xr = tf.concat([itc_do, rr], axis=1)
             self.input_to_cell_activations.append(xr)
+            xr_do = tf.nn.dropout(xr, keep_prob=self.keep_prob)
 
-            ha = tf.nn.relu(tf.matmul(xr, self.ly_input_to_cell.W) - tf.nn.relu(self.ly_input_to_cell.b))
+            ha = tf.nn.relu(tf.matmul(xr_do, self.ly_input_to_cell.W) - tf.nn.relu(self.ly_input_to_cell.b))
             self.ha_activations.append(ha)
 
-            ha_do = ha
-
-            rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.relu(self.ly_recurrent.b))
+            rr = tf.nn.relu(tf.matmul(ha, self.ly_recurrent.W) - tf.nn.relu(self.ly_recurrent.b))
             self.rr_activations.append(rr)
 
-            ho = tf.nn.relu(tf.matmul(ha, self.ly_output_from_cell.W) - tf.nn.relu(self.ly_output_from_cell.b))
+            ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
+            ho = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W) - tf.nn.relu(self.ly_output_from_cell.b))
             self.output_from_cell_activations.append(ho)
-            ot = tf.matmul(ho, self.ly_output_2.W) - tf.nn.relu(self.ly_output_2.b)
+
+            ho_do = tf.nn.dropout(ho, keep_prob=self.keep_prob)
+            ot = tf.matmul(ho_do, self.ly_output_2.W) - tf.nn.relu(self.ly_output_2.b)
 
         self.y_pred = ot
 
@@ -173,7 +175,7 @@ class S3Network(base.BaseNetwork):
 
             return experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
 
-    def lrp(self, x, debug=False):
+    def lrp(self, x, factor=1, debug=False):
 
         x_3d = x.reshape(-1, 28, 28)
         with self.get_session() as sess:
@@ -207,12 +209,12 @@ class S3Network(base.BaseNetwork):
 
             # lwr start here
             RR_of_output_from_cell = lrp.z_plus_prop(
-                output_from_cell_activations[:, :, -1], weights['output_2'], relevance)
+                output_from_cell_activations[:, :, -1], weights['output_2'], relevance, factor=factor)
             RR_of_hiddens[:, :, -1] = lrp.z_plus_prop(ha_activations[:, :, -1], weights['output_from_cell'],
-                                                      RR_of_output_from_cell)
+                                                      RR_of_output_from_cell, factor=factor)
 
             temp = lrp.z_plus_prop(input_to_cell_activations[:, :, -1]
-                                   , weights['input_to_cell'], RR_of_hiddens[:, :, -1])
+                                   , weights['input_to_cell'], RR_of_hiddens[:, :, -1], factor=factor)
             # temp = np.squeeze(temp)
 
             RR_of_input1[:, :, -1] = temp[:, :-self.architecture.recur]
@@ -220,15 +222,15 @@ class S3Network(base.BaseNetwork):
 
             RR_of_pixels[:, :, -1] = lrp.z_beta_prop(
                 x_3d[:, :, -self.experiment_artifact.column_at_a_time:].reshape(x_3d.shape[0], -1),
-                weights['input_1'], RR_of_input1[:, :, -1]
+                weights['input_1'], RR_of_input1[:, :, -1], factor=factor
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
                 RR_of_hiddens[:, :, i] = lrp.z_plus_prop(ha_activations[:, :, i],
-                                                         weights['recurrent'], RR_of_rr[:, :, i + 1])
+                                                         weights['recurrent'], RR_of_rr[:, :, i + 1], factor=factor)
 
                 temp = lrp.z_plus_prop(input_to_cell_activations[:, :, i],
-                                       weights['input_to_cell'], RR_of_hiddens[:, :, i])
+                                       weights['input_to_cell'], RR_of_hiddens[:, :, i], factor=factor)
 
                 RR_of_input1[:, :, i] = temp[:, :-self.architecture.recur]
                 RR_of_rr[:, :, i] = temp[:, -self.architecture.recur:]
@@ -238,7 +240,7 @@ class S3Network(base.BaseNetwork):
 
                 RR_of_pixels[:, :, i] = lrp.z_beta_prop(
                     x_3d[:, :, c_i:c_j].reshape(x_3d.shape[0], -1),
-                    weights['input_1'], RR_of_input1[:, :, i]
+                    weights['input_1'], RR_of_input1[:, :, i], factor=factor
                 )
 
             if debug:

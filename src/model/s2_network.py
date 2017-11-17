@@ -54,7 +54,9 @@ class S2NetworkDAG(base.BaseDag):
         for i in range(0, max_seq_length, no_input_cols):
             ii = tf.reshape(self.x[:, :, i:i + no_input_cols], [-1, no_input_cols * dims])
 
-            xr = tf.concat([ii, rr], axis=1)
+            ii_do = tf.nn.dropout(ii, keep_prob=self.keep_prob)
+            xr = tf.concat([ii_do, rr], axis=1)
+
             ha = tf.nn.relu(tf.matmul(xr, self.ly_input.W) - tf.nn.softplus(self.ly_input.b))
             self.ha_activations.append(ha)
 
@@ -167,7 +169,7 @@ class S2Network(base.BaseNetwork):
 
             return experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
 
-    def lrp(self, x, debug=False):
+    def lrp(self, x, factor=1, debug=False):
 
         x_3d = x.reshape(-1, 28, 28)
         with self.get_session() as sess:
@@ -196,7 +198,7 @@ class S2Network(base.BaseNetwork):
             RR_of_rr = np.zeros((x_3d.shape[0], self.architecture.recur, self._.seq_length+1))
 
             # lwr start here
-            RR_of_hiddens[:, :, -1] = lrp.z_plus_prop(ha_activations[:, :, -1], weights['output'], relevance)
+            RR_of_hiddens[:, :, -1] = lrp.z_plus_prop(ha_activations[:, :, -1], weights['output'], relevance, factor=factor)
 
             weight_px_parts = weights['input'][:-self.architecture.recur, :]
             weight_rr_parts = weights['input'][-self.architecture.recur:, :]
@@ -205,11 +207,13 @@ class S2Network(base.BaseNetwork):
                 weight_rr_parts,
                 x_3d[:, :, -self.experiment_artifact.column_at_a_time:].reshape(x_3d.shape[0], -1),
                 weight_px_parts,
-                RR_of_hiddens[:, :, -1]
+                RR_of_hiddens[:, :, -1],
+                factor=factor
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
-                RR_of_hiddens[:, :, i] = lrp.z_plus_prop(ha_activations[:, :, i], weights['recurrent'], RR_of_rr[:, :, i + 1])
+                RR_of_hiddens[:, :, i] = lrp.z_plus_prop(ha_activations[:, :, i], weights['recurrent'],
+                                                         RR_of_rr[:, :, i + 1], factor=factor)
 
                 c_i = self._.column_at_a_time * i
                 c_j = c_i + self._.column_at_a_time
@@ -219,7 +223,8 @@ class S2Network(base.BaseNetwork):
                     weight_rr_parts,
                     x_3d[:, :, c_i:c_j].reshape(x_3d.shape[0], -1),
                     weight_px_parts,
-                    RR_of_hiddens[:, :, i]
+                    RR_of_hiddens[:, :, i],
+                    factor=factor
                 )
 
             if debug:
