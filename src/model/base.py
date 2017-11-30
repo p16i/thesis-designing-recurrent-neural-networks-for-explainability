@@ -82,10 +82,7 @@ class BaseNetwork:
         return pred, grad * x_3d
 
     def rel_lrp_deep_taylor(self, x, debug=False):
-        return self.lrp(x, debug)
-
-
-
+        return self.lrp(x, factor=1, debug=debug)
 
     def _get_relevance(self, x_3d):
         rx = np.zeros((x_3d.shape[0], self.architecture.recur))
@@ -98,3 +95,23 @@ class BaseNetwork:
 
         return relevance
 
+    def get_weight_bias_at_layers(self, layers=None):
+        if layers is None:
+            layers = sorted(self.dag.layers.keys())
+
+        weights = []
+        biases = []
+
+        total_layers = len(layers)
+
+        for k in layers:
+            layer = self.dag.layers[k]
+            weights.append(layer.W)
+            biases.append(layer.b)
+
+        with self.get_session() as sess:
+            res = sess.run(weights + biases)
+
+            weights, biases = res[:total_layers], res[total_layers:]
+
+        return dict(zip(layers, weights)), dict(zip(layers, biases))
