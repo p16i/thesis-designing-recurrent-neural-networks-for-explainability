@@ -17,13 +17,13 @@ TRAIN_FUNCTIONS = {
 
 def run(network, seq, architecture,
         batch_size=50, epoch=100,
-        lr_bound=(0.001, 0.0001), keep_prob_bound=(0.1, 0.5),
-        no_experiments=100, output_dir=""):
+        lr_bound=(0.0001, 0.001),
+        no_experiments=100, dataset='mnist', output_dir=""):
     logging.info('Optimization for %s with seq %s' % (network, seq))
     logging.info('--------------------')
     logging.info('architecture : %s' % architecture)
     logging.info('learning rate bounds : (%s, %s)' % lr_bound)
-    logging.info('keep_prob bounds : (%s, %s)' % keep_prob_bound)
+    # logging.info('keep_prob bounds : (%s, %s)' % keep_prob_bound)
     logging.info('--------------------')
     logging.info('Experiment artifacts will be saved to %s' % output_dir)
 
@@ -33,9 +33,10 @@ def run(network, seq, architecture,
             'batch': batch_size,
             'architecture_str': architecture,
             'lr': x[0],
-            'keep_prob': x[1],
+            'keep_prob': 0.5,
             'output_dir': output_dir,
-            'epoch': epoch
+            'epoch': epoch,
+            'dataset': dataset
         }
 
         artifact = TRAIN_FUNCTIONS[network].train(**params)
@@ -44,7 +45,7 @@ def run(network, seq, architecture,
 
     logging.info('#########################')
 
-    res = gp_minimize(objective, [lr_bound, keep_prob_bound], verbose=True, n_calls=no_experiments)
+    res = gp_minimize(objective, [lr_bound], verbose=True, n_calls=no_experiments)
 
     logging.info('------- RESULT --------')
     logging.info(res)
