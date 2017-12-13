@@ -73,7 +73,7 @@ class S3NetworkDAG(base.BaseDag):
             self.output_from_cell_activations.append(ho)
 
             ho_do = tf.nn.dropout(ho, keep_prob=self.keep_prob)
-            ot = tf.nn.relu(tf.matmul(ho_do, self.ly_output_2.W) - tf.nn.softplus(self.ly_output_2.b))
+            ot = tf.matmul(ho_do, self.ly_output_2.W) - tf.nn.softplus(self.ly_output_2.b)
 
         self.y_pred = ot
 
