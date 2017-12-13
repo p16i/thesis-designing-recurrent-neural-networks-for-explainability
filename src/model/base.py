@@ -3,6 +3,7 @@ import logging
 import numpy as np
 from utils import logging as lg
 
+from utils import experiment_artifact
 lg.set_logging()
 
 
@@ -21,11 +22,14 @@ class BaseDag:
         self.init_op = None
         self.accuracy = None
 
+        self.layers = []
+
         self.optimizer = optimizer
 
     def setup_loss_and_opt(self):
         self.loss_op = tf.reduce_mean(
-            tf.nn.softmax_cross_entropy_with_logits(logits=self.y_pred, labels=self.y_target))
+            tf.nn.softmax_cross_entropy_with_logits(logits=self.y_pred, labels=self.y_target)
+        )
 
         optimizer = getattr(tf.train, self.optimizer)
         self.train_op = optimizer(learning_rate=self.lr).minimize(self.loss_op)
@@ -36,7 +40,7 @@ class BaseDag:
 
 
 class BaseNetwork:
-    def __init__(self, artifact):
+    def __init__(self, artifact: experiment_artifact.Artifact):
 
         self.experiment_artifact = artifact
         self._ = artifact

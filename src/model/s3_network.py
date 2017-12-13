@@ -23,7 +23,7 @@ def load(model_path):
 
 
 class S3NetworkDAG(base.BaseDag):
-    def __init__(self, no_input_cols, dims, max_seq_length, architecture: S3Architecture, optimizer):
+    def __init__(self, no_input_cols, dims, max_seq_length, architecture, optimizer):
         super(S3NetworkDAG, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer)
 
         # define layers
@@ -53,7 +53,7 @@ class S3NetworkDAG(base.BaseDag):
         # define  dag
         for i in range(0, max_seq_length, no_input_cols):
             ii = tf.reshape(self.x[:, :, i:i + no_input_cols], [-1, no_input_cols * dims])
-            itc = tf.nn.relu(tf.matmul(ii, self.ly_input_1.W) - tf.nn.relu(self.ly_input_1.b))
+            itc = tf.nn.relu(tf.matmul(ii, self.ly_input_1.W) - tf.nn.softplus(self.ly_input_1.b))
             self.input_1_activations.append(itc)
 
             itc_do = tf.nn.dropout(itc, keep_prob=self.keep_prob)
@@ -62,18 +62,18 @@ class S3NetworkDAG(base.BaseDag):
             self.input_to_cell_activations.append(xr)
             xr_do = tf.nn.dropout(xr, keep_prob=self.keep_prob)
 
-            ha = tf.nn.relu(tf.matmul(xr_do, self.ly_input_to_cell.W) - tf.nn.relu(self.ly_input_to_cell.b))
+            ha = tf.nn.relu(tf.matmul(xr_do, self.ly_input_to_cell.W) - tf.nn.softplus(self.ly_input_to_cell.b))
             self.ha_activations.append(ha)
 
-            rr = tf.nn.relu(tf.matmul(ha, self.ly_recurrent.W) - tf.nn.relu(self.ly_recurrent.b))
+            rr = tf.nn.relu(tf.matmul(ha, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
             self.rr_activations.append(rr)
 
             ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
-            ho = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W) - tf.nn.relu(self.ly_output_from_cell.b))
+            ho = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W) - tf.nn.softplus(self.ly_output_from_cell.b))
             self.output_from_cell_activations.append(ho)
 
-            ho_do = tf.nn.dropout(ho, keep_prob=self.keep_prob)
-            ot = tf.matmul(ho_do, self.ly_output_2.W) - tf.nn.relu(self.ly_output_2.b)
+            ho_do = tf.nn.dropout(ho_do, keep_prob=self.keep_prob)
+            ot = tf.nn.relu(tf.matmul(ho_do, self.ly_output_2.W) - tf.nn.softplus(self.ly_output_2.b))
 
         self.y_pred = ot
 
@@ -86,7 +86,7 @@ class S3NetworkDAG(base.BaseDag):
 
 
 class S3Network(base.BaseNetwork):
-    def __init__(self, artifact: experiment_artifact.Artifact):
+    def __init__(self, artifact):
         super(S3Network, self).__init__(artifact)
 
         self.architecture = S3Architecture(**network_architecture.parse(artifact.architecture))
@@ -97,16 +97,18 @@ class S3Network(base.BaseNetwork):
 
     @staticmethod
     def train(seq_length=1, epoch=1, lr=0.01, batch=100, architecture_str='in1:_|hidden:_|out1:_|out2:_|--recur:_',
-              keep_prob=0.5, verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer'
+              keep_prob=0.5, verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer',
+              dataset='mnist'
               ):
 
-        experiment_name = experiment_artifact.get_experiment_name('s3-seq-%d--' % seq_length)
+        experiment_name = experiment_artifact.get_experiment_name('s3-%s-seq-%d--' % (dataset, seq_length))
         logging.debug('Train sprint3 network')
         logging.debug('Experiment name : %s' % experiment_name)
-        mnist = data_provider.MNISTData()
+
+        data = data_provider.get_data(dataset)
 
         # no.rows and cols
-        dims, max_seq_length = mnist.train2d.x.shape[1:]
+        dims, max_seq_length = data.train2d.x.shape[1:]
         architecture = S3Architecture(**network_architecture.parse(architecture_str))
         logging.debug('Network architecture')
         logging.debug(architecture)
@@ -123,7 +125,7 @@ class S3Network(base.BaseNetwork):
             step = 1
             for i in range(epoch):
                 logging.debug('epoch %d' % (i + 1))
-                for bx, by in mnist.train2d.get_batch(no_batch=batch):
+                for bx, by in data.train2d.get_batch(no_batch=batch):
 
                     rx0 = np.zeros((batch, architecture.recur))
                     sess.run(dag.train_op,
@@ -134,8 +136,8 @@ class S3Network(base.BaseNetwork):
                         acc, loss = sess.run([dag.accuracy, dag.loss_op],
                                              feed_dict={dag.x: bx, dag.y_target: by, dag.rx: rx0, dag.keep_prob: 1})
 
-                        rx0 = np.zeros((len(mnist.val2d.y), architecture.recur))
-                        acc_val = sess.run(dag.accuracy, feed_dict={dag.x: mnist.val2d.x, dag.y_target: mnist.val2d.y,
+                        rx0 = np.zeros((len(data.val2d.y), architecture.recur))
+                        acc_val = sess.run(dag.accuracy, feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
                                                                     dag.rx: rx0, dag.keep_prob: 1})
                         logging.debug('step %d : current train batch acc %f, loss %f | val acc %f'
                                      % (step, acc, loss, acc_val))
@@ -143,14 +145,14 @@ class S3Network(base.BaseNetwork):
                     step = step + 1
 
             logging.debug('Calculating test accuracy')
-            rx0 = np.zeros((len(mnist.test2d.y), architecture.recur))
+            rx0 = np.zeros((len(data.test2d.y), architecture.recur))
             acc = float(sess.run(dag.accuracy,
-                                 feed_dict={dag.x: mnist.test2d.x, dag.y_target: mnist.test2d.y,
+                                 feed_dict={dag.x: data.test2d.x, dag.y_target: data.test2d.y,
                                             dag.rx: rx0, dag.keep_prob: 1}))
 
-            rx0 = np.zeros((len(mnist.val2d.y), architecture.recur))
-            val_acc = sess.run(dag.accuracy, feed_dict={dag.x: mnist.val2d.x, dag.y_target: mnist.val2d.y,
-                                                        dag.rx: rx0, dag.keep_prob: 1})
+            rx0 = np.zeros((len(data.val2d.y), architecture.recur))
+            val_acc = float(sess.run(dag.accuracy, feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
+                                                        dag.rx: rx0, dag.keep_prob: 1}))
 
             res = dict(
                 experiment_name=experiment_name,
@@ -166,7 +168,8 @@ class S3Network(base.BaseNetwork):
                 max_seq_length=max_seq_length,
                 keep_prob=keep_prob,
                 optimizer=optimizer,
-                val_accuracy=val_acc
+                val_accuracy=val_acc,
+                dataset=dataset
             )
 
             logging.debug('\n%s\n', lg.tabularize_params(res))
@@ -244,21 +247,6 @@ class S3Network(base.BaseNetwork):
                 )
 
             if debug:
-                # logging.debug('Prediction before softmax \n%s' % list(zip(mark,pred)))
-                #
-                # logging.debug('Relevance %f' % np.sum(relevance))
-                # logging.debug('RR_of_ha')
-                # logging.debug(np.sum(RR_of_hiddens, axis=0))
-                #
-                # logging.debug('RR_of_rr + input1')
-                # logging.debug(np.sum(RR_of_rr[:, :-1], axis=0) + np.sum(RR_of_input1, axis=0))
-                # logging.debug('----------')
-                # logging.debug('RR_of_input1')
-                # logging.debug(np.sum(RR_of_input1, axis=0))
-                # logging.debug('RR_of_rr')
-                # logging.debug(np.sum(RR_of_rr, axis=0))
-                # logging.debug('===========')
-                # logging.debug('Total Relevance of input pixels %f', np.sum(RR_of_pixels))
 
                 logging.debug('Prediction before softmax \n%s' % list(zip(mark, pred)))
                 logging.debug('Relevance')

@@ -53,9 +53,7 @@ class S2NetworkDAG(base.BaseDag):
         # define  dag
         for i in range(0, max_seq_length, no_input_cols):
             ii = tf.reshape(self.x[:, :, i:i + no_input_cols], [-1, no_input_cols * dims])
-
-            ii_do = tf.nn.dropout(ii, keep_prob=self.keep_prob)
-            xr = tf.concat([ii_do, rr], axis=1)
+            xr = tf.concat([ii, rr], axis=1)
 
             ha = tf.nn.relu(tf.matmul(xr, self.ly_input.W) - tf.nn.softplus(self.ly_input.b))
             self.ha_activations.append(ha)
@@ -88,16 +86,17 @@ class S2Network(base.BaseNetwork):
 
     @staticmethod
     def train(seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, architecture_str='hidden:_|out:_|--recur:_',
-              verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer'
+              verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer',
+              dataset='mnist'
               ):
 
         experiment_name = experiment_artifact.get_experiment_name('s2-seq-%d--' % seq_length)
         logging.debug('Train s2 network')
         logging.debug('Experiment name : %s' % experiment_name)
-        mnist = data_provider.MNISTData()
+        data = data_provider.get_data(dataset)
 
         # no.rows and cols
-        dims, max_seq_length = mnist.train2d.x.shape[1:]
+        dims, max_seq_length = data.train2d.x.shape[1:]
         architecture = S2Architecture(**network_architecture.parse(architecture_str))
         logging.debug('Network architecture')
         logging.debug(architecture)
@@ -113,7 +112,7 @@ class S2Network(base.BaseNetwork):
             step = 1
             for i in range(epoch):
                 logging.debug('epoch %d' % (i + 1))
-                for bx, by in mnist.train2d.get_batch(no_batch=batch):
+                for bx, by in data.train2d.get_batch(no_batch=batch):
 
                     rx0 = np.zeros((batch, architecture.recur))
                     sess.run(dag.train_op,
@@ -124,28 +123,28 @@ class S2Network(base.BaseNetwork):
                         acc, loss = sess.run([dag.accuracy, dag.loss_op],
                                              feed_dict={dag.x: bx, dag.y_target: by, dag.rx: rx0, dag.keep_prob: 1})
 
-                        rx0 = np.zeros((len(mnist.val2d.y), architecture.recur))
-                        acc_val = sess.run(dag.accuracy, feed_dict={dag.x: mnist.val2d.x, dag.y_target: mnist.val2d.y,
+                        rx0 = np.zeros((len(data.val2d.y), architecture.recur))
+                        acc_val = sess.run(dag.accuracy, feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
                                                                     dag.rx: rx0, dag.keep_prob: 1})
                         logging.debug('step %d : current train batch acc %f, loss %f | val acc %f'
                                      % (step, acc, loss, acc_val))
 
                     step = step + 1
 
-            rx0 = np.zeros((len(mnist.val2d.y), architecture.recur))
-            acc_val = sess.run(dag.accuracy, feed_dict={dag.x: mnist.val2d.x, dag.y_target: mnist.val2d.y,
+            rx0 = np.zeros((len(data.val2d.y), architecture.recur))
+            acc_val = sess.run(dag.accuracy, feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
                                                         dag.rx: rx0, dag.keep_prob: 1})
             logging.debug('Val accuracy : %f' % acc_val)
 
             logging.debug('Calculating test accuracy')
-            rx0 = np.zeros((len(mnist.test2d.y), architecture.recur))
+            rx0 = np.zeros((len(data.test2d.y), architecture.recur))
             acc = float(sess.run(dag.accuracy,
-                                 feed_dict={dag.x: mnist.test2d.x, dag.y_target: mnist.test2d.y,
+                                 feed_dict={dag.x: data.test2d.x, dag.y_target: data.test2d.y,
                                             dag.rx: rx0, dag.keep_prob: 1}))
 
-            rx0 = np.zeros((len(mnist.val2d.y), architecture.recur))
-            val_acc = sess.run(dag.accuracy, feed_dict={dag.x: mnist.val2d.x, dag.y_target: mnist.val2d.y,
-                                                        dag.rx: rx0, dag.keep_prob: 1})
+            rx0 = np.zeros((len(data.val2d.y), architecture.recur))
+            val_acc = float(sess.run(dag.accuracy, feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
+                                                        dag.rx: rx0, dag.keep_prob: 1}))
             res = dict(
                 experiment_name=experiment_name,
                 seq_length=seq_length,
@@ -160,7 +159,8 @@ class S2Network(base.BaseNetwork):
                 max_seq_length=max_seq_length,
                 keep_prob=keep_prob,
                 optimizer=optimizer,
-                val_accuracy=val_acc
+                val_accuracy=val_acc,
+                dataset=dataset
             )
 
             logging.debug('\n%s\n', lg.tabularize_params(res))
