@@ -62,7 +62,7 @@ class S2NetworkDAG(base.BaseDag):
             self.rr_activations.append(rr)
 
             ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
-            ot = tf.nn.relu(tf.matmul(ha_do, self.ly_output.W) - tf.nn.softplus(self.ly_output.b))
+            ot = tf.matmul(ha_do, self.ly_output.W) - tf.nn.softplus(self.ly_output.b)
 
         self.y_pred = ot
 
@@ -90,7 +90,8 @@ class S2Network(base.BaseNetwork):
               dataset='mnist'
               ):
 
-        experiment_name = experiment_artifact.get_experiment_name('s2-seq-%d--' % seq_length)
+        experiment_name = experiment_artifact.get_experiment_name('s2-%s-seq-%d--' % (dataset, seq_length))
+
         logging.debug('Train s2 network')
         logging.debug('Experiment name : %s' % experiment_name)
         data = data_provider.get_data(dataset)
