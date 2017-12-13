@@ -16,7 +16,7 @@ lg.set_logging()
 Artifact = namedtuple('ExperimentArtifact',
                       ['accuracy', 'architecture', 'batch', 'column_at_a_time', 'dims', 'epoch',
                        'experiment_name', 'lr', 'max_seq_length', 'seq_length', 'path', 'architecture_name',
-                       'val_accuracy', 'keep_prob', 'optimizer']
+                       'val_accuracy', 'keep_prob', 'optimizer', 'dataset']
                       )
 
 def get_results(path):
@@ -67,7 +67,6 @@ def get_result(dir):
     logging.debug('Getting result \n%s' % res)
     logging.debug(res)
     res['path'] = dir
-    # res['parsed_architecture'] = network_architecture.parse_architecture(res['architecture'])
 
     if 'keep_prob' not in res.keys():
         res['keep_prob'] = 1
@@ -78,6 +77,9 @@ def get_result(dir):
     if 'val_accuracy' not in res.keys():
         res['val_accuracy'] = -1
 
+    if 'dataset' not in res.keys():
+        res['dataset'] = 'mnist'
+
     return Artifact(**res)
 
 
@@ -85,22 +87,3 @@ def get_experiment_name(prefix='rnn'):
     timestamp = datetime.now().strftime('%Y-%m-%d--%H-%M-%S')
 
     return '%s-%s' % (prefix, timestamp)
-
-
-# class Artifact:
-#     # | accuracy | 0.7764000296592712 |
-#     # | architecture | hidden: 100 | out:10 - -recur: 100 |
-#     # | architecture_name | type |
-#     # | batch | 200 |
-#     # | column_at_a_time | 4 |
-#     # | dims | 28 |
-#     # | epoch | 50 |
-#     # | experiment_name | rnn - 2017 - 10 - 17 - -23 - 06 |
-#     # | lr | 0.005 |
-#     # | max_seq_length | 28 |
-#     # | seq_length | 7 |
-#     # +-------------------+--------------------
-#     def __init__(self, accuracy, architecture, batch,
-#                  column_at_a_time, dims, epoch, experiment_name, lr, max_seq_length, seq_length, path):
-#
-
