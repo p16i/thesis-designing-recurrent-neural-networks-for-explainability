@@ -75,26 +75,43 @@
     - seq 4, 7, 14
 - [x] Sensitivity, Simple Taylor
 - [x] Proportion / positive and negative weights 
-- [ ] Prepare meeting note
+- [x] Prepare meeting note
     - [x] relevance distributions from lrp
-- [ ] New propagation rules
+- [x] New propagation rules
+
+## Sprint 8 : 17/11-12/12/2017
+- [x] boxplot weight visualization
+- [x] Train 500 units for seq 4, 7 with 100 epochs
+    - no dropout at recurrent
+- [x] Prepare report structure
+- [x] Fashin MNIST https://github.com/zalandoresearch/fashion-mnist
+    - write data wrapper
+    - s2
+    - experiment with s2/s3
+
+## Sprint 9 : 15/12/2017-01/01/2018
+- [ ] Convolutional models
+- [ ] FasionMNIST acc> 90%
+- [ ] continuous training
+    - saving model
+    - use bayesian to explore space and load the best model from bayesion opt and train futher
 - [ ] UFI Dataset(http://ufi.kiv.zcu.cz/)
     - TF Record 
-- [ ] continuous training
-    - use bayesian to explore space and load the best model from bayesion opt and train futher
-
+- v0.1 report
+    - chapter experiment
+    
 Optional
 - [ ] Implement result viewers (4 hours)
 - [ ] Play with TFRecord (1 day)
+- [ ] Tensorboard
 
-## Sprint 8 : 17/11-5/12/2017
-## Sprint 9 : 5-15/12/2017
-## Sprint 10 : 15-25/12/2017
+## Sprint 10-11 : 1-12/2018
 - Start report
+- v1.0 draft report
 
-## Sprint 11 : 4-12/01/2018
 ## Sprint 12 : 12-19/01/2018
 ## Sprint 13 : 19-26/01/2018
+- 80% report done
 
 ## Sprint 14 : 26/01-2/02/2018
 ## Sprint 15 : 2-9/02/2018
@@ -107,4 +124,5 @@ Optional
 ## Sprint 21 : 16-23/03/2018
 
 ## Sprint 22 : 23-30/03/2018 <- LAST ONE?
+
 
