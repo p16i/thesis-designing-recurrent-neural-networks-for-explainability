@@ -1,0 +1,15 @@
+accuracy: 0.8356000185012817
+architecture: in1:250|hidden:500|out1:250|out2:10--recur:250
+architecture_name: s3_network
+batch: 50
+column_at_a_time: 28
+dataset: fashion-mnist
+dims: 28
+epoch: 50
+experiment_name: s3-fashion-mnist-seq-1---2017-12-11--22-10-51
+keep_prob: 0.3
+lr: 0.00025
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 1
+val_accuracy: 0.8432499766349792

@@ -1,0 +1,30 @@
+accuracy: 0.09799999743700027
+architecture: hidden:500|out:10--recur:250
+architecture_name: s2_network
+batch: 50
+column_at_a_time: 2
+dims: 28
+epoch: 100
+experiment_name: s2-seq-14---2017-12-08--09-55-19
+keep_prob: 1
+lr: 0.00025
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 14
+val_accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+- !!python/object/apply:numpy.dtype
+  args:
+  - f4
+  - 0
+  - 1
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  FK7HPQ==

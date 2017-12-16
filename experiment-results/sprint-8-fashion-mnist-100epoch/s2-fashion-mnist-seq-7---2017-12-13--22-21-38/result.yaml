@@ -1,0 +1,15 @@
+accuracy: 0.8707000017166138
+architecture: hidden:256|out:10--recur:256
+architecture_name: s2_network
+batch: 50
+column_at_a_time: 4
+dataset: fashion-mnist
+dims: 28
+epoch: 100
+experiment_name: s2-fashion-mnist-seq-7---2017-12-13--22-21-38
+keep_prob: 0.5
+lr: 0.0005
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 7
+val_accuracy: 0.8813333511352539

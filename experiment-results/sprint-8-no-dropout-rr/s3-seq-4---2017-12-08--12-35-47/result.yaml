@@ -1,0 +1,30 @@
+accuracy: 0.11349999904632568
+architecture: in1:250|hidden:500|out1:250|out2:10--recur:250
+architecture_name: s3_network
+batch: 50
+column_at_a_time: 7
+dims: 28
+epoch: 100
+experiment_name: s3-seq-4---2017-12-08--12-35-47
+keep_prob: 0.5
+lr: 0.005
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 4
+val_accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+- !!python/object/apply:numpy.dtype
+  args:
+  - f4
+  - 0
+  - 1
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  q6rqPQ==

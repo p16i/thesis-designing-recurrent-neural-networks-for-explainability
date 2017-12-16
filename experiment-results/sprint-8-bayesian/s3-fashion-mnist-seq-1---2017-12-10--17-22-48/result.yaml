@@ -1,0 +1,31 @@
+accuracy: 0.8463000059127808
+architecture: in1:375|hidden:750|out1:375|out2:10--recur:375
+architecture_name: s3_network
+batch: 50
+column_at_a_time: 28
+dataset: fashion-mnist
+dims: 28
+epoch: 50
+experiment_name: s3-fashion-mnist-seq-1---2017-12-10--17-22-48
+keep_prob: 0.5
+lr: !!python/object/apply:numpy.core.multiarray.scalar
+- !!python/object/apply:numpy.dtype
+  args:
+  - f8
+  - 0
+  - 1
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  jZiBDewCNz8=
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 1
+val_accuracy: 0.8544999957084656

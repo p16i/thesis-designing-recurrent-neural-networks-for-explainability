@@ -1,0 +1,15 @@
+accuracy: 0.9793999791145325
+architecture: hidden:256|out:10--recur:256
+architecture_name: s2_network
+batch: 50
+column_at_a_time: 4
+dataset: mnist
+dims: 28
+epoch: 50
+experiment_name: s2-seq-7---2017-12-13--13-27-37
+keep_prob: 0.5
+lr: 0.0005
+max_seq_length: 28
+optimizer: AdamOptimizer
+seq_length: 7
+val_accuracy: 0.9770833253860474
