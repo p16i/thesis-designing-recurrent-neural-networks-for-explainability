@@ -9,3 +9,4 @@ pip-selfcheck.json
 *.idea
 venv
 *.pyc
+.cache
