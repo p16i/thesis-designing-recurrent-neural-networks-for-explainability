@@ -1,13 +1,15 @@
 parameters:
-  hidden_units: [400, 800, 1000]
-  recurrent_units: [50, 100, 200]
-  keep_prob: [0.5, 0.8, 1]
+  hidden_units: [500]
+  recurrent_units: [250]
+  keep_prob: [0.5]
+  seq_length: [4, 7, 14]
+  lr: [0.00025, 0.001]
 
 command: |
   python scripts/train.py s2_network \
-    --seq-length 7 \
-    --epoch 50 \
-    --lr 0.001 \
-    --batch 100 \
+    --seq-length {seq_length} \
+    --epoch 100 \
+    --lr {lr} \
+    --batch 50 \
     --architecture-str 'hidden:{hidden_units}|out:10--recur:{recurrent_units}' \
-    --keep_prob 1 --verbose --output_dir ./experiment-results/sprint-5
+    --keep_prob 0.5 --verbose --output_dir ./experiment-results/sprint-8-final
