@@ -10,3 +10,4 @@ pip-selfcheck.json
 venv
 *.pyc
 .cache
+experiment-results
