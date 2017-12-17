@@ -68,10 +68,6 @@ class S2NetworkDAG(base.BaseDag):
 
         self.setup_loss_and_opt()
 
-    def no_variables(self):
-        return self.ly_input.get_no_variables() + self.ly_output.get_no_variables() + self.ly_recurrent.get_no_variables()
-
-
 class S2Network(base.BaseNetwork):
     def __init__(self, artifact: experiment_artifact.Artifact):
         super(S2Network, self).__init__(artifact)

@@ -20,4 +20,4 @@ class Layer:
         self.b = bias
 
     def get_no_variables(self):
-        return self.W.shape[0] * self.W.shape[1] + self.b.shape[0]
+        return int(self.W.shape[0] * self.W.shape[1] + self.b.shape[0])

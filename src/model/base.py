@@ -38,6 +38,12 @@ class BaseDag:
         correct_prediction = tf.equal(tf.argmax(self.y_target, 1), tf.argmax(self.y_pred, 1))
         self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
+    def no_variables(self):
+        no_variables = 0
+        for k, ly in self.layers.items():
+            no_variables = no_variables + ly.get_no_variables()
+        return no_variables
+
 
 class BaseNetwork:
     def __init__(self, artifact: experiment_artifact.Artifact):
