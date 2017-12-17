@@ -1,9 +1,0 @@
-accuracy: 0.7802000045776367
-architecture: hidden:100|out:10--recur:7
-architecture_name: s2_network
-batch: 200
-column_at_a_time: 4
-epoch: 50
-experiment_name: rnn-2017-10-16--10-17
-lr: 0.005
-seq_length: 7
