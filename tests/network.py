@@ -25,6 +25,12 @@ class TestNetwork(unittest.TestCase):
     def test_s3(self):
         TestNetwork._test_lrp('tests/data/s3-network')
 
+    def test_deep_4l(self):
+        TestNetwork._test_lrp('tests/data/deep-4l-network')
+
+    def test_convdeep_4l(self):
+        TestNetwork._test_lrp('tests/data/convdeep-4l-network')
+
     def test_no_variables(self):
         networks = [('s2-network', 14320), ('s3-network', 198218)]
         for network, expected in networks:

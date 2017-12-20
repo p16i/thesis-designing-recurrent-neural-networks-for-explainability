@@ -1,9 +1,11 @@
 import logging
 from utils import logging as lg
-from model import s2_network, s3_network
+from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network
 from utils import experiment_artifact
 
 lg.set_logging()
+import model
+
 
 def load(path):
     logging.debug('Load network from %s' % path)
@@ -11,11 +13,12 @@ def load(path):
 
     logging.info(artifact)
 
-    MODEL_LOADER = {
+    model_loaders = {
         's2_network': s2_network.S2Network,
         's3_network': s3_network.S3Network,
+        'deep_4l_network': deep_4l_network.Network,
+        'convdeep_4l_network': convdeep_4l_network.Network
     }
 
-
-    return MODEL_LOADER[artifact.architecture_name](artifact)
+    return model_loaders[artifact.architecture_name](artifact)
 

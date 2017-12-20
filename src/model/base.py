@@ -13,8 +13,11 @@ class BaseDag:
 
         self.rx = tf.placeholder(tf.float32, shape=(None, architecture.recur), name='recurrent_input')
         self.x = tf.placeholder(tf.float32, shape=(None, dims, max_seq_length), name='input')
+        self.x_with_channels = tf.expand_dims(self.x, -1)
+
         self.y_target = tf.placeholder(tf.float32, [None, 10], name='output_target')
         self.lr = tf.placeholder(tf.float32, name='lr')
+        self.regularizer = tf.placeholder(tf.float32, name='regularizer')
         self.keep_prob = tf.placeholder(tf.float32, name='keep_prob')
 
         self.loss_op = None
@@ -27,8 +30,15 @@ class BaseDag:
         self.optimizer = optimizer
 
     def setup_loss_and_opt(self):
+        reg_term = tf.constant(0.0)
+
+        for k, v in self.layers.items():
+            if hasattr(v, 'W'):
+                reg_term = reg_term + tf.reduce_sum(tf.pow(v.W, 2))
+
         self.loss_op = tf.reduce_mean(
-            tf.nn.softmax_cross_entropy_with_logits(logits=self.y_pred, labels=self.y_target)
+            tf.nn.softmax_cross_entropy_with_logits(logits=self.y_pred, labels=self.y_target) +
+            self.regularizer * reg_term
         )
 
         optimizer = getattr(tf.train, self.optimizer)

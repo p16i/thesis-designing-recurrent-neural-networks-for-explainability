@@ -16,7 +16,7 @@ lg.set_logging()
 Artifact = namedtuple('ExperimentArtifact',
                       ['accuracy', 'architecture', 'batch', 'column_at_a_time', 'dims', 'epoch',
                        'experiment_name', 'lr', 'max_seq_length', 'seq_length', 'path', 'architecture_name',
-                       'val_accuracy', 'keep_prob', 'optimizer', 'dataset']
+                       'val_accuracy', 'keep_prob', 'optimizer', 'dataset', 'regularizer']
                       )
 
 def get_results(path):
@@ -79,6 +79,9 @@ def get_result(dir):
 
     if 'dataset' not in res.keys():
         res['dataset'] = 'mnist'
+
+    if 'regularizer' not in res.keys():
+        res['regularizer'] = 0.0
 
     return Artifact(**res)
 
