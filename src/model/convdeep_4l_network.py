@@ -323,30 +323,30 @@ class Network(base.BaseNetwork):
                                                       self.dag.shape_pool2_output
                                                       )
 
-            relevance_ly_pool2 = lrp.pool_prop_tf(
+            relevance_ly_pool2 = self.dag.layers['pool2'].rel_prop(
                 self.dag.activations.conv2[-1],
                 self.dag.activations.pool2[-1],
-                relevance_ly_hidden_to_pool2)
+                relevance_ly_hidden_to_pool2
+            )
 
-            relevance_ly_conv2 = lrp.conv_prop_tf(
+            relevance_ly_conv2 = self.dag.layers['conv2'].rel_zplus_prop(
                 self.dag.activations.pool1[-1],
-                self.dag.layers['conv2'],
                 relevance_ly_pool2
             )
-            #
-            relevance_ly_pool1 = lrp.pool_prop_tf(
+
+            relevance_ly_pool1 = self.dag.layers['pool1'].rel_prop(
                 self.dag.activations.conv1[-1],
                 self.dag.activations.pool1[-1],
                 relevance_ly_conv2
             )
 
-            RR_of_pixels[-1] = lrp.conv_beta_prop_tf(
+            RR_of_pixels[-1] = self.dag.layers['conv1'].rel_zbeta_prop(
                 self.dag.x_with_channels[:, :, -self.experiment_artifact.column_at_a_time:, :],
-                self.dag.layers['conv1'],
                 relevance_ly_pool1
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
+
                 relevance_ly_hidden = lrp.z_plus_prop_tf(
                     self.dag.activations.hidden[i],
                     self.dag.layers['recurrent'].W,
@@ -364,33 +364,34 @@ class Network(base.BaseNetwork):
                                                           self.dag.shape_pool2_output
                                                           )
 
-
-                relevance_ly_pool2 = lrp.pool_prop_tf(
+                relevance_ly_pool2 = self.dag.layers['pool2'].rel_prop(
                     self.dag.activations.conv2[i],
                     self.dag.activations.pool2[i],
-                    relevance_ly_hidden_to_pool2)
+                    relevance_ly_hidden_to_pool2
+                )
 
-                relevance_ly_conv2 = lrp.conv_prop_tf(
+                relevance_ly_conv2 = self.dag.layers['conv2'].rel_zplus_prop(
                     self.dag.activations.pool1[i],
-                    self.dag.layers['conv2'],
                     relevance_ly_pool2
                 )
 
-                relevance_ly_pool1 = lrp.pool_prop_tf(
+                relevance_ly_pool1 = self.dag.layers['pool1'].rel_prop(
                     self.dag.activations.conv1[i],
                     self.dag.activations.pool1[i],
                     relevance_ly_conv2
                 )
 
-                RR_of_pixels[i] = lrp.conv_beta_prop_tf(
-                    self.dag.x_with_channels[:, :, -self.experiment_artifact.column_at_a_time:, :],
-                    self.dag.layers['conv1'],
+                c_i = self._.column_at_a_time * i
+                c_j = c_i + self._.column_at_a_time
+                print(c_i, c_j)
+
+                RR_of_pixels[i] = self.dag.layers['conv1'].rel_zbeta_prop(
+                    self.dag.x_with_channels[:, :, c_i:c_j, :],
                     relevance_ly_pool1
                 )
 
             pred, total_relevance, RR_of_pixels = sess.run(
                 [pred, total_relevance_reduced, RR_of_pixels],
-                # [pred, total_relevance, relevance_ly_hidden, dummy],
                 feed_dict={self.dag.x: x_3d, self.dag.rx: rx, self.dag.keep_prob: 1})
 
         heatmaps = np.zeros(x_3d.shape)
@@ -407,10 +408,6 @@ class Network(base.BaseNetwork):
             logging.debug(total_relevance)
 
             total_relevance_pixels = np.sum(heatmaps, axis=(1, 2))
-            print('Frome pixel')
-            print(total_relevance_pixels.shape)
-            print('From last layer')
-            print(total_relevance.shape)
             np.testing.assert_allclose(total_relevance_pixels, total_relevance,
                                        rtol=1e-6, atol=0,
                                        err_msg='Conservation property isn`t hold\n'
