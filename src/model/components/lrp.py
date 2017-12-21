@@ -2,10 +2,12 @@ import tensorflow as tf
 import numpy as np
 
 
+DIVISION_ADJUSTMENT = 1e-9
+
 def z_plus_prop(X, W, R, factor):
     V = np.maximum(0, W) + (1 - factor) * np.minimum(0, W)
 
-    Z = np.dot(X, V) + 1e-9
+    Z = np.dot(X, V) + DIVISION_ADJUSTMENT
     S = R / Z
     C = np.dot(S, V.T)
     return X * C
@@ -14,7 +16,7 @@ def z_plus_prop(X, W, R, factor):
 def z_plus_prop_tf(X, W, R, factor=1):
     V = tf.maximum(0.0, W) + (1.0 - factor) * tf.minimum(0.0, W)
 
-    Z = tf.matmul(X, V) + 1e-9
+    Z = tf.matmul(X, V) + DIVISION_ADJUSTMENT
     S = R / Z
     C = tf.matmul(S, tf.transpose(V))
     return X * C
@@ -23,17 +25,17 @@ def z_beta_prop(X, W, R, factor, lowest=-1, highest=1):
     W, V, U = W, np.maximum(0, W), np.minimum(0, W)
     X, L, H = X, X * 0 + lowest, X * 0 + highest
 
-    Z = np.dot(X, W) - factor*(np.dot(L, V) + np.dot(H, U)) + 1e-9
+    Z = np.dot(X, W) - factor*(np.dot(L, V) + np.dot(H, U)) + DIVISION_ADJUSTMENT
     S = R / Z
     return X * np.dot(S, W.T) - factor*(L * np.dot(S, V.T) + H * np.dot(S, U.T))
 
 def z_plus_beta_prop(X_p, W_p, X_b, W_b, R, factor, lowest=-1, highest=1):
     V_p = np.maximum(0, W_p) + (1 - factor) * np.minimum(0, W_p)
-    Z_p = np.dot(X_p, V_p) + 1e-9
+    Z_p = np.dot(X_p, V_p) + DIVISION_ADJUSTMENT
 
     W_b, V_b, U_b = W_b, np.maximum(0, W_b), np.minimum(0, W_b)
     L_b, H_b = X_b * 0 + lowest, X_b * 0 + highest
-    Z_b = np.dot(X_b, W_b) - factor*(np.dot(L_b, V_b) + np.dot(H_b, U_b)) + 1e-9
+    Z_b = np.dot(X_b, W_b) - factor*(np.dot(L_b, V_b) + np.dot(H_b, U_b)) + DIVISION_ADJUSTMENT
 
     Z = Z_p + Z_b
 
@@ -56,27 +58,17 @@ def pool_prop(x, gradients):
 
 
 def pool_prop_tf(x, activations, relevances):
-    s = relevances / (activations + 1e-9)
+    s = relevances / (activations + DIVISION_ADJUSTMENT)
     c = tf.gradients(activations, x, grad_ys=s)[0]
 
     return x*c
 
+
 def pool_prop_test_tf(x, activations, relevances):
-    print('pool_prop_tf')
-    print('x.shape)')
-    print(x.shape)
-
-    print('activation.shape')
-    print(activations.shape)
-
-    s = relevances / (activations + 1e-9)
+    s = relevances / (activations + DIVISION_ADJUSTMENT)
 
     c = tf.gradients(activations, x, grad_ys=s)[0]
     return c
-    # print('c.shape')
-    # print(c.shape)
-    # print('-----')
-    # return x*c
 
 
 def conv_prop_tf(X, conv_layer, R):
@@ -84,8 +76,8 @@ def conv_prop_tf(X, conv_layer, R):
     pself.W = tf.maximum(0.0, pself.W)
     pself.b = 0 * pself.b
 
-    _, activations = pself.conv(X)
-    z = activations + 1e-9
+    activations, _ = pself.conv(X)
+    z = activations + DIVISION_ADJUSTMENT
     s = R / z
 
     shape_x = tf.shape(X)
@@ -97,6 +89,7 @@ def conv_prop_tf(X, conv_layer, R):
                                     )
 
     return X * c
+
 
 def conv_beta_prop_tf(X, conv_layer, R, lowest=-1.0, highest=1.0):
     iself = conv_layer.clone()
@@ -112,11 +105,11 @@ def conv_beta_prop_tf(X, conv_layer, R, lowest=-1.0, highest=1.0):
 
     X,L,H = X, X*0.0+lowest, X*0+highest
 
-    _, i_act = iself.conv(X)
-    _, p_act = pself.conv(L)
-    _, n_act = nself.conv(H)
+    i_act, _ = iself.conv(X)
+    p_act, _ = pself.conv(L)
+    n_act, _ = nself.conv(H)
 
-    Z = i_act - p_act - n_act +1e-9
+    Z = i_act - p_act - n_act + DIVISION_ADJUSTMENT
 
     S = R/Z
 
