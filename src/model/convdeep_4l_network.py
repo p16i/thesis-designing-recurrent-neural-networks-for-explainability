@@ -383,7 +383,6 @@ class Network(base.BaseNetwork):
 
                 c_i = self._.column_at_a_time * i
                 c_j = c_i + self._.column_at_a_time
-                print(c_i, c_j)
 
                 RR_of_pixels[i] = self.dag.layers['conv1'].rel_zbeta_prop(
                     self.dag.x_with_channels[:, :, c_i:c_j, :],
