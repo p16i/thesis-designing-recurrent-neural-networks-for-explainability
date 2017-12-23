@@ -190,118 +190,71 @@ class Network(base.BaseNetwork):
 
         x_3d = x.reshape(-1, 28, 28)
         with self.get_session() as sess:
-
-            layer_keys = ['input_1', 'input_2', 'input_to_cell', 'output_from_cell', 'output_2', 'recurrent']
-            layer_weights = sess.run([self.dag.layers[k].W for k in layer_keys])
-            weights = dict(zip(layer_keys, layer_weights))
-
-            rx = np.zeros((x_3d.shape[0], self.architecture.recur))
-            data = sess.run(
-                self.dag.input_1_activations +
-                self.dag.input_2_activations +
-                self.dag.input_to_cell_activations +
-                self.dag.ha_activations
-                + self.dag.output_from_cell_activations
-                + [self.dag.y_pred],
-                feed_dict={self.dag.x: x_3d, self.dag.rx: rx, self.dag.keep_prob: 1})
-
-            activation_labels = ['input_1', 'input_2', 'input_to_cell', 'ha', 'output_from_cell']
-            activations = dict()
-
-            seq_length = self._.seq_length
-            for idx, l in zip(range(5),  activation_labels):
-                start = idx * seq_length
-                stop = (idx + 1) * seq_length
-                ds = np.array(data[start:stop])
-                activations[l] = ds.transpose([1, 2, 0])
-
-            activations = namedtuple('Activation', activation_labels)(**activations)
-
-            pred = data[-1]
-            mark = np.zeros(pred.shape)
-            mark[range(pred.shape[0]), np.argmax(pred, axis=1)] = 1
-            relevance = pred * mark
-
-            dims = self.experiment_artifact.dims
-
-            RR_of_hiddens = np.zeros((x_3d.shape[0], self.architecture.hidden, self._.seq_length))
-            RR_of_input2 = np.zeros((x_3d.shape[0], self.architecture.in2, self._.seq_length))
-            RR_of_input1 = np.zeros((x_3d.shape[0], self.architecture.in1, self._.seq_length))
-            RR_of_pixels = np.zeros((x_3d.shape[0], dims * self.experiment_artifact.column_at_a_time,
-                                     self._.seq_length))
-            RR_of_rr = np.zeros((x_3d.shape[0], self.architecture.recur, self._.seq_length+1))
+            # lwr start here
+            self.dag.setup_variables_for_lrp()
+            rel_to_input = [None]*self._.seq_length
 
             # lwr start here
-            RR_of_output_from_cell = lrp.z_plus_prop(activations.output_from_cell[:, :, -1],
-                                                     weights['output_2'], relevance, factor=factor)
-            RR_of_hiddens[:, :, -1] = lrp.z_plus_prop(activations.ha[:, :, -1], weights['output_from_cell'],
-                                                      RR_of_output_from_cell, factor=factor)
+            rel_to_output_from_cell = self.dag.layers['output_2'].rel_z_plus_prop(
+                self.dag.output_from_cell_activations[-1],
+                self.dag.total_relevance, factor=factor
+            )
 
-            temp = lrp.z_plus_prop(activations.input_to_cell[:, :, -1],
-                                   weights['input_to_cell'], RR_of_hiddens[:, :, -1], factor=factor)
+            rel_to_hidden = self.dag.layers['output_from_cell'].rel_z_plus_prop(
+                self.dag.ha_activations[-1],
+                rel_to_output_from_cell, factor=factor
+            )
 
-            RR_of_input2[:, :, -1] = temp[:, :-self.architecture.recur]
-            RR_of_rr[:, :, -2] = temp[:, -self.architecture.recur:]
+            rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
+                self.dag.input_to_cell_activations[-1],
+                rel_to_hidden, factor=factor
+            )
 
-            RR_of_input1[:, :, -1] = lrp.z_plus_prop(activations.input_1[:, :, -1],
-                                                     weights['input_2'], RR_of_input2[:, :, -1], factor=factor)
+            rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
 
-            RR_of_pixels[:, :, -1] = lrp.z_beta_prop(
-                x_3d[:, :, -self.experiment_artifact.column_at_a_time:].reshape(x_3d.shape[0], -1),
-                weights['input_1'], RR_of_input1[:, :, -1], factor=factor
+            rel_from_hidden_to_in2 = rel_to_input_to_cell[:, :-self.architecture.recur]
+
+            rel_to_in1 = self.dag.layers['input_2'].rel_z_plus_prop(
+                self.dag.input_1_activations[-1],
+                rel_from_hidden_to_in2, factor=factor
+
+            )
+
+            rel_to_input[-1] = self.dag.layers['input_1'].rel_z_beta_prop(
+                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:], shape=[x_3d.shape[0], -1]),
+                rel_to_in1
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
-                RR_of_hiddens[:, :, i] = lrp.z_plus_prop(activations.ha[:, :, i],
-                                                         weights['recurrent'], RR_of_rr[:, :, i + 1], factor=factor)
+                rel_to_hidden = self.dag.layers['recurrent'].rel_z_plus_prop(
+                    self.dag.ha_activations[i],
+                    rel_to_recurrent, factor=factor
+                )
 
-                temp = lrp.z_plus_prop(activations.input_to_cell[:, :, i],
-                                       weights['input_to_cell'], RR_of_hiddens[:, :, i], factor=factor)
+                rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
+                    self.dag.input_to_cell_activations[i],
+                    rel_to_hidden, factor=factor
+                )
 
-                RR_of_input2[:, :, i] = temp[:, :-self.architecture.recur]
-                RR_of_rr[:, :, i] = temp[:, -self.architecture.recur:]
+                rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
 
-                RR_of_input1[:, :, i] = lrp.z_plus_prop(activations.input_1[:, :, i],
-                                                         weights['input_2'], RR_of_input2[:, :, i], factor=factor)
+                rel_from_hidden_to_in2 = rel_to_input_to_cell[:, :-self.architecture.recur]
+
+                rel_to_in1 = self.dag.layers['input_2'].rel_z_plus_prop(
+                    self.dag.input_1_activations[i],
+                    rel_from_hidden_to_in2, factor=factor
+
+                )
 
                 c_i = self._.column_at_a_time * i
                 c_j = c_i + self._.column_at_a_time
 
-                RR_of_pixels[:, :, i] = lrp.z_beta_prop(
-                    x_3d[:, :, c_i:c_j].reshape(x_3d.shape[0], -1),
-                    weights['input_1'], RR_of_input1[:, :, i], factor=factor
+                rel_to_input[i] = self.dag.layers['input_1'].rel_z_beta_prop(
+                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[x_3d.shape[0], -1]),
+                    rel_to_in1
                 )
 
-            if debug:
+            pred, heatmaps = self._build_heatmap(sess, x,
+                                                 rr_of_pixels=rel_to_input, debug=debug)
 
-                logging.debug('Prediction before softmax \n%s' % list(zip(mark, pred)))
-                logging.debug('Relevance')
-                logging.debug(relevance)
-                total_relevance = np.sum(relevance, axis=1)
-                logging.debug(total_relevance)
-
-                logging.debug('RR_of_ha')
-                logging.debug(RR_of_hiddens.shape)
-
-                total_relevance_hidden_units = np.sum(RR_of_hiddens, axis=1)
-                logging.debug(total_relevance_hidden_units)
-                logging.debug(np.sum(total_relevance_hidden_units[:, :-1], axis=1))
-
-                logging.debug('RR_of_pixels')
-                total_relevance_pixels = np.sum(RR_of_pixels, axis=(1, 2))
-                logging.debug(total_relevance_pixels)
-
-                np.testing.assert_allclose(total_relevance_pixels, total_relevance,
-                                           rtol=1e-6, atol=0,
-                                           err_msg='Conservation property isn`t hold\n'
-                                                   ': Sum of relevance from pixels is not equal to output relevance.')
-
-        heatmaps = np.zeros(x_3d.shape)
-        for i in range(0, heatmaps.shape[2], self._.column_at_a_time):
-            t_idx = int(i / self._.column_at_a_time)
-            heatmaps[:, :, i:(i + self._.column_at_a_time)] = RR_of_pixels[:, :, t_idx] \
-                .reshape(heatmaps.shape[0], heatmaps.shape[1], -1)
-
-        # max value in a row
-        return np.argmax(pred, axis=1), heatmaps
-
+        return pred, heatmaps

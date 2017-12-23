@@ -231,187 +231,96 @@ class Network(base.BaseNetwork):
         x_3d = x.reshape(-1, 28, 28)
         with self.get_session() as sess:
 
-            # layer_keys = ['conv1', 'conv2', 'input_to_cell', 'output_from_cell', 'output_2', 'recurrent']
-            # layer_weights = sess.run([self.dag.layers[k].W for k in layer_keys])
-            # weights = dict(zip(layer_keys, layer_weights))
-            #
-            rx = np.zeros((x_3d.shape[0], self.architecture.recur))
-            #
-            # data = sess.run(
-            #     self.dag.activations.conv1 +
-            #     self.dag.activations.pool1 +
-            #     self.dag.activations.conv2 +
-            #     self.dag.activations.pool2 +
-            #     self.dag.activations.input_to_cell +
-            #     self.dag.activations.hidden +
-            #     self.dag.activations.output_from_cell +
-            #     [self.dag.y_pred],
-            #     feed_dict={self.dag.x: x_3d, self.dag.rx: rx, self.dag.keep_prob: 1})
-            #
-            # activation_labels = ['conv1', 'pool1', 'conv2', 'pool2', 'input_to_cell', 'hidden',
-            #                      'output_from_cell']
-            # activations = dict()
-            # seq_length = self._.seq_length
-            # for idx, l in zip(range(len(activation_labels)),  activation_labels):
-            #     start = idx * seq_length
-            #     stop = (idx + 1) * seq_length
-            #     ds = np.array(data[start:stop])
-            #
-            #     dims = list(range(len(ds.shape)))
-            #     dims.append(dims.pop(0))
-            #     # print(l)
-            #     # print(ds.shape)
-            #     # print(dims)
-            #     activations[l] = ds.transpose(dims)
-            #
-            # activations = namedtuple('Activation', activation_labels)(**activations)
+            self.dag.setup_variables_for_lrp()
 
-            # pred = data[-1]
-            # mark = np.zeros(pred.shape)
-            # mark[range(pred.shape[0]), np.argmax(pred, axis=1)] = 1
-            # relevance = pred * mark
-
-            dims = self.experiment_artifact.dims
-
-            batch_size = x_3d.shape[0]
-
-            # RR_of_hiddens = np.zeros((batch_size, self._.seq_length))
-            # RR_of_conv1 = np.zeros((batch_size, self._.seq_length))
-            # RR_of_pool1 = np.zeros((batch_size, self._.seq_length))
-            #
-            # RR_of_conv2 = np.zeros((batch_size, self._.seq_length))
-            # RR_of_pool2 = np.zeros((batch_size, self._.seq_length))
-
-            RR_of_pixels = [None]*self._.seq_length
-            # RR_of_rr = np.zeros((batch_size,self._.seq_length+1))
+            rel_to_input = [None]*self._.seq_length
 
             # NOTE: lwr start here
-            pred = tf.reduce_max(self.dag.y_pred, axis=1)
-            mark = tf.cast(tf.equal(self.dag.y_pred,
-                                    tf.reshape(pred, (-1, 1))), tf.float32)
-
-            total_relevance = mark*self.dag.y_pred
-            total_relevance_reduced = tf.reduce_sum(total_relevance, axis=1)
-
-            relevance_ly_out2 = lrp.z_plus_prop_tf(
+            rel_to_out_from_cell = self.dag.layers['output_2'].rel_z_plus_prop(
                 self.dag.activations.output_from_cell[-1],
-                self.dag.layers['output_2'].W,
-                total_relevance
+                self.dag.total_relevance, factor=factor
             )
-
-            # print(self.dag.activations.output_from_cell[-1].shape)
-            # print(total_relevance.shape)
-            # print('------')
-            #
-            # print(self.dag.activations.hidden[-1].shape)
-            # print(relevance_ly_out2.shape)
-
-            relevance_ly_hidden = lrp.z_plus_prop_tf(
+            rel_to_hidden = self.dag.layers['output_from_cell'].rel_z_plus_prop(
                 self.dag.activations.hidden[-1],
-                self.dag.layers['output_from_cell'].W,
-                relevance_ly_out2
+                rel_to_out_from_cell, factor=factor
             )
 
-            relevance_ly_input_to_cell = lrp.z_plus_prop_tf(
+            rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
                 self.dag.activations.input_to_cell[-1],
-                self.dag.layers['input_to_cell'].W,
-                relevance_ly_hidden
+                rel_to_hidden, factor=factor
             )
-            relevance_ly_recurrent = relevance_ly_input_to_cell[:, -self.architecture.recur:]
 
-            relevance_ly_hidden_to_pool2 = tf.reshape(relevance_ly_input_to_cell[:, :-self.architecture.recur],
-                                                      self.dag.shape_pool2_output
-                                                      )
+            rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
 
-            relevance_ly_pool2 = self.dag.layers['pool2'].rel_prop(
+            rel_from_hidden_to_pool2 = tf.reshape(rel_to_input_to_cell[:, :-self.architecture.recur],
+                                                  self.dag.shape_pool2_output)
+
+            rel_to_conv2 = self.dag.layers['pool2'].rel_prop(
                 self.dag.activations.conv2[-1],
                 self.dag.activations.pool2[-1],
-                relevance_ly_hidden_to_pool2
+                rel_from_hidden_to_pool2
             )
 
-            relevance_ly_conv2 = self.dag.layers['conv2'].rel_zplus_prop(
+            rel_to_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
                 self.dag.activations.pool1[-1],
-                relevance_ly_pool2
+                rel_to_conv2, factor=factor
             )
 
-            relevance_ly_pool1 = self.dag.layers['pool1'].rel_prop(
+            rel_to_conv1 = self.dag.layers['pool1'].rel_prop(
                 self.dag.activations.conv1[-1],
                 self.dag.activations.pool1[-1],
-                relevance_ly_conv2
+                rel_to_pool1
             )
 
-            RR_of_pixels[-1] = self.dag.layers['conv1'].rel_zbeta_prop(
+            rel_to_input[-1] = self.dag.layers['conv1'].rel_zbeta_prop(
                 self.dag.x_with_channels[:, :, -self.experiment_artifact.column_at_a_time:, :],
-                relevance_ly_pool1
+                rel_to_conv1
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
 
-                relevance_ly_hidden = lrp.z_plus_prop_tf(
+                rel_to_hidden = self.dag.layers['recurrent'].rel_z_plus_prop(
                     self.dag.activations.hidden[i],
-                    self.dag.layers['recurrent'].W,
-                    relevance_ly_recurrent, factor=factor
+                    rel_to_recurrent, factor=factor
                 )
 
-                relevance_ly_input_to_cell = lrp.z_plus_prop_tf(
+                rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
                     self.dag.activations.input_to_cell[i],
-                    self.dag.layers['input_to_cell'].W,
-                    relevance_ly_hidden
+                    rel_to_hidden, factor=factor
                 )
-                relevance_ly_recurrent = relevance_ly_input_to_cell[:, -self.architecture.recur:]
 
-                relevance_ly_hidden_to_pool2 = tf.reshape(relevance_ly_input_to_cell[:, :-self.architecture.recur],
+                rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
+
+                rel_from_hidden_to_pool2 = tf.reshape(rel_to_input_to_cell[:, :-self.architecture.recur],
                                                           self.dag.shape_pool2_output
                                                           )
 
-                relevance_ly_pool2 = self.dag.layers['pool2'].rel_prop(
+                rel_to_conv2 = self.dag.layers['pool2'].rel_prop(
                     self.dag.activations.conv2[i],
                     self.dag.activations.pool2[i],
-                    relevance_ly_hidden_to_pool2
+                    rel_from_hidden_to_pool2
                 )
 
-                relevance_ly_conv2 = self.dag.layers['conv2'].rel_zplus_prop(
+                rel_to_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
                     self.dag.activations.pool1[i],
-                    relevance_ly_pool2
+                    rel_to_conv2, factor=factor
                 )
 
-                relevance_ly_pool1 = self.dag.layers['pool1'].rel_prop(
+                rel_to_conv1 = self.dag.layers['pool1'].rel_prop(
                     self.dag.activations.conv1[i],
                     self.dag.activations.pool1[i],
-                    relevance_ly_conv2
+                    rel_to_pool1
                 )
 
                 c_i = self._.column_at_a_time * i
                 c_j = c_i + self._.column_at_a_time
 
-                RR_of_pixels[i] = self.dag.layers['conv1'].rel_zbeta_prop(
+                rel_to_input[i] = self.dag.layers['conv1'].rel_zbeta_prop(
                     self.dag.x_with_channels[:, :, c_i:c_j, :],
-                    relevance_ly_pool1
+                    rel_to_conv1, factor=factor
                 )
 
-            pred, total_relevance, RR_of_pixels = sess.run(
-                [pred, total_relevance_reduced, RR_of_pixels],
-                feed_dict={self.dag.x: x_3d, self.dag.rx: rx, self.dag.keep_prob: 1})
-
-        heatmaps = np.zeros(x_3d.shape)
-        for i in range(0, heatmaps.shape[2], self._.column_at_a_time):
-            t_idx = int(i / self._.column_at_a_time)
-            heatmaps[:, :, i:(i + self._.column_at_a_time)] = RR_of_pixels[t_idx] \
-                .reshape(heatmaps.shape[0], heatmaps.shape[1], -1)
-
-        if debug:
-
-            logging.debug('Prediction before softmax')
-            logging.debug(pred)
-            logging.debug('Relevance')
-            logging.debug(total_relevance)
-
-            total_relevance_pixels = np.sum(heatmaps, axis=(1, 2))
-            np.testing.assert_allclose(total_relevance_pixels, total_relevance,
-                                       rtol=1e-6, atol=0,
-                                       err_msg='Conservation property isn`t hold\n'
-                                               ': Sum of relevance from pixels is not equal to output relevance.')
-
-        # max value in a row
+            pred, heatmaps = self._build_heatmap(sess, x,
+                                                 rr_of_pixels=rel_to_input, debug=debug)
         return pred, heatmaps
 

@@ -20,6 +20,7 @@ class BaseDag:
         self.regularizer = tf.placeholder(tf.float32, name='regularizer')
         self.keep_prob = tf.placeholder(tf.float32, name='keep_prob')
 
+        # loss and optimizer
         self.loss_op = None
         self.train_op = None
         self.init_op = None
@@ -28,6 +29,11 @@ class BaseDag:
         self.layers = []
 
         self.optimizer = optimizer
+
+        # lrp variables
+        self.y_pred_reduced_1d = None
+        self.total_relevance = None
+
 
     def setup_loss_and_opt(self):
         reg_term = tf.constant(0.0)
@@ -48,6 +54,14 @@ class BaseDag:
         correct_prediction = tf.equal(tf.argmax(self.y_target, 1), tf.argmax(self.y_pred, 1))
         self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
+    def setup_variables_for_lrp(self):
+
+        self.y_pred_reduced_1d = tf.reduce_max(self.y_pred, axis=1)
+        mark = tf.cast(tf.equal(self.y_pred,
+                                tf.reshape( self.y_pred_reduced_1d, (-1, 1))), tf.float32)
+
+        self.total_relevance = mark*self.y_pred
+
     def no_variables(self):
         no_variables = 0
         for k, ly in self.layers.items():
@@ -60,6 +74,7 @@ class BaseNetwork:
 
         self.experiment_artifact = artifact
         self._ = artifact
+        self.dag = None
         tf.reset_default_graph()
 
     def get_session(self):
@@ -135,3 +150,32 @@ class BaseNetwork:
             weights, biases = res[:total_layers], res[total_layers:]
 
         return dict(zip(layers, weights)), dict(zip(layers, biases))
+
+    def _build_heatmap(self, sess, x, rr_of_pixels, debug=False):
+
+        total_relevance_reduced = tf.reduce_sum(self.dag.total_relevance, axis=1)
+
+        rx = np.zeros((x.shape[0], self.architecture.recur))
+        pred, total_relevance, rr_of_pixels = sess.run(
+            [self.dag.y_pred_reduced_1d, total_relevance_reduced, rr_of_pixels],
+            feed_dict={self.dag.x: x, self.dag.rx: rx, self.dag.keep_prob: 1})
+
+        relevance_heatmap = np.zeros(x.shape)
+        for i in range(0, relevance_heatmap.shape[2], self._.column_at_a_time):
+            t_idx = int(i / self._.column_at_a_time)
+            relevance_heatmap[:, :, i:(i + self._.column_at_a_time)] = rr_of_pixels[t_idx] \
+                .reshape(relevance_heatmap.shape[0], relevance_heatmap.shape[1], -1)
+
+        if debug:
+
+            logging.debug('Prediction before softmax')
+            logging.debug(pred)
+            logging.debug('Relevance')
+            logging.debug(total_relevance)
+
+            total_relevance_pixels = np.sum(relevance_heatmap, axis=(1, 2))
+            np.testing.assert_allclose(total_relevance_pixels, total_relevance,
+                                       rtol=1e-6, atol=0,
+                                       err_msg='Conservation property isn`t hold\n'
+                                               ': Sum of relevance from pixels is not equal to output relevance.')
+        return pred, relevance_heatmap
