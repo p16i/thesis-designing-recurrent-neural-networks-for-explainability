@@ -3,10 +3,8 @@ from collections import namedtuple
 
 import numpy as np
 import tensorflow as tf
-import copy
 
 from model import base
-from model.components import lrp
 from model.components.layer import Layer, ConvolutionalLayer, PoolingLayer
 from utils import data_provider
 from utils import experiment_artifact

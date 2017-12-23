@@ -5,7 +5,6 @@ import numpy as np
 import tensorflow as tf
 
 from model import base
-from model.components import lrp
 from model.components.layer import Layer
 from utils import data_provider
 from utils import experiment_artifact
