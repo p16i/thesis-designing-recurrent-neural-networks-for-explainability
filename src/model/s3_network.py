@@ -14,16 +14,16 @@ from utils import network_architecture
 lg.set_logging()
 
 
-S3Architecture = namedtuple('S3Architecture', ['in1', 'hidden', 'out1', 'out2', 'recur'])
+Architecture = namedtuple('S3Architecture', ['in1', 'hidden', 'out1', 'out2', 'recur'])
 
 
 def load(model_path):
-    return S3Network.load(model_path)
+    return Network.load(model_path)
 
 
-class S3NetworkDAG(base.BaseDag):
+class Dag(base.BaseDag):
     def __init__(self, no_input_cols, dims, max_seq_length, architecture, optimizer):
-        super(S3NetworkDAG, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer)
+        super(Dag, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer)
 
         # define layers
         self.ly_input_1 = Layer((dims*no_input_cols, architecture.in1), 's3__input_1')
@@ -79,101 +79,17 @@ class S3NetworkDAG(base.BaseDag):
         self.setup_loss_and_opt()
 
 
-class S3Network(base.BaseNetwork):
+class Network(base.BaseNetwork):
     def __init__(self, artifact):
-        super(S3Network, self).__init__(artifact)
+        super(Network, self).__init__(artifact)
 
-        self.architecture = S3Architecture(**network_architecture.parse(artifact.architecture))
-        self.dag = S3NetworkDAG(artifact.column_at_a_time, 28, 28, self.architecture, artifact.optimizer)
+        self.architecture = Architecture(**network_architecture.parse(artifact.architecture))
+        self.dag = Dag(artifact.column_at_a_time, 28, 28, self.architecture, artifact.optimizer)
 
         self.experiment_artifact = artifact
         self._ = artifact
 
-    @staticmethod
-    def train(seq_length=1, epoch=1, lr=0.01, batch=100, architecture_str='in1:_|hidden:_|out1:_|out2:_|--recur:_',
-              keep_prob=0.5, verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer',
-              dataset='mnist'
-              ):
-
-        experiment_name = experiment_artifact.get_experiment_name('s3-%s-seq-%d--' % (dataset, seq_length))
-        logging.debug('Train sprint3 network')
-        logging.debug('Experiment name : %s' % experiment_name)
-
-        data = data_provider.get_data(dataset)
-
-        # no.rows and cols
-        dims, max_seq_length = data.train2d.x.shape[1:]
-        architecture = S3Architecture(**network_architecture.parse(architecture_str))
-        logging.debug('Network architecture')
-        logging.debug(architecture)
-
-        logging.debug('Optimizer %s' % optimizer)
-
-        no_input_cols = max_seq_length // seq_length
-        logging.debug('Training %d columns at a time' % no_input_cols)
-
-        dag = S3NetworkDAG(no_input_cols, dims, max_seq_length, architecture, optimizer)
-
-        with tf.Session() as sess:
-            sess.run(dag.init_op)
-            step = 1
-            for i in range(epoch):
-                logging.debug('epoch %d' % (i + 1))
-                for bx, by in data.train2d.get_batch(no_batch=batch):
-
-                    rx0 = np.zeros((batch, architecture.recur))
-                    sess.run(dag.train_op,
-                             feed_dict={dag.x: bx, dag.y_target: by, dag.rx: rx0, dag.lr: lr, dag.keep_prob: keep_prob})
-
-                    if (step % 1000 == 0 or step < 10) and verbose:
-                        rx0 = np.zeros((len(by), architecture.recur))
-                        acc, loss = sess.run([dag.accuracy, dag.loss_op],
-                                             feed_dict={dag.x: bx, dag.y_target: by, dag.rx: rx0, dag.keep_prob: 1})
-
-                        rx0 = np.zeros((len(data.val2d.y), architecture.recur))
-                        acc_val = sess.run(dag.accuracy, feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
-                                                                    dag.rx: rx0, dag.keep_prob: 1})
-                        logging.debug('step %d : current train batch acc %f, loss %f | val acc %f'
-                                     % (step, acc, loss, acc_val))
-
-                    step = step + 1
-
-            logging.debug('Calculating test accuracy')
-            rx0 = np.zeros((len(data.test2d.y), architecture.recur))
-            acc = float(sess.run(dag.accuracy,
-                                 feed_dict={dag.x: data.test2d.x, dag.y_target: data.test2d.y,
-                                            dag.rx: rx0, dag.keep_prob: 1}))
-
-            rx0 = np.zeros((len(data.val2d.y), architecture.recur))
-            val_acc = float(sess.run(dag.accuracy, feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
-                                                        dag.rx: rx0, dag.keep_prob: 1}))
-
-            res = dict(
-                experiment_name=experiment_name,
-                seq_length=seq_length,
-                epoch=epoch,
-                column_at_a_time=no_input_cols,
-                batch=batch,
-                accuracy=acc,
-                lr=lr,
-                architecture=architecture_str,
-                architecture_name='s3_network',
-                dims=dims,
-                max_seq_length=max_seq_length,
-                keep_prob=keep_prob,
-                optimizer=optimizer,
-                val_accuracy=val_acc,
-                dataset=dataset
-            )
-
-            logging.debug('\n%s\n', lg.tabularize_params(res))
-
-            output_dir = '%s/%s' % (output_dir, experiment_name)
-
-            return experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
-
     def lrp(self, x, factor=1, debug=False):
-
         x_3d = x.reshape(-1, 28, 28)
         with self.get_session() as sess:
 

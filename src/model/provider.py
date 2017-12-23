@@ -14,8 +14,8 @@ def load(path):
     logging.info(artifact)
 
     model_loaders = {
-        's2_network': s2_network.S2Network,
-        's3_network': s3_network.S3Network,
+        's2_network': s2_network.Network,
+        's3_network': s3_network.Network,
         'deep_4l_network': deep_4l_network.Network,
         'convdeep_4l_network': convdeep_4l_network.Network
     }

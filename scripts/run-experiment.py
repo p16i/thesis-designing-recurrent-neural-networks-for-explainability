@@ -13,7 +13,7 @@ def run():
 
     experiments = [
         {
-            'train': s3_network.S3Network.train,
+            'train': s3_network.Network.train,
             'param_set': [
                         # {
                         #     'seq_length': 7,  # 4 columns at a time (28)
@@ -54,7 +54,7 @@ def run():
                         ]
         },
         {
-            'train': s2_network.S2Network.train,
+            'train': s2_network.Network.train,
             'param_set': [
                 # {
                 #     'seq_length': 7,  # 4 columns at a time (28)
