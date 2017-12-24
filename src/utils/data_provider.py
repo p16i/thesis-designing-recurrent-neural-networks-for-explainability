@@ -136,7 +136,8 @@ class UFICroppedData:
         x_test = np.load('%s/test-x.npy' % dir_path)
         y_test = np.load('%s/test-y.npy' % dir_path)
 
-        x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, random_state=71)
+        # This is a bad idea but we have limited amount of data
+        x_val, y_val = x_test, y_test
 
         self.dims = (128, 128)
         self.no_classes = 605

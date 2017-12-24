@@ -25,7 +25,9 @@ def convert(input_dir, output_dir, verbose=False):
     x = np.zeros((len(files), INPUT_DIM))
     y = np.zeros((len(files), NO_CLASSES))
 
-    for i in range(len(files)):
+    indices = np.arange(len(files))
+    np.random.shuffle(indices)
+    for i in indices:
         f = files[i]
         person_idx = int(f.split('/')[-2][1:]) - 1
         if verbose:
@@ -38,6 +40,7 @@ def convert(input_dir, output_dir, verbose=False):
         if i % 100 == 0:
             print('Done with %d files' % i)
 
+    x = 2*x/255 - 1
     np.save('%s/%s-x.npy' % (output_dir, name), x)
     np.save('%s/%s-y.npy' % (output_dir, name), y)
 
