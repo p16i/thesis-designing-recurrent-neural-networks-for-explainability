@@ -1,0 +1,14 @@
+FTÁČNIK_Milan
+1.pgm FTÁČNIK_Milan_FO00324714.jpg
+2.pgm FTÁČNIK_Milan_FO00037239.jpg
+3.pgm FTÁČNIK_Milan_P201010150490701.jpg
+4.pgm FTÁČNIK_Milan_FO00242712.jpg
+5.pgm FTÁČNIK_Milan_FO00122160.jpg
+6.pgm FTÁČNIK_Milan_FO00242715.jpg
+7.pgm FTÁČNIK_Milan_FO00214449.jpg
+8.pgm FTÁČNIK_Milan_P201012210341701.jpg
+9.pgm FTÁČNIK_Milan_FO00326961.jpg
+10.pgm FTÁČNIK_Milan_P201010150486101.jpg
+11.pgm FTÁČNIK_Milan_FO00358221.jpg
+12.pgm FTÁČNIK_Milan_FO00110971.jpg
+Odchylka 0.0151895

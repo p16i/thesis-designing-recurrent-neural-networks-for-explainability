@@ -1,0 +1,14 @@
+ŽÍDEK_Ivo
+1.pgm ŽÍDEK_Ivo_FO00459918.jpg
+2.pgm ŽÍDEK_Ivo_FO00287094.jpg
+3.pgm ŽÍDEK_Ivo_FO00105613.jpg
+4.pgm ŽÍDEK_Ivo_FO00105601.jpg
+5.pgm ŽÍDEK_Ivo_FO00287089.jpg
+6.pgm ŽÍDEK_Ivo_FO00287087.jpg
+7.pgm ŽÍDEK_Ivo_FO01156462.jpg
+8.pgm ŽÍDEK_Ivo_FO00287097.jpg
+9.pgm ŽÍDEK_Ivo_FO00287092.jpg
+10.pgm ŽÍDEK_Ivo_FO00287088.jpg
+11.pgm ŽÍDEK_Ivo_FO00287098.jpg
+12.pgm ŽÍDEK_Ivo_FO00031141.jpg
+Odchylka 0.0572482

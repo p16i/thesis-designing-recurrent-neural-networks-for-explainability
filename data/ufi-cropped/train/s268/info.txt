@@ -1,0 +1,15 @@
+HYBÁŠKOVÁ_Jana
+1.pgm HYBÁŠKOVÁ_Jana_FO01124240.jpg
+2.pgm HYBÁŠKOVÁ_Jana_FO00527284.jpg
+3.pgm HYBÁŠKOVÁ_Jana_FO01124241.jpg
+4.pgm HYBÁŠKOVÁ_Jana_FO00527282.jpg
+5.pgm HYBÁŠKOVÁ_Jana_FO01080917.jpg
+6.pgm HYBÁŠKOVÁ_Jana_FO00224093.jpg
+7.pgm HYBÁŠKOVÁ_Jana_FO01124237.jpg
+8.pgm HYBÁŠKOVÁ_Jana_P200802280446201.jpg
+9.pgm HYBÁŠKOVÁ_Jana_FO02058233.jpg
+10.pgm HYBÁŠKOVÁ_Jana_FO00527283.jpg
+11.pgm HYBÁŠKOVÁ_Jana_P200802280451601.jpg
+12.pgm HYBÁŠKOVÁ_Jana_FO01124236.jpg
+13.pgm HYBÁŠKOVÁ_Jana_FO02058774.jpg
+Odchylka 0.0210584

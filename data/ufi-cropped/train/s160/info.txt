@@ -1,0 +1,12 @@
+COOK_Robin_
+1.pgm COOK_Robin__FO00024087.jpg
+2.pgm COOK_Robin__FO00179419.jpg
+3.pgm COOK_Robin__FO00400633.jpg
+4.pgm COOK_Robin__FO00179289.jpg
+5.pgm COOK_Robin__FO01280167.jpg
+6.pgm COOK_Robin__FO00058329.jpg
+7.pgm COOK_Robin__FO00400629.jpg
+8.pgm COOK_Robin__FO00402433.jpg
+9.pgm COOK_Robin__FO00180319.jpg
+10.pgm COOK_Robin__FO00182498.jpg
+Odchylka 0.015025

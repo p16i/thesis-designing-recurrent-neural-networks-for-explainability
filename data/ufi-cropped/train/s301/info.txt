@@ -1,0 +1,18 @@
+IBL_Petr
+1.pgm IBL_Petr_FO01145265.jpg
+2.pgm IBL_Petr_FO00179531.jpg
+3.pgm IBL_Petr_FO01149846.jpg
+4.pgm IBL_Petr_FO00216365.jpg
+5.pgm IBL_Petr_FO00504592.jpg
+6.pgm IBL_Petr_FO00519934.jpg
+7.pgm IBL_Petr_FO01136637.jpg
+8.pgm IBL_Petr_FO00165475.jpg
+9.pgm IBL_Petr_FO01204067.jpg
+10.pgm IBL_Petr_FO00179640.jpg
+11.pgm IBL_Petr_FO00141636.jpg
+12.pgm IBL_Petr_FO00418564.jpg
+13.pgm IBL_Petr_FO00506525.jpg
+14.pgm IBL_Petr_FO00165472.jpg
+15.pgm IBL_Petr_FO00379715.jpg
+16.pgm IBL_Petr_FO00506524.jpg
+Odchylka 0.0507326

@@ -1,0 +1,15 @@
+BRADÍK_Pavel
+1.pgm BRADÍK_Pavel_FO01302402.jpg
+2.pgm BRADÍK_Pavel_FO01205701.jpg
+3.pgm BRADÍK_Pavel_F200812080082901.jpg
+4.pgm BRADÍK_Pavel_FO01304443.jpg
+5.pgm BRADÍK_Pavel_FO01302407.jpg
+6.pgm BRADÍK_Pavel_FO00530902.jpg
+7.pgm BRADÍK_Pavel_FO02004973.jpg
+8.pgm BRADÍK_Pavel_FO02004972.jpg
+9.pgm BRADÍK_Pavel_P200812070102401.jpg
+10.pgm BRADÍK_Pavel_FO01304426.jpg
+11.pgm BRADÍK_Pavel_FO01221455.jpg
+12.pgm BRADÍK_Pavel_FO01302406.jpg
+13.pgm BRADÍK_Pavel_FO00213891.jpg
+Odchylka 0.035238

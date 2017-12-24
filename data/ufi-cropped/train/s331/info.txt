@@ -1,0 +1,11 @@
+VOLÁK_Stanislav
+1.pgm VOLÁK_Stanislav_FO00096886.jpg
+2.pgm VOLÁK_Stanislav_FO00091449.jpg
+3.pgm VOLÁK_Stanislav_FO00081343.jpg
+4.pgm VOLÁK_Stanislav_FO00081338.jpg
+5.pgm VOLÁK_Stanislav_FO00111818.jpg
+6.pgm VOLÁK_Stanislav_FO00091455.jpg
+7.pgm VOLÁK_Stanislav_FO00091447.jpg
+8.pgm VOLÁK_Stanislav_FO00152574.jpg
+9.pgm VOLÁK_Stanislav_FO00086060.jpg
+Odchylka 0.0292224

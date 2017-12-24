@@ -1,0 +1,15 @@
+MIŠÁK_Stanislav
+1.pgm MIŠÁK_Stanislav_P201012030531801.jpg
+2.pgm MIŠÁK_Stanislav_FO00205640.jpg
+3.pgm MIŠÁK_Stanislav_P200902100774701.jpg
+4.pgm MIŠÁK_Stanislav_P200902100759901.jpg
+5.pgm MIŠÁK_Stanislav_P200811120589101.jpg
+6.pgm MIŠÁK_Stanislav_P200902100758701.jpg
+7.pgm MIŠÁK_Stanislav_P200903121018701.jpg
+8.pgm MIŠÁK_Stanislav_P201003220568601.jpg
+9.pgm MIŠÁK_Stanislav_P200811120570201.jpg
+10.pgm MIŠÁK_Stanislav_P201209180925001.jpg
+11.pgm MIŠÁK_Stanislav_P201003220570901.jpg
+12.pgm MIŠÁK_Stanislav_P201003220583201.jpg
+13.pgm MIŠÁK_Stanislav_P201211080705801.jpg
+Odchylka 0.0126802

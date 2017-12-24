@@ -1,0 +1,19 @@
+FALBR_Richard
+1.pgm FALBR_Richard_FO00106858.jpg
+2.pgm FALBR_Richard_FO00110577.jpg
+3.pgm FALBR_Richard_FO00156584.jpg
+4.pgm FALBR_Richard_FO01235756.jpg
+5.pgm FALBR_Richard_FO00028055.jpg
+6.pgm FALBR_Richard_FO00028067.jpg
+7.pgm FALBR_Richard_FO00195443.jpg
+8.pgm FALBR_Richard_FO00077966.jpg
+9.pgm FALBR_Richard_FO01075449.jpg
+10.pgm FALBR_Richard_FO00225538.jpg
+11.pgm FALBR_Richard_FO01235324.jpg
+12.pgm FALBR_Richard_FO00225541.jpg
+13.pgm FALBR_Richard_FO00259251.jpg
+14.pgm FALBR_Richard_FO00086960.jpg
+15.pgm FALBR_Richard_FO00055178.jpg
+16.pgm FALBR_Richard_FO00062175.jpg
+17.pgm FALBR_Richard_FO00149578.jpg
+Odchylka 0.0293546

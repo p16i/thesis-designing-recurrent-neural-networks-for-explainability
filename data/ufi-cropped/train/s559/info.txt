@@ -1,0 +1,12 @@
+MINÁČ_Matej
+1.pgm MINÁČ_Matej_FO00467393.jpg
+2.pgm MINÁČ_Matej_FO00458883.jpg
+3.pgm MINÁČ_Matej_P201101200497601.jpg
+4.pgm MINÁČ_Matej_P201205310705701.jpg
+5.pgm MINÁČ_Matej_P201101200747501.jpg
+6.pgm MINÁČ_Matej_FO00458882.jpg
+7.pgm MINÁČ_Matej_P200710090306101.jpg
+8.pgm MINÁČ_Matej_FO03000792.jpg
+9.pgm MINÁČ_Matej_FO00457883.jpg
+10.pgm MINÁČ_Matej_FO01085699.jpg
+Odchylka 0.0164269

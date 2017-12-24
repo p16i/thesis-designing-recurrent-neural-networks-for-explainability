@@ -1,0 +1,14 @@
+RENČÍN_Vladimír
+1.pgm RENČÍN_Vladimír_FO00064481.jpg
+2.pgm RENČÍN_Vladimír_FO00507546.jpg
+3.pgm RENČÍN_Vladimír_FO00352504.jpg
+4.pgm RENČÍN_Vladimír_FO00064474.jpg
+5.pgm RENČÍN_Vladimír_FO00331467.jpg
+6.pgm RENČÍN_Vladimír_FO01064768.jpg
+7.pgm RENČÍN_Vladimír_FO00105505.jpg
+8.pgm RENČÍN_Vladimír_FO00331675.jpg
+9.pgm RENČÍN_Vladimír_FO00221344.jpg
+10.pgm RENČÍN_Vladimír_FO00331466.jpg
+11.pgm RENČÍN_Vladimír_FO01064769.jpg
+12.pgm RENČÍN_Vladimír_FO00221346.jpg
+Odchylka 0.0105915

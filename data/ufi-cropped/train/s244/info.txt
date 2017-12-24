@@ -1,0 +1,12 @@
+VIK_Jan
+1.pgm VIK_Jan_FO00075828.jpg
+2.pgm VIK_Jan_FO00275661.jpg
+3.pgm VIK_Jan_FO00189683.jpg
+4.pgm VIK_Jan_FO00199568.jpg
+5.pgm VIK_Jan_FO00201146.jpg
+6.pgm VIK_Jan_FO00067881.jpg
+7.pgm VIK_Jan_FO00075811.jpg
+8.pgm VIK_Jan_FO00075814.jpg
+9.pgm VIK_Jan_FO00202983.jpg
+10.pgm VIK_Jan_FO00199163.jpg
+Odchylka 0.0195152

@@ -1,0 +1,13 @@
+ŠUSTROVÁ_Petruška
+1.pgm ŠUSTROVÁ_Petruška_FO02012602.jpg
+2.pgm ŠUSTROVÁ_Petruška_FO00122169.jpg
+3.pgm ŠUSTROVÁ_Petruška_FO00206520.jpg
+4.pgm ŠUSTROVÁ_Petruška_P201002040810401.jpg
+5.pgm ŠUSTROVÁ_Petruška_FO00206523.jpg
+6.pgm ŠUSTROVÁ_Petruška_P201203140927601.jpg
+7.pgm ŠUSTROVÁ_Petruška_P201203120720101.jpg
+8.pgm ŠUSTROVÁ_Petruška_FO01011222.jpg
+9.pgm ŠUSTROVÁ_Petruška_FO00217954.jpg
+10.pgm ŠUSTROVÁ_Petruška_FO00122172.jpg
+11.pgm ŠUSTROVÁ_Petruška_FO00278892.jpg
+Odchylka 0.00945683

@@ -1,0 +1,17 @@
+CHUDÍK_Ladislav
+1.pgm CHUDÍK_Ladislav_FO00120424.jpg
+2.pgm CHUDÍK_Ladislav_FO00058814.jpg
+3.pgm CHUDÍK_Ladislav_F201205220320501.jpg
+4.pgm CHUDÍK_Ladislav_FO00121149.jpg
+5.pgm CHUDÍK_Ladislav_F200809110199001.jpg
+6.pgm CHUDÍK_Ladislav_FO03017821.jpg
+7.pgm CHUDÍK_Ladislav_FO00443614.jpg
+8.pgm CHUDÍK_Ladislav_FO00058802.jpg
+9.pgm CHUDÍK_Ladislav_P200906110886901.jpg
+10.pgm CHUDÍK_Ladislav_P200905220449101.jpg
+11.pgm CHUDÍK_Ladislav_FO00189167.jpg
+12.pgm CHUDÍK_Ladislav_FO00121147.jpg
+13.pgm CHUDÍK_Ladislav_P200906110887501.jpg
+14.pgm CHUDÍK_Ladislav_P200905220428801.jpg
+15.pgm CHUDÍK_Ladislav_FO00189170.jpg
+Odchylka 0.0249594

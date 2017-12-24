@@ -1,0 +1,11 @@
+TACHECÍ_Barbora
+1.pgm TACHECÍ_Barbora_FO01352550.jpg
+2.pgm TACHECÍ_Barbora_FO00130741.jpg
+3.pgm TACHECÍ_Barbora_FO02044286.jpg
+4.pgm TACHECÍ_Barbora_FO00530094.jpg
+5.pgm TACHECÍ_Barbora_P200801110891401.jpg
+6.pgm TACHECÍ_Barbora_FO01115299.jpg
+7.pgm TACHECÍ_Barbora_FO00530093.jpg
+8.pgm TACHECÍ_Barbora_FO02036985.jpg
+9.pgm TACHECÍ_Barbora_FO02044282.jpg
+Odchylka 0.0141515

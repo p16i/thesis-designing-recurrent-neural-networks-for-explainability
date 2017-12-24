@@ -1,0 +1,13 @@
+BAXA_Josef
+1.pgm BAXA_Josef_FO00113217.jpg
+2.pgm BAXA_Josef_FO00476323.jpg
+3.pgm BAXA_Josef_FO01005943.jpg
+4.pgm BAXA_Josef_FO01005361.jpg
+5.pgm BAXA_Josef_FO00476325.jpg
+6.pgm BAXA_Josef_FO01005944.jpg
+7.pgm BAXA_Josef_FO01005360.jpg
+8.pgm BAXA_Josef_FO00285302.jpg
+9.pgm BAXA_Josef_FO01005358.jpg
+10.pgm BAXA_Josef_FO00476326.jpg
+11.pgm BAXA_Josef_FO00476322.jpg
+Odchylka 0.0397975

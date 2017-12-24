@@ -1,0 +1,14 @@
+BLÁHOVÁ_Dagmar
+1.pgm BLÁHOVÁ_Dagmar_FO00357134.jpg
+2.pgm BLÁHOVÁ_Dagmar_FO01369657.jpg
+3.pgm BLÁHOVÁ_Dagmar_FO00115705.jpg
+4.pgm BLÁHOVÁ_Dagmar_FO00115702.jpg
+5.pgm BLÁHOVÁ_Dagmar_FO01239506.jpg
+6.pgm BLÁHOVÁ_Dagmar_FO00172712.jpg
+7.pgm BLÁHOVÁ_Dagmar_FO03014030.jpg
+8.pgm BLÁHOVÁ_Dagmar_FO01239507.jpg
+9.pgm BLÁHOVÁ_Dagmar_FO01330151.jpg
+10.pgm BLÁHOVÁ_Dagmar_FO00357133.jpg
+11.pgm BLÁHOVÁ_Dagmar_FO00295709.jpg
+12.pgm BLÁHOVÁ_Dagmar_FO01330149.jpg
+Odchylka 0.0121615

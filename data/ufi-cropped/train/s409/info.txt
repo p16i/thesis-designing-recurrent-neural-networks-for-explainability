@@ -1,0 +1,14 @@
+DOSTÁLOVÁ_Kateřina
+1.pgm DOSTÁLOVÁ_Kateřina_FO00401496.jpg
+2.pgm DOSTÁLOVÁ_Kateřina_FO00096887.jpg
+3.pgm DOSTÁLOVÁ_Kateřina_FO00230282.jpg
+4.pgm DOSTÁLOVÁ_Kateřina_FO00499854.jpg
+5.pgm DOSTÁLOVÁ_Kateřina_FO00512564.jpg
+6.pgm DOSTÁLOVÁ_Kateřina_F200711080066801.jpg
+7.pgm DOSTÁLOVÁ_Kateřina_FO00158682.jpg
+8.pgm DOSTÁLOVÁ_Kateřina_FO00453832.jpg
+9.pgm DOSTÁLOVÁ_Kateřina_FO00418609.jpg
+10.pgm DOSTÁLOVÁ_Kateřina_FO00222943.jpg
+11.pgm DOSTÁLOVÁ_Kateřina_FO00435077.jpg
+12.pgm DOSTÁLOVÁ_Kateřina_FO00399387.jpg
+Odchylka 0.0136987

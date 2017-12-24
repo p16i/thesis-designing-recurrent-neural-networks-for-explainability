@@ -1,0 +1,20 @@
+HORNÍČEK_Miroslav
+1.pgm HORNÍČEK_Miroslav_FO00151048.jpg
+2.pgm HORNÍČEK_Miroslav_FO00332043.jpg
+3.pgm HORNÍČEK_Miroslav_FO00396279.jpg
+4.pgm HORNÍČEK_Miroslav_FO00397071.jpg
+5.pgm HORNÍČEK_Miroslav_FO00525919.jpg
+6.pgm HORNÍČEK_Miroslav_FO00330148.jpg
+7.pgm HORNÍČEK_Miroslav_FO00145919.jpg
+8.pgm HORNÍČEK_Miroslav_FO00201779.jpg
+9.pgm HORNÍČEK_Miroslav_FO00525918.jpg
+10.pgm HORNÍČEK_Miroslav_FO00147494.jpg
+11.pgm HORNÍČEK_Miroslav_FO00395795.jpg
+12.pgm HORNÍČEK_Miroslav_FO00133353.jpg
+13.pgm HORNÍČEK_Miroslav_F201205220414501.jpg
+14.pgm HORNÍČEK_Miroslav_FO00151178.jpg
+15.pgm HORNÍČEK_Miroslav_FO00034090.jpg
+16.pgm HORNÍČEK_Miroslav_FO00201790.jpg
+17.pgm HORNÍČEK_Miroslav_FO00488801.jpg
+18.pgm HORNÍČEK_Miroslav_FO00090561.jpg
+Odchylka 0.0281071

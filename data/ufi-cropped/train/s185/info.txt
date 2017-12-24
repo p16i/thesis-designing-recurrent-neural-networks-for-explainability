@@ -1,0 +1,16 @@
+HRUŠOVSKÝ_Pavol
+1.pgm HRUŠOVSKÝ_Pavol_FO01305480.jpg
+2.pgm HRUŠOVSKÝ_Pavol_FO00337768.jpg
+3.pgm HRUŠOVSKÝ_Pavol_FO01343704.jpg
+4.pgm HRUŠOVSKÝ_Pavol_FO01313327.jpg
+5.pgm HRUŠOVSKÝ_Pavol_FO00336099.jpg
+6.pgm HRUŠOVSKÝ_Pavol_FO01353713.jpg
+7.pgm HRUŠOVSKÝ_Pavol_FO01094746.jpg
+8.pgm HRUŠOVSKÝ_Pavol_FO02025937.jpg
+9.pgm HRUŠOVSKÝ_Pavol_FO00512863.jpg
+10.pgm HRUŠOVSKÝ_Pavol_FO00452555.jpg
+11.pgm HRUŠOVSKÝ_Pavol_FO00476358.jpg
+12.pgm HRUŠOVSKÝ_Pavol_FO00201112.jpg
+13.pgm HRUŠOVSKÝ_Pavol_FO01295691.jpg
+14.pgm HRUŠOVSKÝ_Pavol_FO02022435.jpg
+Odchylka 0.0467663

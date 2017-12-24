@@ -1,0 +1,22 @@
+LIŠKA_Juraj
+1.pgm LIŠKA_Juraj_FO01046899.jpg
+2.pgm LIŠKA_Juraj_FO01318612.jpg
+3.pgm LIŠKA_Juraj_FO01113511.jpg
+4.pgm LIŠKA_Juraj_FO01216685.jpg
+5.pgm LIŠKA_Juraj_FO01049016.jpg
+6.pgm LIŠKA_Juraj_FO01048711.jpg
+7.pgm LIŠKA_Juraj_FO01223052.jpg
+8.pgm LIŠKA_Juraj_FO01044912.jpg
+9.pgm LIŠKA_Juraj_FO01216998.jpg
+10.pgm LIŠKA_Juraj_FO01136737.jpg
+11.pgm LIŠKA_Juraj_FO01118971.jpg
+12.pgm LIŠKA_Juraj_FO01301755.jpg
+13.pgm LIŠKA_Juraj_FO01062398.jpg
+14.pgm LIŠKA_Juraj_FO01304171.jpg
+15.pgm LIŠKA_Juraj_FO01269332.jpg
+16.pgm LIŠKA_Juraj_FO01174918.jpg
+17.pgm LIŠKA_Juraj_FO01262212.jpg
+18.pgm LIŠKA_Juraj_FO01118970.jpg
+19.pgm LIŠKA_Juraj_FO01208849.jpg
+20.pgm LIŠKA_Juraj_FO01266789.jpg
+Odchylka 0.0171415

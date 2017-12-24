@@ -1,0 +1,27 @@
+CHIRAC_Jacques
+1.pgm CHIRAC_Jacques_FO01195187.jpg
+2.pgm CHIRAC_Jacques_FO01080419.jpg
+3.pgm CHIRAC_Jacques_FO00483003.jpg
+4.pgm CHIRAC_Jacques_FO00507729.jpg
+5.pgm CHIRAC_Jacques_FO01206574.jpg
+6.pgm CHIRAC_Jacques_FO01062913.jpg
+7.pgm CHIRAC_Jacques_FO01202445.jpg
+8.pgm CHIRAC_Jacques_FO00096330.jpg
+9.pgm CHIRAC_Jacques_FO01320324.jpg
+10.pgm CHIRAC_Jacques_FO00393325.jpg
+11.pgm CHIRAC_Jacques_FO01262869.jpg
+12.pgm CHIRAC_Jacques_FO00501114.jpg
+13.pgm CHIRAC_Jacques_FO00492175.jpg
+14.pgm CHIRAC_Jacques_FO01025285.jpg
+15.pgm CHIRAC_Jacques_FO00042473.jpg
+16.pgm CHIRAC_Jacques_FO00415377.jpg
+17.pgm CHIRAC_Jacques_FO00316905.jpg
+18.pgm CHIRAC_Jacques_FO00308404.jpg
+19.pgm CHIRAC_Jacques_FO01191858.jpg
+20.pgm CHIRAC_Jacques_FO00283850.jpg
+21.pgm CHIRAC_Jacques_FO01195880.jpg
+22.pgm CHIRAC_Jacques_FO00281169.jpg
+23.pgm CHIRAC_Jacques_FO00499792.jpg
+24.pgm CHIRAC_Jacques_FO00478094.jpg
+25.pgm CHIRAC_Jacques_FO00256880.jpg
+Odchylka 0.00982433

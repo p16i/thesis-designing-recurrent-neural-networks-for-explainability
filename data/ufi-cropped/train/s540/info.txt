@@ -1,0 +1,19 @@
+PERES_Šimon
+1.pgm PERES_Šimon_FO00335695.jpg
+2.pgm PERES_Šimon_FO01340791.jpg
+3.pgm PERES_Šimon_FO03002817.jpg
+4.pgm PERES_Šimon_FO00390965.jpg
+5.pgm PERES_Šimon_FO00441385.jpg
+6.pgm PERES_Šimon_FO01135281.jpg
+7.pgm PERES_Šimon_FO01321382.jpg
+8.pgm PERES_Šimon_FO00152737.jpg
+9.pgm PERES_Šimon_P200903300383501.jpg
+10.pgm PERES_Šimon_FO00336862.jpg
+11.pgm PERES_Šimon_FO00100244.jpg
+12.pgm PERES_Šimon_FO02036047.jpg
+13.pgm PERES_Šimon_FO00336864.jpg
+14.pgm PERES_Šimon_FO03002783.jpg
+15.pgm PERES_Šimon_FO01360772.jpg
+16.pgm PERES_Šimon_FO00081216.jpg
+17.pgm PERES_Šimon_FO02053495.jpg
+Odchylka 0.0191954

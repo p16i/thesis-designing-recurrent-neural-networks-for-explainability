@@ -1,0 +1,25 @@
+BEŇAČKOVÁ_Gabriela
+1.pgm BEŇAČKOVÁ_Gabriela_FO00149444.jpg
+2.pgm BEŇAČKOVÁ_Gabriela_FO00083560.jpg
+3.pgm BEŇAČKOVÁ_Gabriela_FO00355002.jpg
+4.pgm BEŇAČKOVÁ_Gabriela_FO01176884.jpg
+5.pgm BEŇAČKOVÁ_Gabriela_FO01049995.jpg
+6.pgm BEŇAČKOVÁ_Gabriela_FO01048984.jpg
+7.pgm BEŇAČKOVÁ_Gabriela_FO00302486.jpg
+8.pgm BEŇAČKOVÁ_Gabriela_FO00355005.jpg
+9.pgm BEŇAČKOVÁ_Gabriela_FO00083551.jpg
+10.pgm BEŇAČKOVÁ_Gabriela_FO01176883.jpg
+11.pgm BEŇAČKOVÁ_Gabriela_FO00302488.jpg
+12.pgm BEŇAČKOVÁ_Gabriela_FO00083561.jpg
+13.pgm BEŇAČKOVÁ_Gabriela_FO00355003.jpg
+14.pgm BEŇAČKOVÁ_Gabriela_FO02115326.jpg
+15.pgm BEŇAČKOVÁ_Gabriela_FO00304095.jpg
+16.pgm BEŇAČKOVÁ_Gabriela_FO01029386.jpg
+17.pgm BEŇAČKOVÁ_Gabriela_FO00149446.jpg
+18.pgm BEŇAČKOVÁ_Gabriela_FO00302487.jpg
+19.pgm BEŇAČKOVÁ_Gabriela_FO00355006.jpg
+20.pgm BEŇAČKOVÁ_Gabriela_FO00302489.jpg
+21.pgm BEŇAČKOVÁ_Gabriela_FO00205703.jpg
+22.pgm BEŇAČKOVÁ_Gabriela_FO00033948.jpg
+23.pgm BEŇAČKOVÁ_Gabriela_FO00304102.jpg
+Odchylka 0.0178622

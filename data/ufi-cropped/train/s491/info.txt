@@ -1,0 +1,16 @@
+HORÁČEK_Jaroslav
+1.pgm HORÁČEK_Jaroslav_FO00535166.jpg
+2.pgm HORÁČEK_Jaroslav_F201210051041601.jpg
+3.pgm HORÁČEK_Jaroslav_FO00509309.jpg
+4.pgm HORÁČEK_Jaroslav_FO00059221.jpg
+5.pgm HORÁČEK_Jaroslav_FO00238229.jpg
+6.pgm HORÁČEK_Jaroslav_FO00509313.jpg
+7.pgm HORÁČEK_Jaroslav_FO00236077.jpg
+8.pgm HORÁČEK_Jaroslav_P201007210409301.jpg
+9.pgm HORÁČEK_Jaroslav_FO00491288.jpg
+10.pgm HORÁČEK_Jaroslav_FO00333868.jpg
+11.pgm HORÁČEK_Jaroslav_FO01077544.jpg
+12.pgm HORÁČEK_Jaroslav_FO00333867.jpg
+13.pgm HORÁČEK_Jaroslav_F201105240151101.jpg
+14.pgm HORÁČEK_Jaroslav_FO00488062.jpg
+Odchylka 0.0131213

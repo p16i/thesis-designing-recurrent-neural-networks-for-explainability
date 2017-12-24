@@ -1,0 +1,26 @@
+TŘEŠTÍKOVÁ_Helena
+1.pgm TŘEŠTÍKOVÁ_Helena_F200905120099501.jpg
+2.pgm TŘEŠTÍKOVÁ_Helena_FO00353283.jpg
+3.pgm TŘEŠTÍKOVÁ_Helena_P201201160612101.jpg
+4.pgm TŘEŠTÍKOVÁ_Helena_FO00142088.jpg
+5.pgm TŘEŠTÍKOVÁ_Helena_FO00125078.jpg
+6.pgm TŘEŠTÍKOVÁ_Helena_F200905120099701.jpg
+7.pgm TŘEŠTÍKOVÁ_Helena_F201112130194001.jpg
+8.pgm TŘEŠTÍKOVÁ_Helena_FO00142083.jpg
+9.pgm TŘEŠTÍKOVÁ_Helena_F201112130196801.jpg
+10.pgm TŘEŠTÍKOVÁ_Helena_FO00004805.jpg
+11.pgm TŘEŠTÍKOVÁ_Helena_F201201160762401.jpg
+12.pgm TŘEŠTÍKOVÁ_Helena_P200907090638501.jpg
+13.pgm TŘEŠTÍKOVÁ_Helena_F201112130198801.jpg
+14.pgm TŘEŠTÍKOVÁ_Helena_F201201160762201.jpg
+15.pgm TŘEŠTÍKOVÁ_Helena_F200905120099301.jpg
+16.pgm TŘEŠTÍKOVÁ_Helena_F200905120099401.jpg
+17.pgm TŘEŠTÍKOVÁ_Helena_FO00004804.jpg
+18.pgm TŘEŠTÍKOVÁ_Helena_P200810220787201.jpg
+19.pgm TŘEŠTÍKOVÁ_Helena_FO00004803.jpg
+20.pgm TŘEŠTÍKOVÁ_Helena_FO02077659.jpg
+21.pgm TŘEŠTÍKOVÁ_Helena_P201012010747701.jpg
+22.pgm TŘEŠTÍKOVÁ_Helena_FO00125081.jpg
+23.pgm TŘEŠTÍKOVÁ_Helena_FO00004802.jpg
+24.pgm TŘEŠTÍKOVÁ_Helena_F200905120098801.jpg
+Odchylka 0.0430944

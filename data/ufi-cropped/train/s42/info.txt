@@ -1,0 +1,13 @@
+ŠČUKA_Emil
+1.pgm ŠČUKA_Emil_FO00531589.jpg
+2.pgm ŠČUKA_Emil_FO00247521.jpg
+3.pgm ŠČUKA_Emil_FO00247515.jpg
+4.pgm ŠČUKA_Emil_FO00179495.jpg
+5.pgm ŠČUKA_Emil_FO00299253.jpg
+6.pgm ŠČUKA_Emil_FO00247512.jpg
+7.pgm ŠČUKA_Emil_FO01118922.jpg
+8.pgm ŠČUKA_Emil_FO00076181.jpg
+9.pgm ŠČUKA_Emil_FO00121458.jpg
+10.pgm ŠČUKA_Emil_FO02043039.jpg
+11.pgm ŠČUKA_Emil_FO00179493.jpg
+Odchylka 0.0159168

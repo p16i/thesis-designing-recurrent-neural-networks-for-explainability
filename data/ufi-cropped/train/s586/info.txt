@@ -1,0 +1,13 @@
+GENSCHER_Hans-Dietrich
+1.pgm GENSCHER_Hans-Dietrich_FO00353453.jpg
+2.pgm GENSCHER_Hans-Dietrich_FO00353309.jpg
+3.pgm GENSCHER_Hans-Dietrich_FO00353456.jpg
+4.pgm GENSCHER_Hans-Dietrich_FO00353304.jpg
+5.pgm GENSCHER_Hans-Dietrich_FO00378993.jpg
+6.pgm GENSCHER_Hans-Dietrich_FO00353457.jpg
+7.pgm GENSCHER_Hans-Dietrich_P200909300650701.jpg
+8.pgm GENSCHER_Hans-Dietrich_FO00353455.jpg
+9.pgm GENSCHER_Hans-Dietrich_FO00353305.jpg
+10.pgm GENSCHER_Hans-Dietrich_FO00353307.jpg
+11.pgm GENSCHER_Hans-Dietrich_FO00284040.jpg
+Odchylka 0.0283206

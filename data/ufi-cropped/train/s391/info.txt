@@ -1,0 +1,17 @@
+TALAT_Mehmet_Ali
+1.pgm TALAT_Mehmet_Ali_FO02063591.jpg
+2.pgm TALAT_Mehmet_Ali_FO02066938.jpg
+3.pgm TALAT_Mehmet_Ali_FO01238796.jpg
+4.pgm TALAT_Mehmet_Ali_FO03017512.jpg
+5.pgm TALAT_Mehmet_Ali_FO02068188.jpg
+6.pgm TALAT_Mehmet_Ali_FO01172734.jpg
+7.pgm TALAT_Mehmet_Ali_P200811110796501.jpg
+8.pgm TALAT_Mehmet_Ali_FO02068187.jpg
+9.pgm TALAT_Mehmet_Ali_P200809030418201.jpg
+10.pgm TALAT_Mehmet_Ali_P200809030295201.jpg
+11.pgm TALAT_Mehmet_Ali_FO02072686.jpg
+12.pgm TALAT_Mehmet_Ali_FO02072627.jpg
+13.pgm TALAT_Mehmet_Ali_P200710170668301.jpg
+14.pgm TALAT_Mehmet_Ali_P200803210390601.jpg
+15.pgm TALAT_Mehmet_Ali_FO02066917.jpg
+Odchylka 0.0311727

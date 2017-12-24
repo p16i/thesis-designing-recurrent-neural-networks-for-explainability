@@ -1,0 +1,14 @@
+VLKOVÁ,Veronika
+1.pgm VLKOVÁ,Veronika_FO02066595.jpg
+2.pgm VLKOVÁ,Veronika_P200711120463501.jpg
+3.pgm VLKOVÁ,Veronika_P200710020519901.jpg
+4.pgm VLKOVÁ,Veronika_FO02062837.jpg
+5.pgm VLKOVÁ,Veronika_P200804260212001.jpg
+6.pgm VLKOVÁ,Veronika_P200801080686801.jpg
+7.pgm VLKOVÁ,Veronika_P200801080692901.jpg
+8.pgm VLKOVÁ,Veronika_FO02062839.jpg
+9.pgm VLKOVÁ,Veronika_P200711120493901.jpg
+10.pgm VLKOVÁ,Veronika_FO03011234.jpg
+11.pgm VLKOVÁ,Veronika_P200711120455801.jpg
+12.pgm VLKOVÁ,Veronika_P200807010735201.jpg
+Odchylka 0.0212982

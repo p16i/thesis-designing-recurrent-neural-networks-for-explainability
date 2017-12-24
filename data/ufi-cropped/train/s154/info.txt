@@ -1,0 +1,20 @@
+LUKAVSKÝ_Radovan
+1.pgm LUKAVSKÝ_Radovan_FO00164639.jpg
+2.pgm LUKAVSKÝ_Radovan_FO00206182.jpg
+3.pgm LUKAVSKÝ_Radovan_FO00140985.jpg
+4.pgm LUKAVSKÝ_Radovan_FO01259339.jpg
+5.pgm LUKAVSKÝ_Radovan_FO00494471.jpg
+6.pgm LUKAVSKÝ_Radovan_FO00452471.jpg
+7.pgm LUKAVSKÝ_Radovan_FO00059059.jpg
+8.pgm LUKAVSKÝ_Radovan_FO00140913.jpg
+9.pgm LUKAVSKÝ_Radovan_FO00059056.jpg
+10.pgm LUKAVSKÝ_Radovan_FO00045639.jpg
+11.pgm LUKAVSKÝ_Radovan_FO00206185.jpg
+12.pgm LUKAVSKÝ_Radovan_FO01311231.jpg
+13.pgm LUKAVSKÝ_Radovan_FO00452470.jpg
+14.pgm LUKAVSKÝ_Radovan_FO00460340.jpg
+15.pgm LUKAVSKÝ_Radovan_FO00053076.jpg
+16.pgm LUKAVSKÝ_Radovan_FO00206191.jpg
+17.pgm LUKAVSKÝ_Radovan_FO00351797.jpg
+18.pgm LUKAVSKÝ_Radovan_FO00452469.jpg
+Odchylka 0.0774183

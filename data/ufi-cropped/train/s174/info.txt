@@ -1,0 +1,11 @@
+KOUTECKÝ_Josef
+1.pgm KOUTECKÝ_Josef_FO00219911.jpg
+2.pgm KOUTECKÝ_Josef_FO01232431.jpg
+3.pgm KOUTECKÝ_Josef_FO00204622.jpg
+4.pgm KOUTECKÝ_Josef_FO00040185.jpg
+5.pgm KOUTECKÝ_Josef_FO01127397.jpg
+6.pgm KOUTECKÝ_Josef_FO00219919.jpg
+7.pgm KOUTECKÝ_Josef_FO00204614.jpg
+8.pgm KOUTECKÝ_Josef_FO00196721.jpg
+9.pgm KOUTECKÝ_Josef_FO00045565.jpg
+Odchylka 0.0310323

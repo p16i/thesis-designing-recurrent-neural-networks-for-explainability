@@ -1,0 +1,12 @@
+BRODSKÝ_Vlastimil
+1.pgm BRODSKÝ_Vlastimil_FO01167592.jpg
+2.pgm BRODSKÝ_Vlastimil_F201201120233301.jpg
+3.pgm BRODSKÝ_Vlastimil_FO00199827.jpg
+4.pgm BRODSKÝ_Vlastimil_FO00391013.jpg
+5.pgm BRODSKÝ_Vlastimil_FO00492824.jpg
+6.pgm BRODSKÝ_Vlastimil_FO00117797.jpg
+7.pgm BRODSKÝ_Vlastimil_F201201310319201.jpg
+8.pgm BRODSKÝ_Vlastimil_F201201120233201.jpg
+9.pgm BRODSKÝ_Vlastimil_FO00394816.jpg
+10.pgm BRODSKÝ_Vlastimil_FO00392910.jpg
+Odchylka 0.00473167

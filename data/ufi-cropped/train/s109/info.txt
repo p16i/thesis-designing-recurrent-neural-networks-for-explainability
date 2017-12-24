@@ -1,0 +1,22 @@
+BUREŠ_Jaroslav
+1.pgm BUREŠ_Jaroslav_FO00155924.jpg
+2.pgm BUREŠ_Jaroslav_FO00229041.jpg
+3.pgm BUREŠ_Jaroslav_FO00247857.jpg
+4.pgm BUREŠ_Jaroslav_FO03004640.jpg
+5.pgm BUREŠ_Jaroslav_FO00155877.jpg
+6.pgm BUREŠ_Jaroslav_FO03004641.jpg
+7.pgm BUREŠ_Jaroslav_FO00482052.jpg
+8.pgm BUREŠ_Jaroslav_FO00482552.jpg
+9.pgm BUREŠ_Jaroslav_FO00289171.jpg
+10.pgm BUREŠ_Jaroslav_FO00240680.jpg
+11.pgm BUREŠ_Jaroslav_FO00482859.jpg
+12.pgm BUREŠ_Jaroslav_FO00482553.jpg
+13.pgm BUREŠ_Jaroslav_FO00482554.jpg
+14.pgm BUREŠ_Jaroslav_FO00356261.jpg
+15.pgm BUREŠ_Jaroslav_FO00155876.jpg
+16.pgm BUREŠ_Jaroslav_FO00289172.jpg
+17.pgm BUREŠ_Jaroslav_FO00482053.jpg
+18.pgm BUREŠ_Jaroslav_FO00241251.jpg
+19.pgm BUREŠ_Jaroslav_FO00241254.jpg
+20.pgm BUREŠ_Jaroslav_FO00229037.jpg
+Odchylka 0.0362791

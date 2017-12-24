@@ -1,0 +1,18 @@
+ŠTĚCH_Milan
+1.pgm ŠTĚCH_Milan_FO00030737.jpg
+2.pgm ŠTĚCH_Milan_FO00391117.jpg
+3.pgm ŠTĚCH_Milan_FO01019173.jpg
+4.pgm ŠTĚCH_Milan_FO00517775.jpg
+5.pgm ŠTĚCH_Milan_FO01066070.jpg
+6.pgm ŠTĚCH_Milan_FO01366739.jpg
+7.pgm ŠTĚCH_Milan_FO00055177.jpg
+8.pgm ŠTĚCH_Milan_FO00479698.jpg
+9.pgm ŠTĚCH_Milan_FO01045627.jpg
+10.pgm ŠTĚCH_Milan_FO00465486.jpg
+11.pgm ŠTĚCH_Milan_FO01366009.jpg
+12.pgm ŠTĚCH_Milan_FO00391118.jpg
+13.pgm ŠTĚCH_Milan_FO00522859.jpg
+14.pgm ŠTĚCH_Milan_FO02068876.jpg
+15.pgm ŠTĚCH_Milan_FO00479699.jpg
+16.pgm ŠTĚCH_Milan_FO00479701.jpg
+Odchylka 0.0176343

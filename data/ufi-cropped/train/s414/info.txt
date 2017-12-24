@@ -1,0 +1,16 @@
+BENEŠOVÁ_Marie
+1.pgm BENEŠOVÁ_Marie_FO00516238.jpg
+2.pgm BENEŠOVÁ_Marie_FO00164564.jpg
+3.pgm BENEŠOVÁ_Marie_FO00111338.jpg
+4.pgm BENEŠOVÁ_Marie_FO00328338.jpg
+5.pgm BENEŠOVÁ_Marie_FO00107816.jpg
+6.pgm BENEŠOVÁ_Marie_FO02091336.jpg
+7.pgm BENEŠOVÁ_Marie_FO00164560.jpg
+8.pgm BENEŠOVÁ_Marie_FO00328339.jpg
+9.pgm BENEŠOVÁ_Marie_FO02091338.jpg
+10.pgm BENEŠOVÁ_Marie_FO02091337.jpg
+11.pgm BENEŠOVÁ_Marie_FO01318187.jpg
+12.pgm BENEŠOVÁ_Marie_FO00392816.jpg
+13.pgm BENEŠOVÁ_Marie_FO02091335.jpg
+14.pgm BENEŠOVÁ_Marie_FO01229169.jpg
+Odchylka 0.0205034

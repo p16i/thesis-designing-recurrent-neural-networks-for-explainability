@@ -1,0 +1,16 @@
+ČERNÝ_David
+1.pgm ČERNÝ_David_FO00226348.jpg
+2.pgm ČERNÝ_David_FO02112049.jpg
+3.pgm ČERNÝ_David_FO00226346.jpg
+4.pgm ČERNÝ_David_F201110070213701.jpg
+5.pgm ČERNÝ_David_F201110070214801.jpg
+6.pgm ČERNÝ_David_F201110070212501.jpg
+7.pgm ČERNÝ_David_FO00137835.jpg
+8.pgm ČERNÝ_David_FO01118059.jpg
+9.pgm ČERNÝ_David_FO00336973.jpg
+10.pgm ČERNÝ_David_P201005280752501.jpg
+11.pgm ČERNÝ_David_P200906040890401.jpg
+12.pgm ČERNÝ_David_FO00428950.jpg
+13.pgm ČERNÝ_David_FO01053947.jpg
+14.pgm ČERNÝ_David_P200901150458601.jpg
+Odchylka 0.100352

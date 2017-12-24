@@ -1,0 +1,24 @@
+VÁVRA_Otakar
+1.pgm VÁVRA_Otakar_FO00420210.jpg
+2.pgm VÁVRA_Otakar_FO01044302.jpg
+3.pgm VÁVRA_Otakar_FO01044301.jpg
+4.pgm VÁVRA_Otakar_FO02116552.jpg
+5.pgm VÁVRA_Otakar_FO00224642.jpg
+6.pgm VÁVRA_Otakar_FO00160872.jpg
+7.pgm VÁVRA_Otakar_FO00221354.jpg
+8.pgm VÁVRA_Otakar_FO01365058.jpg
+9.pgm VÁVRA_Otakar_FO01172986.jpg
+10.pgm VÁVRA_Otakar_FO00160866.jpg
+11.pgm VÁVRA_Otakar_FO01048916.jpg
+12.pgm VÁVRA_Otakar_FO00221583.jpg
+13.pgm VÁVRA_Otakar_FO00221377.jpg
+14.pgm VÁVRA_Otakar_FO00221374.jpg
+15.pgm VÁVRA_Otakar_FO01048928.jpg
+16.pgm VÁVRA_Otakar_FO00160858.jpg
+17.pgm VÁVRA_Otakar_FO01339546.jpg
+18.pgm VÁVRA_Otakar_FO00074276.jpg
+19.pgm VÁVRA_Otakar_FO00221365.jpg
+20.pgm VÁVRA_Otakar_FO01048929.jpg
+21.pgm VÁVRA_Otakar_FO00221610.jpg
+22.pgm VÁVRA_Otakar_F200711070016001.jpg
+Odchylka 0.0177554

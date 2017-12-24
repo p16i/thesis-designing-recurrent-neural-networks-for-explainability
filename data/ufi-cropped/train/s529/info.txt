@@ -1,0 +1,12 @@
+ŽBIRKA_Miroslav
+1.pgm ŽBIRKA_Miroslav_FO00466680.jpg
+2.pgm ŽBIRKA_Miroslav_F200805210042101.jpg
+3.pgm ŽBIRKA_Miroslav_FO01054776.jpg
+4.pgm ŽBIRKA_Miroslav_FO00472944.jpg
+5.pgm ŽBIRKA_Miroslav_FO00338154.jpg
+6.pgm ŽBIRKA_Miroslav_P201003100749501.jpg
+7.pgm ŽBIRKA_Miroslav_FO00212208.jpg
+8.pgm ŽBIRKA_Miroslav_FO00466730.jpg
+9.pgm ŽBIRKA_Miroslav_FO01168781.jpg
+10.pgm ŽBIRKA_Miroslav_FO00350791.jpg
+Odchylka 0.0575918

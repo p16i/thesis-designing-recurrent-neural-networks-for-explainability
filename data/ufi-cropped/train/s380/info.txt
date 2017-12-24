@@ -1,0 +1,20 @@
+PALKO_Vladimír
+1.pgm PALKO_Vladimír_FO00499262.jpg
+2.pgm PALKO_Vladimír_FO01089264.jpg
+3.pgm PALKO_Vladimír_FO00497474.jpg
+4.pgm PALKO_Vladimír_FO01259553.jpg
+5.pgm PALKO_Vladimír_FO01316188.jpg
+6.pgm PALKO_Vladimír_FO00510672.jpg
+7.pgm PALKO_Vladimír_FO01085515.jpg
+8.pgm PALKO_Vladimír_FO00522914.jpg
+9.pgm PALKO_Vladimír_FO00457408.jpg
+10.pgm PALKO_Vladimír_FO01269324.jpg
+11.pgm PALKO_Vladimír_FO00501259.jpg
+12.pgm PALKO_Vladimír_FO00507380.jpg
+13.pgm PALKO_Vladimír_FO00325847.jpg
+14.pgm PALKO_Vladimír_FO01264138.jpg
+15.pgm PALKO_Vladimír_FO02056670.jpg
+16.pgm PALKO_Vladimír_FO01118179.jpg
+17.pgm PALKO_Vladimír_FO01343691.jpg
+18.pgm PALKO_Vladimír_FO01177676.jpg
+Odchylka 0.0125408

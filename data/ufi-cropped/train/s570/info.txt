@@ -1,0 +1,18 @@
+HUSÁK_Gustáv
+1.pgm HUSÁK_Gustáv_FO00234581.jpg
+2.pgm HUSÁK_Gustáv_FO00439693.jpg
+3.pgm HUSÁK_Gustáv_FO00253951.jpg
+4.pgm HUSÁK_Gustáv_FO00244426.jpg
+5.pgm HUSÁK_Gustáv_FO00439933.jpg
+6.pgm HUSÁK_Gustáv_FO00503033.jpg
+7.pgm HUSÁK_Gustáv_FO00253941.jpg
+8.pgm HUSÁK_Gustáv_FO00248561.jpg
+9.pgm HUSÁK_Gustáv_FO00059825.jpg
+10.pgm HUSÁK_Gustáv_FO00090125.jpg
+11.pgm HUSÁK_Gustáv_FO00439674.jpg
+12.pgm HUSÁK_Gustáv_FO00248567.jpg
+13.pgm HUSÁK_Gustáv_FO00248568.jpg
+14.pgm HUSÁK_Gustáv_FO00439675.jpg
+15.pgm HUSÁK_Gustáv_F201110040479801.jpg
+16.pgm HUSÁK_Gustáv_FO00439935.jpg
+Odchylka 0.0321962

@@ -1,0 +1,11 @@
+KUČERA_Miloslav
+1.pgm KUČERA_Miloslav_FO00288896.jpg
+2.pgm KUČERA_Miloslav_FO00158674.jpg
+3.pgm KUČERA_Miloslav_FO00444057.jpg
+4.pgm KUČERA_Miloslav_FO00418684.jpg
+5.pgm KUČERA_Miloslav_FO00096749.jpg
+6.pgm KUČERA_Miloslav_FO00096714.jpg
+7.pgm KUČERA_Miloslav_FO00129637.jpg
+8.pgm KUČERA_Miloslav_FO00129676.jpg
+9.pgm KUČERA_Miloslav_FO01319531.jpg
+Odchylka 0.026861

@@ -1,0 +1,17 @@
+MÁCAL_Zdeněk
+1.pgm MÁCAL_Zdeněk_P201206020229301.jpg
+2.pgm MÁCAL_Zdeněk_FO00211268.jpg
+3.pgm MÁCAL_Zdeněk_FO00210460.jpg
+4.pgm MÁCAL_Zdeněk_FO00490081.jpg
+5.pgm MÁCAL_Zdeněk_FO02091611.jpg
+6.pgm MÁCAL_Zdeněk_FO00490083.jpg
+7.pgm MÁCAL_Zdeněk_FO00211267.jpg
+8.pgm MÁCAL_Zdeněk_FO00392330.jpg
+9.pgm MÁCAL_Zdeněk_FO00392333.jpg
+10.pgm MÁCAL_Zdeněk_FO01244921.jpg
+11.pgm MÁCAL_Zdeněk_FO01174682.jpg
+12.pgm MÁCAL_Zdeněk_FO00490082.jpg
+13.pgm MÁCAL_Zdeněk_FO00379818.jpg
+14.pgm MÁCAL_Zdeněk_FO00166777.jpg
+15.pgm MÁCAL_Zdeněk_FO01076836.jpg
+Odchylka 0.0202131

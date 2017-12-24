@@ -1,0 +1,13 @@
+FOLDYNA_Jaroslav
+1.pgm FOLDYNA_Jaroslav_FO00205441.jpg
+2.pgm FOLDYNA_Jaroslav_FO00484813.jpg
+3.pgm FOLDYNA_Jaroslav_FO00116631.jpg
+4.pgm FOLDYNA_Jaroslav_P201101150362501.jpg
+5.pgm FOLDYNA_Jaroslav_FO00116633.jpg
+6.pgm FOLDYNA_Jaroslav_FO00484814.jpg
+7.pgm FOLDYNA_Jaroslav_FO00484815.jpg
+8.pgm FOLDYNA_Jaroslav_FO00218951.jpg
+9.pgm FOLDYNA_Jaroslav_F200809240132601.jpg
+10.pgm FOLDYNA_Jaroslav_FO00484816.jpg
+11.pgm FOLDYNA_Jaroslav_P200811030660901.jpg
+Odchylka 0.0211489

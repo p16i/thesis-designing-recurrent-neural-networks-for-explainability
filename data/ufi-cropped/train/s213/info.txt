@@ -1,0 +1,15 @@
+BENEŠOVÁ_Libuše
+1.pgm BENEŠOVÁ_Libuše_FO00107008.jpg
+2.pgm BENEŠOVÁ_Libuše_FO00210262.jpg
+3.pgm BENEŠOVÁ_Libuše_FO00210256.jpg
+4.pgm BENEŠOVÁ_Libuše_FO00205022.jpg
+5.pgm BENEŠOVÁ_Libuše_FO00030656.jpg
+6.pgm BENEŠOVÁ_Libuše_FO00107005.jpg
+7.pgm BENEŠOVÁ_Libuše_FO00064625.jpg
+8.pgm BENEŠOVÁ_Libuše_FO01024427.jpg
+9.pgm BENEŠOVÁ_Libuše_FO00107006.jpg
+10.pgm BENEŠOVÁ_Libuše_FO00207967.jpg
+11.pgm BENEŠOVÁ_Libuše_FO00107060.jpg
+12.pgm BENEŠOVÁ_Libuše_FO00107007.jpg
+13.pgm BENEŠOVÁ_Libuše_FO00209596.jpg
+Odchylka 0.0217124

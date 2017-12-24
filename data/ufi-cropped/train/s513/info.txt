@@ -1,0 +1,14 @@
+WEISS_Peter
+1.pgm WEISS_Peter_FO00401910.jpg
+2.pgm WEISS_Peter_FO00401896.jpg
+3.pgm WEISS_Peter_FO00401899.jpg
+4.pgm WEISS_Peter_FO00401918.jpg
+5.pgm WEISS_Peter_FO00255915.jpg
+6.pgm WEISS_Peter_FO00104470.jpg
+7.pgm WEISS_Peter_FO00028692.jpg
+8.pgm WEISS_Peter_FO00255903.jpg
+9.pgm WEISS_Peter_FO00358220.jpg
+10.pgm WEISS_Peter_FO00401897.jpg
+11.pgm WEISS_Peter_FO00028691.jpg
+12.pgm WEISS_Peter_FO00390550.jpg
+Odchylka 0.0260386

@@ -1,0 +1,17 @@
+LIPSKÝ_Lubomír
+1.pgm LIPSKÝ_Lubomír_FO00514630.jpg
+2.pgm LIPSKÝ_Lubomír_FO00079164.jpg
+3.pgm LIPSKÝ_Lubomír_FO00487452.jpg
+4.pgm LIPSKÝ_Lubomír_FO02070393.jpg
+5.pgm LIPSKÝ_Lubomír_FO00487455.jpg
+6.pgm LIPSKÝ_Lubomír_FO00457221.jpg
+7.pgm LIPSKÝ_Lubomír_FO00487458.jpg
+8.pgm LIPSKÝ_Lubomír_FO00487449.jpg
+9.pgm LIPSKÝ_Lubomír_FO00457220.jpg
+10.pgm LIPSKÝ_Lubomír_FO00514634.jpg
+11.pgm LIPSKÝ_Lubomír_FO00514633.jpg
+12.pgm LIPSKÝ_Lubomír_FO00514642.jpg
+13.pgm LIPSKÝ_Lubomír_FO00487454.jpg
+14.pgm LIPSKÝ_Lubomír_FO01065641.jpg
+15.pgm LIPSKÝ_Lubomír_FO00487457.jpg
+Odchylka 0.0278281

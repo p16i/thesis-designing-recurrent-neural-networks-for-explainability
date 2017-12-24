@@ -1,0 +1,27 @@
+KOLÁŘ_Petr
+1.pgm KOLÁŘ_Petr_FO00167683.jpg
+2.pgm KOLÁŘ_Petr_F200910070301701.jpg
+3.pgm KOLÁŘ_Petr_F201108220333901.jpg
+4.pgm KOLÁŘ_Petr_FO02057967.jpg
+5.pgm KOLÁŘ_Petr_FO00167689.jpg
+6.pgm KOLÁŘ_Petr_F200910070301801.jpg
+7.pgm KOLÁŘ_Petr_FO01341790.jpg
+8.pgm KOLÁŘ_Petr_FO03018637.jpg
+9.pgm KOLÁŘ_Petr_FO01100650.jpg
+10.pgm KOLÁŘ_Petr_F200910070302501.jpg
+11.pgm KOLÁŘ_Petr_FO00512506.jpg
+12.pgm KOLÁŘ_Petr_F201108220334001.jpg
+13.pgm KOLÁŘ_Petr_P201009010374101.jpg
+14.pgm KOLÁŘ_Petr_FO00512507.jpg
+15.pgm KOLÁŘ_Petr_FO00512505.jpg
+16.pgm KOLÁŘ_Petr_FO00164773.jpg
+17.pgm KOLÁŘ_Petr_FO01100649.jpg
+18.pgm KOLÁŘ_Petr_F201108220332901.jpg
+19.pgm KOLÁŘ_Petr_F201108220333801.jpg
+20.pgm KOLÁŘ_Petr_P201009010377401.jpg
+21.pgm KOLÁŘ_Petr_FO00342020.jpg
+22.pgm KOLÁŘ_Petr_F200902130157401.jpg
+23.pgm KOLÁŘ_Petr_FO03016336.jpg
+24.pgm KOLÁŘ_Petr_FO01338766.jpg
+25.pgm KOLÁŘ_Petr_FO01115289.jpg
+Odchylka 0.0302817

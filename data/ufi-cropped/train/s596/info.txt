@@ -1,0 +1,16 @@
+DOHNAL_František
+1.pgm DOHNAL_František_FO00375604.jpg
+2.pgm DOHNAL_František_FO00042553.jpg
+3.pgm DOHNAL_František_FO00216972.jpg
+4.pgm DOHNAL_František_FO00220996.jpg
+5.pgm DOHNAL_František_FO00118794.jpg
+6.pgm DOHNAL_František_P200903120646901.jpg
+7.pgm DOHNAL_František_FO00220994.jpg
+8.pgm DOHNAL_František_FO00220992.jpg
+9.pgm DOHNAL_František_P201106230247401.jpg
+10.pgm DOHNAL_František_FO00482027.jpg
+11.pgm DOHNAL_František_P200904060575001.jpg
+12.pgm DOHNAL_František_P200912020484001.jpg
+13.pgm DOHNAL_František_FO00482028.jpg
+14.pgm DOHNAL_František_FO00118793.jpg
+Odchylka 0.0407335

@@ -1,0 +1,11 @@
+MASARYK_Tomáš_Garrigue
+1.pgm MASARYK_Tomáš_Garrigue_F201101050168801.jpg
+2.pgm MASARYK_Tomáš_Garrigue_FO00049676.jpg
+3.pgm MASARYK_Tomáš_Garrigue_FO00355980.jpg
+4.pgm MASARYK_Tomáš_Garrigue_FO01019073.jpg
+5.pgm MASARYK_Tomáš_Garrigue_FO00422882.jpg
+6.pgm MASARYK_Tomáš_Garrigue_F200905260109301.jpg
+7.pgm MASARYK_Tomáš_Garrigue_F201103150237901.jpg
+8.pgm MASARYK_Tomáš_Garrigue_FO00108077.jpg
+9.pgm MASARYK_Tomáš_Garrigue_FO00422871.jpg
+Odchylka 0.0252076

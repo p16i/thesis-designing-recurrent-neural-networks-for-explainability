@@ -1,0 +1,15 @@
+ČERNÍK_Oldřich
+1.pgm ČERNÍK_Oldřich_FO00243273.jpg
+2.pgm ČERNÍK_Oldřich_FO00243285.jpg
+3.pgm ČERNÍK_Oldřich_FO00243271.jpg
+4.pgm ČERNÍK_Oldřich_FO00241830.jpg
+5.pgm ČERNÍK_Oldřich_FO00320182.jpg
+6.pgm ČERNÍK_Oldřich_FO00241818.jpg
+7.pgm ČERNÍK_Oldřich_FO00320150.jpg
+8.pgm ČERNÍK_Oldřich_FO00243275.jpg
+9.pgm ČERNÍK_Oldřich_FO00097829.jpg
+10.pgm ČERNÍK_Oldřich_F201011260301601.jpg
+11.pgm ČERNÍK_Oldřich_F201102140875201.jpg
+12.pgm ČERNÍK_Oldřich_FO00320151.jpg
+13.pgm ČERNÍK_Oldřich_FO00243276.jpg
+Odchylka 0.0567307

@@ -1,0 +1,14 @@
+PAVLŮ_Libor
+1.pgm PAVLŮ_Libor_FO00376679.jpg
+2.pgm PAVLŮ_Libor_P201205040456501.jpg
+3.pgm PAVLŮ_Libor_P201209050849501.jpg
+4.pgm PAVLŮ_Libor_P201202271188501.jpg
+5.pgm PAVLŮ_Libor_FO00196215.jpg
+6.pgm PAVLŮ_Libor_FO00179319.jpg
+7.pgm PAVLŮ_Libor_FO00196213.jpg
+8.pgm PAVLŮ_Libor_FO00030750.jpg
+9.pgm PAVLŮ_Libor_FO00196214.jpg
+10.pgm PAVLŮ_Libor_FO01075209.jpg
+11.pgm PAVLŮ_Libor_FO01129223.jpg
+12.pgm PAVLŮ_Libor_P200811260625001.jpg
+Odchylka 0.0185976

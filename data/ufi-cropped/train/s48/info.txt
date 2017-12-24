@@ -1,0 +1,11 @@
+NOVOTNÝ_Antonín
+1.pgm NOVOTNÝ_Antonín_FO00394820.jpg
+2.pgm NOVOTNÝ_Antonín_F200910290061101.jpg
+3.pgm NOVOTNÝ_Antonín_FO02112596.jpg
+4.pgm NOVOTNÝ_Antonín_FO00102909.jpg
+5.pgm NOVOTNÝ_Antonín_F200910290061301.jpg
+6.pgm NOVOTNÝ_Antonín_F200910290061001.jpg
+7.pgm NOVOTNÝ_Antonín_FO00113835.jpg
+8.pgm NOVOTNÝ_Antonín_F200912210086801.jpg
+9.pgm NOVOTNÝ_Antonín_FO02112599.jpg
+Odchylka 0.00616574

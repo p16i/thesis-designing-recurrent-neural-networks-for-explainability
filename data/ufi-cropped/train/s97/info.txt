@@ -1,0 +1,11 @@
+KLIMA_Viktor
+1.pgm KLIMA_Viktor_FO00076723.jpg
+2.pgm KLIMA_Viktor_FO00137584.jpg
+3.pgm KLIMA_Viktor_FO00104815.jpg
+4.pgm KLIMA_Viktor_FO00135508.jpg
+5.pgm KLIMA_Viktor_FO00094629.jpg
+6.pgm KLIMA_Viktor_FO00079844.jpg
+7.pgm KLIMA_Viktor_FO00104858.jpg
+8.pgm KLIMA_Viktor_FO00104860.jpg
+9.pgm KLIMA_Viktor_FO00135938.jpg
+Odchylka 0.0158467

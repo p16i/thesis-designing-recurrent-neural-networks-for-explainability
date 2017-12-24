@@ -1,0 +1,13 @@
+ŠTĚPÁNKOVÁ_Jana
+1.pgm ŠTĚPÁNKOVÁ_Jana_FO01097118.jpg
+2.pgm ŠTĚPÁNKOVÁ_Jana_FO00495416.jpg
+3.pgm ŠTĚPÁNKOVÁ_Jana_FO00075937.jpg
+4.pgm ŠTĚPÁNKOVÁ_Jana_F201008310142901.jpg
+5.pgm ŠTĚPÁNKOVÁ_Jana_FO01097121.jpg
+6.pgm ŠTĚPÁNKOVÁ_Jana_FO00461371.jpg
+7.pgm ŠTĚPÁNKOVÁ_Jana_FO01097119.jpg
+8.pgm ŠTĚPÁNKOVÁ_Jana_FO00449655.jpg
+9.pgm ŠTĚPÁNKOVÁ_Jana_FO00461364.jpg
+10.pgm ŠTĚPÁNKOVÁ_Jana_FO00461518.jpg
+11.pgm ŠTĚPÁNKOVÁ_Jana_F201012020611701.jpg
+Odchylka 0.0371194

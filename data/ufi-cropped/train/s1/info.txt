@@ -1,0 +1,15 @@
+HALÍK_Tomáš
+1.pgm HALÍK_Tomáš_FO01265374.jpg
+2.pgm HALÍK_Tomáš_P201108240475701.jpg
+3.pgm HALÍK_Tomáš_FO00504072.jpg
+4.pgm HALÍK_Tomáš_FO00285047.jpg
+5.pgm HALÍK_Tomáš_FO01265375.jpg
+6.pgm HALÍK_Tomáš_FO00021216.jpg
+7.pgm HALÍK_Tomáš_FO00148197.jpg
+8.pgm HALÍK_Tomáš_FO00059095.jpg
+9.pgm HALÍK_Tomáš_FO00076776.jpg
+10.pgm HALÍK_Tomáš_FO00137590.jpg
+11.pgm HALÍK_Tomáš_FO00023787.jpg
+12.pgm HALÍK_Tomáš_P201108240468301.jpg
+13.pgm HALÍK_Tomáš_FO00021214.jpg
+Odchylka 0.0162132

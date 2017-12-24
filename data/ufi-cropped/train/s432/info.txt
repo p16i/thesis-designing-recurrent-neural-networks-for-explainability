@@ -1,0 +1,24 @@
+ŘEŽÁBEK_Pavel
+1.pgm ŘEŽÁBEK_Pavel_FO02087452.jpg
+2.pgm ŘEŽÁBEK_Pavel_FO02087456.jpg
+3.pgm ŘEŽÁBEK_Pavel_FO00383095.jpg
+4.pgm ŘEŽÁBEK_Pavel_FO01091177.jpg
+5.pgm ŘEŽÁBEK_Pavel_FO00298387.jpg
+6.pgm ŘEŽÁBEK_Pavel_FO00298386.jpg
+7.pgm ŘEŽÁBEK_Pavel_P200803210300201.jpg
+8.pgm ŘEŽÁBEK_Pavel_FO00383096.jpg
+9.pgm ŘEŽÁBEK_Pavel_F200903300035301.jpg
+10.pgm ŘEŽÁBEK_Pavel_P200911300375001.jpg
+11.pgm ŘEŽÁBEK_Pavel_FO01091175.jpg
+12.pgm ŘEŽÁBEK_Pavel_FO01091176.jpg
+13.pgm ŘEŽÁBEK_Pavel_FO00383097.jpg
+14.pgm ŘEŽÁBEK_Pavel_FO00298388.jpg
+15.pgm ŘEŽÁBEK_Pavel_FO02087459.jpg
+16.pgm ŘEŽÁBEK_Pavel_FO00298385.jpg
+17.pgm ŘEŽÁBEK_Pavel_FO00298384.jpg
+18.pgm ŘEŽÁBEK_Pavel_FO01091178.jpg
+19.pgm ŘEŽÁBEK_Pavel_FO02087451.jpg
+20.pgm ŘEŽÁBEK_Pavel_FO02087458.jpg
+21.pgm ŘEŽÁBEK_Pavel_FO03006387.jpg
+22.pgm ŘEŽÁBEK_Pavel_FO00383094.jpg
+Odchylka 0.0679129

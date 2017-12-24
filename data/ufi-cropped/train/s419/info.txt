@@ -1,0 +1,15 @@
+RUSKO_Pavol
+1.pgm RUSKO_Pavol_FO00484577.jpg
+2.pgm RUSKO_Pavol_FO01088349.jpg
+3.pgm RUSKO_Pavol_FO00299508.jpg
+4.pgm RUSKO_Pavol_FO00295220.jpg
+5.pgm RUSKO_Pavol_FO00441266.jpg
+6.pgm RUSKO_Pavol_FO00102831.jpg
+7.pgm RUSKO_Pavol_FO00506518.jpg
+8.pgm RUSKO_Pavol_FO01338747.jpg
+9.pgm RUSKO_Pavol_FO01286093.jpg
+10.pgm RUSKO_Pavol_FO01183219.jpg
+11.pgm RUSKO_Pavol_FO01288039.jpg
+12.pgm RUSKO_Pavol_FO01068994.jpg
+13.pgm RUSKO_Pavol_FO00103332.jpg
+Odchylka 0.013881

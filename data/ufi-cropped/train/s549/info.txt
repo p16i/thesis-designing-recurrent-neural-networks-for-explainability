@@ -1,0 +1,17 @@
+FINI_Gianfranco
+1.pgm FINI_Gianfranco_P201102130345601.jpg
+2.pgm FINI_Gianfranco_F200910220036601.jpg
+3.pgm FINI_Gianfranco_FO00376418.jpg
+4.pgm FINI_Gianfranco_FO00363415.jpg
+5.pgm FINI_Gianfranco_FO01234762.jpg
+6.pgm FINI_Gianfranco_FO01214678.jpg
+7.pgm FINI_Gianfranco_FO00524255.jpg
+8.pgm FINI_Gianfranco_FO00359875.jpg
+9.pgm FINI_Gianfranco_FO01183041.jpg
+10.pgm FINI_Gianfranco_P201011160915501.jpg
+11.pgm FINI_Gianfranco_FO00284691.jpg
+12.pgm FINI_Gianfranco_FO00021246.jpg
+13.pgm FINI_Gianfranco_P201111130180401.jpg
+14.pgm FINI_Gianfranco_FO01301780.jpg
+15.pgm FINI_Gianfranco_P200912100423301.jpg
+Odchylka 0.0165208

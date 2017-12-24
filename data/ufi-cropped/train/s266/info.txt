@@ -1,0 +1,11 @@
+KOMÁREK_Valtr
+1.pgm KOMÁREK_Valtr_FO00180342.jpg
+2.pgm KOMÁREK_Valtr_FO01227785.jpg
+3.pgm KOMÁREK_Valtr_FO01227777.jpg
+4.pgm KOMÁREK_Valtr_FO01227778.jpg
+5.pgm KOMÁREK_Valtr_FO00180345.jpg
+6.pgm KOMÁREK_Valtr_FO01227780.jpg
+7.pgm KOMÁREK_Valtr_FO01227776.jpg
+8.pgm KOMÁREK_Valtr_FO00180340.jpg
+9.pgm KOMÁREK_Valtr_FO01227786.jpg
+Odchylka 0.0339276

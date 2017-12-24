@@ -1,0 +1,12 @@
+FEDOR_Martin
+1.pgm FEDOR_Martin_FO02020686.jpg
+2.pgm FEDOR_Martin_FO02005283.jpg
+3.pgm FEDOR_Martin_FO02005282.jpg
+4.pgm FEDOR_Martin_FO01326042.jpg
+5.pgm FEDOR_Martin_FO01360186.jpg
+6.pgm FEDOR_Martin_FO02122264.jpg
+7.pgm FEDOR_Martin_FO02015172.jpg
+8.pgm FEDOR_Martin_FO01352838.jpg
+9.pgm FEDOR_Martin_FO01349822.jpg
+10.pgm FEDOR_Martin_FO02002011.jpg
+Odchylka 0.0230597

@@ -1,0 +1,19 @@
+FILIP_Vojtěch
+1.pgm FILIP_Vojtěch_FO00460465.jpg
+2.pgm FILIP_Vojtěch_FO00458286.jpg
+3.pgm FILIP_Vojtěch_FO01153074.jpg
+4.pgm FILIP_Vojtěch_FO00152714.jpg
+5.pgm FILIP_Vojtěch_P200805170461101.jpg
+6.pgm FILIP_Vojtěch_P201006150454101.jpg
+7.pgm FILIP_Vojtěch_FO00152688.jpg
+8.pgm FILIP_Vojtěch_FO02013557.jpg
+9.pgm FILIP_Vojtěch_FO02090023.jpg
+10.pgm FILIP_Vojtěch_P200909020210001.jpg
+11.pgm FILIP_Vojtěch_P200805170180801.jpg
+12.pgm FILIP_Vojtěch_FO02090019.jpg
+13.pgm FILIP_Vojtěch_P200805180345801.jpg
+14.pgm FILIP_Vojtěch_FO01153075.jpg
+15.pgm FILIP_Vojtěch_FO02003781.jpg
+16.pgm FILIP_Vojtěch_FO01003825.jpg
+17.pgm FILIP_Vojtěch_FO02090022.jpg
+Odchylka 0.0313412

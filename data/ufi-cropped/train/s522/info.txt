@@ -1,0 +1,14 @@
+KREJČÍK_Jiří
+1.pgm KREJČÍK_Jiří_FO01059721.jpg
+2.pgm KREJČÍK_Jiří_FO00217870.jpg
+3.pgm KREJČÍK_Jiří_F201112060658901.jpg
+4.pgm KREJČÍK_Jiří_FO00217882.jpg
+5.pgm KREJČÍK_Jiří_F200911020598101.jpg
+6.pgm KREJČÍK_Jiří_FO01061924.jpg
+7.pgm KREJČÍK_Jiří_FO00092056.jpg
+8.pgm KREJČÍK_Jiří_FO00451929.jpg
+9.pgm KREJČÍK_Jiří_FO00511220.jpg
+10.pgm KREJČÍK_Jiří_F200911020598201.jpg
+11.pgm KREJČÍK_Jiří_FO00432685.jpg
+12.pgm KREJČÍK_Jiří_FO00511221.jpg
+Odchylka 0.0118893

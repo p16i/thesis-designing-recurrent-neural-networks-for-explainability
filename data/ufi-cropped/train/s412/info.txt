@@ -1,0 +1,14 @@
+KOSYGIN_Alexej_Nikolajevič
+1.pgm KOSYGIN_Alexej_Nikolajevič_FO01038821.jpg
+2.pgm KOSYGIN_Alexej_Nikolajevič_FO00110649.jpg
+3.pgm KOSYGIN_Alexej_Nikolajevič_FO00424351.jpg
+4.pgm KOSYGIN_Alexej_Nikolajevič_FO01038828.jpg
+5.pgm KOSYGIN_Alexej_Nikolajevič_FO00110647.jpg
+6.pgm KOSYGIN_Alexej_Nikolajevič_FO00279241.jpg
+7.pgm KOSYGIN_Alexej_Nikolajevič_FO01038830.jpg
+8.pgm KOSYGIN_Alexej_Nikolajevič_FO01038824.jpg
+9.pgm KOSYGIN_Alexej_Nikolajevič_FO01038831.jpg
+10.pgm KOSYGIN_Alexej_Nikolajevič_FO01038825.jpg
+11.pgm KOSYGIN_Alexej_Nikolajevič_FO01038833.jpg
+12.pgm KOSYGIN_Alexej_Nikolajevič_FO01038834.jpg
+Odchylka 0.0396095

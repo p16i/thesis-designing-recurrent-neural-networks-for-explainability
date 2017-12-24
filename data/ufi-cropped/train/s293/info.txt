@@ -1,0 +1,15 @@
+DUCKÝ_Ján
+1.pgm DUCKÝ_Ján_FO00085443.jpg
+2.pgm DUCKÝ_Ján_FO00188380.jpg
+3.pgm DUCKÝ_Ján_FO00107602.jpg
+4.pgm DUCKÝ_Ján_FO00105357.jpg
+5.pgm DUCKÝ_Ján_FO00193005.jpg
+6.pgm DUCKÝ_Ján_FO00021011.jpg
+7.pgm DUCKÝ_Ján_FO00085442.jpg
+8.pgm DUCKÝ_Ján_FO00024532.jpg
+9.pgm DUCKÝ_Ján_FO00264229.jpg
+10.pgm DUCKÝ_Ján_FO00024533.jpg
+11.pgm DUCKÝ_Ján_FO00107910.jpg
+12.pgm DUCKÝ_Ján_FO00055165.jpg
+13.pgm DUCKÝ_Ján_FO00107916.jpg
+Odchylka 0.0135104

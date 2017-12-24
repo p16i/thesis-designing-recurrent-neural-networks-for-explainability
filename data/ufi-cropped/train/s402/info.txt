@@ -1,0 +1,15 @@
+KALOUS_Miroslav
+1.pgm KALOUS_Miroslav_FO01216957.jpg
+2.pgm KALOUS_Miroslav_F201012010398101.jpg
+3.pgm KALOUS_Miroslav_FO01199772.jpg
+4.pgm KALOUS_Miroslav_FO01208527.jpg
+5.pgm KALOUS_Miroslav_P201102280763901.jpg
+6.pgm KALOUS_Miroslav_FO01267518.jpg
+7.pgm KALOUS_Miroslav_F201103010314001.jpg
+8.pgm KALOUS_Miroslav_FO01208526.jpg
+9.pgm KALOUS_Miroslav_FO01215974.jpg
+10.pgm KALOUS_Miroslav_FO02062397.jpg
+11.pgm KALOUS_Miroslav_FO01202181.jpg
+12.pgm KALOUS_Miroslav_P200901270336401.jpg
+13.pgm KALOUS_Miroslav_P201209060286501.jpg
+Odchylka 0.0217135

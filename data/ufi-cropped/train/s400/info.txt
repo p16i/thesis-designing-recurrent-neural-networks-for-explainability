@@ -1,0 +1,11 @@
+MALÝ_Václav
+1.pgm MALÝ_Václav_FO01141630.jpg
+2.pgm MALÝ_Václav_FO00112920.jpg
+3.pgm MALÝ_Václav_FO00140696.jpg
+4.pgm MALÝ_Václav_P200908190311701.jpg
+5.pgm MALÝ_Václav_F201007290252301.jpg
+6.pgm MALÝ_Václav_F201203080474501.jpg
+7.pgm MALÝ_Václav_F200911040272501.jpg
+8.pgm MALÝ_Václav_FO00112112.jpg
+9.pgm MALÝ_Václav_P201203080442001.jpg
+Odchylka 0.0308646

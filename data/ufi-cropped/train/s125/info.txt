@@ -1,0 +1,22 @@
+KRAUS_Michal
+1.pgm KRAUS_Michal_FO01225760.jpg
+2.pgm KRAUS_Michal_FO01239588.jpg
+3.pgm KRAUS_Michal_FO01334232.jpg
+4.pgm KRAUS_Michal_P201105030686201.jpg
+5.pgm KRAUS_Michal_FO01334598.jpg
+6.pgm KRAUS_Michal_FO01300071.jpg
+7.pgm KRAUS_Michal_FO01217016.jpg
+8.pgm KRAUS_Michal_FO02030907.jpg
+9.pgm KRAUS_Michal_FO00418660.jpg
+10.pgm KRAUS_Michal_FO01334231.jpg
+11.pgm KRAUS_Michal_FO01221792.jpg
+12.pgm KRAUS_Michal_FO01227814.jpg
+13.pgm KRAUS_Michal_FO01318090.jpg
+14.pgm KRAUS_Michal_FO00096725.jpg
+15.pgm KRAUS_Michal_FO00152382.jpg
+16.pgm KRAUS_Michal_FO01334597.jpg
+17.pgm KRAUS_Michal_FO01075469.jpg
+18.pgm KRAUS_Michal_FO01318088.jpg
+19.pgm KRAUS_Michal_FO00205659.jpg
+20.pgm KRAUS_Michal_FO01334227.jpg
+Odchylka 0.0245279

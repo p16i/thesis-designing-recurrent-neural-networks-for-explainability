@@ -1,0 +1,14 @@
+VINKLÁŘ_Josef
+1.pgm VINKLÁŘ_Josef_FO01330631.jpg
+2.pgm VINKLÁŘ_Josef_F201112300142901.jpg
+3.pgm VINKLÁŘ_Josef_FO00208992.jpg
+4.pgm VINKLÁŘ_Josef_FO00195645.jpg
+5.pgm VINKLÁŘ_Josef_FO00208984.jpg
+6.pgm VINKLÁŘ_Josef_FO01312610.jpg
+7.pgm VINKLÁŘ_Josef_FO00194251.jpg
+8.pgm VINKLÁŘ_Josef_FO01258718.jpg
+9.pgm VINKLÁŘ_Josef_FO01258713.jpg
+10.pgm VINKLÁŘ_Josef_FO00479194.jpg
+11.pgm VINKLÁŘ_Josef_F201112300142801.jpg
+12.pgm VINKLÁŘ_Josef_FO01343170.jpg
+Odchylka 0.0256832

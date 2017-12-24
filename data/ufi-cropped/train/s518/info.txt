@@ -1,0 +1,14 @@
+Liou_Siao-po
+1.pgm Liou_Siao-po_P201010080348801.jpg
+2.pgm Liou_Siao-po_P201103081103001.jpg
+3.pgm Liou_Siao-po_F201012100167301.jpg
+4.pgm Liou_Siao-po_P201002110201901.jpg
+5.pgm Liou_Siao-po_P201010080444301.jpg
+6.pgm Liou_Siao-po_P201010080332601.jpg
+7.pgm Liou_Siao-po_F201101130202601.jpg
+8.pgm Liou_Siao-po_P201012100852901.jpg
+9.pgm Liou_Siao-po_P201001120460801.jpg
+10.pgm Liou_Siao-po_F201012100213701.jpg
+11.pgm Liou_Siao-po_P200912250151101.jpg
+12.pgm Liou_Siao-po_P201012100339601.jpg
+Odchylka 0.102196

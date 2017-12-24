@@ -23,8 +23,8 @@ def load(model_path):
 
 
 class Dag(base.BaseDag):
-    def __init__(self, no_input_cols, dims, max_seq_length, architecture: Architecture, optimizer):
-        super(Dag, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer)
+    def __init__(self, no_input_cols, dims, max_seq_length, architecture: Architecture, optimizer, no_classes):
+        super(Dag, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer, no_classes=no_classes)
 
         # define layers
         self.ly_input_1 = Layer((dims*no_input_cols, architecture.in1), 'deep_4l__input_1')

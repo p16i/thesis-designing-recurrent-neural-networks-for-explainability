@@ -1,0 +1,13 @@
+ŠMICER_Vladimír
+1.pgm ŠMICER_Vladimír_FO03003179.jpg
+2.pgm ŠMICER_Vladimír_F201009080299701.jpg
+3.pgm ŠMICER_Vladimír_FO00059859.jpg
+4.pgm ŠMICER_Vladimír_FO00340548.jpg
+5.pgm ŠMICER_Vladimír_FO00031139.jpg
+6.pgm ŠMICER_Vladimír_P200903230711701.jpg
+7.pgm ŠMICER_Vladimír_P201202270696901.jpg
+8.pgm ŠMICER_Vladimír_FO00082726.jpg
+9.pgm ŠMICER_Vladimír_P200911040787701.jpg
+10.pgm ŠMICER_Vladimír_FO00082725.jpg
+11.pgm ŠMICER_Vladimír_P201205200305501.jpg
+Odchylka 0.0206147

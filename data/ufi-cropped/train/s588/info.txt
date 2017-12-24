@@ -1,0 +1,27 @@
+FISCHER_Joschka_
+1.pgm FISCHER_Joschka__FO00105771.jpg
+2.pgm FISCHER_Joschka__FO01256193.jpg
+3.pgm FISCHER_Joschka__FO00107050.jpg
+4.pgm FISCHER_Joschka__FO01021852.jpg
+5.pgm FISCHER_Joschka__FO00487229.jpg
+6.pgm FISCHER_Joschka__FO00034890.jpg
+7.pgm FISCHER_Joschka__FO00503860.jpg
+8.pgm FISCHER_Joschka__FO00123742.jpg
+9.pgm FISCHER_Joschka__FO00106772.jpg
+10.pgm FISCHER_Joschka__FO00484930.jpg
+11.pgm FISCHER_Joschka__P200812180250901.jpg
+12.pgm FISCHER_Joschka__FO01052422.jpg
+13.pgm FISCHER_Joschka__FO00107079.jpg
+14.pgm FISCHER_Joschka__FO00163273.jpg
+15.pgm FISCHER_Joschka__FO01181796.jpg
+16.pgm FISCHER_Joschka__FO00107077.jpg
+17.pgm FISCHER_Joschka__FO00237411.jpg
+18.pgm FISCHER_Joschka__FO00372661.jpg
+19.pgm FISCHER_Joschka__FO01273806.jpg
+20.pgm FISCHER_Joschka__FO00120423.jpg
+21.pgm FISCHER_Joschka__FO00295752.jpg
+22.pgm FISCHER_Joschka__FO01345113.jpg
+23.pgm FISCHER_Joschka__FO00107064.jpg
+24.pgm FISCHER_Joschka__FO00499758.jpg
+25.pgm FISCHER_Joschka__FO01246134.jpg
+Odchylka 0.014697

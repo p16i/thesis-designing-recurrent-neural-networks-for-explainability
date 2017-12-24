@@ -6,7 +6,7 @@ from model import base
 from model.components.layer import Layer
 from utils import experiment_artifact
 from utils import logging as lg
-from utils import network_architecture
+from utils import network_architecture, data_provider
 
 lg.set_logging()
 
@@ -19,8 +19,8 @@ def load(model_path):
 
 
 class Dag(base.BaseDag):
-    def __init__(self, no_input_cols, dims, max_seq_length, architecture: Architecture, optimizer):
-        super(Dag, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer)
+    def __init__(self, no_input_cols, dims, max_seq_length, architecture: Architecture, optimizer, no_classes):
+        super(Dag, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer, no_classes=no_classes)
 
         self.ly_input = Layer((dims*no_input_cols + architecture.recur, architecture.hidden), 's2__input')
 
@@ -33,13 +33,6 @@ class Dag(base.BaseDag):
             'output': self.ly_output,
             'recurrent': self.ly_recurrent
         }
-
-        # define placeholders
-        self.rx = tf.placeholder(tf.float32, shape=(None, architecture.recur), name='s2__recurrent_input')
-        self.x = tf.placeholder(tf.float32, shape=(None, dims, dims), name='s2__data_input')
-        self.y_target = tf.placeholder(tf.float32, [None, 10], name='s2__output_target')
-        self.lr = tf.placeholder(tf.float32, name='s2__lr')
-        self.keep_prob = tf.placeholder(tf.float32, name='s2__keep_prob')
 
         rr = self.rx
 
@@ -72,7 +65,10 @@ class Network(base.BaseNetwork):
         self.architecture = Architecture(**network_architecture.parse(artifact.architecture))
 
         tf.reset_default_graph()
-        self.dag = Dag(artifact.column_at_a_time, 28, 28, self.architecture, artifact.optimizer)
+
+        self.dag = Dag(artifact.column_at_a_time,
+                       self.data_no_rows, self.data_no_cols,
+                       self.architecture, artifact.optimizer)
 
         self.experiment_artifact = artifact
         self._ = artifact
@@ -81,7 +77,7 @@ class Network(base.BaseNetwork):
 
     def lrp(self, x, factor=1, debug=False):
 
-        x_3d = x.reshape(-1, 28, 28)
+        x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
         with self.get_session() as sess:
 
             # lwr start here

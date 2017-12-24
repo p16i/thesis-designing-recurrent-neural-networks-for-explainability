@@ -1,0 +1,17 @@
+KOČÁRNÍK_Ivan
+1.pgm KOČÁRNÍK_Ivan_FO00145864.jpg
+2.pgm KOČÁRNÍK_Ivan_FO00145854.jpg
+3.pgm KOČÁRNÍK_Ivan_FO00086077.jpg
+4.pgm KOČÁRNÍK_Ivan_FO00065031.jpg
+5.pgm KOČÁRNÍK_Ivan_FO00145882.jpg
+6.pgm KOČÁRNÍK_Ivan_FO00086085.jpg
+7.pgm KOČÁRNÍK_Ivan_FO00049287.jpg
+8.pgm KOČÁRNÍK_Ivan_FO00209707.jpg
+9.pgm KOČÁRNÍK_Ivan_FO00086082.jpg
+10.pgm KOČÁRNÍK_Ivan_FO00153393.jpg
+11.pgm KOČÁRNÍK_Ivan_FO00078020.jpg
+12.pgm KOČÁRNÍK_Ivan_FO00036312.jpg
+13.pgm KOČÁRNÍK_Ivan_FO00006221.jpg
+14.pgm KOČÁRNÍK_Ivan_FO00052717.jpg
+15.pgm KOČÁRNÍK_Ivan_FO00065035.jpg
+Odchylka 0.0135655

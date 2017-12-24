@@ -1,0 +1,11 @@
+PRECLÍK_Vladimír
+1.pgm PRECLÍK_Vladimír_FO00115714.jpg
+2.pgm PRECLÍK_Vladimír_FO00107149.jpg
+3.pgm PRECLÍK_Vladimír_FO00083628.jpg
+4.pgm PRECLÍK_Vladimír_FO00330079.jpg
+5.pgm PRECLÍK_Vladimír_FO01063715.jpg
+6.pgm PRECLÍK_Vladimír_FO00110488.jpg
+7.pgm PRECLÍK_Vladimír_FO01271810.jpg
+8.pgm PRECLÍK_Vladimír_FO00120569.jpg
+9.pgm PRECLÍK_Vladimír_FO01271811.jpg
+Odchylka 0.0139545

@@ -1,0 +1,12 @@
+JANŮ_Ivana
+1.pgm JANŮ_Ivana_FO01124237.jpg
+2.pgm JANŮ_Ivana_FO00338052.jpg
+3.pgm JANŮ_Ivana_FO00223122.jpg
+4.pgm JANŮ_Ivana_FO00018952.jpg
+5.pgm JANŮ_Ivana_FO00126990.jpg
+6.pgm JANŮ_Ivana_FO01124240.jpg
+7.pgm JANŮ_Ivana_FO01124236.jpg
+8.pgm JANŮ_Ivana_FO00225056.jpg
+9.pgm JANŮ_Ivana_FO01124241.jpg
+10.pgm JANŮ_Ivana_FO00379527.jpg
+Odchylka 0.0330418

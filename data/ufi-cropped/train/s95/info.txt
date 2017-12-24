@@ -1,0 +1,13 @@
+TOMÁŠEK_František
+1.pgm TOMÁŠEK_František_FO00231760.jpg
+2.pgm TOMÁŠEK_František_FO00439146.jpg
+3.pgm TOMÁŠEK_František_FO00125524.jpg
+4.pgm TOMÁŠEK_František_FO00046684.jpg
+5.pgm TOMÁŠEK_František_FO00125520.jpg
+6.pgm TOMÁŠEK_František_FO00375555.jpg
+7.pgm TOMÁŠEK_František_FO00377561.jpg
+8.pgm TOMÁŠEK_František_FO00125534.jpg
+9.pgm TOMÁŠEK_František_FO00449284.jpg
+10.pgm TOMÁŠEK_František_FO01068577.jpg
+11.pgm TOMÁŠEK_František_FO00125522.jpg
+Odchylka 0.0424196

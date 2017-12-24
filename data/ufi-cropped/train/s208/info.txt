@@ -1,0 +1,23 @@
+PECKOVÁ_Dagmar
+1.pgm PECKOVÁ_Dagmar_FO00159125.jpg
+2.pgm PECKOVÁ_Dagmar_FO00238458.jpg
+3.pgm PECKOVÁ_Dagmar_P200905280885201.jpg
+4.pgm PECKOVÁ_Dagmar_FO01079251.jpg
+5.pgm PECKOVÁ_Dagmar_FO00291406.jpg
+6.pgm PECKOVÁ_Dagmar_FO00108365.jpg
+7.pgm PECKOVÁ_Dagmar_FO00303961.jpg
+8.pgm PECKOVÁ_Dagmar_FO00238280.jpg
+9.pgm PECKOVÁ_Dagmar_FO00457296.jpg
+10.pgm PECKOVÁ_Dagmar_FO00238283.jpg
+11.pgm PECKOVÁ_Dagmar_FO00059976.jpg
+12.pgm PECKOVÁ_Dagmar_FO00238455.jpg
+13.pgm PECKOVÁ_Dagmar_F200801040044201.jpg
+14.pgm PECKOVÁ_Dagmar_FO01079249.jpg
+15.pgm PECKOVÁ_Dagmar_FO00212962.jpg
+16.pgm PECKOVÁ_Dagmar_FO00291407.jpg
+17.pgm PECKOVÁ_Dagmar_FO00159123.jpg
+18.pgm PECKOVÁ_Dagmar_FO01079252.jpg
+19.pgm PECKOVÁ_Dagmar_F201104280223001.jpg
+20.pgm PECKOVÁ_Dagmar_FO00212948.jpg
+21.pgm PECKOVÁ_Dagmar_FO00408225.jpg
+Odchylka 0.0191407

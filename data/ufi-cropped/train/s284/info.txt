@@ -1,0 +1,12 @@
+ZÁZVORKOVÁ_Stella
+1.pgm ZÁZVORKOVÁ_Stella_FO00244939.jpg
+2.pgm ZÁZVORKOVÁ_Stella_FO01053660.jpg
+3.pgm ZÁZVORKOVÁ_Stella_FO00041261.jpg
+4.pgm ZÁZVORKOVÁ_Stella_FO00022676.jpg
+5.pgm ZÁZVORKOVÁ_Stella_FO00041252.jpg
+6.pgm ZÁZVORKOVÁ_Stella_FO00068352.jpg
+7.pgm ZÁZVORKOVÁ_Stella_FO00218016.jpg
+8.pgm ZÁZVORKOVÁ_Stella_FO00022674.jpg
+9.pgm ZÁZVORKOVÁ_Stella_FO00068348.jpg
+10.pgm ZÁZVORKOVÁ_Stella_FO00218018.jpg
+Odchylka 0.0147237

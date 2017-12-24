@@ -1,0 +1,20 @@
+PRODI_Romano
+1.pgm PRODI_Romano_FO02016509.jpg
+2.pgm PRODI_Romano_FO02063139.jpg
+3.pgm PRODI_Romano_FO00284685.jpg
+4.pgm PRODI_Romano_P200801230820401.jpg
+5.pgm PRODI_Romano_FO00450199.jpg
+6.pgm PRODI_Romano_FO00193082.jpg
+7.pgm PRODI_Romano_FO00130871.jpg
+8.pgm PRODI_Romano_FO01006672.jpg
+9.pgm PRODI_Romano_P200802060812101.jpg
+10.pgm PRODI_Romano_FO01064717.jpg
+11.pgm PRODI_Romano_FO00130870.jpg
+12.pgm PRODI_Romano_FO00052533.jpg
+13.pgm PRODI_Romano_FO00472779.jpg
+14.pgm PRODI_Romano_P200801230788501.jpg
+15.pgm PRODI_Romano_FO02073960.jpg
+16.pgm PRODI_Romano_FO01006673.jpg
+17.pgm PRODI_Romano_FO03003468.jpg
+18.pgm PRODI_Romano_FO00342158.jpg
+Odchylka 0.0123598

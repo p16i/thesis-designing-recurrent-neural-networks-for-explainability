@@ -1,0 +1,13 @@
+BAUDYŠ_Antonín
+1.pgm BAUDYŠ_Antonín_FO00284436.jpg
+2.pgm BAUDYŠ_Antonín_FO00014350.jpg
+3.pgm BAUDYŠ_Antonín_FO01124263.jpg
+4.pgm BAUDYŠ_Antonín_FO00307954.jpg
+5.pgm BAUDYŠ_Antonín_FO00307943.jpg
+6.pgm BAUDYŠ_Antonín_FO00307944.jpg
+7.pgm BAUDYŠ_Antonín_FO00017769.jpg
+8.pgm BAUDYŠ_Antonín_FO00023292.jpg
+9.pgm BAUDYŠ_Antonín_FO00105353.jpg
+10.pgm BAUDYŠ_Antonín_FO00252081.jpg
+11.pgm BAUDYŠ_Antonín_FO00252082.jpg
+Odchylka 0.0341101

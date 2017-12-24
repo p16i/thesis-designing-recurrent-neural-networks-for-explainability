@@ -1,0 +1,14 @@
+KUKAN_Eduard
+1.pgm KUKAN_Eduard_FO00119947.jpg
+2.pgm KUKAN_Eduard_FO00388496.jpg
+3.pgm KUKAN_Eduard_FO00030440.jpg
+4.pgm KUKAN_Eduard_FO00388497.jpg
+5.pgm KUKAN_Eduard_FO00117627.jpg
+6.pgm KUKAN_Eduard_FO01090319.jpg
+7.pgm KUKAN_Eduard_FO01090317.jpg
+8.pgm KUKAN_Eduard_FO00301633.jpg
+9.pgm KUKAN_Eduard_FO00030671.jpg
+10.pgm KUKAN_Eduard_FO00030667.jpg
+11.pgm KUKAN_Eduard_FO00455475.jpg
+12.pgm KUKAN_Eduard_FO01090330.jpg
+Odchylka 0.0162158

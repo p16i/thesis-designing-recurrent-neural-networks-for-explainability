@@ -1,0 +1,11 @@
+HERZ_Juraj
+1.pgm HERZ_Juraj_FO00203141.jpg
+2.pgm HERZ_Juraj_F200806200034901.jpg
+3.pgm HERZ_Juraj_FO00203125.jpg
+4.pgm HERZ_Juraj_FO00131995.jpg
+5.pgm HERZ_Juraj_FO01121247.jpg
+6.pgm HERZ_Juraj_P200907080240901.jpg
+7.pgm HERZ_Juraj_FO00132004.jpg
+8.pgm HERZ_Juraj_FO00450973.jpg
+9.pgm HERZ_Juraj_P201012070733401.jpg
+Odchylka 0.00948549

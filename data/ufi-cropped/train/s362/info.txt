@@ -1,0 +1,11 @@
+HILGERTOVÁ_Štěpánka
+1.pgm HILGERTOVÁ_Štěpánka_FO00338847.jpg
+2.pgm HILGERTOVÁ_Štěpánka_FO00217299.jpg
+3.pgm HILGERTOVÁ_Štěpánka_FO01263967.jpg
+4.pgm HILGERTOVÁ_Štěpánka_FO00426882.jpg
+5.pgm HILGERTOVÁ_Štěpánka_FO00212216.jpg
+6.pgm HILGERTOVÁ_Štěpánka_FO01266455.jpg
+7.pgm HILGERTOVÁ_Štěpánka_FO01275257.jpg
+8.pgm HILGERTOVÁ_Štěpánka_FO00438615.jpg
+9.pgm HILGERTOVÁ_Štěpánka_FO00218214.jpg
+Odchylka 0.0154071

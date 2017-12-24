@@ -1,0 +1,17 @@
+MÍL_Jaroslav
+1.pgm MÍL_Jaroslav_P201004290676601.jpg
+2.pgm MÍL_Jaroslav_F201001150179401.jpg
+3.pgm MÍL_Jaroslav_FO01285851.jpg
+4.pgm MÍL_Jaroslav_FO01024194.jpg
+5.pgm MÍL_Jaroslav_FO01285853.jpg
+6.pgm MÍL_Jaroslav_FO01024195.jpg
+7.pgm MÍL_Jaroslav_FO00401715.jpg
+8.pgm MÍL_Jaroslav_FO00398471.jpg
+9.pgm MÍL_Jaroslav_FO01032006.jpg
+10.pgm MÍL_Jaroslav_FO00216151.jpg
+11.pgm MÍL_Jaroslav_FO00401725.jpg
+12.pgm MÍL_Jaroslav_FO01032005.jpg
+13.pgm MÍL_Jaroslav_FO00398466.jpg
+14.pgm MÍL_Jaroslav_FO01106229.jpg
+15.pgm MÍL_Jaroslav_FO00216154.jpg
+Odchylka 0.0103336

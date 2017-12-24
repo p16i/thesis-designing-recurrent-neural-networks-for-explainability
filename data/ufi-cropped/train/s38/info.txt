@@ -1,0 +1,11 @@
+MARHOUL_Václav
+1.pgm MARHOUL_Václav_FO00526582.jpg
+2.pgm MARHOUL_Václav_FO00398389.jpg
+3.pgm MARHOUL_Václav_FO00154125.jpg
+4.pgm MARHOUL_Václav_FO00285414.jpg
+5.pgm MARHOUL_Václav_FO00398394.jpg
+6.pgm MARHOUL_Václav_FO00044627.jpg
+7.pgm MARHOUL_Václav_FO00095209.jpg
+8.pgm MARHOUL_Václav_FO00156647.jpg
+9.pgm MARHOUL_Václav_FO00495546.jpg
+Odchylka 0.0303362

@@ -1,0 +1,14 @@
+DOSTÁL_Pavel
+1.pgm DOSTÁL_Pavel_FO00152636.jpg
+2.pgm DOSTÁL_Pavel_FO00102998.jpg
+3.pgm DOSTÁL_Pavel_FO00103004.jpg
+4.pgm DOSTÁL_Pavel_FO00094616.jpg
+5.pgm DOSTÁL_Pavel_FO01097133.jpg
+6.pgm DOSTÁL_Pavel_FO00102029.jpg
+7.pgm DOSTÁL_Pavel_FO00449640.jpg
+8.pgm DOSTÁL_Pavel_FO00103002.jpg
+9.pgm DOSTÁL_Pavel_FO00126575.jpg
+10.pgm DOSTÁL_Pavel_FO00152638.jpg
+11.pgm DOSTÁL_Pavel_FO00096399.jpg
+12.pgm DOSTÁL_Pavel_FO01097132.jpg
+Odchylka 0.036718

@@ -1,0 +1,14 @@
+TÁBORSKÝ_Miroslav
+1.pgm TÁBORSKÝ_Miroslav_F200910220127601.jpg
+2.pgm TÁBORSKÝ_Miroslav_FO01074588.jpg
+3.pgm TÁBORSKÝ_Miroslav_FO01074589.jpg
+4.pgm TÁBORSKÝ_Miroslav_FO00108454.jpg
+5.pgm TÁBORSKÝ_Miroslav_F200910220128201.jpg
+6.pgm TÁBORSKÝ_Miroslav_FO00108450.jpg
+7.pgm TÁBORSKÝ_Miroslav_F200912010093701.jpg
+8.pgm TÁBORSKÝ_Miroslav_F200910220128801.jpg
+9.pgm TÁBORSKÝ_Miroslav_FO01074591.jpg
+10.pgm TÁBORSKÝ_Miroslav_FO00108451.jpg
+11.pgm TÁBORSKÝ_Miroslav_FO00108449.jpg
+12.pgm TÁBORSKÝ_Miroslav_F200910220128401.jpg
+Odchylka 0.0212731

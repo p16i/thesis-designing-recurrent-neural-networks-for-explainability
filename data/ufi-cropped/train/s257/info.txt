@@ -1,0 +1,17 @@
+HRUŠÍNSKÝ_Rudolf
+1.pgm HRUŠÍNSKÝ_Rudolf_FO01187799.jpg
+2.pgm HRUŠÍNSKÝ_Rudolf_FO01292290.jpg
+3.pgm HRUŠÍNSKÝ_Rudolf_FO00065566.jpg
+4.pgm HRUŠÍNSKÝ_Rudolf_F201002210286301.jpg
+5.pgm HRUŠÍNSKÝ_Rudolf_FO00183633.jpg
+6.pgm HRUŠÍNSKÝ_Rudolf_FO00484351.jpg
+7.pgm HRUŠÍNSKÝ_Rudolf_FO00116752.jpg
+8.pgm HRUŠÍNSKÝ_Rudolf_F201002210078501.jpg
+9.pgm HRUŠÍNSKÝ_Rudolf_FO01059841.jpg
+10.pgm HRUŠÍNSKÝ_Rudolf_FO01059839.jpg
+11.pgm HRUŠÍNSKÝ_Rudolf_FO01299028.jpg
+12.pgm HRUŠÍNSKÝ_Rudolf_FO01258686.jpg
+13.pgm HRUŠÍNSKÝ_Rudolf_FO01024175.jpg
+14.pgm HRUŠÍNSKÝ_Rudolf_FO01059840.jpg
+15.pgm HRUŠÍNSKÝ_Rudolf_FO01258692.jpg
+Odchylka 0.0230431

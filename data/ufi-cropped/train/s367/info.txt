@@ -1,0 +1,20 @@
+KULHÁNEK_Vratislav
+1.pgm KULHÁNEK_Vratislav_FO00530464.jpg
+2.pgm KULHÁNEK_Vratislav_FO00504184.jpg
+3.pgm KULHÁNEK_Vratislav_FO00290013.jpg
+4.pgm KULHÁNEK_Vratislav_FO03004901.jpg
+5.pgm KULHÁNEK_Vratislav_F201209121245501.jpg
+6.pgm KULHÁNEK_Vratislav_FO03004900.jpg
+7.pgm KULHÁNEK_Vratislav_FO00504183.jpg
+8.pgm KULHÁNEK_Vratislav_FO00066882.jpg
+9.pgm KULHÁNEK_Vratislav_FO00240476.jpg
+10.pgm KULHÁNEK_Vratislav_FO00206918.jpg
+11.pgm KULHÁNEK_Vratislav_FO00290014.jpg
+12.pgm KULHÁNEK_Vratislav_FO00496850.jpg
+13.pgm KULHÁNEK_Vratislav_FO01066055.jpg
+14.pgm KULHÁNEK_Vratislav_FO00193371.jpg
+15.pgm KULHÁNEK_Vratislav_FO01066054.jpg
+16.pgm KULHÁNEK_Vratislav_FO03004902.jpg
+17.pgm KULHÁNEK_Vratislav_FO00378612.jpg
+18.pgm KULHÁNEK_Vratislav_FO00504182.jpg
+Odchylka 0.0558734

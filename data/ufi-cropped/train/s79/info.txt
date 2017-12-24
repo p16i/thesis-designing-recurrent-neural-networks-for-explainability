@@ -1,0 +1,18 @@
+LÁNSKÝ_Egon
+1.pgm LÁNSKÝ_Egon_FO00195649.jpg
+2.pgm LÁNSKÝ_Egon_FO00098355.jpg
+3.pgm LÁNSKÝ_Egon_FO01077937.jpg
+4.pgm LÁNSKÝ_Egon_FO01077939.jpg
+5.pgm LÁNSKÝ_Egon_FO00100933.jpg
+6.pgm LÁNSKÝ_Egon_FO01077940.jpg
+7.pgm LÁNSKÝ_Egon_FO00088383.jpg
+8.pgm LÁNSKÝ_Egon_FO00100932.jpg
+9.pgm LÁNSKÝ_Egon_FO01077945.jpg
+10.pgm LÁNSKÝ_Egon_FO00128205.jpg
+11.pgm LÁNSKÝ_Egon_FO00100928.jpg
+12.pgm LÁNSKÝ_Egon_FO01077944.jpg
+13.pgm LÁNSKÝ_Egon_FO00121140.jpg
+14.pgm LÁNSKÝ_Egon_FO01077938.jpg
+15.pgm LÁNSKÝ_Egon_FO00195652.jpg
+16.pgm LÁNSKÝ_Egon_FO00091269.jpg
+Odchylka 0.00868626

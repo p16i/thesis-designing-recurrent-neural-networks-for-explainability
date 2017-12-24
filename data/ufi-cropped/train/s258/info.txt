@@ -1,0 +1,19 @@
+KOVÁČ_Michal
+1.pgm KOVÁČ_Michal_FO00068067.jpg
+2.pgm KOVÁČ_Michal_FO00180607.jpg
+3.pgm KOVÁČ_Michal_FO01224860.jpg
+4.pgm KOVÁČ_Michal_FO01224865.jpg
+5.pgm KOVÁČ_Michal_FO01152519.jpg
+6.pgm KOVÁČ_Michal_FO00180021.jpg
+7.pgm KOVÁČ_Michal_FO00067091.jpg
+8.pgm KOVÁČ_Michal_FO00065813.jpg
+9.pgm KOVÁČ_Michal_FO00004671.jpg
+10.pgm KOVÁČ_Michal_FO01224866.jpg
+11.pgm KOVÁČ_Michal_P201008210115501.jpg
+12.pgm KOVÁČ_Michal_FO00120066.jpg
+13.pgm KOVÁČ_Michal_FO00111707.jpg
+14.pgm KOVÁČ_Michal_FO00007676.jpg
+15.pgm KOVÁČ_Michal_FO01224861.jpg
+16.pgm KOVÁČ_Michal_P201008210114401.jpg
+17.pgm KOVÁČ_Michal_FO00074162.jpg
+Odchylka 0.0402289

@@ -1,0 +1,21 @@
+HARAPES_Vlastimil
+1.pgm HARAPES_Vlastimil_FO00293016.jpg
+2.pgm HARAPES_Vlastimil_FO00291335.jpg
+3.pgm HARAPES_Vlastimil_FO00291333.jpg
+4.pgm HARAPES_Vlastimil_FO00291337.jpg
+5.pgm HARAPES_Vlastimil_FO02079877.jpg
+6.pgm HARAPES_Vlastimil_F201107210314101.jpg
+7.pgm HARAPES_Vlastimil_F201107210315401.jpg
+8.pgm HARAPES_Vlastimil_FO00293017.jpg
+9.pgm HARAPES_Vlastimil_F201107210315301.jpg
+10.pgm HARAPES_Vlastimil_FO00218617.jpg
+11.pgm HARAPES_Vlastimil_FO00291334.jpg
+12.pgm HARAPES_Vlastimil_FO00291332.jpg
+13.pgm HARAPES_Vlastimil_FO00292755.jpg
+14.pgm HARAPES_Vlastimil_FO00291336.jpg
+15.pgm HARAPES_Vlastimil_FO00292756.jpg
+16.pgm HARAPES_Vlastimil_FO00293014.jpg
+17.pgm HARAPES_Vlastimil_FO00106037.jpg
+18.pgm HARAPES_Vlastimil_FO00284104.jpg
+19.pgm HARAPES_Vlastimil_FO00293015.jpg
+Odchylka 0.0250291

@@ -1,0 +1,12 @@
+ŠTĚPÁN_Miroslav
+1.pgm ŠTĚPÁN_Miroslav_FO00180569.jpg
+2.pgm ŠTĚPÁN_Miroslav_FO01063740.jpg
+3.pgm ŠTĚPÁN_Miroslav_FO00180570.jpg
+4.pgm ŠTĚPÁN_Miroslav_FO00180564.jpg
+5.pgm ŠTĚPÁN_Miroslav_P200910270208001.jpg
+6.pgm ŠTĚPÁN_Miroslav_FO00334889.jpg
+7.pgm ŠTĚPÁN_Miroslav_FO01228229.jpg
+8.pgm ŠTĚPÁN_Miroslav_FO00024634.jpg
+9.pgm ŠTĚPÁN_Miroslav_FO00065117.jpg
+10.pgm ŠTĚPÁN_Miroslav_FO01063739.jpg
+Odchylka 0.03013

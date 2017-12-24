@@ -1,0 +1,15 @@
+MAJZLÍK_Ratibor
+1.pgm MAJZLÍK_Ratibor_FO00338132.jpg
+2.pgm MAJZLÍK_Ratibor_FO00362854.jpg
+3.pgm MAJZLÍK_Ratibor_FO00059275.jpg
+4.pgm MAJZLÍK_Ratibor_FO00091230.jpg
+5.pgm MAJZLÍK_Ratibor_FO00090751.jpg
+6.pgm MAJZLÍK_Ratibor_FO00415869.jpg
+7.pgm MAJZLÍK_Ratibor_FO00227789.jpg
+8.pgm MAJZLÍK_Ratibor_FO01057404.jpg
+9.pgm MAJZLÍK_Ratibor_FO00419904.jpg
+10.pgm MAJZLÍK_Ratibor_FO00365474.jpg
+11.pgm MAJZLÍK_Ratibor_FO00091232.jpg
+12.pgm MAJZLÍK_Ratibor_FO00354275.jpg
+13.pgm MAJZLÍK_Ratibor_FO01059353.jpg
+Odchylka 0.0237351

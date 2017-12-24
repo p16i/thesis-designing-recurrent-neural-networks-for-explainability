@@ -1,0 +1,13 @@
+ŠOJDROVÁ_Michaela
+1.pgm ŠOJDROVÁ_Michaela_P200903190683501.jpg
+2.pgm ŠOJDROVÁ_Michaela_P200904300635001.jpg
+3.pgm ŠOJDROVÁ_Michaela_P200905300290901.jpg
+4.pgm ŠOJDROVÁ_Michaela_FO01165854.jpg
+5.pgm ŠOJDROVÁ_Michaela_P200905300303301.jpg
+6.pgm ŠOJDROVÁ_Michaela_FO02023612.jpg
+7.pgm ŠOJDROVÁ_Michaela_FO00098455.jpg
+8.pgm ŠOJDROVÁ_Michaela_FO00098452.jpg
+9.pgm ŠOJDROVÁ_Michaela_FO00152749.jpg
+10.pgm ŠOJDROVÁ_Michaela_P200903190688301.jpg
+11.pgm ŠOJDROVÁ_Michaela_FO00418643.jpg
+Odchylka 0.0340197

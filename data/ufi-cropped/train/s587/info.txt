@@ -1,0 +1,20 @@
+VACULÍK_Ludvík
+1.pgm VACULÍK_Ludvík_FO00065020.jpg
+2.pgm VACULÍK_Ludvík_FO01054171.jpg
+3.pgm VACULÍK_Ludvík_FO01054172.jpg
+4.pgm VACULÍK_Ludvík_FO00291626.jpg
+5.pgm VACULÍK_Ludvík_FO00521943.jpg
+6.pgm VACULÍK_Ludvík_FO00291593.jpg
+7.pgm VACULÍK_Ludvík_FO00043117.jpg
+8.pgm VACULÍK_Ludvík_FO00291597.jpg
+9.pgm VACULÍK_Ludvík_F201001070207501.jpg
+10.pgm VACULÍK_Ludvík_FO00464696.jpg
+11.pgm VACULÍK_Ludvík_FO00082255.jpg
+12.pgm VACULÍK_Ludvík_FO01054170.jpg
+13.pgm VACULÍK_Ludvík_FO00338831.jpg
+14.pgm VACULÍK_Ludvík_FO00082253.jpg
+15.pgm VACULÍK_Ludvík_FO00337316.jpg
+16.pgm VACULÍK_Ludvík_FO01165570.jpg
+17.pgm VACULÍK_Ludvík_FO00291627.jpg
+18.pgm VACULÍK_Ludvík_FO00291595.jpg
+Odchylka 0.0124509

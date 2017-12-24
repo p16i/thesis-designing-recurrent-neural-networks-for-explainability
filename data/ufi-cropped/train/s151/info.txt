@@ -1,0 +1,19 @@
+ŠARON_Ariel
+1.pgm ŠARON_Ariel_FO01213695.jpg
+2.pgm ŠARON_Ariel_FO00397993.jpg
+3.pgm ŠARON_Ariel_FO01069441.jpg
+4.pgm ŠARON_Ariel_FO01084290.jpg
+5.pgm ŠARON_Ariel_FO01213506.jpg
+6.pgm ŠARON_Ariel_FO00227475.jpg
+7.pgm ŠARON_Ariel_FO00224726.jpg
+8.pgm ŠARON_Ariel_FO00501339.jpg
+9.pgm ŠARON_Ariel_FO01316339.jpg
+10.pgm ŠARON_Ariel_FO00429174.jpg
+11.pgm ŠARON_Ariel_FO00318876.jpg
+12.pgm ŠARON_Ariel_FO01076964.jpg
+13.pgm ŠARON_Ariel_FO01017081.jpg
+14.pgm ŠARON_Ariel_FO01094964.jpg
+15.pgm ŠARON_Ariel_FO00466071.jpg
+16.pgm ŠARON_Ariel_FO01094971.jpg
+17.pgm ŠARON_Ariel_FO01030977.jpg
+Odchylka 0.00936715

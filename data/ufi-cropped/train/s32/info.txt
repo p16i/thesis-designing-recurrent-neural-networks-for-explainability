@@ -1,0 +1,13 @@
+BRABEC_Lubomír
+1.pgm BRABEC_Lubomír_F201109201845101.jpg
+2.pgm BRABEC_Lubomír_FO00334769.jpg
+3.pgm BRABEC_Lubomír_FO00086438.jpg
+4.pgm BRABEC_Lubomír_FO00044111.jpg
+5.pgm BRABEC_Lubomír_FO00497664.jpg
+6.pgm BRABEC_Lubomír_FO00497665.jpg
+7.pgm BRABEC_Lubomír_FO00086432.jpg
+8.pgm BRABEC_Lubomír_FO00334768.jpg
+9.pgm BRABEC_Lubomír_FO00497657.jpg
+10.pgm BRABEC_Lubomír_FO00334770.jpg
+11.pgm BRABEC_Lubomír_FO00051727.jpg
+Odchylka 0.0370348

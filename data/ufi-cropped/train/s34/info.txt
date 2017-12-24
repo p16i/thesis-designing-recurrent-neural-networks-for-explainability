@@ -1,0 +1,12 @@
+GRUŠA_Jiří
+1.pgm GRUŠA_Jiří_FO00033688.jpg
+2.pgm GRUŠA_Jiří_FO00188162.jpg
+3.pgm GRUŠA_Jiří_FO01009701.jpg
+4.pgm GRUŠA_Jiří_FO01009697.jpg
+5.pgm GRUŠA_Jiří_FO01059227.jpg
+6.pgm GRUŠA_Jiří_FO00048947.jpg
+7.pgm GRUŠA_Jiří_FO00247324.jpg
+8.pgm GRUŠA_Jiří_FO00033682.jpg
+9.pgm GRUŠA_Jiří_FO01009689.jpg
+10.pgm GRUŠA_Jiří_FO00033687.jpg
+Odchylka 0.0271507

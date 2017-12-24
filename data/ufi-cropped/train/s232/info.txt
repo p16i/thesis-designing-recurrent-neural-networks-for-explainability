@@ -1,0 +1,11 @@
+RÓNA_Jaroslav
+1.pgm RÓNA_Jaroslav_FO00076189.jpg
+2.pgm RÓNA_Jaroslav_FO02102514.jpg
+3.pgm RÓNA_Jaroslav_FO01056541.jpg
+4.pgm RÓNA_Jaroslav_FO00076179.jpg
+5.pgm RÓNA_Jaroslav_FO01056543.jpg
+6.pgm RÓNA_Jaroslav_FO01208188.jpg
+7.pgm RÓNA_Jaroslav_FO00076193.jpg
+8.pgm RÓNA_Jaroslav_FO01056544.jpg
+9.pgm RÓNA_Jaroslav_FO00076187.jpg
+Odchylka 0.017902

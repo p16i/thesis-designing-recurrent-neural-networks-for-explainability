@@ -1,0 +1,13 @@
+HORÁK_Jaroslav
+1.pgm HORÁK_Jaroslav_FO00386595.jpg
+2.pgm HORÁK_Jaroslav_FO00004862.jpg
+3.pgm HORÁK_Jaroslav_P200809240223901.jpg
+4.pgm HORÁK_Jaroslav_FO00445968.jpg
+5.pgm HORÁK_Jaroslav_FO01038534.jpg
+6.pgm HORÁK_Jaroslav_FO00445969.jpg
+7.pgm HORÁK_Jaroslav_FO00386596.jpg
+8.pgm HORÁK_Jaroslav_FO00030683.jpg
+9.pgm HORÁK_Jaroslav_FO00386597.jpg
+10.pgm HORÁK_Jaroslav_FO00445967.jpg
+11.pgm HORÁK_Jaroslav_FO00004861.jpg
+Odchylka 0.0223026

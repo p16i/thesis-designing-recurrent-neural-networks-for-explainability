@@ -1,0 +1,11 @@
+GRASSER_Karl-Heinz
+1.pgm GRASSER_Karl-Heinz_FO01307237.jpg
+2.pgm GRASSER_Karl-Heinz_FO01304632.jpg
+3.pgm GRASSER_Karl-Heinz_FO01304390.jpg
+4.pgm GRASSER_Karl-Heinz_F200904210092601.jpg
+5.pgm GRASSER_Karl-Heinz_FO01304634.jpg
+6.pgm GRASSER_Karl-Heinz_FO01339603.jpg
+7.pgm GRASSER_Karl-Heinz_FO01347708.jpg
+8.pgm GRASSER_Karl-Heinz_FO01304633.jpg
+9.pgm GRASSER_Karl-Heinz_FO01363908.jpg
+Odchylka 0.0352841

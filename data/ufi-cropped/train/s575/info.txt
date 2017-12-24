@@ -1,0 +1,13 @@
+HRZÁNOVÁ_Barbora
+1.pgm HRZÁNOVÁ_Barbora_FO02113141.jpg
+2.pgm HRZÁNOVÁ_Barbora_FO02054337.jpg
+3.pgm HRZÁNOVÁ_Barbora_FO01070439.jpg
+4.pgm HRZÁNOVÁ_Barbora_FO00065613.jpg
+5.pgm HRZÁNOVÁ_Barbora_FO01046391.jpg
+6.pgm HRZÁNOVÁ_Barbora_FO00386232.jpg
+7.pgm HRZÁNOVÁ_Barbora_FO00386213.jpg
+8.pgm HRZÁNOVÁ_Barbora_P200901230702301.jpg
+9.pgm HRZÁNOVÁ_Barbora_P200901230702201.jpg
+10.pgm HRZÁNOVÁ_Barbora_FO01053016.jpg
+11.pgm HRZÁNOVÁ_Barbora_FO00211009.jpg
+Odchylka 0.0117497

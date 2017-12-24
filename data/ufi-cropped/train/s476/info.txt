@@ -1,0 +1,16 @@
+BÁRTL_Vladimír
+1.pgm BÁRTL_Vladimír_FO02063219.jpg
+2.pgm BÁRTL_Vladimír_FO02091478.jpg
+3.pgm BÁRTL_Vladimír_FO02091479.jpg
+4.pgm BÁRTL_Vladimír_FO02065431.jpg
+5.pgm BÁRTL_Vladimír_FO02065430.jpg
+6.pgm BÁRTL_Vladimír_FO02055473.jpg
+7.pgm BÁRTL_Vladimír_FO02067336.jpg
+8.pgm BÁRTL_Vladimír_FO02064838.jpg
+9.pgm BÁRTL_Vladimír_FO02067176.jpg
+10.pgm BÁRTL_Vladimír_FO02066140.jpg
+11.pgm BÁRTL_Vladimír_FO02067149.jpg
+12.pgm BÁRTL_Vladimír_FO02066149.jpg
+13.pgm BÁRTL_Vladimír_FO02064844.jpg
+14.pgm BÁRTL_Vladimír_FO01074349.jpg
+Odchylka 0.0201127

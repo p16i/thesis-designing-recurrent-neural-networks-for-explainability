@@ -1,0 +1,20 @@
+ŠTREIT_Jindřich
+1.pgm ŠTREIT_Jindřich_F201108300349301.jpg
+2.pgm ŠTREIT_Jindřich_FO00385232.jpg
+3.pgm ŠTREIT_Jindřich_FO00184948.jpg
+4.pgm ŠTREIT_Jindřich_FO00057535.jpg
+5.pgm ŠTREIT_Jindřich_F201108300348401.jpg
+6.pgm ŠTREIT_Jindřich_FO00385237.jpg
+7.pgm ŠTREIT_Jindřich_F201108300349101.jpg
+8.pgm ŠTREIT_Jindřich_FO00184946.jpg
+9.pgm ŠTREIT_Jindřich_FO00385233.jpg
+10.pgm ŠTREIT_Jindřich_FO00134157.jpg
+11.pgm ŠTREIT_Jindřich_F201108300349001.jpg
+12.pgm ŠTREIT_Jindřich_FO00184947.jpg
+13.pgm ŠTREIT_Jindřich_FO00010373.jpg
+14.pgm ŠTREIT_Jindřich_FO02044103.jpg
+15.pgm ŠTREIT_Jindřich_FO00536164.jpg
+16.pgm ŠTREIT_Jindřich_FO00441246.jpg
+17.pgm ŠTREIT_Jindřich_FO00010374.jpg
+18.pgm ŠTREIT_Jindřich_FO02006201.jpg
+Odchylka 0.0151876

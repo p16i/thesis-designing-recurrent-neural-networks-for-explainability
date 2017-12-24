@@ -1,0 +1,26 @@
+MORAVČÍK_Jozef
+1.pgm MORAVČÍK_Jozef_FO01176972.jpg
+2.pgm MORAVČÍK_Jozef_FO00162754.jpg
+3.pgm MORAVČÍK_Jozef_FO00035291.jpg
+4.pgm MORAVČÍK_Jozef_FO00008474.jpg
+5.pgm MORAVČÍK_Jozef_FO00023466.jpg
+6.pgm MORAVČÍK_Jozef_FO00031941.jpg
+7.pgm MORAVČÍK_Jozef_FO00162747.jpg
+8.pgm MORAVČÍK_Jozef_FO01176973.jpg
+9.pgm MORAVČÍK_Jozef_FO00255903.jpg
+10.pgm MORAVČÍK_Jozef_FO00008476.jpg
+11.pgm MORAVČÍK_Jozef_FO01176467.jpg
+12.pgm MORAVČÍK_Jozef_FO00023469.jpg
+13.pgm MORAVČÍK_Jozef_FO00255915.jpg
+14.pgm MORAVČÍK_Jozef_FO01176974.jpg
+15.pgm MORAVČÍK_Jozef_FO00026923.jpg
+16.pgm MORAVČÍK_Jozef_FO01176970.jpg
+17.pgm MORAVČÍK_Jozef_FO00031846.jpg
+18.pgm MORAVČÍK_Jozef_FO01176463.jpg
+19.pgm MORAVČÍK_Jozef_FO01176971.jpg
+20.pgm MORAVČÍK_Jozef_FO01176460.jpg
+21.pgm MORAVČÍK_Jozef_FO00122273.jpg
+22.pgm MORAVČÍK_Jozef_FO00035295.jpg
+23.pgm MORAVČÍK_Jozef_FO00162748.jpg
+24.pgm MORAVČÍK_Jozef_FO00162753.jpg
+Odchylka 0.028704

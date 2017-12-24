@@ -1,0 +1,14 @@
+LABUDA_Marián
+1.pgm LABUDA_Marián_FO00142151.jpg
+2.pgm LABUDA_Marián_FO02095978.jpg
+3.pgm LABUDA_Marián_FO03005775.jpg
+4.pgm LABUDA_Marián_FO01289356.jpg
+5.pgm LABUDA_Marián_FO02123551.jpg
+6.pgm LABUDA_Marián_FO03005776.jpg
+7.pgm LABUDA_Marián_FO00052362.jpg
+8.pgm LABUDA_Marián_FO01174191.jpg
+9.pgm LABUDA_Marián_FO01298277.jpg
+10.pgm LABUDA_Marián_FO03005769.jpg
+11.pgm LABUDA_Marián_FO00529544.jpg
+12.pgm LABUDA_Marián_FO01289355.jpg
+Odchylka 0.0305025

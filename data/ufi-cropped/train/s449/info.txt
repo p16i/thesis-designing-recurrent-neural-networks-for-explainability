@@ -1,0 +1,14 @@
+HUŠÁK_Aleš
+1.pgm HUŠÁK_Aleš_FO01059042.jpg
+2.pgm HUŠÁK_Aleš_FO01159849.jpg
+3.pgm HUŠÁK_Aleš_P201004120755401.jpg
+4.pgm HUŠÁK_Aleš_FO01162386.jpg
+5.pgm HUŠÁK_Aleš_FO02045750.jpg
+6.pgm HUŠÁK_Aleš_P201104160416301.jpg
+7.pgm HUŠÁK_Aleš_FO00490923.jpg
+8.pgm HUŠÁK_Aleš_P201004120753801.jpg
+9.pgm HUŠÁK_Aleš_P201102070501101.jpg
+10.pgm HUŠÁK_Aleš_FO01070156.jpg
+11.pgm HUŠÁK_Aleš_P201004120752601.jpg
+12.pgm HUŠÁK_Aleš_FO00386981.jpg
+Odchylka 0.0280151

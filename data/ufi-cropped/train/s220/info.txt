@@ -1,0 +1,11 @@
+VÁVRA_Jan
+1.pgm VÁVRA_Jan_FO00073676.jpg
+2.pgm VÁVRA_Jan_FO00527428.jpg
+3.pgm VÁVRA_Jan_FO00145006.jpg
+4.pgm VÁVRA_Jan_FO00123133.jpg
+5.pgm VÁVRA_Jan_FO00073673.jpg
+6.pgm VÁVRA_Jan_FO00123120.jpg
+7.pgm VÁVRA_Jan_FO00123142.jpg
+8.pgm VÁVRA_Jan_FO00487317.jpg
+9.pgm VÁVRA_Jan_FO00126173.jpg
+Odchylka 0.0173347

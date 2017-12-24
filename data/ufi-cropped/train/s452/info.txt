@@ -1,0 +1,18 @@
+BOHATÁ_Marie
+1.pgm BOHATÁ_Marie_FO00136614.jpg
+2.pgm BOHATÁ_Marie_FO00421234.jpg
+3.pgm BOHATÁ_Marie_FO00222282.jpg
+4.pgm BOHATÁ_Marie_FO00445997.jpg
+5.pgm BOHATÁ_Marie_FO00423416.jpg
+6.pgm BOHATÁ_Marie_FO00163813.jpg
+7.pgm BOHATÁ_Marie_FO00222262.jpg
+8.pgm BOHATÁ_Marie_FO00485699.jpg
+9.pgm BOHATÁ_Marie_FO00222276.jpg
+10.pgm BOHATÁ_Marie_FO00421235.jpg
+11.pgm BOHATÁ_Marie_FO00163814.jpg
+12.pgm BOHATÁ_Marie_FO00309390.jpg
+13.pgm BOHATÁ_Marie_FO00309389.jpg
+14.pgm BOHATÁ_Marie_FO00231455.jpg
+15.pgm BOHATÁ_Marie_FO00445995.jpg
+16.pgm BOHATÁ_Marie_FO00309388.jpg
+Odchylka 0.0214406

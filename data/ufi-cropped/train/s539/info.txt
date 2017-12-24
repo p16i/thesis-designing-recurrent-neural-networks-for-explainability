@@ -1,0 +1,12 @@
+JANEČEK_Josef
+1.pgm JANEČEK_Josef_FO01261475.jpg
+2.pgm JANEČEK_Josef_FO03017871.jpg
+3.pgm JANEČEK_Josef_FO00418746.jpg
+4.pgm JANEČEK_Josef_FO00056166.jpg
+5.pgm JANEČEK_Josef_FO00096412.jpg
+6.pgm JANEČEK_Josef_FO00404865.jpg
+7.pgm JANEČEK_Josef_FO01205706.jpg
+8.pgm JANEČEK_Josef_FO00152380.jpg
+9.pgm JANEČEK_Josef_FO03017873.jpg
+10.pgm JANEČEK_Josef_FO01301239.jpg
+Odchylka 0.0282712

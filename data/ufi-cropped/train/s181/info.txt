@@ -1,0 +1,13 @@
+BENEŠ_Miroslav
+1.pgm BENEŠ_Miroslav_FO00418663.jpg
+2.pgm BENEŠ_Miroslav_FO00096808.jpg
+3.pgm BENEŠ_Miroslav_FO00062486.jpg
+4.pgm BENEŠ_Miroslav_FO01045249.jpg
+5.pgm BENEŠ_Miroslav_FO00312768.jpg
+6.pgm BENEŠ_Miroslav_FO00312772.jpg
+7.pgm BENEŠ_Miroslav_FO00312769.jpg
+8.pgm BENEŠ_Miroslav_FO00060745.jpg
+9.pgm BENEŠ_Miroslav_FO00347595.jpg
+10.pgm BENEŠ_Miroslav_FO00066262.jpg
+11.pgm BENEŠ_Miroslav_FO00087119.jpg
+Odchylka 0.0161443

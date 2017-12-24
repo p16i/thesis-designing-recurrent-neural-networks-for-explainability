@@ -1,0 +1,23 @@
+TVRDÍK_Jaroslav
+1.pgm TVRDÍK_Jaroslav_FO01156860.jpg
+2.pgm TVRDÍK_Jaroslav_FO00506803.jpg
+3.pgm TVRDÍK_Jaroslav_FO00453504.jpg
+4.pgm TVRDÍK_Jaroslav_FO00368101.jpg
+5.pgm TVRDÍK_Jaroslav_FO02089813.jpg
+6.pgm TVRDÍK_Jaroslav_FO02089814.jpg
+7.pgm TVRDÍK_Jaroslav_FO00506806.jpg
+8.pgm TVRDÍK_Jaroslav_FO00293893.jpg
+9.pgm TVRDÍK_Jaroslav_FO00451847.jpg
+10.pgm TVRDÍK_Jaroslav_FO01102896.jpg
+11.pgm TVRDÍK_Jaroslav_FO01102895.jpg
+12.pgm TVRDÍK_Jaroslav_FO01102897.jpg
+13.pgm TVRDÍK_Jaroslav_FO02089817.jpg
+14.pgm TVRDÍK_Jaroslav_FO00322894.jpg
+15.pgm TVRDÍK_Jaroslav_FO00247216.jpg
+16.pgm TVRDÍK_Jaroslav_FO00461522.jpg
+17.pgm TVRDÍK_Jaroslav_FO00461521.jpg
+18.pgm TVRDÍK_Jaroslav_FO00516359.jpg
+19.pgm TVRDÍK_Jaroslav_FO00293894.jpg
+20.pgm TVRDÍK_Jaroslav_FO00463222.jpg
+21.pgm TVRDÍK_Jaroslav_FO00461524.jpg
+Odchylka 0.0174946

@@ -1,0 +1,11 @@
+KUPČOVÁ_Jitka
+1.pgm KUPČOVÁ_Jitka_FO01344031.jpg
+2.pgm KUPČOVÁ_Jitka_FO00096647.jpg
+3.pgm KUPČOVÁ_Jitka_FO01318770.jpg
+4.pgm KUPČOVÁ_Jitka_FO01303610.jpg
+5.pgm KUPČOVÁ_Jitka_FO00166407.jpg
+6.pgm KUPČOVÁ_Jitka_FO00167466.jpg
+7.pgm KUPČOVÁ_Jitka_FO00514777.jpg
+8.pgm KUPČOVÁ_Jitka_FO00166668.jpg
+9.pgm KUPČOVÁ_Jitka_FO01046046.jpg
+Odchylka 0.0174835

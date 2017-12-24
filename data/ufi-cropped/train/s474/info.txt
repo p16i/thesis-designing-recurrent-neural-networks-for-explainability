@@ -1,0 +1,12 @@
+ŠÁMAL_Zdeněk
+1.pgm ŠÁMAL_Zdeněk_FO01016609.jpg
+2.pgm ŠÁMAL_Zdeněk_FO01079536.jpg
+3.pgm ŠÁMAL_Zdeněk_F201003220182801.jpg
+4.pgm ŠÁMAL_Zdeněk_FO01019923.jpg
+5.pgm ŠÁMAL_Zdeněk_FO00102223.jpg
+6.pgm ŠÁMAL_Zdeněk_FO01079537.jpg
+7.pgm ŠÁMAL_Zdeněk_F200805050113401.jpg
+8.pgm ŠÁMAL_Zdeněk_FO00089847.jpg
+9.pgm ŠÁMAL_Zdeněk_FO01079535.jpg
+10.pgm ŠÁMAL_Zdeněk_F201003220182701.jpg
+Odchylka 0.0504933

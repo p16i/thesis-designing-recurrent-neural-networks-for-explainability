@@ -1,0 +1,16 @@
+NĚMEC_Pavel
+1.pgm NĚMEC_Pavel_FO01128706.jpg
+2.pgm NĚMEC_Pavel_FO00334570.jpg
+3.pgm NĚMEC_Pavel_FO01238226.jpg
+4.pgm NĚMEC_Pavel_FO01222205.jpg
+5.pgm NĚMEC_Pavel_FO00485049.jpg
+6.pgm NĚMEC_Pavel_FO01352040.jpg
+7.pgm NĚMEC_Pavel_FO01253768.jpg
+8.pgm NĚMEC_Pavel_FO00418777.jpg
+9.pgm NĚMEC_Pavel_FO00213259.jpg
+10.pgm NĚMEC_Pavel_FO01352029.jpg
+11.pgm NĚMEC_Pavel_FO00096734.jpg
+12.pgm NĚMEC_Pavel_FO01246316.jpg
+13.pgm NĚMEC_Pavel_FO01300228.jpg
+14.pgm NĚMEC_Pavel_FO01075342.jpg
+Odchylka 0.0155569

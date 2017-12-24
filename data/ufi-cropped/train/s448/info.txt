@@ -1,0 +1,12 @@
+HODŽA_Milan
+1.pgm HODŽA_Milan_FO00477624.jpg
+2.pgm HODŽA_Milan_F201007190108401.jpg
+3.pgm HODŽA_Milan_FO00477626.jpg
+4.pgm HODŽA_Milan_FO00065379.jpg
+5.pgm HODŽA_Milan_F201007190108501.jpg
+6.pgm HODŽA_Milan_F201007190108201.jpg
+7.pgm HODŽA_Milan_FO00065445.jpg
+8.pgm HODŽA_Milan_FO00065387.jpg
+9.pgm HODŽA_Milan_F201007190109101.jpg
+10.pgm HODŽA_Milan_F201007190108901.jpg
+Odchylka 0.0101796

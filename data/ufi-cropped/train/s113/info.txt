@@ -1,0 +1,25 @@
+KOLÁŘ_Jiří
+1.pgm KOLÁŘ_Jiří_FO00156085.jpg
+2.pgm KOLÁŘ_Jiří_FO01262609.jpg
+3.pgm KOLÁŘ_Jiří_FO00156047.jpg
+4.pgm KOLÁŘ_Jiří_FO00532278.jpg
+5.pgm KOLÁŘ_Jiří_FO01039975.jpg
+6.pgm KOLÁŘ_Jiří_FO01071113.jpg
+7.pgm KOLÁŘ_Jiří_FO00532277.jpg
+8.pgm KOLÁŘ_Jiří_FO00289103.jpg
+9.pgm KOLÁŘ_Jiří_FO00156086.jpg
+10.pgm KOLÁŘ_Jiří_FO00102147.jpg
+11.pgm KOLÁŘ_Jiří_FO00102149.jpg
+12.pgm KOLÁŘ_Jiří_FO01094714.jpg
+13.pgm KOLÁŘ_Jiří_FO00177223.jpg
+14.pgm KOLÁŘ_Jiří_FO01264616.jpg
+15.pgm KOLÁŘ_Jiří_F201007260177501.jpg
+16.pgm KOLÁŘ_Jiří_FO00214216.jpg
+17.pgm KOLÁŘ_Jiří_FO01129975.jpg
+18.pgm KOLÁŘ_Jiří_FO00104787.jpg
+19.pgm KOLÁŘ_Jiří_FO00289104.jpg
+20.pgm KOLÁŘ_Jiří_FO00513478.jpg
+21.pgm KOLÁŘ_Jiří_F200801230067701.jpg
+22.pgm KOLÁŘ_Jiří_FO00102150.jpg
+23.pgm KOLÁŘ_Jiří_FO00202627.jpg
+Odchylka 0.0175099

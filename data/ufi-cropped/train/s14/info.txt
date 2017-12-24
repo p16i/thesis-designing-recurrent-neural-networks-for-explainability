@@ -1,0 +1,18 @@
+ŠPAČEK_Ladislav
+1.pgm ŠPAČEK_Ladislav_FO00107760.jpg
+2.pgm ŠPAČEK_Ladislav_FO02078210.jpg
+3.pgm ŠPAČEK_Ladislav_FO02060750.jpg
+4.pgm ŠPAČEK_Ladislav_FO00107759.jpg
+5.pgm ŠPAČEK_Ladislav_F200801160088501.jpg
+6.pgm ŠPAČEK_Ladislav_FO01283919.jpg
+7.pgm ŠPAČEK_Ladislav_F201101140153501.jpg
+8.pgm ŠPAČEK_Ladislav_FO00107756.jpg
+9.pgm ŠPAČEK_Ladislav_F201101140153301.jpg
+10.pgm ŠPAČEK_Ladislav_FO00070748.jpg
+11.pgm ŠPAČEK_Ladislav_FO01187809.jpg
+12.pgm ŠPAČEK_Ladislav_FO01283918.jpg
+13.pgm ŠPAČEK_Ladislav_FO03019638.jpg
+14.pgm ŠPAČEK_Ladislav_F200811280176001.jpg
+15.pgm ŠPAČEK_Ladislav_FO00107761.jpg
+16.pgm ŠPAČEK_Ladislav_FO02060734.jpg
+Odchylka 0.0200644

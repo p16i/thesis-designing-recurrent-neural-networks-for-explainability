@@ -1,0 +1,15 @@
+RÖSNER_Boris
+1.pgm RÖSNER_Boris_FO00357131.jpg
+2.pgm RÖSNER_Boris_FO01067804.jpg
+3.pgm RÖSNER_Boris_FO00203648.jpg
+4.pgm RÖSNER_Boris_FO00210882.jpg
+5.pgm RÖSNER_Boris_FO00210788.jpg
+6.pgm RÖSNER_Boris_FO01230854.jpg
+7.pgm RÖSNER_Boris_FO00210887.jpg
+8.pgm RÖSNER_Boris_FO01331218.jpg
+9.pgm RÖSNER_Boris_FO00022414.jpg
+10.pgm RÖSNER_Boris_FO00285145.jpg
+11.pgm RÖSNER_Boris_FO01067795.jpg
+12.pgm RÖSNER_Boris_FO01088432.jpg
+13.pgm RÖSNER_Boris_FO01331076.jpg
+Odchylka 0.0497167

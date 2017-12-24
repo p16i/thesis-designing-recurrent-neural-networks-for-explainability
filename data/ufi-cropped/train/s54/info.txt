@@ -1,0 +1,11 @@
+KLÍMA_Ivan
+1.pgm KLÍMA_Ivan_FO00331768.jpg
+2.pgm KLÍMA_Ivan_FO00104107.jpg
+3.pgm KLÍMA_Ivan_FO00329317.jpg
+4.pgm KLÍMA_Ivan_F200902120028401.jpg
+5.pgm KLÍMA_Ivan_FO00311953.jpg
+6.pgm KLÍMA_Ivan_FO00104109.jpg
+7.pgm KLÍMA_Ivan_FO00026549.jpg
+8.pgm KLÍMA_Ivan_P201204110727801.jpg
+9.pgm KLÍMA_Ivan_FO00312010.jpg
+Odchylka 0.0141471

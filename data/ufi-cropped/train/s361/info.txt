@@ -1,0 +1,24 @@
+BENEŠ_Edvard
+1.pgm BENEŠ_Edvard_FO00387498.jpg
+2.pgm BENEŠ_Edvard_FO00386961.jpg
+3.pgm BENEŠ_Edvard_F201003160100901.jpg
+4.pgm BENEŠ_Edvard_FO00387496.jpg
+5.pgm BENEŠ_Edvard_F201102020234701.jpg
+6.pgm BENEŠ_Edvard_FO00386960.jpg
+7.pgm BENEŠ_Edvard_FO00387502.jpg
+8.pgm BENEŠ_Edvard_FO00386959.jpg
+9.pgm BENEŠ_Edvard_FO00387505.jpg
+10.pgm BENEŠ_Edvard_FO00028129.jpg
+11.pgm BENEŠ_Edvard_F201010050164101.jpg
+12.pgm BENEŠ_Edvard_F201006160087101.jpg
+13.pgm BENEŠ_Edvard_FO01019084.jpg
+14.pgm BENEŠ_Edvard_F201003160100701.jpg
+15.pgm BENEŠ_Edvard_FO00427242.jpg
+16.pgm BENEŠ_Edvard_F201003160178401.jpg
+17.pgm BENEŠ_Edvard_FO00387506.jpg
+18.pgm BENEŠ_Edvard_FO01019081.jpg
+19.pgm BENEŠ_Edvard_FO00427247.jpg
+20.pgm BENEŠ_Edvard_F201003160178301.jpg
+21.pgm BENEŠ_Edvard_FO00386962.jpg
+22.pgm BENEŠ_Edvard_FO00386963.jpg
+Odchylka 0.0415862

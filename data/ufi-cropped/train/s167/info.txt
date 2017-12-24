@@ -1,0 +1,26 @@
+KAŠPÁRKOVÁ_Šárka
+1.pgm KAŠPÁRKOVÁ_Šárka_FO01052951.jpg
+2.pgm KAŠPÁRKOVÁ_Šárka_F200803030066001.jpg
+3.pgm KAŠPÁRKOVÁ_Šárka_P200901140482901.jpg
+4.pgm KAŠPÁRKOVÁ_Šárka_FO00241447.jpg
+5.pgm KAŠPÁRKOVÁ_Šárka_F200803030067101.jpg
+6.pgm KAŠPÁRKOVÁ_Šárka_FO01052963.jpg
+7.pgm KAŠPÁRKOVÁ_Šárka_FO00241443.jpg
+8.pgm KAŠPÁRKOVÁ_Šárka_FO00241463.jpg
+9.pgm KAŠPÁRKOVÁ_Šárka_FO00241432.jpg
+10.pgm KAŠPÁRKOVÁ_Šárka_FO00181597.jpg
+11.pgm KAŠPÁRKOVÁ_Šárka_FO00241448.jpg
+12.pgm KAŠPÁRKOVÁ_Šárka_F201207250351301.jpg
+13.pgm KAŠPÁRKOVÁ_Šárka_F200901190069001.jpg
+14.pgm KAŠPÁRKOVÁ_Šárka_FO00181329.jpg
+15.pgm KAŠPÁRKOVÁ_Šárka_FO00241434.jpg
+16.pgm KAŠPÁRKOVÁ_Šárka_F200901180127001.jpg
+17.pgm KAŠPÁRKOVÁ_Šárka_FO01337125.jpg
+18.pgm KAŠPÁRKOVÁ_Šárka_FO01052962.jpg
+19.pgm KAŠPÁRKOVÁ_Šárka_F201010180256401.jpg
+20.pgm KAŠPÁRKOVÁ_Šárka_FO00465193.jpg
+21.pgm KAŠPÁRKOVÁ_Šárka_F200901150112901.jpg
+22.pgm KAŠPÁRKOVÁ_Šárka_FO00308090.jpg
+23.pgm KAŠPÁRKOVÁ_Šárka_FO01055338.jpg
+24.pgm KAŠPÁRKOVÁ_Šárka_FO00241459.jpg
+Odchylka 0.0382188

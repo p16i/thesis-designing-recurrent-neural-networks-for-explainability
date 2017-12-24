@@ -1,0 +1,15 @@
+HAVEL_Miroslav
+1.pgm HAVEL_Miroslav_FO00140575.jpg
+2.pgm HAVEL_Miroslav_FO00450137.jpg
+3.pgm HAVEL_Miroslav_P201207180449201.jpg
+4.pgm HAVEL_Miroslav_P201208230394601.jpg
+5.pgm HAVEL_Miroslav_P201203060297701.jpg
+6.pgm HAVEL_Miroslav_P201203060299101.jpg
+7.pgm HAVEL_Miroslav_FO00399723.jpg
+8.pgm HAVEL_Miroslav_FO02025763.jpg
+9.pgm HAVEL_Miroslav_P201012070653401.jpg
+10.pgm HAVEL_Miroslav_FO02025765.jpg
+11.pgm HAVEL_Miroslav_P201207180449301.jpg
+12.pgm HAVEL_Miroslav_FO00056458.jpg
+13.pgm HAVEL_Miroslav_FO02025766.jpg
+Odchylka 0.0235622

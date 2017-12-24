@@ -1,0 +1,19 @@
+KOČÍ_Přemysl
+1.pgm KOČÍ_Přemysl_FO00385370.jpg
+2.pgm KOČÍ_Přemysl_FO00385366.jpg
+3.pgm KOČÍ_Přemysl_FO00279733.jpg
+4.pgm KOČÍ_Přemysl_FO00385368.jpg
+5.pgm KOČÍ_Přemysl_FO00385365.jpg
+6.pgm KOČÍ_Přemysl_FO00385363.jpg
+7.pgm KOČÍ_Přemysl_FO00385346.jpg
+8.pgm KOČÍ_Přemysl_FO00385371.jpg
+9.pgm KOČÍ_Přemysl_FO00385372.jpg
+10.pgm KOČÍ_Přemysl_FO00385374.jpg
+11.pgm KOČÍ_Přemysl_FO00385359.jpg
+12.pgm KOČÍ_Přemysl_FO00385367.jpg
+13.pgm KOČÍ_Přemysl_FO00385382.jpg
+14.pgm KOČÍ_Přemysl_FO00385362.jpg
+15.pgm KOČÍ_Přemysl_FO00385364.jpg
+16.pgm KOČÍ_Přemysl_FO00385381.jpg
+17.pgm KOČÍ_Přemysl_FO00385369.jpg
+Odchylka 0.0135016

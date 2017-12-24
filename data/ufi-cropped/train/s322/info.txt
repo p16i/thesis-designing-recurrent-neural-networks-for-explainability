@@ -1,0 +1,21 @@
+TLUSTÝ_Vlastimil
+1.pgm TLUSTÝ_Vlastimil_P200809230261101.jpg
+2.pgm TLUSTÝ_Vlastimil_P200809230372101.jpg
+3.pgm TLUSTÝ_Vlastimil_FO00008606.jpg
+4.pgm TLUSTÝ_Vlastimil_FO00096860.jpg
+5.pgm TLUSTÝ_Vlastimil_FO00294937.jpg
+6.pgm TLUSTÝ_Vlastimil_FO02065774.jpg
+7.pgm TLUSTÝ_Vlastimil_FO00418764.jpg
+8.pgm TLUSTÝ_Vlastimil_FO00152565.jpg
+9.pgm TLUSTÝ_Vlastimil_FO03004852.jpg
+10.pgm TLUSTÝ_Vlastimil_P200809230259601.jpg
+11.pgm TLUSTÝ_Vlastimil_FO00149157.jpg
+12.pgm TLUSTÝ_Vlastimil_FO00008608.jpg
+13.pgm TLUSTÝ_Vlastimil_FO00152563.jpg
+14.pgm TLUSTÝ_Vlastimil_FO00008607.jpg
+15.pgm TLUSTÝ_Vlastimil_P200805140665401.jpg
+16.pgm TLUSTÝ_Vlastimil_FO03004850.jpg
+17.pgm TLUSTÝ_Vlastimil_FO03004851.jpg
+18.pgm TLUSTÝ_Vlastimil_FO01241261.jpg
+19.pgm TLUSTÝ_Vlastimil_FO00506416.jpg
+Odchylka 0.0313273

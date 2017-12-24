@@ -1,0 +1,15 @@
+VLASÁK,Oldřich
+1.pgm VLASÁK,Oldřich_FO00462831.jpg
+2.pgm VLASÁK,Oldřich_P200712070436801.jpg
+3.pgm VLASÁK,Oldřich_FO00461028.jpg
+4.pgm VLASÁK,Oldřich_F200712070061801.jpg
+5.pgm VLASÁK,Oldřich_F201205210793901.jpg
+6.pgm VLASÁK,Oldřich_FO00461025.jpg
+7.pgm VLASÁK,Oldřich_F200712070061601.jpg
+8.pgm VLASÁK,Oldřich_FO00107732.jpg
+9.pgm VLASÁK,Oldřich_F201205210793701.jpg
+10.pgm VLASÁK,Oldřich_FO00117630.jpg
+11.pgm VLASÁK,Oldřich_F201205210793801.jpg
+12.pgm VLASÁK,Oldřich_FO00235816.jpg
+13.pgm VLASÁK,Oldřich_F200712070061901.jpg
+Odchylka 0.0331942

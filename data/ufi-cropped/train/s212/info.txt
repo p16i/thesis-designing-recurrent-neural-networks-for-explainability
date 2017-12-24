@@ -1,0 +1,22 @@
+DVOŘÁK_Tomáš
+1.pgm DVOŘÁK_Tomáš_FO03018638.jpg
+2.pgm DVOŘÁK_Tomáš_FO00038807.jpg
+3.pgm DVOŘÁK_Tomáš_P201202140476401.jpg
+4.pgm DVOŘÁK_Tomáš_FO00348059.jpg
+5.pgm DVOŘÁK_Tomáš_FO00047134.jpg
+6.pgm DVOŘÁK_Tomáš_F200711130044801.jpg
+7.pgm DVOŘÁK_Tomáš_FO02077885.jpg
+8.pgm DVOŘÁK_Tomáš_FO00348058.jpg
+9.pgm DVOŘÁK_Tomáš_F200801230083601.jpg
+10.pgm DVOŘÁK_Tomáš_FO00126707.jpg
+11.pgm DVOŘÁK_Tomáš_FO00161258.jpg
+12.pgm DVOŘÁK_Tomáš_FO00173165.jpg
+13.pgm DVOŘÁK_Tomáš_P200909080705901.jpg
+14.pgm DVOŘÁK_Tomáš_P200909080701301.jpg
+15.pgm DVOŘÁK_Tomáš_FO00318321.jpg
+16.pgm DVOŘÁK_Tomáš_FO00185888.jpg
+17.pgm DVOŘÁK_Tomáš_FO02061926.jpg
+18.pgm DVOŘÁK_Tomáš_F200801230083501.jpg
+19.pgm DVOŘÁK_Tomáš_FO00297836.jpg
+20.pgm DVOŘÁK_Tomáš_FO00160786.jpg
+Odchylka 0.0205802

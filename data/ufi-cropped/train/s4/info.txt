@@ -1,0 +1,19 @@
+URBAN_Milan
+1.pgm URBAN_Milan_FO01249778.jpg
+2.pgm URBAN_Milan_FO01212920.jpg
+3.pgm URBAN_Milan_FO02097290.jpg
+4.pgm URBAN_Milan_FO00504646.jpg
+5.pgm URBAN_Milan_FO01249768.jpg
+6.pgm URBAN_Milan_FO01249776.jpg
+7.pgm URBAN_Milan_FO01251410.jpg
+8.pgm URBAN_Milan_FO00482312.jpg
+9.pgm URBAN_Milan_FO00234038.jpg
+10.pgm URBAN_Milan_FO01249779.jpg
+11.pgm URBAN_Milan_FO01249772.jpg
+12.pgm URBAN_Milan_FO01196207.jpg
+13.pgm URBAN_Milan_FO01196209.jpg
+14.pgm URBAN_Milan_FO00210308.jpg
+15.pgm URBAN_Milan_FO00418607.jpg
+16.pgm URBAN_Milan_FO01076079.jpg
+17.pgm URBAN_Milan_FO01196208.jpg
+Odchylka 0.0304176

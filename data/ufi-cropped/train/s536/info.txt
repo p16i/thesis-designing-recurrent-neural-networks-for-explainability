@@ -1,0 +1,11 @@
+ŠALOM_Silvan
+1.pgm ŠALOM_Silvan_FO01060913.jpg
+2.pgm ŠALOM_Silvan_FO01127041.jpg
+3.pgm ŠALOM_Silvan_FO01186978.jpg
+4.pgm ŠALOM_Silvan_FO01085599.jpg
+5.pgm ŠALOM_Silvan_FO01190965.jpg
+6.pgm ŠALOM_Silvan_FO01124222.jpg
+7.pgm ŠALOM_Silvan_FO01030534.jpg
+8.pgm ŠALOM_Silvan_FO01028206.jpg
+9.pgm ŠALOM_Silvan_FO01058483.jpg
+Odchylka 0.0246669

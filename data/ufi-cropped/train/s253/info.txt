@@ -1,0 +1,16 @@
+MARGITA_Štefan
+1.pgm MARGITA_Štefan_FO00284329.jpg
+2.pgm MARGITA_Štefan_FO00387107.jpg
+3.pgm MARGITA_Štefan_FO00436523.jpg
+4.pgm MARGITA_Štefan_FO00333647.jpg
+5.pgm MARGITA_Štefan_FO00304289.jpg
+6.pgm MARGITA_Štefan_FO00304287.jpg
+7.pgm MARGITA_Štefan_FO00304290.jpg
+8.pgm MARGITA_Štefan_FO01258734.jpg
+9.pgm MARGITA_Štefan_FO01231563.jpg
+10.pgm MARGITA_Štefan_FO00304288.jpg
+11.pgm MARGITA_Štefan_FO00509699.jpg
+12.pgm MARGITA_Štefan_FO01069786.jpg
+13.pgm MARGITA_Štefan_FO01069785.jpg
+14.pgm MARGITA_Štefan_FO00151116.jpg
+Odchylka 0.0299836

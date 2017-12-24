@@ -1,0 +1,14 @@
+HANÍJA_Ismáíl
+1.pgm HANÍJA_Ismáíl_FO01365161.jpg
+2.pgm HANÍJA_Ismáíl_FO02005146.jpg
+3.pgm HANÍJA_Ismáíl_FO02073160.jpg
+4.pgm HANÍJA_Ismáíl_P200909220694101.jpg
+5.pgm HANÍJA_Ismáíl_FO01363771.jpg
+6.pgm HANÍJA_Ismáíl_P200711260705901.jpg
+7.pgm HANÍJA_Ismáíl_FO02074166.jpg
+8.pgm HANÍJA_Ismáíl_FO02082443.jpg
+9.pgm HANÍJA_Ismáíl_FO02035054.jpg
+10.pgm HANÍJA_Ismáíl_FO02023170.jpg
+11.pgm HANÍJA_Ismáíl_FO02009343.jpg
+12.pgm HANÍJA_Ismáíl_FO02076969.jpg
+Odchylka 0.0116126

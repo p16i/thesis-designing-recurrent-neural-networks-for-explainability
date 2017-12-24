@@ -1,0 +1,19 @@
+FILIP_František
+1.pgm FILIP_František_F200912070319301.jpg
+2.pgm FILIP_František_P201110020283301.jpg
+3.pgm FILIP_František_FO02096204.jpg
+4.pgm FILIP_František_FO00201568.jpg
+5.pgm FILIP_František_FO01010855.jpg
+6.pgm FILIP_František_P201105020497601.jpg
+7.pgm FILIP_František_P201110020268301.jpg
+8.pgm FILIP_František_P200912070551801.jpg
+9.pgm FILIP_František_P201204160416601.jpg
+10.pgm FILIP_František_F200912070317001.jpg
+11.pgm FILIP_František_FO02096539.jpg
+12.pgm FILIP_František_FO00462026.jpg
+13.pgm FILIP_František_F200912070317401.jpg
+14.pgm FILIP_František_P201101140949301.jpg
+15.pgm FILIP_František_FO00201565.jpg
+16.pgm FILIP_František_FO00033077.jpg
+17.pgm FILIP_František_P200812010721301.jpg
+Odchylka 0.0198646

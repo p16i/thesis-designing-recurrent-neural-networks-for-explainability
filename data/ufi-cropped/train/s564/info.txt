@@ -1,0 +1,16 @@
+MAČÁKOVÁ_Jana
+1.pgm MAČÁKOVÁ_Jana_FO00175326.jpg
+2.pgm MAČÁKOVÁ_Jana_FO00460086.jpg
+3.pgm MAČÁKOVÁ_Jana_FO00457305.jpg
+4.pgm MAČÁKOVÁ_Jana_FO00460098.jpg
+5.pgm MAČÁKOVÁ_Jana_FO00201392.jpg
+6.pgm MAČÁKOVÁ_Jana_FO00457303.jpg
+7.pgm MAČÁKOVÁ_Jana_FO00160002.jpg
+8.pgm MAČÁKOVÁ_Jana_FO01040732.jpg
+9.pgm MAČÁKOVÁ_Jana_FO01249955.jpg
+10.pgm MAČÁKOVÁ_Jana_FO01232659.jpg
+11.pgm MAČÁKOVÁ_Jana_FO01155688.jpg
+12.pgm MAČÁKOVÁ_Jana_FO01158482.jpg
+13.pgm MAČÁKOVÁ_Jana_FO00149824.jpg
+14.pgm MAČÁKOVÁ_Jana_FO00140888.jpg
+Odchylka 0.0109572

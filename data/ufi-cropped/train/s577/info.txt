@@ -1,0 +1,11 @@
+KŮLA_Miroslav
+1.pgm KŮLA_Miroslav_FO00199365.jpg
+2.pgm KŮLA_Miroslav_FO00036226.jpg
+3.pgm KŮLA_Miroslav_FO00514481.jpg
+4.pgm KŮLA_Miroslav_FO00383363.jpg
+5.pgm KŮLA_Miroslav_FO02091548.jpg
+6.pgm KŮLA_Miroslav_FO00130947.jpg
+7.pgm KŮLA_Miroslav_FO01101185.jpg
+8.pgm KŮLA_Miroslav_FO00514486.jpg
+9.pgm KŮLA_Miroslav_FO00131246.jpg
+Odchylka 0.0212547

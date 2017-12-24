@@ -1,0 +1,12 @@
+KLÍMA_Ladislav
+1.pgm KLÍMA_Ladislav_FO00318205.jpg
+2.pgm KLÍMA_Ladislav_FO00111068.jpg
+3.pgm KLÍMA_Ladislav_FO00294924.jpg
+4.pgm KLÍMA_Ladislav_FO00300722.jpg
+5.pgm KLÍMA_Ladislav_FO00039371.jpg
+6.pgm KLÍMA_Ladislav_FO00039881.jpg
+7.pgm KLÍMA_Ladislav_FO00115739.jpg
+8.pgm KLÍMA_Ladislav_FO00350141.jpg
+9.pgm KLÍMA_Ladislav_FO00099530.jpg
+10.pgm KLÍMA_Ladislav_FO00099533.jpg
+Odchylka 0.0276302

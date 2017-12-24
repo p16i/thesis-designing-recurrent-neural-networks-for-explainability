@@ -1,0 +1,11 @@
+VLACH_Jiří
+1.pgm VLACH_Jiří_FO00089440.jpg
+2.pgm VLACH_Jiří_FO00005410.jpg
+3.pgm VLACH_Jiří_FO01303526.jpg
+4.pgm VLACH_Jiří_FO00265394.jpg
+5.pgm VLACH_Jiří_FO00151488.jpg
+6.pgm VLACH_Jiří_FO00096723.jpg
+7.pgm VLACH_Jiří_FO00152327.jpg
+8.pgm VLACH_Jiří_FO00005463.jpg
+9.pgm VLACH_Jiří_FO00152329.jpg
+Odchylka 0.0730558

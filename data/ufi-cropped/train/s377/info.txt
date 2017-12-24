@@ -1,0 +1,13 @@
+LIZNER_Jaroslav
+1.pgm LIZNER_Jaroslav_FO01054825.jpg
+2.pgm LIZNER_Jaroslav_FO01054827.jpg
+3.pgm LIZNER_Jaroslav_FO00024554.jpg
+4.pgm LIZNER_Jaroslav_FO00319539.jpg
+5.pgm LIZNER_Jaroslav_FO00024553.jpg
+6.pgm LIZNER_Jaroslav_FO01054826.jpg
+7.pgm LIZNER_Jaroslav_FO00139096.jpg
+8.pgm LIZNER_Jaroslav_FO01054828.jpg
+9.pgm LIZNER_Jaroslav_FO00319558.jpg
+10.pgm LIZNER_Jaroslav_FO01091609.jpg
+11.pgm LIZNER_Jaroslav_FO01057311.jpg
+Odchylka 0.0458799

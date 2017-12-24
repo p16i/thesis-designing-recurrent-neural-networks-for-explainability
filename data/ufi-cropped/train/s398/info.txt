@@ -1,0 +1,12 @@
+HAKEN_Eduard
+1.pgm HAKEN_Eduard_FO01283381.jpg
+2.pgm HAKEN_Eduard_FO02093905.jpg
+3.pgm HAKEN_Eduard_FO00488443.jpg
+4.pgm HAKEN_Eduard_FO00157703.jpg
+5.pgm HAKEN_Eduard_F201110190102701.jpg
+6.pgm HAKEN_Eduard_FO00355040.jpg
+7.pgm HAKEN_Eduard_FO00488338.jpg
+8.pgm HAKEN_Eduard_FO00488337.jpg
+9.pgm HAKEN_Eduard_FO00488334.jpg
+10.pgm HAKEN_Eduard_FO00157698.jpg
+Odchylka 0.0232628

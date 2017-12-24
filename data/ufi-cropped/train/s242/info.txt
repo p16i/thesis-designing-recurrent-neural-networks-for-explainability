@@ -1,0 +1,17 @@
+ŠLOUF_Miroslav
+1.pgm ŠLOUF_Miroslav_FO00167502.jpg
+2.pgm ŠLOUF_Miroslav_P200808010832101.jpg
+3.pgm ŠLOUF_Miroslav_FO00216782.jpg
+4.pgm ŠLOUF_Miroslav_F201004270161401.jpg
+5.pgm ŠLOUF_Miroslav_F201004270161301.jpg
+6.pgm ŠLOUF_Miroslav_F201004270161501.jpg
+7.pgm ŠLOUF_Miroslav_FO00205653.jpg
+8.pgm ŠLOUF_Miroslav_F201004270161601.jpg
+9.pgm ŠLOUF_Miroslav_F201004270161801.jpg
+10.pgm ŠLOUF_Miroslav_FO00167489.jpg
+11.pgm ŠLOUF_Miroslav_F201004270162301.jpg
+12.pgm ŠLOUF_Miroslav_P201010130877301.jpg
+13.pgm ŠLOUF_Miroslav_FO00167509.jpg
+14.pgm ŠLOUF_Miroslav_P201010130864701.jpg
+15.pgm ŠLOUF_Miroslav_FO00216776.jpg
+Odchylka 0.0192378

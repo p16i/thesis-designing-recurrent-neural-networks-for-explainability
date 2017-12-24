@@ -1,0 +1,20 @@
+MACEK_Miroslav
+1.pgm MACEK_Miroslav_FO00216513.jpg
+2.pgm MACEK_Miroslav_FO01139217.jpg
+3.pgm MACEK_Miroslav_FO00050822.jpg
+4.pgm MACEK_Miroslav_FO00219078.jpg
+5.pgm MACEK_Miroslav_FO00216512.jpg
+6.pgm MACEK_Miroslav_FO01139239.jpg
+7.pgm MACEK_Miroslav_FO01139218.jpg
+8.pgm MACEK_Miroslav_FO00331234.jpg
+9.pgm MACEK_Miroslav_FO00078023.jpg
+10.pgm MACEK_Miroslav_FO00046373.jpg
+11.pgm MACEK_Miroslav_FO01139213.jpg
+12.pgm MACEK_Miroslav_FO00082554.jpg
+13.pgm MACEK_Miroslav_FO00014531.jpg
+14.pgm MACEK_Miroslav_FO00219079.jpg
+15.pgm MACEK_Miroslav_FO01139216.jpg
+16.pgm MACEK_Miroslav_FO00191880.jpg
+17.pgm MACEK_Miroslav_FO00326551.jpg
+18.pgm MACEK_Miroslav_FO00038023.jpg
+Odchylka 0.0354968

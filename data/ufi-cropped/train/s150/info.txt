@@ -1,0 +1,12 @@
+EBEN_Petr
+1.pgm EBEN_Petr_FO00207341.jpg
+2.pgm EBEN_Petr_FO00220741.jpg
+3.pgm EBEN_Petr_FO00210056.jpg
+4.pgm EBEN_Petr_FO01149430.jpg
+5.pgm EBEN_Petr_FO00085026.jpg
+6.pgm EBEN_Petr_FO01149426.jpg
+7.pgm EBEN_Petr_FO01149425.jpg
+8.pgm EBEN_Petr_FO00207340.jpg
+9.pgm EBEN_Petr_FO00085022.jpg
+10.pgm EBEN_Petr_FO01149427.jpg
+Odchylka 0.0352965

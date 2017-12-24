@@ -1,0 +1,14 @@
+DOMINGO_Plácido
+1.pgm DOMINGO_Plácido_F200910140145501.jpg
+2.pgm DOMINGO_Plácido_FO00210724.jpg
+3.pgm DOMINGO_Plácido_FO01087604.jpg
+4.pgm DOMINGO_Plácido_FO00209552.jpg
+5.pgm DOMINGO_Plácido_FO01330186.jpg
+6.pgm DOMINGO_Plácido_FO02113082.jpg
+7.pgm DOMINGO_Plácido_FO01057173.jpg
+8.pgm DOMINGO_Plácido_FO01273810.jpg
+9.pgm DOMINGO_Plácido_FO02001854.jpg
+10.pgm DOMINGO_Plácido_FO00210754.jpg
+11.pgm DOMINGO_Plácido_FO02079563.jpg
+12.pgm DOMINGO_Plácido_FO00281793.jpg
+Odchylka 0.0144005

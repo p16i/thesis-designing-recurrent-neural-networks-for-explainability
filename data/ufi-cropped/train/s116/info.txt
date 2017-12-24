@@ -1,0 +1,11 @@
+DUBČEK_Alexander
+1.pgm DUBČEK_Alexander_FO00241438.jpg
+2.pgm DUBČEK_Alexander_FO00326016.jpg
+3.pgm DUBČEK_Alexander_FO00326019.jpg
+4.pgm DUBČEK_Alexander_P200911160577001.jpg
+5.pgm DUBČEK_Alexander_FO01176156.jpg
+6.pgm DUBČEK_Alexander_F200911131223801.jpg
+7.pgm DUBČEK_Alexander_FO00326021.jpg
+8.pgm DUBČEK_Alexander_FO00097821.jpg
+9.pgm DUBČEK_Alexander_FO00326018.jpg
+Odchylka 0.025349

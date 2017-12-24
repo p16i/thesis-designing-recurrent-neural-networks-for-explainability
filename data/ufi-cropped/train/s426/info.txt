@@ -1,0 +1,19 @@
+NAVRÁTILOVÁ_Martina
+1.pgm NAVRÁTILOVÁ_Martina_FO00117668.jpg
+2.pgm NAVRÁTILOVÁ_Martina_FO00171986.jpg
+3.pgm NAVRÁTILOVÁ_Martina_FO00107689.jpg
+4.pgm NAVRÁTILOVÁ_Martina_FO00526596.jpg
+5.pgm NAVRÁTILOVÁ_Martina_FO00234219.jpg
+6.pgm NAVRÁTILOVÁ_Martina_FO01126814.jpg
+7.pgm NAVRÁTILOVÁ_Martina_FO00124240.jpg
+8.pgm NAVRÁTILOVÁ_Martina_FO01062146.jpg
+9.pgm NAVRÁTILOVÁ_Martina_FO00124242.jpg
+10.pgm NAVRÁTILOVÁ_Martina_FO00019567.jpg
+11.pgm NAVRÁTILOVÁ_Martina_FO01062147.jpg
+12.pgm NAVRÁTILOVÁ_Martina_FO00019489.jpg
+13.pgm NAVRÁTILOVÁ_Martina_FO00526597.jpg
+14.pgm NAVRÁTILOVÁ_Martina_FO01112479.jpg
+15.pgm NAVRÁTILOVÁ_Martina_FO00156734.jpg
+16.pgm NAVRÁTILOVÁ_Martina_FO00525808.jpg
+17.pgm NAVRÁTILOVÁ_Martina_FO00281799.jpg
+Odchylka 0.0179879

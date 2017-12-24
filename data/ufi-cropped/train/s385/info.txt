@@ -1,0 +1,13 @@
+ABBÁS_Mahmúd
+1.pgm ABBÁS_Mahmúd_P201104180895601.jpg
+2.pgm ABBÁS_Mahmúd_FO00525444.jpg
+3.pgm ABBÁS_Mahmúd_FO01013114.jpg
+4.pgm ABBÁS_Mahmúd_P200804020411501.jpg
+5.pgm ABBÁS_Mahmúd_P200809260861301.jpg
+6.pgm ABBÁS_Mahmúd_P201011210219901.jpg
+7.pgm ABBÁS_Mahmúd_FO01210114.jpg
+8.pgm ABBÁS_Mahmúd_FO01023935.jpg
+9.pgm ABBÁS_Mahmúd_FO01368425.jpg
+10.pgm ABBÁS_Mahmúd_P200902220518801.jpg
+11.pgm ABBÁS_Mahmúd_FO00537558.jpg
+Odchylka 0.0140184

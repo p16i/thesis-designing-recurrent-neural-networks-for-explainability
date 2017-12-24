@@ -1,0 +1,11 @@
+KULA_Luděk
+1.pgm KULA_Luděk_FO01207022.jpg
+2.pgm KULA_Luděk_FO02071023.jpg
+3.pgm KULA_Luděk_FO01262090.jpg
+4.pgm KULA_Luděk_FO01237874.jpg
+5.pgm KULA_Luděk_FO01235727.jpg
+6.pgm KULA_Luděk_F200812190081801.jpg
+7.pgm KULA_Luděk_F200812170117101.jpg
+8.pgm KULA_Luděk_FO01235728.jpg
+9.pgm KULA_Luděk_FO01235729.jpg
+Odchylka 0.101916

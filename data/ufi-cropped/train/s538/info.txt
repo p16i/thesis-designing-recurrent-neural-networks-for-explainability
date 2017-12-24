@@ -1,0 +1,16 @@
+JAKUBŠE_Antonín
+1.pgm JAKUBŠE_Antonín_FO00125256.jpg
+2.pgm JAKUBŠE_Antonín_FO00375155.jpg
+3.pgm JAKUBŠE_Antonín_FO00125441.jpg
+4.pgm JAKUBŠE_Antonín_FO00339496.jpg
+5.pgm JAKUBŠE_Antonín_FO01091165.jpg
+6.pgm JAKUBŠE_Antonín_FO01091164.jpg
+7.pgm JAKUBŠE_Antonín_FO00315591.jpg
+8.pgm JAKUBŠE_Antonín_FO02091551.jpg
+9.pgm JAKUBŠE_Antonín_FO00130033.jpg
+10.pgm JAKUBŠE_Antonín_FO00375154.jpg
+11.pgm JAKUBŠE_Antonín_FO00339495.jpg
+12.pgm JAKUBŠE_Antonín_FO01091163.jpg
+13.pgm JAKUBŠE_Antonín_FO00130032.jpg
+14.pgm JAKUBŠE_Antonín_FO02089897.jpg
+Odchylka 0.0880405

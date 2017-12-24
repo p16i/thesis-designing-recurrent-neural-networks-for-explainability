@@ -1,0 +1,16 @@
+Peake_Karolína
+1.pgm Peake_Karolína_P201204170799301.jpg
+2.pgm Peake_Karolína_F201211030425001.jpg
+3.pgm Peake_Karolína_F201204220733301.jpg
+4.pgm Peake_Karolína_P201203080494801.jpg
+5.pgm Peake_Karolína_F201204220734001.jpg
+6.pgm Peake_Karolína_F201006170254001.jpg
+7.pgm Peake_Karolína_F201211030426001.jpg
+8.pgm Peake_Karolína_F201211030425601.jpg
+9.pgm Peake_Karolína_F201006240094401.jpg
+10.pgm Peake_Karolína_P201207250267501.jpg
+11.pgm Peake_Karolína_P201204170800601.jpg
+12.pgm Peake_Karolína_F201006170254501.jpg
+13.pgm Peake_Karolína_P201204170800501.jpg
+14.pgm Peake_Karolína_F201204220733801.jpg
+Odchylka 0.0148233

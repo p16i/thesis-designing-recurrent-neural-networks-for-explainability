@@ -1,0 +1,13 @@
+NĚMEC_Igor
+1.pgm NĚMEC_Igor_FO01048556.jpg
+2.pgm NĚMEC_Igor_FO01048549.jpg
+3.pgm NĚMEC_Igor_FO01048550.jpg
+4.pgm NĚMEC_Igor_FO00421734.jpg
+5.pgm NĚMEC_Igor_P201104130355901.jpg
+6.pgm NĚMEC_Igor_FO01048555.jpg
+7.pgm NĚMEC_Igor_FO01048560.jpg
+8.pgm NĚMEC_Igor_FO01048552.jpg
+9.pgm NĚMEC_Igor_FO01048551.jpg
+10.pgm NĚMEC_Igor_FO01048559.jpg
+11.pgm NĚMEC_Igor_FO01048557.jpg
+Odchylka 0.0743021

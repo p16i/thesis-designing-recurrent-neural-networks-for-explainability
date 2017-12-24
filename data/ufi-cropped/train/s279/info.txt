@@ -1,0 +1,12 @@
+BAYROU_Francois
+1.pgm BAYROU_Francois_P201203220468201.jpg
+2.pgm BAYROU_Francois_FO02104515.jpg
+3.pgm BAYROU_Francois_FO02106732.jpg
+4.pgm BAYROU_Francois_FO02108705.jpg
+5.pgm BAYROU_Francois_FO02106943.jpg
+6.pgm BAYROU_Francois_FO02107797.jpg
+7.pgm BAYROU_Francois_F201112230328301.jpg
+8.pgm BAYROU_Francois_FO02098121.jpg
+9.pgm BAYROU_Francois_FO02100637.jpg
+10.pgm BAYROU_Francois_FO02106485.jpg
+Odchylka 0.0153179

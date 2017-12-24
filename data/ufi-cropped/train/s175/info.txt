@@ -1,0 +1,14 @@
+ZIKMUND_Miroslav
+1.pgm ZIKMUND_Miroslav_FO00109777.jpg
+2.pgm ZIKMUND_Miroslav_FO00302468.jpg
+3.pgm ZIKMUND_Miroslav_FO00109788.jpg
+4.pgm ZIKMUND_Miroslav_FO00302467.jpg
+5.pgm ZIKMUND_Miroslav_FO00232565.jpg
+6.pgm ZIKMUND_Miroslav_FO00139024.jpg
+7.pgm ZIKMUND_Miroslav_FO02085525.jpg
+8.pgm ZIKMUND_Miroslav_FO00167936.jpg
+9.pgm ZIKMUND_Miroslav_P200902180734901.jpg
+10.pgm ZIKMUND_Miroslav_FO00161427.jpg
+11.pgm ZIKMUND_Miroslav_FO00233214.jpg
+12.pgm ZIKMUND_Miroslav_FO00161495.jpg
+Odchylka 0.0100241

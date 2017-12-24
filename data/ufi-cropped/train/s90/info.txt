@@ -1,0 +1,11 @@
+ČERMÁK_Vladimír
+1.pgm ČERMÁK_Vladimír_P201005061042201.jpg
+2.pgm ČERMÁK_Vladimír_FO00064817.jpg
+3.pgm ČERMÁK_Vladimír_F200910060067501.jpg
+4.pgm ČERMÁK_Vladimír_FO02047593.jpg
+5.pgm ČERMÁK_Vladimír_FO01105706.jpg
+6.pgm ČERMÁK_Vladimír_P200905060565401.jpg
+7.pgm ČERMÁK_Vladimír_FO00079120.jpg
+8.pgm ČERMÁK_Vladimír_FO00079116.jpg
+9.pgm ČERMÁK_Vladimír_FO00064811.jpg
+Odchylka 0.0326782

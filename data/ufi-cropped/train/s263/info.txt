@@ -1,0 +1,27 @@
+ŠEBRLE_Roman
+1.pgm ŠEBRLE_Roman_FO00427306.jpg
+2.pgm ŠEBRLE_Roman_FO03008942.jpg
+3.pgm ŠEBRLE_Roman_FO00239329.jpg
+4.pgm ŠEBRLE_Roman_FO01062264.jpg
+5.pgm ŠEBRLE_Roman_FO01002997.jpg
+6.pgm ŠEBRLE_Roman_FO00378398.jpg
+7.pgm ŠEBRLE_Roman_FO00218215.jpg
+8.pgm ŠEBRLE_Roman_FO02034470.jpg
+9.pgm ŠEBRLE_Roman_FO00479780.jpg
+10.pgm ŠEBRLE_Roman_F200809180226501.jpg
+11.pgm ŠEBRLE_Roman_FO01139799.jpg
+12.pgm ŠEBRLE_Roman_FO00304187.jpg
+13.pgm ŠEBRLE_Roman_FO01120801.jpg
+14.pgm ŠEBRLE_Roman_FO01007379.jpg
+15.pgm ŠEBRLE_Roman_FO00428691.jpg
+16.pgm ŠEBRLE_Roman_FO00173694.jpg
+17.pgm ŠEBRLE_Roman_FO00299861.jpg
+18.pgm ŠEBRLE_Roman_FO00297835.jpg
+19.pgm ŠEBRLE_Roman_FO01282016.jpg
+20.pgm ŠEBRLE_Roman_FO01261718.jpg
+21.pgm ŠEBRLE_Roman_FO01007377.jpg
+22.pgm ŠEBRLE_Roman_FO00348050.jpg
+23.pgm ŠEBRLE_Roman_FO01055340.jpg
+24.pgm ŠEBRLE_Roman_FO00375554.jpg
+25.pgm ŠEBRLE_Roman_FO01052755.jpg
+Odchylka 0.0146681

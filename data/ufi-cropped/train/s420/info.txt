@@ -1,0 +1,11 @@
+JAKEŠ_Miloš_JAKEŠ_Milouš
+1.pgm JAKEŠ_Miloš_JAKEŠ_Milouš_FO00404308.jpg
+2.pgm JAKEŠ_Miloš_JAKEŠ_Milouš_FO00136790.jpg
+3.pgm JAKEŠ_Miloš_JAKEŠ_Milouš_FO00404305.jpg
+4.pgm JAKEŠ_Miloš_JAKEŠ_Milouš_FO01095494.jpg
+5.pgm JAKEŠ_Miloš_JAKEŠ_Milouš_FO00404320.jpg
+6.pgm JAKEŠ_Miloš_JAKEŠ_Milouš_FO00404319.jpg
+7.pgm JAKEŠ_Miloš_JAKEŠ_Milouš_FO00440653.jpg
+8.pgm JAKEŠ_Miloš_JAKEŠ_Milouš_FO00404306.jpg
+9.pgm JAKEŠ_Miloš_JAKEŠ_Milouš_FO00404317.jpg
+Odchylka 0.0194508

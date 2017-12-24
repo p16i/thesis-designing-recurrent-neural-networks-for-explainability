@@ -1,0 +1,12 @@
+CIMOSZEWICZ_Wlodzimierz
+1.pgm CIMOSZEWICZ_Wlodzimierz_FO01190102.jpg
+2.pgm CIMOSZEWICZ_Wlodzimierz_FO00469283.jpg
+3.pgm CIMOSZEWICZ_Wlodzimierz_FO01068617.jpg
+4.pgm CIMOSZEWICZ_Wlodzimierz_FO01128619.jpg
+5.pgm CIMOSZEWICZ_Wlodzimierz_FO01090571.jpg
+6.pgm CIMOSZEWICZ_Wlodzimierz_FO01085851.jpg
+7.pgm CIMOSZEWICZ_Wlodzimierz_FO00207497.jpg
+8.pgm CIMOSZEWICZ_Wlodzimierz_FO00495695.jpg
+9.pgm CIMOSZEWICZ_Wlodzimierz_FO00284240.jpg
+10.pgm CIMOSZEWICZ_Wlodzimierz_FO00140302.jpg
+Odchylka 0.00937794

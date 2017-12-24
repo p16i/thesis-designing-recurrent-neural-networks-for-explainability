@@ -1,0 +1,11 @@
+ŠETINA_Jiří
+1.pgm ŠETINA_Jiří_FO00047891.jpg
+2.pgm ŠETINA_Jiří_FO00045656.jpg
+3.pgm ŠETINA_Jiří_FO00162624.jpg
+4.pgm ŠETINA_Jiří_FO00047887.jpg
+5.pgm ŠETINA_Jiří_FO00088531.jpg
+6.pgm ŠETINA_Jiří_FO00184575.jpg
+7.pgm ŠETINA_Jiří_FO00045645.jpg
+8.pgm ŠETINA_Jiří_FO00195239.jpg
+9.pgm ŠETINA_Jiří_FO01168065.jpg
+Odchylka 0.0134697

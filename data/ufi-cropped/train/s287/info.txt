@@ -1,0 +1,15 @@
+LAHÚD_Emil
+1.pgm LAHÚD_Emil_FO00416495.jpg
+2.pgm LAHÚD_Emil_FO00479576.jpg
+3.pgm LAHÚD_Emil_FO00416667.jpg
+4.pgm LAHÚD_Emil_FO02032086.jpg
+5.pgm LAHÚD_Emil_FO01141519.jpg
+6.pgm LAHÚD_Emil_FO00417449.jpg
+7.pgm LAHÚD_Emil_FO01260694.jpg
+8.pgm LAHÚD_Emil_FO02048942.jpg
+9.pgm LAHÚD_Emil_FO00453561.jpg
+10.pgm LAHÚD_Emil_FO02032087.jpg
+11.pgm LAHÚD_Emil_FO01275526.jpg
+12.pgm LAHÚD_Emil_FO01224158.jpg
+13.pgm LAHÚD_Emil_FO00416494.jpg
+Odchylka 0.0217976

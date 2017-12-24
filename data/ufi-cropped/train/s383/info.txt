@@ -1,0 +1,13 @@
+CHMELÍČEK_Dušan
+1.pgm CHMELÍČEK_Dušan_FO00214630.jpg
+2.pgm CHMELÍČEK_Dušan_FO00215605.jpg
+3.pgm CHMELÍČEK_Dušan_FO00215595.jpg
+4.pgm CHMELÍČEK_Dušan_FO01224392.jpg
+5.pgm CHMELÍČEK_Dušan_FO00157417.jpg
+6.pgm CHMELÍČEK_Dušan_FO00215610.jpg
+7.pgm CHMELÍČEK_Dušan_FO01224393.jpg
+8.pgm CHMELÍČEK_Dušan_FO00215602.jpg
+9.pgm CHMELÍČEK_Dušan_FO00215598.jpg
+10.pgm CHMELÍČEK_Dušan_FO00157418.jpg
+11.pgm CHMELÍČEK_Dušan_FO00215604.jpg
+Odchylka 0.0546291

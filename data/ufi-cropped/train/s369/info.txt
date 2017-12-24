@@ -1,0 +1,12 @@
+ČERNÝ_Jan
+1.pgm ČERNÝ_Jan_FO00357007.jpg
+2.pgm ČERNÝ_Jan_FO00496279.jpg
+3.pgm ČERNÝ_Jan_FO01300116.jpg
+4.pgm ČERNÝ_Jan_P201203190428201.jpg
+5.pgm ČERNÝ_Jan_FO00152434.jpg
+6.pgm ČERNÝ_Jan_FO00172616.jpg
+7.pgm ČERNÝ_Jan_FO00091974.jpg
+8.pgm ČERNÝ_Jan_FO00060985.jpg
+9.pgm ČERNÝ_Jan_FO00243419.jpg
+10.pgm ČERNÝ_Jan_FO00062805.jpg
+Odchylka 0.019498

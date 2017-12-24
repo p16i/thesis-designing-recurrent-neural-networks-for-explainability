@@ -1,0 +1,13 @@
+VOZKA_Vlastimil
+1.pgm VOZKA_Vlastimil_F201011230127401.jpg
+2.pgm VOZKA_Vlastimil_F201011230128101.jpg
+3.pgm VOZKA_Vlastimil_F201011230128601.jpg
+4.pgm VOZKA_Vlastimil_F201011230220201.jpg
+5.pgm VOZKA_Vlastimil_F201011230128201.jpg
+6.pgm VOZKA_Vlastimil_F201011110187901.jpg
+7.pgm VOZKA_Vlastimil_FO02091475.jpg
+8.pgm VOZKA_Vlastimil_F201011230127901.jpg
+9.pgm VOZKA_Vlastimil_FO02075701.jpg
+10.pgm VOZKA_Vlastimil_F201011230128701.jpg
+11.pgm VOZKA_Vlastimil_F201011230127801.jpg
+Odchylka 0.00395064

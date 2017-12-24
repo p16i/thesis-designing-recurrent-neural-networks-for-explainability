@@ -1,0 +1,20 @@
+MLYNÁŘ_Vladimír
+1.pgm MLYNÁŘ_Vladimír_FO00091973.jpg
+2.pgm MLYNÁŘ_Vladimír_FO01229315.jpg
+3.pgm MLYNÁŘ_Vladimír_FO00521151.jpg
+4.pgm MLYNÁŘ_Vladimír_FO01233673.jpg
+5.pgm MLYNÁŘ_Vladimír_FO00418791.jpg
+6.pgm MLYNÁŘ_Vladimír_FO00096787.jpg
+7.pgm MLYNÁŘ_Vladimír_FO00519628.jpg
+8.pgm MLYNÁŘ_Vladimír_FO00089824.jpg
+9.pgm MLYNÁŘ_Vladimír_FO01224391.jpg
+10.pgm MLYNÁŘ_Vladimír_FO00017790.jpg
+11.pgm MLYNÁŘ_Vladimír_FO00166874.jpg
+12.pgm MLYNÁŘ_Vladimír_FO01233671.jpg
+13.pgm MLYNÁŘ_Vladimír_FO00061720.jpg
+14.pgm MLYNÁŘ_Vladimír_FO01233672.jpg
+15.pgm MLYNÁŘ_Vladimír_FO01024446.jpg
+16.pgm MLYNÁŘ_Vladimír_FO01224390.jpg
+17.pgm MLYNÁŘ_Vladimír_FO00529372.jpg
+18.pgm MLYNÁŘ_Vladimír_FO01024447.jpg
+Odchylka 0.0175496

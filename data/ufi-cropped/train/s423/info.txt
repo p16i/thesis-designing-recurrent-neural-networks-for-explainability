@@ -1,0 +1,12 @@
+RENČ_Filip
+1.pgm RENČ_Filip_FO00373052.jpg
+2.pgm RENČ_Filip_F201107120189401.jpg
+3.pgm RENČ_Filip_F201206140222701.jpg
+4.pgm RENČ_Filip_FO00330656.jpg
+5.pgm RENČ_Filip_FO00242428.jpg
+6.pgm RENČ_Filip_F201107120189101.jpg
+7.pgm RENČ_Filip_FO02071021.jpg
+8.pgm RENČ_Filip_FO00241425.jpg
+9.pgm RENČ_Filip_FO03015195.jpg
+10.pgm RENČ_Filip_F201201040237301.jpg
+Odchylka 0.013929

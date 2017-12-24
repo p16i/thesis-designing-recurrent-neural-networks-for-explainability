@@ -39,7 +39,7 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
     logging.debug('Training %d columns at a time' % no_input_cols)
     logging.debug('Optimizer %s' % optimizer)
 
-    dag = NETWORKS[network].Dag(no_input_cols, dims, max_seq_length, architecture, optimizer)
+    dag = NETWORKS[network].Dag(no_input_cols, dims, max_seq_length, architecture, optimizer, data.no_classes)
 
     with tf.Session() as sess:
         sess.run(dag.init_op)
@@ -48,7 +48,7 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
             logging.debug('epoch %d' % (i + 1))
             for bx, by in data.train2d.get_batch(no_batch=batch):
 
-                rx0 = np.zeros((batch, architecture.recur))
+                rx0 = np.zeros((bx.shape[0], architecture.recur))
                 sess.run(dag.train_op,
                          feed_dict={dag.x: bx, dag.y_target: by, dag.rx: rx0, dag.lr: lr,
                                     dag.keep_prob: keep_prob, dag.regularizer: regularizer})

@@ -1,0 +1,11 @@
+RABAS_Michal
+1.pgm RABAS_Michal_FO01302403.jpg
+2.pgm RABAS_Michal_FO00232438.jpg
+3.pgm RABAS_Michal_FO01185575.jpg
+4.pgm RABAS_Michal_FO01286237.jpg
+5.pgm RABAS_Michal_FO01302406.jpg
+6.pgm RABAS_Michal_P200711100215901.jpg
+7.pgm RABAS_Michal_FO01302401.jpg
+8.pgm RABAS_Michal_FO01188318.jpg
+9.pgm RABAS_Michal_P200711100226601.jpg
+Odchylka 0.00873022

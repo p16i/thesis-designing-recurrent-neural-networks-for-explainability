@@ -1,0 +1,13 @@
+BUSH_George_Walker
+1.pgm BUSH_George_Walker_FO01234833.jpg
+2.pgm BUSH_George_Walker_FO00485843.jpg
+3.pgm BUSH_George_Walker_FO00406130.jpg
+4.pgm BUSH_George_Walker_FO01246734.jpg
+5.pgm BUSH_George_Walker_FO00216373.jpg
+6.pgm BUSH_George_Walker_FO00364382.jpg
+7.pgm BUSH_George_Walker_FO00345928.jpg
+8.pgm BUSH_George_Walker_FO00220304.jpg
+9.pgm BUSH_George_Walker_FO00468313.jpg
+10.pgm BUSH_George_Walker_FO00318561.jpg
+11.pgm BUSH_George_Walker_FO00318562.jpg
+Odchylka 0.0292957

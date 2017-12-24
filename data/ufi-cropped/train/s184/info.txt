@@ -1,0 +1,12 @@
+KUBÍČEK_Kolja
+1.pgm KUBÍČEK_Kolja_FO00075445.jpg
+2.pgm KUBÍČEK_Kolja_FO00442437.jpg
+3.pgm KUBÍČEK_Kolja_P200904240974001.jpg
+4.pgm KUBÍČEK_Kolja_FO01146199.jpg
+5.pgm KUBÍČEK_Kolja_P200904240986601.jpg
+6.pgm KUBÍČEK_Kolja_FO01306405.jpg
+7.pgm KUBÍČEK_Kolja_FO00531558.jpg
+8.pgm KUBÍČEK_Kolja_FO01305879.jpg
+9.pgm KUBÍČEK_Kolja_FO00531563.jpg
+10.pgm KUBÍČEK_Kolja_FO01168081.jpg
+Odchylka 0.0202788

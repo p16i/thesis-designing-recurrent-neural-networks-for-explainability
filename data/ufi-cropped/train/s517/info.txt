@@ -1,0 +1,20 @@
+DZÚR_Martin
+1.pgm DZÚR_Martin_FO01080866.jpg
+2.pgm DZÚR_Martin_P201210110449501.jpg
+3.pgm DZÚR_Martin_FO01080871.jpg
+4.pgm DZÚR_Martin_FO00248107.jpg
+5.pgm DZÚR_Martin_FO01080885.jpg
+6.pgm DZÚR_Martin_FO00248104.jpg
+7.pgm DZÚR_Martin_FO01080884.jpg
+8.pgm DZÚR_Martin_FO01080879.jpg
+9.pgm DZÚR_Martin_FO01080878.jpg
+10.pgm DZÚR_Martin_FO01080865.jpg
+11.pgm DZÚR_Martin_FO00248106.jpg
+12.pgm DZÚR_Martin_FO00127357.jpg
+13.pgm DZÚR_Martin_FO01080864.jpg
+14.pgm DZÚR_Martin_FO01080872.jpg
+15.pgm DZÚR_Martin_FO01080876.jpg
+16.pgm DZÚR_Martin_FO01080883.jpg
+17.pgm DZÚR_Martin_FO01080873.jpg
+18.pgm DZÚR_Martin_FO01080877.jpg
+Odchylka 0.045488

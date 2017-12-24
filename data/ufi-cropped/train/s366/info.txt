@@ -1,0 +1,15 @@
+PAVLÁTOVÁ_Michaela
+1.pgm PAVLÁTOVÁ_Michaela_FO00007001.jpg
+2.pgm PAVLÁTOVÁ_Michaela_FO00007021.jpg
+3.pgm PAVLÁTOVÁ_Michaela_FO00007015.jpg
+4.pgm PAVLÁTOVÁ_Michaela_FO00006998.jpg
+5.pgm PAVLÁTOVÁ_Michaela_FO00168446.jpg
+6.pgm PAVLÁTOVÁ_Michaela_FO00007009.jpg
+7.pgm PAVLÁTOVÁ_Michaela_FO00168443.jpg
+8.pgm PAVLÁTOVÁ_Michaela_FO00094490.jpg
+9.pgm PAVLÁTOVÁ_Michaela_FO00285119.jpg
+10.pgm PAVLÁTOVÁ_Michaela_FO00007022.jpg
+11.pgm PAVLÁTOVÁ_Michaela_FO00007019.jpg
+12.pgm PAVLÁTOVÁ_Michaela_FO00007006.jpg
+13.pgm PAVLÁTOVÁ_Michaela_FO00168441.jpg
+Odchylka 0.0530842

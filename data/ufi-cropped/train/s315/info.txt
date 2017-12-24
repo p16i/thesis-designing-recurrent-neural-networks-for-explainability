@@ -1,0 +1,12 @@
+TŘEŠŇÁK_Vlastimil
+1.pgm TŘEŠŇÁK_Vlastimil_P201004130413401.jpg
+2.pgm TŘEŠŇÁK_Vlastimil_P201004130414701.jpg
+3.pgm TŘEŠŇÁK_Vlastimil_P201004130408801.jpg
+4.pgm TŘEŠŇÁK_Vlastimil_P201004130409401.jpg
+5.pgm TŘEŠŇÁK_Vlastimil_F200906290218001.jpg
+6.pgm TŘEŠŇÁK_Vlastimil_P201004130412101.jpg
+7.pgm TŘEŠŇÁK_Vlastimil_P201004130409201.jpg
+8.pgm TŘEŠŇÁK_Vlastimil_P201004130414001.jpg
+9.pgm TŘEŠŇÁK_Vlastimil_FO01077212.jpg
+10.pgm TŘEŠŇÁK_Vlastimil_P201004130413601.jpg
+Odchylka 0.0228421

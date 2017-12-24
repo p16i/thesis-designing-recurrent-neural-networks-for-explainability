@@ -1,0 +1,23 @@
+KOHL_Helmut
+1.pgm KOHL_Helmut_FO00424082.jpg
+2.pgm KOHL_Helmut_FO00166050.jpg
+3.pgm KOHL_Helmut_FO00152059.jpg
+4.pgm KOHL_Helmut_FO00148485.jpg
+5.pgm KOHL_Helmut_FO00063522.jpg
+6.pgm KOHL_Helmut_FO00281864.jpg
+7.pgm KOHL_Helmut_P200911020552701.jpg
+8.pgm KOHL_Helmut_FO00008779.jpg
+9.pgm KOHL_Helmut_FO01367090.jpg
+10.pgm KOHL_Helmut_FO00165918.jpg
+11.pgm KOHL_Helmut_FO00102510.jpg
+12.pgm KOHL_Helmut_P200912080838101.jpg
+13.pgm KOHL_Helmut_FO00156807.jpg
+14.pgm KOHL_Helmut_FO00177084.jpg
+15.pgm KOHL_Helmut_FO00166025.jpg
+16.pgm KOHL_Helmut_P200910310319901.jpg
+17.pgm KOHL_Helmut_FO00353773.jpg
+18.pgm KOHL_Helmut_P200911020553201.jpg
+19.pgm KOHL_Helmut_FO03019312.jpg
+20.pgm KOHL_Helmut_FO01190390.jpg
+21.pgm KOHL_Helmut_FO00076049.jpg
+Odchylka 0.0431075

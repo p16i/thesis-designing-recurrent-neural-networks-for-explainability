@@ -1,0 +1,22 @@
+VRÁNOVÁ_Gabriela
+1.pgm VRÁNOVÁ_Gabriela_FO01129164.jpg
+2.pgm VRÁNOVÁ_Gabriela_FO00440983.jpg
+3.pgm VRÁNOVÁ_Gabriela_F200907090157701.jpg
+4.pgm VRÁNOVÁ_Gabriela_F200907090157201.jpg
+5.pgm VRÁNOVÁ_Gabriela_FO01129165.jpg
+6.pgm VRÁNOVÁ_Gabriela_F200712040092701.jpg
+7.pgm VRÁNOVÁ_Gabriela_F200907090157401.jpg
+8.pgm VRÁNOVÁ_Gabriela_F200907090157501.jpg
+9.pgm VRÁNOVÁ_Gabriela_FO00128584.jpg
+10.pgm VRÁNOVÁ_Gabriela_FO00483510.jpg
+11.pgm VRÁNOVÁ_Gabriela_F200907090157601.jpg
+12.pgm VRÁNOVÁ_Gabriela_F200907090157801.jpg
+13.pgm VRÁNOVÁ_Gabriela_FO00054914.jpg
+14.pgm VRÁNOVÁ_Gabriela_FO00128580.jpg
+15.pgm VRÁNOVÁ_Gabriela_FO00128582.jpg
+16.pgm VRÁNOVÁ_Gabriela_FO00041508.jpg
+17.pgm VRÁNOVÁ_Gabriela_FO00113430.jpg
+18.pgm VRÁNOVÁ_Gabriela_F200712040096001.jpg
+19.pgm VRÁNOVÁ_Gabriela_F200907090158101.jpg
+20.pgm VRÁNOVÁ_Gabriela_FO00313309.jpg
+Odchylka 0.0157634

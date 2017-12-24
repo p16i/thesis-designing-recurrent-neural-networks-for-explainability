@@ -1,0 +1,22 @@
+KOŽENÝ_Viktor
+1.pgm KOŽENÝ_Viktor_FO02031524.jpg
+2.pgm KOŽENÝ_Viktor_F201205180332701.jpg
+3.pgm KOŽENÝ_Viktor_FO01341491.jpg
+4.pgm KOŽENÝ_Viktor_FO02022089.jpg
+5.pgm KOŽENÝ_Viktor_FO01341158.jpg
+6.pgm KOŽENÝ_Viktor_FO00049283.jpg
+7.pgm KOŽENÝ_Viktor_FO01341490.jpg
+8.pgm KOŽENÝ_Viktor_FO02122526.jpg
+9.pgm KOŽENÝ_Viktor_FO00008676.jpg
+10.pgm KOŽENÝ_Viktor_FO01306494.jpg
+11.pgm KOŽENÝ_Viktor_FO02004379.jpg
+12.pgm KOŽENÝ_Viktor_FO02031523.jpg
+13.pgm KOŽENÝ_Viktor_FO02108746.jpg
+14.pgm KOŽENÝ_Viktor_FO00022570.jpg
+15.pgm KOŽENÝ_Viktor_FO00369655.jpg
+16.pgm KOŽENÝ_Viktor_FO02031521.jpg
+17.pgm KOŽENÝ_Viktor_FO00022567.jpg
+18.pgm KOŽENÝ_Viktor_FO01092572.jpg
+19.pgm KOŽENÝ_Viktor_FO02051343.jpg
+20.pgm KOŽENÝ_Viktor_FO01341157.jpg
+Odchylka 0.0155141

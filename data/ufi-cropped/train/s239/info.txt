@@ -1,0 +1,12 @@
+JAKL_Ladislav
+1.pgm JAKL_Ladislav_F201210051013001.jpg
+2.pgm JAKL_Ladislav_F201209211183401.jpg
+3.pgm JAKL_Ladislav_F201210051015001.jpg
+4.pgm JAKL_Ladislav_FO01271788.jpg
+5.pgm JAKL_Ladislav_F201210051012801.jpg
+6.pgm JAKL_Ladislav_F200908250176401.jpg
+7.pgm JAKL_Ladislav_F201210051015401.jpg
+8.pgm JAKL_Ladislav_F201210051011301.jpg
+9.pgm JAKL_Ladislav_FO02020903.jpg
+10.pgm JAKL_Ladislav_F201210051015101.jpg
+Odchylka 0.0210631

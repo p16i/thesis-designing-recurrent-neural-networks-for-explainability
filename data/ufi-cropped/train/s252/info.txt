@@ -1,0 +1,22 @@
+REMEK_Vladimír
+1.pgm REMEK_Vladimír_FO00482439.jpg
+2.pgm REMEK_Vladimír_F200803030056101.jpg
+3.pgm REMEK_Vladimír_FO00019704.jpg
+4.pgm REMEK_Vladimír_FO00482438.jpg
+5.pgm REMEK_Vladimír_FO00485919.jpg
+6.pgm REMEK_Vladimír_FO00485918.jpg
+7.pgm REMEK_Vladimír_FO00112684.jpg
+8.pgm REMEK_Vladimír_FO00482581.jpg
+9.pgm REMEK_Vladimír_FO00513267.jpg
+10.pgm REMEK_Vladimír_FO00482441.jpg
+11.pgm REMEK_Vladimír_FO00075377.jpg
+12.pgm REMEK_Vladimír_FO00513265.jpg
+13.pgm REMEK_Vladimír_FO00482440.jpg
+14.pgm REMEK_Vladimír_FO00485920.jpg
+15.pgm REMEK_Vladimír_FO00485549.jpg
+16.pgm REMEK_Vladimír_F201106090085601.jpg
+17.pgm REMEK_Vladimír_FO00434727.jpg
+18.pgm REMEK_Vladimír_FO00507559.jpg
+19.pgm REMEK_Vladimír_FO00507558.jpg
+20.pgm REMEK_Vladimír_FO01311204.jpg
+Odchylka 0.0123135

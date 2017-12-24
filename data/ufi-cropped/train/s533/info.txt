@@ -1,0 +1,15 @@
+FILIPOVSKÝ_František
+1.pgm FILIPOVSKÝ_František_FO00412633.jpg
+2.pgm FILIPOVSKÝ_František_FO00412630.jpg
+3.pgm FILIPOVSKÝ_František_FO00412629.jpg
+4.pgm FILIPOVSKÝ_František_FO00412368.jpg
+5.pgm FILIPOVSKÝ_František_FO00412367.jpg
+6.pgm FILIPOVSKÝ_František_FO00412370.jpg
+7.pgm FILIPOVSKÝ_František_FO00049931.jpg
+8.pgm FILIPOVSKÝ_František_FO00412628.jpg
+9.pgm FILIPOVSKÝ_František_FO00412369.jpg
+10.pgm FILIPOVSKÝ_František_FO00103310.jpg
+11.pgm FILIPOVSKÝ_František_FO00412366.jpg
+12.pgm FILIPOVSKÝ_František_FO00412365.jpg
+13.pgm FILIPOVSKÝ_František_FO01258666.jpg
+Odchylka 0.0389434

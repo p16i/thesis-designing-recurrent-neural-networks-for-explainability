@@ -1,0 +1,14 @@
+HARACH_Ľubomír
+1.pgm HARACH_Ľubomír_FO00138961.jpg
+2.pgm HARACH_Ľubomír_FO00201635.jpg
+3.pgm HARACH_Ľubomír_FO00180731.jpg
+4.pgm HARACH_Ľubomír_FO00138847.jpg
+5.pgm HARACH_Ľubomír_FO00369336.jpg
+6.pgm HARACH_Ľubomír_FO00349261.jpg
+7.pgm HARACH_Ľubomír_FO00399826.jpg
+8.pgm HARACH_Ľubomír_FO00163953.jpg
+9.pgm HARACH_Ľubomír_FO00138381.jpg
+10.pgm HARACH_Ľubomír_FO00337363.jpg
+11.pgm HARACH_Ľubomír_FO00382176.jpg
+12.pgm HARACH_Ľubomír_FO00138430.jpg
+Odchylka 0.0141956

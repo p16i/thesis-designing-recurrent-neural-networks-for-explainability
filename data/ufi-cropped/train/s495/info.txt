@@ -1,0 +1,25 @@
+RÖGNEROVÁ_Helena
+1.pgm RÖGNEROVÁ_Helena_FO00195756.jpg
+2.pgm RÖGNEROVÁ_Helena_FO00217709.jpg
+3.pgm RÖGNEROVÁ_Helena_FO01126118.jpg
+4.pgm RÖGNEROVÁ_Helena_FO00139526.jpg
+5.pgm RÖGNEROVÁ_Helena_FO00141561.jpg
+6.pgm RÖGNEROVÁ_Helena_FO00195281.jpg
+7.pgm RÖGNEROVÁ_Helena_FO01115774.jpg
+8.pgm RÖGNEROVÁ_Helena_FO00092761.jpg
+9.pgm RÖGNEROVÁ_Helena_FO00215182.jpg
+10.pgm RÖGNEROVÁ_Helena_FO00208333.jpg
+11.pgm RÖGNEROVÁ_Helena_FO00215342.jpg
+12.pgm RÖGNEROVÁ_Helena_FO00219364.jpg
+13.pgm RÖGNEROVÁ_Helena_FO01105059.jpg
+14.pgm RÖGNEROVÁ_Helena_FO00139458.jpg
+15.pgm RÖGNEROVÁ_Helena_FO00511446.jpg
+16.pgm RÖGNEROVÁ_Helena_FO00141814.jpg
+17.pgm RÖGNEROVÁ_Helena_FO00208568.jpg
+18.pgm RÖGNEROVÁ_Helena_FO01126325.jpg
+19.pgm RÖGNEROVÁ_Helena_FO00210575.jpg
+20.pgm RÖGNEROVÁ_Helena_FO00208362.jpg
+21.pgm RÖGNEROVÁ_Helena_FO01105060.jpg
+22.pgm RÖGNEROVÁ_Helena_FO00209955.jpg
+23.pgm RÖGNEROVÁ_Helena_FO01115775.jpg
+Odchylka 0.0194226

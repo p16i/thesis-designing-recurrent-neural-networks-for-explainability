@@ -1,0 +1,11 @@
+KUBIŠ_Ján
+1.pgm KUBIŠ_Ján_FO02101705.jpg
+2.pgm KUBIŠ_Ján_FO02073393.jpg
+3.pgm KUBIŠ_Ján_FO02030904.jpg
+4.pgm KUBIŠ_Ján_FO02030905.jpg
+5.pgm KUBIŠ_Ján_FO02026874.jpg
+6.pgm KUBIŠ_Ján_FO02073394.jpg
+7.pgm KUBIŠ_Ján_FO02102827.jpg
+8.pgm KUBIŠ_Ján_FO02026875.jpg
+9.pgm KUBIŠ_Ján_FO00440156.jpg
+Odchylka 0.0220056

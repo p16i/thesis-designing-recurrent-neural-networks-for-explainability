@@ -1,0 +1,12 @@
+BIĽAK_Vasil
+1.pgm BIĽAK_Vasil_FO00244416.jpg
+2.pgm BIĽAK_Vasil_FO00165284.jpg
+3.pgm BIĽAK_Vasil_FO00165272.jpg
+4.pgm BIĽAK_Vasil_FO00430537.jpg
+5.pgm BIĽAK_Vasil_FO00428860.jpg
+6.pgm BIĽAK_Vasil_FO00403090.jpg
+7.pgm BIĽAK_Vasil_FO00165269.jpg
+8.pgm BIĽAK_Vasil_FO00167504.jpg
+9.pgm BIĽAK_Vasil_FO00078594.jpg
+10.pgm BIĽAK_Vasil_FO00167498.jpg
+Odchylka 0.0973076

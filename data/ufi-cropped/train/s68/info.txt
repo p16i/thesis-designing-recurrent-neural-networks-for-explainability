@@ -1,0 +1,12 @@
+BEDNÁŘ_Josef
+1.pgm BEDNÁŘ_Josef_FO00503651.jpg
+2.pgm BEDNÁŘ_Josef_FO00503652.jpg
+3.pgm BEDNÁŘ_Josef_FO00109528.jpg
+4.pgm BEDNÁŘ_Josef_FO01166862.jpg
+5.pgm BEDNÁŘ_Josef_FO01101152.jpg
+6.pgm BEDNÁŘ_Josef_FO00283069.jpg
+7.pgm BEDNÁŘ_Josef_FO01077559.jpg
+8.pgm BEDNÁŘ_Josef_FO00284438.jpg
+9.pgm BEDNÁŘ_Josef_FO01166863.jpg
+10.pgm BEDNÁŘ_Josef_FO01077560.jpg
+Odchylka 0.0272963

@@ -1,0 +1,25 @@
+ŠEDIVÝ_Jiří
+1.pgm ŠEDIVÝ_Jiří_FO00113212.jpg
+2.pgm ŠEDIVÝ_Jiří_FO00437018.jpg
+3.pgm ŠEDIVÝ_Jiří_FO00113175.jpg
+4.pgm ŠEDIVÝ_Jiří_FO00127464.jpg
+5.pgm ŠEDIVÝ_Jiří_FO02064140.jpg
+6.pgm ŠEDIVÝ_Jiří_FO00319904.jpg
+7.pgm ŠEDIVÝ_Jiří_FO00113213.jpg
+8.pgm ŠEDIVÝ_Jiří_FO00420876.jpg
+9.pgm ŠEDIVÝ_Jiří_FO02055152.jpg
+10.pgm ŠEDIVÝ_Jiří_FO00420874.jpg
+11.pgm ŠEDIVÝ_Jiří_P201208080442601.jpg
+12.pgm ŠEDIVÝ_Jiří_F201008300492001.jpg
+13.pgm ŠEDIVÝ_Jiří_F201008300494101.jpg
+14.pgm ŠEDIVÝ_Jiří_FO00511774.jpg
+15.pgm ŠEDIVÝ_Jiří_FO00113209.jpg
+16.pgm ŠEDIVÝ_Jiří_FO00083360.jpg
+17.pgm ŠEDIVÝ_Jiří_FO00127920.jpg
+18.pgm ŠEDIVÝ_Jiří_FO00175315.jpg
+19.pgm ŠEDIVÝ_Jiří_F201008300493001.jpg
+20.pgm ŠEDIVÝ_Jiří_FO00053398.jpg
+21.pgm ŠEDIVÝ_Jiří_FO00173396.jpg
+22.pgm ŠEDIVÝ_Jiří_FO00055571.jpg
+23.pgm ŠEDIVÝ_Jiří_FO00055578.jpg
+Odchylka 0.0233824

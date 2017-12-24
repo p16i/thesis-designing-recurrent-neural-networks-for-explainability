@@ -1,0 +1,16 @@
+KOPŘIVA_Jaroslav
+1.pgm KOPŘIVA_Jaroslav_FO00209393.jpg
+2.pgm KOPŘIVA_Jaroslav_FO00177009.jpg
+3.pgm KOPŘIVA_Jaroslav_FO00290758.jpg
+4.pgm KOPŘIVA_Jaroslav_FO01042407.jpg
+5.pgm KOPŘIVA_Jaroslav_FO00177008.jpg
+6.pgm KOPŘIVA_Jaroslav_FO00305481.jpg
+7.pgm KOPŘIVA_Jaroslav_FO00290760.jpg
+8.pgm KOPŘIVA_Jaroslav_FO00242930.jpg
+9.pgm KOPŘIVA_Jaroslav_FO00242932.jpg
+10.pgm KOPŘIVA_Jaroslav_FO00037831.jpg
+11.pgm KOPŘIVA_Jaroslav_FO00225609.jpg
+12.pgm KOPŘIVA_Jaroslav_FO00031440.jpg
+13.pgm KOPŘIVA_Jaroslav_FO00305480.jpg
+14.pgm KOPŘIVA_Jaroslav_FO00290759.jpg
+Odchylka 0.0233478

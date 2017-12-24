@@ -1,0 +1,14 @@
+RŮŽIČKOVÁ_Helena
+1.pgm RŮŽIČKOVÁ_Helena_FO00287067.jpg
+2.pgm RŮŽIČKOVÁ_Helena_FO01024230.jpg
+3.pgm RŮŽIČKOVÁ_Helena_FO00342486.jpg
+4.pgm RŮŽIČKOVÁ_Helena_FO00287075.jpg
+5.pgm RŮŽIČKOVÁ_Helena_FO01024231.jpg
+6.pgm RŮŽIČKOVÁ_Helena_FO00521867.jpg
+7.pgm RŮŽIČKOVÁ_Helena_FO00307966.jpg
+8.pgm RŮŽIČKOVÁ_Helena_FO00287070.jpg
+9.pgm RŮŽIČKOVÁ_Helena_FO00350345.jpg
+10.pgm RŮŽIČKOVÁ_Helena_FO00287072.jpg
+11.pgm RŮŽIČKOVÁ_Helena_FO00307965.jpg
+12.pgm RŮŽIČKOVÁ_Helena_FO00523171.jpg
+Odchylka 0.0518372

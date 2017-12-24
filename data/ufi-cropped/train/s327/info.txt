@@ -1,0 +1,13 @@
+BUSHOVÁ_Laura
+1.pgm BUSHOVÁ_Laura_FO01152416.jpg
+2.pgm BUSHOVÁ_Laura_FO00314064.jpg
+3.pgm BUSHOVÁ_Laura_FO01234833.jpg
+4.pgm BUSHOVÁ_Laura_FO00401113.jpg
+5.pgm BUSHOVÁ_Laura_FO00360755.jpg
+6.pgm BUSHOVÁ_Laura_FO00378692.jpg
+7.pgm BUSHOVÁ_Laura_FO01253036.jpg
+8.pgm BUSHOVÁ_Laura_FO01229852.jpg
+9.pgm BUSHOVÁ_Laura_FO01307310.jpg
+10.pgm BUSHOVÁ_Laura_FO01134559.jpg
+11.pgm BUSHOVÁ_Laura_FO00401112.jpg
+Odchylka 0.0297029

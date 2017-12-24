@@ -1,0 +1,13 @@
+HVÍŽĎALA_Karel
+1.pgm HVÍŽĎALA_Karel_F201104050632801.jpg
+2.pgm HVÍŽĎALA_Karel_FO00523813.jpg
+3.pgm HVÍŽĎALA_Karel_FO01079956.jpg
+4.pgm HVÍŽĎALA_Karel_F201108110191601.jpg
+5.pgm HVÍŽĎALA_Karel_FO00304381.jpg
+6.pgm HVÍŽĎALA_Karel_FO01084471.jpg
+7.pgm HVÍŽĎALA_Karel_FO01084468.jpg
+8.pgm HVÍŽĎALA_Karel_F200802070176601.jpg
+9.pgm HVÍŽĎALA_Karel_FO01084472.jpg
+10.pgm HVÍŽĎALA_Karel_FO01130221.jpg
+11.pgm HVÍŽĎALA_Karel_F201108110193001.jpg
+Odchylka 0.0171317

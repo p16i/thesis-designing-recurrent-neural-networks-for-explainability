@@ -1,0 +1,16 @@
+KŇAŽKO_Milan
+1.pgm KŇAŽKO_Milan_FO00485045.jpg
+2.pgm KŇAŽKO_Milan_FO00210251.jpg
+3.pgm KŇAŽKO_Milan_FO00457207.jpg
+4.pgm KŇAŽKO_Milan_FO00141136.jpg
+5.pgm KŇAŽKO_Milan_FO00007893.jpg
+6.pgm KŇAŽKO_Milan_FO00007897.jpg
+7.pgm KŇAŽKO_Milan_FO00022234.jpg
+8.pgm KŇAŽKO_Milan_FO00487636.jpg
+9.pgm KŇAŽKO_Milan_FO00499918.jpg
+10.pgm KŇAŽKO_Milan_FO00042208.jpg
+11.pgm KŇAŽKO_Milan_FO00007892.jpg
+12.pgm KŇAŽKO_Milan_FO00007912.jpg
+13.pgm KŇAŽKO_Milan_FO00007909.jpg
+14.pgm KŇAŽKO_Milan_FO02107642.jpg
+Odchylka 0.0186204

@@ -1,0 +1,12 @@
+FIALKA_Ladislav
+1.pgm FIALKA_Ladislav_FO00312476.jpg
+2.pgm FIALKA_Ladislav_FO00312464.jpg
+3.pgm FIALKA_Ladislav_FO00312451.jpg
+4.pgm FIALKA_Ladislav_FO00312852.jpg
+5.pgm FIALKA_Ladislav_FO00312853.jpg
+6.pgm FIALKA_Ladislav_FO00312855.jpg
+7.pgm FIALKA_Ladislav_FO00312469.jpg
+8.pgm FIALKA_Ladislav_FO00312494.jpg
+9.pgm FIALKA_Ladislav_FO00312854.jpg
+10.pgm FIALKA_Ladislav_FO00312856.jpg
+Odchylka 0.0436667

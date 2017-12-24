@@ -1,0 +1,13 @@
+VESECKÁ_Renata
+1.pgm VESECKÁ_Renata_FO02046163.jpg
+2.pgm VESECKÁ_Renata_FO01321574.jpg
+3.pgm VESECKÁ_Renata_FO01298609.jpg
+4.pgm VESECKÁ_Renata_FO02046165.jpg
+5.pgm VESECKÁ_Renata_FO02091100.jpg
+6.pgm VESECKÁ_Renata_FO02091098.jpg
+7.pgm VESECKÁ_Renata_FO01023641.jpg
+8.pgm VESECKÁ_Renata_FO01321575.jpg
+9.pgm VESECKÁ_Renata_P200911100301401.jpg
+10.pgm VESECKÁ_Renata_FO02091101.jpg
+11.pgm VESECKÁ_Renata_P201008220240001.jpg
+Odchylka 0.128971

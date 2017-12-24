@@ -1,0 +1,17 @@
+PALAS_Jaroslav
+1.pgm PALAS_Jaroslav_FO00469767.jpg
+2.pgm PALAS_Jaroslav_FO00096624.jpg
+3.pgm PALAS_Jaroslav_P200901090820501.jpg
+4.pgm PALAS_Jaroslav_FO00476109.jpg
+5.pgm PALAS_Jaroslav_FO02048948.jpg
+6.pgm PALAS_Jaroslav_P200901090825401.jpg
+7.pgm PALAS_Jaroslav_FO00418571.jpg
+8.pgm PALAS_Jaroslav_FO00420934.jpg
+9.pgm PALAS_Jaroslav_FO01083630.jpg
+10.pgm PALAS_Jaroslav_FO01082521.jpg
+11.pgm PALAS_Jaroslav_FO01012777.jpg
+12.pgm PALAS_Jaroslav_FO01082520.jpg
+13.pgm PALAS_Jaroslav_P200811050881901.jpg
+14.pgm PALAS_Jaroslav_FO00460461.jpg
+15.pgm PALAS_Jaroslav_FO00468089.jpg
+Odchylka 0.0166059

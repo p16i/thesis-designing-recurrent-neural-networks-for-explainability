@@ -1,0 +1,12 @@
+DVOŘÁK_Daniel
+1.pgm DVOŘÁK_Daniel_FO00021837.jpg
+2.pgm DVOŘÁK_Daniel_FO01207473.jpg
+3.pgm DVOŘÁK_Daniel_F201101190329401.jpg
+4.pgm DVOŘÁK_Daniel_FO00480778.jpg
+5.pgm DVOŘÁK_Daniel_FO01222583.jpg
+6.pgm DVOŘÁK_Daniel_FO00419159.jpg
+7.pgm DVOŘÁK_Daniel_P200912140629901.jpg
+8.pgm DVOŘÁK_Daniel_FO00328168.jpg
+9.pgm DVOŘÁK_Daniel_FO00459147.jpg
+10.pgm DVOŘÁK_Daniel_FO00419161.jpg
+Odchylka 0.011805

@@ -1,0 +1,13 @@
+VETCHÝ_Ondřej
+1.pgm VETCHÝ_Ondřej_FO01024453.jpg
+2.pgm VETCHÝ_Ondřej_FO00217883.jpg
+3.pgm VETCHÝ_Ondřej_FO00042977.jpg
+4.pgm VETCHÝ_Ondřej_FO00313323.jpg
+5.pgm VETCHÝ_Ondřej_F201112300139201.jpg
+6.pgm VETCHÝ_Ondřej_FO00060859.jpg
+7.pgm VETCHÝ_Ondřej_FO00488596.jpg
+8.pgm VETCHÝ_Ondřej_FO00272321.jpg
+9.pgm VETCHÝ_Ondřej_FO01167447.jpg
+10.pgm VETCHÝ_Ondřej_FO01291836.jpg
+11.pgm VETCHÝ_Ondřej_FO00056292.jpg
+Odchylka 0.0113051

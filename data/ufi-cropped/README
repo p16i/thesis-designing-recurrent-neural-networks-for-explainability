@@ -1,0 +1,25 @@
+==========================================================================================================
+       Unconstrained Facial Images (UFI): Database for Face Recognition under Real-world Conditions  v 1.0
+==========================================================================================================
+
+BASIC INFORMATION
+--------------------
+Unconstrained Facial Images (UFI): Database is a set of real-world photographs randomly selected from the large photobank (http://multimedia.ctk.cz/en/foto/) of the Czech News Agency (http://www.ctk.eu). This database is mainly intended to be used for benchmarking of the face identification methods, however it is possible to use this corpus in many related tasks (e.g. face detection, verification, etc.). It is composed of the images of individuals taken in uncontrolled environment. All images were obtained during a long time period (20 years or more). Two different partitions are available. 
+
+Cropped Images Dataset
+------------------------
+The first one contains the cropped faces that were automatically extracted from the photographs using the Viola-Jones algorithm. The face size is thus almost uniform and the images contain just a small portion of background. This set contains images of 605 people with an average of 7.1 images per person in the training set and one in the test set. The images are cropped to a size of 128 x 128 pixels.
+
+Large Images Dataset
+------------------------
+The images in the second partition, hereafter reported as Large images dataset, have more background, the face size also significantly differs and the faces are not localized. The purpose of this set is to evaluate and compare complete face recognition systems where the face detection and extraction is included. The total number of the subjects in this partition is 530 and an average number/person of training images is 8.2. The size of images in this partition is 384 x 384 pixels.
+
+This corpus is available only for research purposes for free. Commercial use in any form is strictly excluded. 
+
+AUTHORS
+------------------------
+
+- Ladislav Lenc llenc(at)kiv.zcu.cz
+- Pavel Kral pkral(at)kiv.zcu.cz
+
+Date: October 5, 2015

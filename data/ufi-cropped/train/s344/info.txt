@@ -1,0 +1,15 @@
+KOŠTUNICA_Vojislav
+1.pgm KOŠTUNICA_Vojislav_FO00512525.jpg
+2.pgm KOŠTUNICA_Vojislav_FO00356428.jpg
+3.pgm KOŠTUNICA_Vojislav_P200803080322501.jpg
+4.pgm KOŠTUNICA_Vojislav_FO01083950.jpg
+5.pgm KOŠTUNICA_Vojislav_FO01087896.jpg
+6.pgm KOŠTUNICA_Vojislav_FO00337691.jpg
+7.pgm KOŠTUNICA_Vojislav_FO00180951.jpg
+8.pgm KOŠTUNICA_Vojislav_P200712190941501.jpg
+9.pgm KOŠTUNICA_Vojislav_FO02012626.jpg
+10.pgm KOŠTUNICA_Vojislav_FO00207398.jpg
+11.pgm KOŠTUNICA_Vojislav_FO01064675.jpg
+12.pgm KOŠTUNICA_Vojislav_FO00346635.jpg
+13.pgm KOŠTUNICA_Vojislav_FO00448464.jpg
+Odchylka 0.0155853

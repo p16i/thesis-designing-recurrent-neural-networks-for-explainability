@@ -1,0 +1,18 @@
+CLARK_Wesley
+1.pgm CLARK_Wesley_FO00164887.jpg
+2.pgm CLARK_Wesley_FO00160167.jpg
+3.pgm CLARK_Wesley_FO00117422.jpg
+4.pgm CLARK_Wesley_FO01081009.jpg
+5.pgm CLARK_Wesley_FO00075520.jpg
+6.pgm CLARK_Wesley_FO00067894.jpg
+7.pgm CLARK_Wesley_FO00115877.jpg
+8.pgm CLARK_Wesley_FO00163685.jpg
+9.pgm CLARK_Wesley_FO00046015.jpg
+10.pgm CLARK_Wesley_P200902130856001.jpg
+11.pgm CLARK_Wesley_FO00067892.jpg
+12.pgm CLARK_Wesley_FO00163671.jpg
+13.pgm CLARK_Wesley_FO00045751.jpg
+14.pgm CLARK_Wesley_P200902130862401.jpg
+15.pgm CLARK_Wesley_P200902130858001.jpg
+16.pgm CLARK_Wesley_FO00051374.jpg
+Odchylka 0.0296953

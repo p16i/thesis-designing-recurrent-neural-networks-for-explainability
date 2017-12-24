@@ -3,19 +3,19 @@ import logging
 import numpy as np
 from utils import logging as lg
 
-from utils import experiment_artifact
+from utils import experiment_artifact, data_provider
 lg.set_logging()
 
 
 class BaseDag:
-    def __init__(self, architecture, dims, max_seq_length, optimizer):
+    def __init__(self, architecture, dims, max_seq_length, optimizer, no_classes):
         tf.reset_default_graph()
 
         self.rx = tf.placeholder(tf.float32, shape=(None, architecture.recur), name='recurrent_input')
         self.x = tf.placeholder(tf.float32, shape=(None, dims, max_seq_length), name='input')
         self.x_with_channels = tf.expand_dims(self.x, -1)
 
-        self.y_target = tf.placeholder(tf.float32, [None, 10], name='output_target')
+        self.y_target = tf.placeholder(tf.float32, [None, no_classes], name='output_target')
         self.lr = tf.placeholder(tf.float32, name='lr')
         self.regularizer = tf.placeholder(tf.float32, name='regularizer')
         self.keep_prob = tf.placeholder(tf.float32, name='keep_prob')
@@ -33,7 +33,6 @@ class BaseDag:
         # lrp variables
         self.y_pred_reduced_1d = None
         self.total_relevance = None
-
 
     def setup_loss_and_opt(self):
         reg_term = tf.constant(0.0)
@@ -74,6 +73,9 @@ class BaseNetwork:
 
         self.experiment_artifact = artifact
         self._ = artifact
+
+        self.data_no_rows, self.data_no_cols = data_provider.get_data(self._.dataset).dims
+
         self.dag = None
         tf.reset_default_graph()
 
@@ -86,7 +88,7 @@ class BaseNetwork:
         return sess
 
     def compute_grad_wrt_x(self, x, debug=False):
-        x_3d = x.reshape(-1, 28, 28)
+        x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
         logging.info('Compute grad wrt. X shape %s' % (x_3d.shape,))
 
         with self.get_session() as sess:
@@ -110,7 +112,7 @@ class BaseNetwork:
         return pred, np.power(grad, 2)
 
     def rel_simple_taylor(self, x, debug=False):
-        x_3d = x.reshape(-1, 28, 28)
+        x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
 
         pred, grad = self.compute_grad_wrt_x(x_3d, debug)
 

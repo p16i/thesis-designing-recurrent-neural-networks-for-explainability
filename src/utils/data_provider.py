@@ -41,6 +41,8 @@ def get_data(data):
         return MNISTData()
     elif data == 'fashion-mnist':
         return FashionMNISTData()
+    elif data == 'ufi-cropped':
+        return UFICroppedData()
 
 
 class DataSet:
@@ -63,6 +65,9 @@ class MNISTData:
         x_test, y_test = get_mnist('test', dir_path=dir_path)
 
         x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, random_state=71)
+
+        self.no_classes = 10
+        self.dims = (28, 28)
 
         self.train = DataSet(x_train, y_train)
         self.val = DataSet(x_val, y_val)
@@ -88,6 +93,9 @@ class FashionMNISTData:
         x_test, y_test = get_mnist('test', dir_path=dir_path)
 
         x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, random_state=71)
+
+        self.dims = (28, 28)
+        self.no_classes = 10
 
         self.train = DataSet(x_train, y_train)
         self.val = DataSet(x_val, y_val)
@@ -118,3 +126,34 @@ class FashionMNISTData:
 
     def get_text_label(self, label_index):
         return self.labels[label_index]
+
+
+class UFICroppedData:
+    def __init__(self, dir_path='./data/ufi-cropped'):
+        x_train = np.load('%s/train-x.npy' % dir_path)
+        y_train = np.load('%s/train-y.npy' % dir_path)
+
+        x_test = np.load('%s/test-x.npy' % dir_path)
+        y_test = np.load('%s/test-y.npy' % dir_path)
+
+        x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, random_state=71)
+
+        self.dims = (128, 128)
+        self.no_classes = 605
+
+        self.train = DataSet(x_train, y_train)
+        self.val = DataSet(x_val, y_val)
+        self.test = DataSet(x_test, y_test)
+
+        self.train2d = DataSet(x_train.reshape(-1, self.dims[0], self.dims[1]), y_train)
+        self.val2d = DataSet(x_val.reshape(-1, self.dims[0], self.dims[1]), y_val)
+        self.test2d = DataSet(x_test.reshape(-1, self.dims[0], self.dims[1]), y_test)
+
+    def get_samples_for_vis(self, n=12):
+
+        indices = [2785, 2973, 57, 906, 393, 3666, 3502, 1222, 731, 2659, 3400, 656]
+
+        return self.test2d.x[indices, :], self.test2d.y[indices]
+
+    def get_text_label(self, label_index):
+        return 'Person %d' % label_index

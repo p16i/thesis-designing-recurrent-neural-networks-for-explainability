@@ -1,0 +1,17 @@
+BERDÁR_Gabriel
+1.pgm BERDÁR_Gabriel_FO01031943.jpg
+2.pgm BERDÁR_Gabriel_FO01262107.jpg
+3.pgm BERDÁR_Gabriel_FO01031944.jpg
+4.pgm BERDÁR_Gabriel_FO01020822.jpg
+5.pgm BERDÁR_Gabriel_FO01208039.jpg
+6.pgm BERDÁR_Gabriel_FO01208041.jpg
+7.pgm BERDÁR_Gabriel_FO00375142.jpg
+8.pgm BERDÁR_Gabriel_FO01042028.jpg
+9.pgm BERDÁR_Gabriel_FO01044318.jpg
+10.pgm BERDÁR_Gabriel_FO01000975.jpg
+11.pgm BERDÁR_Gabriel_FO01020821.jpg
+12.pgm BERDÁR_Gabriel_FO01031945.jpg
+13.pgm BERDÁR_Gabriel_FO01044196.jpg
+14.pgm BERDÁR_Gabriel_FO01208037.jpg
+15.pgm BERDÁR_Gabriel_FO01020824.jpg
+Odchylka 0.0240398

@@ -1,0 +1,12 @@
+KOBES_Karel
+1.pgm KOBES_Karel_FO00117386.jpg
+2.pgm KOBES_Karel_FO00117385.jpg
+3.pgm KOBES_Karel_FO00135280.jpg
+4.pgm KOBES_Karel_FO00288555.jpg
+5.pgm KOBES_Karel_FO00141636.jpg
+6.pgm KOBES_Karel_FO00117384.jpg
+7.pgm KOBES_Karel_FO00292195.jpg
+8.pgm KOBES_Karel_FO00385959.jpg
+9.pgm KOBES_Karel_FO00117387.jpg
+10.pgm KOBES_Karel_FO00116186.jpg
+Odchylka 0.0228526

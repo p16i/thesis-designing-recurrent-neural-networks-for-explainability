@@ -1,0 +1,11 @@
+ZÍTEK_Václav
+1.pgm ZÍTEK_Václav_FO00353851.jpg
+2.pgm ZÍTEK_Václav_FO00353866.jpg
+3.pgm ZÍTEK_Václav_FO00353865.jpg
+4.pgm ZÍTEK_Václav_FO00353850.jpg
+5.pgm ZÍTEK_Václav_F201108220041001.jpg
+6.pgm ZÍTEK_Václav_FO00353868.jpg
+7.pgm ZÍTEK_Václav_FO00353829.jpg
+8.pgm ZÍTEK_Václav_FO00353859.jpg
+9.pgm ZÍTEK_Václav_FO00353867.jpg
+Odchylka 0.0200027

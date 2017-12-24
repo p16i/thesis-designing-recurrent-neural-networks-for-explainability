@@ -1,0 +1,13 @@
+EMMEROVÁ_Milada
+1.pgm EMMEROVÁ_Milada_FO01189624.jpg
+2.pgm EMMEROVÁ_Milada_FO01252860.jpg
+3.pgm EMMEROVÁ_Milada_FO01179353.jpg
+4.pgm EMMEROVÁ_Milada_FO00152522.jpg
+5.pgm EMMEROVÁ_Milada_P200811140550801.jpg
+6.pgm EMMEROVÁ_Milada_FO01164746.jpg
+7.pgm EMMEROVÁ_Milada_FO00096585.jpg
+8.pgm EMMEROVÁ_Milada_FO01164741.jpg
+9.pgm EMMEROVÁ_Milada_FO01164740.jpg
+10.pgm EMMEROVÁ_Milada_FO01164742.jpg
+11.pgm EMMEROVÁ_Milada_FO01273650.jpg
+Odchylka 0.0612353

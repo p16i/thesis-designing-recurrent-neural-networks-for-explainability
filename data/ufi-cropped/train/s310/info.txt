@@ -1,0 +1,15 @@
+GRÉGR_Miroslav
+1.pgm GRÉGR_Miroslav_FO00152506.jpg
+2.pgm GRÉGR_Miroslav_FO00033051.jpg
+3.pgm GRÉGR_Miroslav_FO00111276.jpg
+4.pgm GRÉGR_Miroslav_FO00033058.jpg
+5.pgm GRÉGR_Miroslav_FO00147505.jpg
+6.pgm GRÉGR_Miroslav_FO02090801.jpg
+7.pgm GRÉGR_Miroslav_FO00033052.jpg
+8.pgm GRÉGR_Miroslav_FO00033057.jpg
+9.pgm GRÉGR_Miroslav_FO01138833.jpg
+10.pgm GRÉGR_Miroslav_FO00309326.jpg
+11.pgm GRÉGR_Miroslav_FO00096884.jpg
+12.pgm GRÉGR_Miroslav_FO00163207.jpg
+13.pgm GRÉGR_Miroslav_FO00014340.jpg
+Odchylka 0.0144608

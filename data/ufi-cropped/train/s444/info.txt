@@ -1,0 +1,15 @@
+UHL_Petr
+1.pgm UHL_Petr_FO00319213.jpg
+2.pgm UHL_Petr_FO00316359.jpg
+3.pgm UHL_Petr_FO00061426.jpg
+4.pgm UHL_Petr_FO00106878.jpg
+5.pgm UHL_Petr_FO00150167.jpg
+6.pgm UHL_Petr_FO00032592.jpg
+7.pgm UHL_Petr_FO00036918.jpg
+8.pgm UHL_Petr_FO00061417.jpg
+9.pgm UHL_Petr_FO00202634.jpg
+10.pgm UHL_Petr_FO00112951.jpg
+11.pgm UHL_Petr_FO00061434.jpg
+12.pgm UHL_Petr_FO00061418.jpg
+13.pgm UHL_Petr_FO00236935.jpg
+Odchylka 0.0325443

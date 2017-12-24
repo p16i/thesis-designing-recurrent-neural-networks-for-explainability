@@ -1,0 +1,16 @@
+ŠIKLOVÁ_Jiřina
+1.pgm ŠIKLOVÁ_Jiřina_F201005170402401.jpg
+2.pgm ŠIKLOVÁ_Jiřina_F201005170402101.jpg
+3.pgm ŠIKLOVÁ_Jiřina_FO01044287.jpg
+4.pgm ŠIKLOVÁ_Jiřina_FO00036838.jpg
+5.pgm ŠIKLOVÁ_Jiřina_F201005170400701.jpg
+6.pgm ŠIKLOVÁ_Jiřina_F201005170401801.jpg
+7.pgm ŠIKLOVÁ_Jiřina_F201005170401701.jpg
+8.pgm ŠIKLOVÁ_Jiřina_FO01062323.jpg
+9.pgm ŠIKLOVÁ_Jiřina_F201005240354001.jpg
+10.pgm ŠIKLOVÁ_Jiřina_F201005170401901.jpg
+11.pgm ŠIKLOVÁ_Jiřina_FO01045242.jpg
+12.pgm ŠIKLOVÁ_Jiřina_FO01062332.jpg
+13.pgm ŠIKLOVÁ_Jiřina_FO01062331.jpg
+14.pgm ŠIKLOVÁ_Jiřina_FO00036850.jpg
+Odchylka 0.0189853

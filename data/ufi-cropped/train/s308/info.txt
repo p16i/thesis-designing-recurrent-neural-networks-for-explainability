@@ -1,0 +1,11 @@
+POSPÍŠIL_Aleš
+1.pgm POSPÍŠIL_Aleš_P200811190232601.jpg
+2.pgm POSPÍŠIL_Aleš_FO02087660.jpg
+3.pgm POSPÍŠIL_Aleš_FO02087631.jpg
+4.pgm POSPÍŠIL_Aleš_FO01187824.jpg
+5.pgm POSPÍŠIL_Aleš_FO00449853.jpg
+6.pgm POSPÍŠIL_Aleš_FO00348352.jpg
+7.pgm POSPÍŠIL_Aleš_FO02087661.jpg
+8.pgm POSPÍŠIL_Aleš_FO02087662.jpg
+9.pgm POSPÍŠIL_Aleš_FO00348120.jpg
+Odchylka 0.0235526

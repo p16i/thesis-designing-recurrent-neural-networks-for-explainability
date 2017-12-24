@@ -1,0 +1,17 @@
+HEŘMÁNEK_Karel
+1.pgm HEŘMÁNEK_Karel_FO00115360.jpg
+2.pgm HEŘMÁNEK_Karel_FO00469967.jpg
+3.pgm HEŘMÁNEK_Karel_FO03003039.jpg
+4.pgm HEŘMÁNEK_Karel_FO01077978.jpg
+5.pgm HEŘMÁNEK_Karel_FO00525124.jpg
+6.pgm HEŘMÁNEK_Karel_FO01198268.jpg
+7.pgm HEŘMÁNEK_Karel_FO01284217.jpg
+8.pgm HEŘMÁNEK_Karel_FO00522685.jpg
+9.pgm HEŘMÁNEK_Karel_F200805060036901.jpg
+10.pgm HEŘMÁNEK_Karel_FO02115509.jpg
+11.pgm HEŘMÁNEK_Karel_FO01200796.jpg
+12.pgm HEŘMÁNEK_Karel_FO01258661.jpg
+13.pgm HEŘMÁNEK_Karel_F200809230089901.jpg
+14.pgm HEŘMÁNEK_Karel_F200809230089701.jpg
+15.pgm HEŘMÁNEK_Karel_FO00451909.jpg
+Odchylka 0.0192766
