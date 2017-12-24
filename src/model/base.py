@@ -74,7 +74,7 @@ class BaseNetwork:
         self.experiment_artifact = artifact
         self._ = artifact
 
-        self.data_no_rows, self.data_no_cols = data_provider.get_data(self._.dataset).dims
+        self.data_no_rows, self.data_no_cols = self._.dims, self._.max_seq_length
 
         self.dag = None
         tf.reset_default_graph()

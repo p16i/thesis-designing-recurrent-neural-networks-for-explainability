@@ -84,13 +84,14 @@ class Network(base.BaseNetwork):
         super(Network, self).__init__(artifact)
 
         self.architecture = Architecture(**network_architecture.parse(artifact.architecture))
-        self.dag = Dag(artifact.column_at_a_time, 28, 28, self.architecture, artifact.optimizer)
+        self.dag = Dag(artifact.column_at_a_time, self.data_no_rows, self.data_no_cols,
+                       self.architecture, artifact.optimizer, self.architecture.out2)
 
         self.experiment_artifact = artifact
         self._ = artifact
 
     def lrp(self, x, factor=1, debug=False):
-        x_3d = x.reshape(-1, 28, 28)
+        x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
         with self.get_session() as sess:
 
             # lwr start here

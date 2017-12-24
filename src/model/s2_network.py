@@ -68,7 +68,7 @@ class Network(base.BaseNetwork):
 
         self.dag = Dag(artifact.column_at_a_time,
                        self.data_no_rows, self.data_no_cols,
-                       self.architecture, artifact.optimizer)
+                       self.architecture, artifact.optimizer, self.architecture.out)
 
         self.experiment_artifact = artifact
         self._ = artifact

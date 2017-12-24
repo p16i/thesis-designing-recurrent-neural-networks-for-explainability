@@ -130,7 +130,8 @@ class Network(base.BaseNetwork):
         super(Network, self).__init__(artifact)
 
         self.architecture = Architecture(**network_architecture.parse(artifact.architecture))
-        self.dag = Dag(artifact.column_at_a_time, 28, 28, self.architecture, artifact.optimizer)
+        self.dag = Dag(artifact.column_at_a_time, self.data_no_rows, self.data_no_cols, self.architecture,
+                       artifact.optimizer, self.architecture.out2)
 
         self.experiment_artifact = artifact
         self._ = artifact
