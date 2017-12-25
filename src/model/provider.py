@@ -4,8 +4,6 @@ from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network
 from utils import experiment_artifact
 
 lg.set_logging()
-import model
-
 
 def load(path):
     logging.debug('Load network from %s' % path)

@@ -152,9 +152,10 @@ class UFICroppedData:
 
     def get_samples_for_vis(self, n=12):
 
+        print("WARNING! this is data sampled from training set not testing one")
         indices = [2785, 2973, 57, 906, 393, 3666, 3502, 1222, 731, 2659, 3400, 656]
 
-        return self.test2d.x[indices, :], self.test2d.y[indices]
+        return self.train2d.x[indices, :], self.train2d.y[indices]
 
     def get_text_label(self, label_index):
         return 'Person %d' % label_index
