@@ -29,6 +29,8 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
     logging.debug('Experiment name : %s' % experiment_name)
     data = data_provider.get_data(dataset)
 
+    output_dir = '%s/%s' % (output_dir, experiment_name)
+
     # no.rows and cols
     dims, max_seq_length = data.train2d.x.shape[1:]
     architecture = NETWORKS[network].Architecture(**network_architecture.parse(architecture_str))
@@ -40,8 +42,10 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
     logging.debug('Optimizer %s' % optimizer)
 
     dag = NETWORKS[network].Dag(no_input_cols, dims, max_seq_length, architecture, optimizer, data.no_classes)
-
+    train_writer = tf.summary.FileWriter(output_dir + '/boards/train')
+    val_writer = tf.summary.FileWriter(output_dir + '/boards/validate')
     with tf.Session() as sess:
+
         sess.run(dag.init_op)
         step = 1
         for i in range(epoch):
@@ -53,21 +57,29 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
                          feed_dict={dag.x: bx, dag.y_target: by, dag.rx: rx0, dag.lr: lr,
                                     dag.keep_prob: keep_prob, dag.regularizer: regularizer})
 
-                if (step % 1000 == 0 or step < 10) and verbose:
+                if (step % 100 == 0 or step < 10) and verbose:
                     rx0 = np.zeros((len(by), architecture.recur))
-                    acc, loss = sess.run([dag.accuracy, dag.loss_op],
-                                         feed_dict={dag.x: bx, dag.y_target: by, dag.rx: rx0, dag.keep_prob: 1,
-                                                    dag.regularizer: regularizer
-                                                    })
+                    summary, acc, loss = sess.run([dag.summary, dag.accuracy, dag.loss_op],
+                                                    feed_dict={
+                                                                dag.x: bx, dag.y_target: by, dag.rx: rx0,
+                                                                dag.keep_prob: 1, dag.regularizer: regularizer
+                                                              }
+                                                  )
 
+                    train_writer.add_summary(summary, step)
                     rx0 = np.zeros((len(data.val2d.y), architecture.recur))
-                    acc_val = sess.run(dag.accuracy, feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
-                                                                dag.rx: rx0, dag.keep_prob: 1})
+
+                    summary, acc_val = sess.run([dag.summary, dag.accuracy],
+                                                feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
+                                                                dag.rx: rx0, dag.keep_prob: 1,
+                                                           dag.regularizer: regularizer})
+                    val_writer.add_summary(summary, step)
                     logging.debug('step %d : current train batch acc %f, loss %f | val acc %f'
                                   % (step, acc, loss, acc_val))
 
                 step = step + 1
 
+        # done training
         logging.debug('Calculating test accuracy')
         rx0 = np.zeros((len(data.test2d.y), architecture.recur))
         acc = float(sess.run(dag.accuracy,
@@ -97,8 +109,6 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
         )
 
         logging.debug('\n%s\n', lg.tabularize_params(res))
-
-        output_dir = '%s/%s' % (output_dir, experiment_name)
 
         return experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
 

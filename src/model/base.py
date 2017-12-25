@@ -4,6 +4,8 @@ import numpy as np
 from utils import logging as lg
 
 from utils import experiment_artifact, data_provider
+from model.components import layer as ComponentLayer
+
 lg.set_logging()
 
 
@@ -52,6 +54,11 @@ class BaseDag:
 
         correct_prediction = tf.equal(tf.argmax(self.y_target, 1), tf.argmax(self.y_pred, 1))
         self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+        tf.summary.scalar('loss', self.loss_op)
+        tf.summary.scalar('accuracy', self.accuracy)
+
+        self.summary = tf.summary.merge_all()
 
     def setup_variables_for_lrp(self):
 
@@ -133,8 +140,13 @@ class BaseNetwork:
         return relevance
 
     def get_weight_bias_at_layers(self, layers=None):
-        if layers is None:
-            layers = sorted(self.dag.layers.keys())
+
+        layers = []
+        for k, v in self.dag.layers.items():
+            if type(v) != ComponentLayer.PoolingLayer:
+                layers.append(k)
+
+        layers = sorted(layers)
 
         weights = []
         biases = []
