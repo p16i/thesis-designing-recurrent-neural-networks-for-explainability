@@ -41,7 +41,8 @@ def get_results(path):
 
 def save_artifact(tf_session, result, output_dir):
 
-    os.makedirs(output_dir)
+    if not os.path.isdir(output_dir):
+        os.makedirs(output_dir)
 
     result_path = '%s/result.yaml' % output_dir
 

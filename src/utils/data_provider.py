@@ -77,6 +77,19 @@ class MNISTData:
         self.val2d = DataSet(x_val.reshape(-1, 28, 28), y_val)
         self.test2d = DataSet(x_test.reshape(-1, 28, 28), y_test)
 
+        self.labels = {
+            0: 'Digit 0',
+            1: 'Digit 1',
+            2: 'Digit 2',
+            3: 'Digit 3',
+            4: 'Digit 4',
+            5: 'Digit 5',
+            6: 'Digit 6',
+            7: 'Digit 7',
+            8: 'Digit 8',
+            9: 'Digit 9'
+        }
+
     def get_text_label(self, label_index):
         return 'Digit %d' % label_index
 
