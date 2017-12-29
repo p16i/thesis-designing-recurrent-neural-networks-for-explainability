@@ -50,10 +50,7 @@ class Dag(base.BaseDag):
             rr = tf.nn.relu(tf.matmul(ha, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
             self.rr_activations.append(rr)
 
-            ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
-            ot = tf.matmul(ha_do, self.ly_output.W) - tf.nn.softplus(self.ly_output.b)
-
-        self.y_pred = ot
+        self.y_pred = tf.matmul(self.ha_activations[-1], self.ly_output.W) - tf.nn.softplus(self.ly_output.b)
 
         self.setup_loss_and_opt()
 

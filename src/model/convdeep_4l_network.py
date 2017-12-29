@@ -44,12 +44,18 @@ class Dag(base.BaseDag):
 
         _, cin1 = self.ly_conv1.conv(dummy_in1)
         self.shape_conv1_output = [-1] + cin1.get_shape().as_list()[1:] #ignore batch_size
+        logging.info('conv1 shape ')
+        logging.info(self.shape_conv1_output)
 
         dummy_in2 = self.ly_pool1.pool(cin1)
         self.shape_pool1_output = [-1] + dummy_in2.get_shape().as_list()[1:]
+        logging.info('pool1 shape ')
+        logging.info(self.shape_pool1_output)
 
         _, cin2 = self.ly_conv2.conv(dummy_in2)
         self.shape_conv2_output = [-1] + cin2.get_shape().as_list()[1:]
+        logging.info('conv2 shape ')
+        logging.info(self.shape_conv2_output)
 
         dummy_in3 = self.ly_pool2.pool(cin2)
         self.shape_pool2_output = [-1] + dummy_in3.get_shape().as_list()[1:]
@@ -113,14 +119,14 @@ class Dag(base.BaseDag):
             rr = tf.nn.relu(tf.matmul(ha, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
             self.activations.recurrent.append(rr)
 
-            ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
-            ho = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W) - tf.nn.softplus(self.ly_output_from_cell.b))
-            self.activations.output_from_cell.append(ho)
+        last_hidden_activation = self.ha_activations[-1]
+        ha_do = tf.nn.dropout(last_hidden_activation, keep_prob=self.keep_prob)
+        last_output_from_cell = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W)
+                                           - tf.nn.softplus(self.ly_output_from_cell.b))
 
-            ho_do = tf.nn.dropout(ho, keep_prob=self.keep_prob)
-            ot = tf.matmul(ho_do, self.ly_output_2.W) - tf.nn.softplus(self.ly_output_2.b)
-
-        self.y_pred = ot
+        self.output_from_cell_activations = [last_output_from_cell]
+        self.y_pred = tf.matmul(last_output_from_cell, self.ly_output_2.W) \
+                      - tf.nn.softplus(self.ly_output_2.b)
 
         self.setup_loss_and_opt()
 
