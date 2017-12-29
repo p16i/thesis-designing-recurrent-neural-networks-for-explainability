@@ -1,17 +1,11 @@
 parameters:
-  hidden_units: [500]
-  recurrent_units: [250]
-  in1_units: [250]
-  out1_units: [250]
-  keep_prob: [0.5]
-  length: [4, 7, 14]
-  lr: [0.00125, 0.005]
+  - dataset: ['mnist', 'fashion-mnist']
 
 command: |
   python scripts/train.py s3_network \
     --seq-length {length} \
     --epoch 100 \
-    --lr {lr} \
+    --lr 0.0005 \
     --batch 50 \
-    --architecture-str 'in1:{in1_units}|hidden:{hidden_units}|out1:{out1_units}|out2:10--recur:{recurrent_units}' \
-    --keep_prob {keep_prob} --verbose --output_dir ./experiment-results/sprint-8-no-dropout-rr
+    --architecture-str 'in1:512|hidden:256|out1:64|out2:10--recur:128' \
+    --keep_prob {keep_prob} --verbose --output_dir ./experiment-results/sprint-aws-final2 --dataset {dataset}
