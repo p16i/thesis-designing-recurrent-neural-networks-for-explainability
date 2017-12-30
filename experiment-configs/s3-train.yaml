@@ -9,4 +9,4 @@ command: |
     --lr 0.0002 \
     --batch 50 \
     --architecture-str 'in1:512|hidden:256|out1:64|out2:10--recur:128' \
-    --keep_prob {keep_prob} --verbose --output_dir ./experiment-results/aws-train --dataset {dataset}
+    --keep_prob 0.5 --verbose --output_dir ./experiment-results/aws-train --dataset {dataset}
