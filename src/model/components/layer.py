@@ -22,7 +22,7 @@ class Layer:
 
         if default_biases is None:
             # this make bias after softmax is 0.01
-            self.b = tf.constant( float(np.log(np.exp(DEFAULT_BIAS_VALUE)-1)), shape=dims[-1:], name=b_name)
+            self.b = tf.Variable(tf.ones(dims[-1]) * float(np.log(np.exp(DEFAULT_BIAS_VALUE)-1)), name=b_name)
         else:
             logging.info('Set default biases manually for layer %s' % name)
             self.b = tf.identity(default_biases, name=b_name)
