@@ -32,7 +32,7 @@ class TestNetwork(unittest.TestCase):
         TestNetwork._test_lrp('tests/data/convdeep-4l-network')
 
     def test_no_variables(self):
-        networks = [('s2-network', 14320), ('s3-network', 198218)]
+        networks = [('s2-network', 325386), ('s3-network', 198218)]
         for network, expected in networks:
             model_obj = TestNetwork._load_model('tests/data/%s' % network)
             no_variables = model_obj.dag.no_variables()
