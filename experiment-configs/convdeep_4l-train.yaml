@@ -3,10 +3,10 @@ parameters:
   dataset: ['mnist', 'fashion-mnist']
 
 command: |
-  python scripts/train.py s2_network \
+  python scripts/train.py convdeep_4l_network \
     --seq-length {seq_length} \
     --epoch 200 \
     --lr 0.0001 \
     --batch 50 \
-    --architecture-str 'hidden:768|out:10--recur:128' \
+    --architecture-str 'conv1:5x5x24=>2x2[2,2]|conv2:3x3x48=>2x2[2,2]|hidden:256|out1:128|out2:10--recur:128' \
     --keep_prob 0.5 --verbose --output_dir ./experiment-results/aws-train --dataset {dataset}
