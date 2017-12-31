@@ -79,7 +79,7 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
                                                            dag.regularizer: regularizer})
                     val_writer.add_summary(summary, step)
                     print('>> Epoch %d | step %d : current train batch acc %f, loss %f | val acc %f'
-                          % (epoch, step, acc, loss, acc_val), end='\r', flush=True)
+                          % (i, step, acc, loss, acc_val), end='\r', flush=True)
 
                 step = step + 1
 
