@@ -44,12 +44,16 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
     dag = NETWORKS[network].Dag(no_input_cols, dims, max_seq_length, architecture, optimizer, data.no_classes)
     train_writer = tf.summary.FileWriter(output_dir + '/boards/train')
     val_writer = tf.summary.FileWriter(output_dir + '/boards/validate')
+
+    print('-'*100)
+    print('Tensorboard : tensorboard  --logdir %s' % output_dir)
+    print('-'*100)
+
     with tf.Session() as sess:
 
         sess.run(dag.init_op)
         step = 1
         for i in range(epoch):
-            logging.debug('epoch %d' % (i + 1))
             for bx, by in data.train2d.get_batch(no_batch=batch):
 
                 rx0 = np.zeros((bx.shape[0], architecture.recur))
@@ -74,8 +78,8 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
                                                                 dag.rx: rx0, dag.keep_prob: 1,
                                                            dag.regularizer: regularizer})
                     val_writer.add_summary(summary, step)
-                    logging.debug('step %d : current train batch acc %f, loss %f | val acc %f'
-                                  % (step, acc, loss, acc_val))
+                    print('>> Epoch %d | step %d : current train batch acc %f, loss %f | val acc %f'
+                          % (epoch, step, acc, loss, acc_val), end='\r', flush=True)
 
                 step = step + 1
 

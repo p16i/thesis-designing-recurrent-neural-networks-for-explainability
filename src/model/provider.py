@@ -20,3 +20,12 @@ def load(path):
 
     return model_loaders[artifact.architecture_name](artifact)
 
+def network_nickname(t):
+    if t == 's2_network':
+        return 'Shallow Cell'
+    elif t == 's3_network':
+        return 'Deep Cell'
+    elif t == 'deep_4l_network':
+        return 'DeepV2 Cell'
+    elif t == 'convdeep_4l_network':
+        return 'ConvDeep Cell'
