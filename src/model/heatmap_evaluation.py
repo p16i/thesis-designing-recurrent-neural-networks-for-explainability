@@ -47,12 +47,14 @@ def aopc(model_obj: base.BaseNetwork, x, max_k=15, patch_size=(4,4), order="morf
 
         x_permuted = np.copy(x)
 
+        np.random.seed(0)
+
         for i in range(max_k):
             for j in range(x_permuted.shape[0]):
                 ix, iy = ii_start[j,i], ii_end[j,i]
                 jx, jy = jj_start[j,i], jj_end[j,i]
-                values = x_permuted[j, ix:iy, jx:jy]
-                x_permuted[j, ix:iy, jx:jy] = -values
+                values = np.random.normal(0, 0.1, patch_size)
+                x_permuted[j, ix:iy, jx:jy] = values
 
             relevance_at_k = sess.run(model_obj.dag.y_pred, feed_dict={
                 model_obj.dag.x: x_permuted, model_obj.dag.rx: rr_inputs, model_obj.dag.keep_prob: 1
@@ -64,5 +66,8 @@ def aopc(model_obj: base.BaseNetwork, x, max_k=15, patch_size=(4,4), order="morf
             m = np.sum((relevance_at_0 - relevance_at_k) / relevance_at_0) / x.shape[0]
             aopc_at_k.append(m)
 
+    # print(aopc_at_k)
+    # print('auto diff')
+    # print(np.diff(np.array(aopc_at_k)))
     return np.cumsum(np.array(aopc_at_k) / (np.arange(0, max_k+1)+1))
 
