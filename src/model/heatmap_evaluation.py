@@ -6,9 +6,12 @@ from model import base
 from skimage.measure import block_reduce
 from utils import logging as lg
 
+from skimage.filters.rank import entropy
+from skimage.morphology import square, disk
+from skimage import img_as_ubyte
+
 
 lg.set_logging()
-
 
 
 def aopc(model_obj: base.BaseNetwork, x, max_k=15, patch_size=(4,4), order="morf"):
@@ -71,3 +74,15 @@ def aopc(model_obj: base.BaseNetwork, x, max_k=15, patch_size=(4,4), order="morf
     # print(np.diff(np.array(aopc_at_k)))
     return np.cumsum(np.array(aopc_at_k) / (np.arange(0, max_k+1)+1))
 
+
+def image_entropy(model_obj: base.BaseNetwork, x, patch_size=4):
+    _, relevance_heatmaps = model_obj.rel_lrp_deep_taylor(x)
+
+    entropies = []
+
+    for i in range(relevance_heatmaps.shape[0]):
+        img = relevance_heatmaps[i, :, :]
+        img = img_as_ubyte(img)
+        entropies.append(entropy(img, square(patch_size)))
+
+    return np.mean(entropies)
