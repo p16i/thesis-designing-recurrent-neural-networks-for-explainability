@@ -22,10 +22,10 @@ def load(path):
 
 def network_nickname(t):
     if t == 's2_network':
-        return 'Shallow Cell'
+        return 'Shallow'
     elif t == 's3_network':
-        return 'Deep Cell'
+        return 'Deep'
     elif t == 'deep_4l_network':
-        return 'DeepV2 Cell'
+        return 'DeepV2'
     elif t == 'convdeep_4l_network':
-        return 'ConvDeep Cell'
+        return 'ConvDeep'

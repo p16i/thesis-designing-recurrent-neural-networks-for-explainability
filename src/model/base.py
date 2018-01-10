@@ -6,6 +6,8 @@ from utils import logging as lg
 from utils import experiment_artifact, data_provider
 from model.components import layer as ComponentLayer
 
+from model import provider as model_provider
+
 lg.set_logging()
 
 
@@ -193,3 +195,6 @@ class BaseNetwork:
                                        err_msg='Conservation property isn`t hold\n'
                                                ': Sum of relevance from pixels is not equal to output relevance.')
         return pred, relevance_heatmap
+
+    def formal_name(self):
+        return '%s-%d' % (model_provider.network_nickname(self._.architecture_name), self._.seq_length)
