@@ -5,6 +5,7 @@ from utils import experiment_artifact
 
 lg.set_logging()
 
+
 def load(path):
     logging.debug('Load network from %s' % path)
     artifact = experiment_artifact.get_result(path)
@@ -19,13 +20,3 @@ def load(path):
     }
 
     return model_loaders[artifact.architecture_name](artifact)
-
-def network_nickname(t):
-    if t == 's2_network':
-        return 'Shallow'
-    elif t == 's3_network':
-        return 'Deep'
-    elif t == 'deep_4l_network':
-        return 'DeepV2'
-    elif t == 'convdeep_4l_network':
-        return 'ConvDeep'

@@ -3,17 +3,26 @@ import logging
 import numpy as np
 from utils import logging as lg
 
-from utils import experiment_artifact, data_provider
+from utils import experiment_artifact
 from model.components import layer as ComponentLayer
-
-from model import provider as model_provider
 
 lg.set_logging()
 
 
+#### Acknowledgement to Chris Olah ####
+@tf.RegisterGradient("GuidedRelu")
+def _GuidedReluGrad(op, grad):
+    gate_g = tf.cast(grad > 0, "float32")
+    gate_y = tf.cast(op.outputs[0] > 0, "float32")
+    logging.info('xxxx')
+    return gate_y * gate_g * grad
+    # return grad*0
+
+
 class BaseDag:
     def __init__(self, architecture, dims, max_seq_length, optimizer, no_classes):
-        tf.reset_default_graph()
+
+        self.no_classes = no_classes
 
         self.rx = tf.placeholder(tf.float32, shape=(None, architecture.recur), name='recurrent_input')
         self.x = tf.placeholder(tf.float32, shape=(None, dims, max_seq_length), name='input')
@@ -92,6 +101,7 @@ class BaseNetwork:
 
         saver = tf.train.Saver()
         sess = tf.Session()
+
         saver.restore(sess, '%s/model.ckpt' % self._.path)
 
         return sess
@@ -117,17 +127,41 @@ class BaseNetwork:
             return np.argmax(pred, axis=1), grad_res
 
     def rel_sensitivity(self, x, debug=False):
+        logging.info('Explaining with sensitivity')
         pred, grad = self.compute_grad_wrt_x(x, debug)
         return pred, np.power(grad, 2)
 
     def rel_simple_taylor(self, x, debug=False):
+        logging.info('Explaining with simple taylor')
         x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
-
         pred, grad = self.compute_grad_wrt_x(x_3d, debug)
 
         return pred, grad * x_3d
 
+    def rel_guided_backprop(self, x, debug=False):
+        logging.info('Explaining with guided_backprop')
+        x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
+
+        tf.reset_default_graph()
+        with tf.get_default_graph().gradient_override_map({'Relu': 'GuidedRelu'}):
+            dag = self.create_graph()
+            saver = tf.train.Saver()
+            sess = tf.Session()
+
+            saver.restore(sess, '%s/model.ckpt' % self._.path)
+            with sess:
+                rx = np.zeros((x_3d.shape[0], self.architecture.recur))
+                max_y_pred = tf.reduce_max(dag.y_pred, axis=1)
+                grad = tf.gradients(max_y_pred, dag.x)
+                pred, grad_res = sess.run([dag.y_pred, grad],
+                                          feed_dict={dag.x: x_3d, dag.rx: rx, dag.keep_prob: 1})
+                grad_res = grad_res[0]
+        tf.reset_default_graph()
+        self.dag = self.create_graph()
+        return np.argmax(pred, axis=1), np.power(grad_res, 2)
+
     def rel_lrp_deep_taylor(self, x, debug=False):
+        logging.info('Explaining with deep_taylor')
         return self.lrp(x, factor=1, debug=debug)
 
     def _get_relevance(self, x_3d):
@@ -197,4 +231,20 @@ class BaseNetwork:
         return pred, relevance_heatmap
 
     def formal_name(self):
-        return '%s-%d' % (model_provider.network_nickname(self._.architecture_name), self._.seq_length)
+        return '%s-%d' % (BaseNetwork.network_nickname(self._.architecture_name), self._.seq_length)
+
+    @staticmethod
+    def network_nickname(t):
+        if t == 's2_network':
+            return 'Shallow'
+        elif t == 's3_network':
+            return 'Deep'
+        elif t == 'deep_4l_network':
+            return 'DeepV2'
+        elif t == 'convdeep_4l_network':
+            return 'ConvDeep'
+
+    def create_graph(self):
+        dag_class = self.dag.__class__
+        return dag_class(self._.column_at_a_time, self.data_no_rows, self.data_no_cols, self.architecture,
+                         self._.optimizer, self.dag.no_classes)
