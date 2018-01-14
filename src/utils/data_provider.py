@@ -143,25 +143,30 @@ class FashionMNISTData:
 
 class UFICroppedData:
     def __init__(self, dir_path='./data/ufi-cropped'):
-        x_train = np.load('%s/train-x.npy' % dir_path)
+        # subsampling_indices = list(np.arange(0, 128, 2))
+
+        x_train = np.load('%s/train-x.npy' % dir_path)\
+            .reshape(-1, 128, 128)[:, ::2, ::2]
         y_train = np.load('%s/train-y.npy' % dir_path)
 
-        x_test = np.load('%s/test-x.npy' % dir_path)
+        x_test = np.load('%s/test-x.npy' % dir_path)\
+            .reshape(-1, 128, 128)[:, ::2, ::2]
         y_test = np.load('%s/test-y.npy' % dir_path)
+
+        self.dims = (64, 64)
 
         # This is a bad idea but we have limited amount of data
         x_val, y_val = x_test, y_test
 
-        self.dims = (128, 128)
         self.no_classes = 605
 
         self.train = DataSet(x_train, y_train)
         self.val = DataSet(x_val, y_val)
         self.test = DataSet(x_test, y_test)
 
-        self.train2d = DataSet(x_train.reshape(-1, self.dims[0], self.dims[1]), y_train)
-        self.val2d = DataSet(x_val.reshape(-1, self.dims[0], self.dims[1]), y_val)
-        self.test2d = DataSet(x_test.reshape(-1, self.dims[0], self.dims[1]), y_test)
+        self.train2d = DataSet(x_train, y_train)
+        self.val2d = DataSet(x_val, y_val)
+        self.test2d = DataSet(x_test, y_test)
 
     def get_samples_for_vis(self, n=12):
 
