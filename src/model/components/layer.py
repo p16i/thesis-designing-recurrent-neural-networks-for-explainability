@@ -32,43 +32,50 @@ class Layer:
     def get_no_variables(self):
         return int(np.prod(self.W.shape) + self.b.shape[0])
 
-    def rel_z_plus_prop(self, x, relevance, factor=1.0):
-        v = tf.maximum(0.0, self.W) + (1.0 - factor) * tf.minimum(0.0, self.W)
+    def rel_z_plus_prop(self, x, relevance, beta=0.0, alpha=1.0):
+        wp = tf.maximum(0.0, self.W)
+        wn = tf.minimum(0.0, self.W)
 
-        z = tf.matmul(x, v) + DIVISION_ADJUSTMENT
-        s = relevance / z
-        c = tf.matmul(s, tf.transpose(v))
-        return x * c
+        def compute_c(w, ratio):
+            z = tf.matmul(x, w) + DIVISION_ADJUSTMENT
+            s = ratio*relevance / z
+            return tf.matmul(s, tf.transpose(w))
 
-    def rel_z_beta_prop(self, x, relevance, lowest=-1.0, highest=1.0, factor=1):
+        return x * (compute_c(wp, alpha) + compute_c(wn, -beta))
+
+    def rel_z_beta_prop(self, x, relevance, lowest=-1.0, highest=1.0, beta=0.0, alpha=1.0):
         w, v, u = self.W, tf.maximum(0.0, self.W), tf.minimum(0.0, self.W)
         l, h = x * 0 + lowest, x * 0 + highest
 
-        z = tf.matmul(x, w) - factor*(tf.matmul(l, v) + tf.matmul(h, u)) + DIVISION_ADJUSTMENT
+        z = tf.matmul(x, w) - (tf.matmul(l, v) + tf.matmul(h, u)) + DIVISION_ADJUSTMENT
         s = relevance / z
-        return x * tf.matmul(s, tf.transpose(w))\
-               - factor*(l * tf.matmul(s, tf.transpose(v)) + h * tf.matmul(s, tf.transpose(u)))
+        return x * tf.matmul(s, tf.transpose(w)) \
+               - (l * tf.matmul(s, tf.transpose(v)) + h * tf.matmul(s, tf.transpose(u)))
 
     @staticmethod
-    def rel_z_plus_beta_prop(x_p, w_p, x_b, w_b, relevance, factor=1.0, lowest=-1, highest=1):
-        v_p = tf.maximum(0.0, w_p) + (1.0 - factor) * tf.minimum(0.0, w_p)
-        z_p = tf.matmul(x_p, v_p) + DIVISION_ADJUSTMENT
+    def rel_z_plus_beta_prop(x_p, w_zp, x_b, w_b, relevance, alpha=1.0, beta=0.0, lowest=-1, highest=1):
+        wp_zp = tf.maximum(0.0, w_zp)
+        zp_zp = tf.matmul(x_p, wp_zp)
+
+        wn_zp = tf.minimum(0.0, w_zp)
+        zn_zp = tf.matmul(x_p, wn_zp)
 
         w_b, v_b, u_b = w_b, tf.maximum(0.0, w_b), tf.minimum(0.0, w_b)
         l_b, h_b = x_b * 0 + lowest, x_b * 0 + highest
-        z_b = tf.matmul(x_b, w_b) - factor*(tf.matmul(l_b, v_b) + tf.matmul(h_b, u_b)) + DIVISION_ADJUSTMENT
+        z_b = tf.matmul(x_b, w_b) - (tf.matmul(l_b, v_b) + tf.matmul(h_b, u_b))
 
-        z = z_p + z_b
+        z = (zp_zp-(beta > 0)*zn_zp) + z_b
 
-        s = relevance / z
+        s = relevance / (z + DIVISION_ADJUSTMENT)
 
         # z-plus
-        c_p = tf.matmul(s, tf.transpose(v_p))
-        r_p = x_p * c_p
+        c_p = tf.matmul(alpha*s, tf.transpose(wp_zp))
+        c_n = tf.matmul(-beta*s, tf.transpose(wn_zp))
+        r_p = x_p * (c_p + c_n)
 
         # z-beta
         r_b = x_b * tf.matmul(s, tf.transpose(w_b)) \
-              - factor*(l_b * tf.matmul(s, tf.transpose(v_b)) + h_b * tf.matmul(s, tf.transpose(u_b)))
+              - (l_b * tf.matmul(s, tf.transpose(v_b)) + h_b * tf.matmul(s, tf.transpose(u_b)))
 
         return r_p, r_b
 
@@ -99,24 +106,26 @@ class ConvolutionalLayer(Layer):
 
         return hconv, hconv_relu
 
-    def rel_zplus_prop(self, x, relevance, factor=1):
-        v = tf.maximum(0.0, self.W) + (1.0 - factor) * tf.minimum(0.0, self.W)
+    def rel_zplus_prop(self, x, relevance, alpha=1.0, beta=0.0):
+        wp = tf.maximum(0.0, self.W)
+        wn = tf.minimum(0.0, self.W)
 
-        hconv = self.conv_with_w(x, v)
+        def compute_c(w, ratio):
+            hconv = self.conv_with_w(x, w)
 
-        z = hconv + DIVISION_ADJUSTMENT
-        s = relevance / z
+            z = hconv + DIVISION_ADJUSTMENT
+            s = ratio*relevance / z
 
-        c = tf.nn.conv2d_backprop_input(
-            tf.shape(x), v,
-            out_backprop=s,
-            strides=self.strides,
-            padding=self.padding
-        )
+            return tf.nn.conv2d_backprop_input(
+                tf.shape(x), w,
+                out_backprop=s,
+                strides=self.strides,
+                padding=self.padding
+            )
 
-        return x*c
+        return x*(compute_c(wp, alpha) + compute_c(wn, -beta))
 
-    def rel_zbeta_prop(self, x, relevance, lowest=-1, highest=1, factor=1):
+    def rel_zbeta_prop(self, x, relevance, lowest=-1, highest=1, beta=1, alpha=1.0):
 
         w_neg = tf.minimum(0.0, self.W)
         w_pos = tf.maximum(0.0, self.W)
@@ -127,7 +136,7 @@ class ConvolutionalLayer(Layer):
         p_act = self.conv_with_w(l, w_pos)
         n_act = self.conv_with_w(h, w_neg)
 
-        s = relevance / (i_act - factor*(p_act + n_act) + DIVISION_ADJUSTMENT)
+        s = relevance / (i_act - (p_act + n_act) + DIVISION_ADJUSTMENT)
 
         shape_x = tf.shape(x)
 

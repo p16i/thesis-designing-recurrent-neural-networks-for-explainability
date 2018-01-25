@@ -72,7 +72,7 @@ class Network(base.BaseNetwork):
 
         self.name = 's2_network'
 
-    def lrp(self, x, factor=1, debug=False):
+    def lrp(self, x, y, alpha=1.0, beta=0.0, debug=False):
 
         x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
         with self.get_session() as sess:
@@ -83,7 +83,7 @@ class Network(base.BaseNetwork):
 
             rel_to_hidden = self.dag.layers['output'].rel_z_plus_prop(
                 self.dag.ha_activations[-1],
-                self.dag.total_relevance, factor=factor
+                self.dag.total_relevance, beta=beta
             )
             weight_px_parts = self.dag.layers['input'].W[:-self.architecture.recur, :]
             weight_rr_parts = self.dag.layers['input'].W[-self.architecture.recur:, :]
@@ -94,13 +94,14 @@ class Network(base.BaseNetwork):
                 tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:], shape=[x_3d.shape[0], -1]),
                 weight_px_parts,
                 rel_to_hidden,
-                factor=factor
+                beta=beta,
+                alpha=alpha
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
                 rel_to_hidden = self.dag.layers['recurrent'].rel_z_plus_prop(
                     self.dag.ha_activations[i],
-                    rel_to_recurrent, factor=factor
+                    rel_to_recurrent, beta=beta, alpha=alpha
                 )
 
                 c_i = self._.column_at_a_time * i
@@ -112,10 +113,10 @@ class Network(base.BaseNetwork):
                     tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[x_3d.shape[0], -1]),
                     weight_px_parts,
                     rel_to_hidden,
-                    factor=factor
+                    beta=beta, alpha=alpha
                 )
 
-            pred, heatmaps = self._build_heatmap(sess, x,
+            pred, heatmaps = self._build_heatmap(sess, x, y,
                                                  rr_of_pixels=rel_to_input, debug=debug)
 
         return pred, heatmaps

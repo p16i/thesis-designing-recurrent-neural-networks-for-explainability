@@ -14,9 +14,7 @@ lg.set_logging()
 def _GuidedReluGrad(op, grad):
     gate_g = tf.cast(grad > 0, "float32")
     gate_y = tf.cast(op.outputs[0] > 0, "float32")
-    logging.info('xxxx')
     return gate_y * gate_g * grad
-    # return grad*0
 
 
 class BaseDag:
@@ -71,13 +69,13 @@ class BaseDag:
 
         self.summary = tf.summary.merge_all()
 
+        self.y_pred_y_target =  self.y_pred * self.y_target
+
     def setup_variables_for_lrp(self):
 
-        self.y_pred_reduced_1d = tf.reduce_max(self.y_pred, axis=1)
-        mark = tf.cast(tf.equal(self.y_pred,
-                                tf.reshape( self.y_pred_reduced_1d, (-1, 1))), tf.float32)
+        self.total_relevance = tf.nn.relu(self.y_pred) * self.y_target
 
-        self.total_relevance = mark*self.y_pred
+        # self.total_relevance = tf.max(tf.nn.relu(self.y_pred), axis=1)
 
     def no_variables(self):
         no_variables = 0
@@ -106,19 +104,20 @@ class BaseNetwork:
 
         return sess
 
-    def compute_grad_wrt_x(self, x, debug=False):
+    def compute_grad_wrt_x(self, x, y, debug=False):
         x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
         logging.info('Compute grad wrt. X shape %s' % (x_3d.shape,))
 
         with self.get_session() as sess:
             rx = np.zeros((x_3d.shape[0], self.architecture.recur))
 
-            max_y_pred = tf.reduce_max(self.dag.y_pred, axis=1)
+            relevance = self.dag.y_pred_y_target
 
-            grad = tf.gradients(max_y_pred, self.dag.x)
+            grad = tf.gradients(relevance, self.dag.x)
 
             pred, grad_res = sess.run([self.dag.y_pred, grad],
-                                      feed_dict={self.dag.x: x_3d, self.dag.rx: rx, self.dag.keep_prob: 1})
+                                      feed_dict={self.dag.x: x_3d, self.dag.y_target: y,
+                                                 self.dag.rx: rx, self.dag.keep_prob: 1})
 
             grad_res = grad_res[0]
 
@@ -126,54 +125,69 @@ class BaseNetwork:
 
             return np.argmax(pred, axis=1), grad_res
 
-    def rel_sensitivity(self, x, debug=False):
+    def rel_sensitivity(self, x, y, debug=False):
         logging.info('Explaining with sensitivity')
-        pred, grad = self.compute_grad_wrt_x(x, debug)
+        pred, grad = self.compute_grad_wrt_x(x, y, debug)
         return pred, np.power(grad, 2)
 
-    def rel_simple_taylor(self, x, debug=False):
+    def rel_simple_taylor(self, x, y, debug=False):
         logging.info('Explaining with simple taylor')
         x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
-        pred, grad = self.compute_grad_wrt_x(x_3d, debug)
+        pred, grad = self.compute_grad_wrt_x(x_3d, y, debug)
 
         return pred, grad * x_3d
 
-    def rel_guided_backprop(self, x, debug=False):
+    def rel_guided_backprop(self, x, y, debug=False):
         logging.info('Explaining with guided_backprop')
         x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
 
         tf.reset_default_graph()
         with tf.get_default_graph().gradient_override_map({'Relu': 'GuidedRelu'}):
             dag = self.create_graph()
+
             saver = tf.train.Saver()
             sess = tf.Session()
 
             saver.restore(sess, '%s/model.ckpt' % self._.path)
             with sess:
                 rx = np.zeros((x_3d.shape[0], self.architecture.recur))
-                max_y_pred = tf.reduce_max(dag.y_pred, axis=1)
-                grad = tf.gradients(max_y_pred, dag.x)
+                relevance = dag.y_pred_y_target
+
+                grad = tf.gradients(relevance, dag.x)
                 pred, grad_res = sess.run([dag.y_pred, grad],
-                                          feed_dict={dag.x: x_3d, dag.rx: rx, dag.keep_prob: 1})
+                                          feed_dict={dag.x: x_3d, dag.y_target: y, dag.rx: rx, dag.keep_prob: 1})
                 grad_res = grad_res[0]
         tf.reset_default_graph()
         self.dag = self.create_graph()
         return np.argmax(pred, axis=1), np.power(grad_res, 2)
 
-    def rel_lrp_deep_taylor(self, x, debug=False):
+    # def rel_integrated_grad(self, x, y, debug=False, m=50):
+    #
+    #     x_0 = np.zeros(x.shape)
+    #     x_diff = x - x_0
+    #     acc_grad = 0
+    #     for k in np.linspace(0, 1, m):
+    #         x_k = x_0 + k * x_diff
+    #         pred, grad = self.compute_grad_wrt_x(x_k, debug=debug)
+    #         acc_grad = acc_grad + grad
+    #
+    #     int_grad = acc_grad * x_diff
+    #
+    #     # print('approximation error %f' % (np.mean(np.sum(int_grad, axis=1) - x_diff, axis=1))))
+    #
+    #     return pred, int_grad
+
+    def rel_lrp_deep_taylor(self, x, y, debug=False):
         logging.info('Explaining with deep_taylor')
-        return self.lrp(x, factor=1, debug=debug)
+        return self.lrp(x, y, alpha=1, beta=0.0, debug=debug)
 
-    def _get_relevance(self, x_3d):
-        rx = np.zeros((x_3d.shape[0], self.architecture.recur))
+    def rel_lrp_alpha3_beta2(self, x, y, debug=False):
+        logging.info('Explaining with alpha=3, beta=2')
+        return self.lrp(x, y, alpha=3, beta=2, debug=debug)
 
-        pred = sess.run(self.dag.y_pred, feed_dict={self.dag.x: x_3d, self.dag.rx: rx, self.dag.keep_prob: 1})
-        mark = np.zeros(pred.shape)
-        mark[range(pred.shape[0]), np.argmax(pred, axis=1)] = 1
-
-        relevance = pred * mark
-
-        return relevance
+    def rel_lrp_alpha2_beta1(self, x, y, debug=False):
+        logging.info('Explaining with alpha2, beta=1')
+        return self.lrp(x, y, alpha=2.0, beta=1, debug=debug)
 
     def get_weight_bias_at_layers(self, layers=None):
 
@@ -201,14 +215,14 @@ class BaseNetwork:
 
         return dict(zip(layers, weights)), dict(zip(layers, biases))
 
-    def _build_heatmap(self, sess, x, rr_of_pixels, debug=False):
+    def _build_heatmap(self, sess, x, y, rr_of_pixels, debug=False):
 
         total_relevance_reduced = tf.reduce_sum(self.dag.total_relevance, axis=1)
 
         rx = np.zeros((x.shape[0], self.architecture.recur))
         pred, total_relevance, rr_of_pixels = sess.run(
-            [self.dag.y_pred_reduced_1d, total_relevance_reduced, rr_of_pixels],
-            feed_dict={self.dag.x: x, self.dag.rx: rx, self.dag.keep_prob: 1})
+            [self.dag.y_pred, total_relevance_reduced, rr_of_pixels],
+            feed_dict={self.dag.x: x, self.dag.y_target: y, self.dag.rx: rx, self.dag.keep_prob: 1})
 
         relevance_heatmap = np.zeros(x.shape)
         for i in range(0, relevance_heatmap.shape[2], self._.column_at_a_time):
@@ -228,7 +242,7 @@ class BaseNetwork:
                                        rtol=1e-6, atol=0,
                                        err_msg='Conservation property isn`t hold\n'
                                                ': Sum of relevance from pixels is not equal to output relevance.')
-        return pred, relevance_heatmap
+        return np.argmax(pred, axis=1), relevance_heatmap
 
     def formal_name(self):
         return '%s-%d' % (BaseNetwork.network_nickname(self._.architecture_name), self._.seq_length)
@@ -243,6 +257,8 @@ class BaseNetwork:
             return 'DeepV2'
         elif t == 'convdeep_4l_network':
             return 'ConvDeep'
+        else:
+            return t
 
     def create_graph(self):
         dag_class = self.dag.__class__

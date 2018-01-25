@@ -142,7 +142,7 @@ class Network(base.BaseNetwork):
         self.experiment_artifact = artifact
         self._ = artifact
 
-    def lrp(self, x, factor=1, debug=False):
+    def lrp(self, x, y, beta=0.0, alpha=1.0, debug=False):
 
         with self.get_session() as sess:
 
@@ -153,16 +153,16 @@ class Network(base.BaseNetwork):
             # NOTE: lwr start here
             rel_to_out_from_cell = self.dag.layers['output_2'].rel_z_plus_prop(
                 self.dag.activations.output_from_cell[-1],
-                self.dag.total_relevance, factor=factor
+                self.dag.total_relevance, beta=beta, alpha=alpha
             )
             rel_to_hidden = self.dag.layers['output_from_cell'].rel_z_plus_prop(
                 self.dag.activations.hidden[-1],
-                rel_to_out_from_cell, factor=factor
+                rel_to_out_from_cell, beta=beta, alpha=alpha
             )
 
             rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
                 self.dag.activations.input_to_cell[-1],
-                rel_to_hidden, factor=factor
+                rel_to_hidden, beta=beta, alpha=alpha
             )
 
             rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
@@ -178,7 +178,7 @@ class Network(base.BaseNetwork):
 
             rel_to_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
                 self.dag.activations.pool1[-1],
-                rel_to_conv2, factor=factor
+                rel_to_conv2, beta=beta, alpha=alpha
             )
 
             rel_to_conv1 = self.dag.layers['pool1'].rel_prop(
@@ -189,19 +189,19 @@ class Network(base.BaseNetwork):
 
             rel_to_input[-1] = self.dag.layers['conv1'].rel_zbeta_prop(
                 self.dag.x_with_channels[:, :, -self.experiment_artifact.column_at_a_time:, :],
-                rel_to_conv1
+                rel_to_conv1, beta=beta, alpha=alpha
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
 
                 rel_to_hidden = self.dag.layers['recurrent'].rel_z_plus_prop(
                     self.dag.activations.hidden[i],
-                    rel_to_recurrent, factor=factor
+                    rel_to_recurrent, beta=beta, alpha=alpha
                 )
 
                 rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
                     self.dag.activations.input_to_cell[i],
-                    rel_to_hidden, factor=factor
+                    rel_to_hidden, beta=beta, alpha=alpha
                 )
 
                 rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
@@ -218,7 +218,7 @@ class Network(base.BaseNetwork):
 
                 rel_to_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
                     self.dag.activations.pool1[i],
-                    rel_to_conv2, factor=factor
+                    rel_to_conv2, beta=beta, alpha=alpha
                 )
 
                 rel_to_conv1 = self.dag.layers['pool1'].rel_prop(
@@ -232,9 +232,9 @@ class Network(base.BaseNetwork):
 
                 rel_to_input[i] = self.dag.layers['conv1'].rel_zbeta_prop(
                     self.dag.x_with_channels[:, :, c_i:c_j, :],
-                    rel_to_conv1, factor=factor
+                    rel_to_conv1, beta=beta, alpha=alpha
                 )
 
-            pred, heatmaps = self._build_heatmap(sess, x,
+            pred, heatmaps = self._build_heatmap(sess, x, y,
                                                  rr_of_pixels=rel_to_input, debug=debug)
         return pred, heatmaps
