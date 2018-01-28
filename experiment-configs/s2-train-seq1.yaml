@@ -1,0 +1,12 @@
+parameters:
+  seq_length: [1]
+  dataset: ['mnist', 'fashion-mnist']
+
+command: |
+  python scripts/train.py s2_network \
+    --seq-length {seq_length} \
+    --epoch 200 \
+    --lr 0.0001 \
+    --batch 50 \
+    --architecture-str 'hidden:768|out:10--recur:1' \
+    --keep_prob 0.5 --verbose --output_dir ./experiment-results/aws-training --dataset {dataset}
