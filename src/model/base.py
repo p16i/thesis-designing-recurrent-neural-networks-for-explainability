@@ -52,9 +52,17 @@ class BaseDag:
             if hasattr(v, 'W'):
                 reg_term = reg_term + tf.reduce_sum(tf.pow(v.W, 2))
 
+        size = (tf.shape(self.y_pred)[0], 1)
+        pred_pseudo_class = tf.zeros(size)
+        target_pseudo_class = tf.zeros(size)
+
+        y_pred_with_psuedo_class = tf.concat([self.y_pred, pred_pseudo_class], axis=1)
+        y_target_with_psuedo_class = tf.concat([self.y_target, target_pseudo_class], axis=1)
+
         self.loss_op = tf.reduce_mean(
-            tf.nn.softmax_cross_entropy_with_logits(logits=self.y_pred, labels=self.y_target) +
-            self.regularizer * reg_term
+            tf.nn.softmax_cross_entropy_with_logits(logits=y_pred_with_psuedo_class,
+                                                    labels=y_target_with_psuedo_class)
+            + self.regularizer * reg_term
         )
 
         optimizer = getattr(tf.train, self.optimizer)
@@ -216,7 +224,6 @@ class BaseNetwork:
         return dict(zip(layers, weights)), dict(zip(layers, biases))
 
     def _build_heatmap(self, sess, x, y, rr_of_pixels, debug=False):
-
         total_relevance_reduced = tf.reduce_sum(self.dag.total_relevance, axis=1)
 
         rx = np.zeros((x.shape[0], self.architecture.recur))
