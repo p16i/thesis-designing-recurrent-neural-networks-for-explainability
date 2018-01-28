@@ -79,7 +79,8 @@ def aopc(dataset, flip_function='minus_one'):
                 if e == 'random':
                     order = 'random'
 
-                avg_relevance_at_k = heatmap_evaluation.aopc(model_obj, x, y, method=e, order=order)
+                avg_relevance_at_k = heatmap_evaluation.aopc(model_obj, x, y, method=e,
+                                                             order=order, flip_function=flip_function)
                 results.append(dict(
                     architecture=m,
                     seq=s,
