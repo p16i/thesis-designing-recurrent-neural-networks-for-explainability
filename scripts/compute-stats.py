@@ -7,6 +7,7 @@ from model import provider, heatmap_evaluation
 import pandas as pd
 import numpy as np
 import pickle
+import config
 
 
 lg.set_logging()
@@ -26,14 +27,15 @@ DATASET = {
 
 
 def no_flips(dataset, flip_function='minus_one'):
+    raise SystemError('need to be verified and updated')
     logging.info('Computing no_flips for %s' % dataset)
     data = DATASET[dataset]()
     x = data.test2d.x
     y = data.test2d.y
 
     results = []
-    for m in MODELS:
-        for s in SEQS:
+    for m in config.MODELS:
+        for s in config.SEQS:
             model_obj = provider.load(_model_path(m, dataset, s))
             no_flip_random = heatmap_evaluation.count_flip(model_obj, x, y,
                                                            order='random',
@@ -69,11 +71,11 @@ def aopc(dataset, flip_function='minus_one'):
     y = data.test2d.y
 
     results = []
-    for m in MODELS:
-        for s in SEQS:
+    for m in config.MODELS:
+        for s in config.SEQS:
             model_obj = provider.load(_model_path(m, dataset, s))
 
-            for e in METHODS:
+            for e in config.METHODS:
                 logging.info('>> %s-%d : %s' % (m, s, e))
                 order = 'morf'
                 if e == 'random':
