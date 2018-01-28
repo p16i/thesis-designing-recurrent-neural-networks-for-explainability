@@ -15,7 +15,7 @@ lg.set_logging()
 SEQS = [1, 4, 7]
 MODELS = ['s2', 's3', 'deep_4l', 'convdeep_4l']
 METHODS = ['random', 'sensitivity', 'simple_taylor', 'guided_backprop',
-           'lrp_alpha1_beta1', 'lrp_deep_taylor']
+           'lrp_alpha2_beta1', 'lrp_alpha3_beta2', 'lrp_deep_taylor']
 
 
 DATASET = {
@@ -35,8 +35,6 @@ def no_flips(dataset, flip_function='minus_one'):
     for m in MODELS:
         for s in SEQS:
             model_obj = provider.load(_model_path(m, dataset, s))
-            patch_width = 7
-            logging.info('patch width %d ' % patch_width)
             no_flip_random = heatmap_evaluation.count_flip(model_obj, x, y,
                                                            order='random',
                                                            method='sensitivity',
@@ -52,7 +50,7 @@ def no_flips(dataset, flip_function='minus_one'):
 
             for e in METHODS:
                 logging.info('>> %s-%d : %s' % (m, s, e))
-                avg_flips = heatmap_evaluation.count_flip(model_obj, x, y, method=e, patch_size=(7, patch_width))
+                avg_flips = heatmap_evaluation.count_flip(model_obj, x, y, method=e, flip_function=flip_function)
                 results.append(dict(
                     architecture=m,
                     seq=s,
