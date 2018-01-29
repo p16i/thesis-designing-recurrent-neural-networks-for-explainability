@@ -159,11 +159,11 @@ class PoolingLayer:
         self.strides = strides
 
     def pool(self, x):
-        return tf.nn.max_pool(
+        return tf.nn.avg_pool(
             x,
             ksize=[1, self.kernel_size[0], self.kernel_size[1], 1],
             strides=[1, self.strides[0], self.strides[1], 1], padding='SAME'
-        )
+        ) * tf.constant(float(np.size(self.kernel_size)))
 
     def get_no_variables(self):
         return 0
