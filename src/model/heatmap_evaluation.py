@@ -1,5 +1,4 @@
 import logging
-import tensorflow as tf
 import numpy as np
 
 from model import base
@@ -9,8 +8,6 @@ from utils import logging as lg
 from skimage.filters.rank import entropy
 from skimage.morphology import square, disk
 from skimage import img_as_ubyte
-
-import matplotlib.pyplot as plt
 
 FLIP_FUNCTION = {
     'zero': lambda x : np.zeros(x),
@@ -90,6 +87,7 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
             #
             # plt.savefig('relevance-%s-permuted-%d.png' % (method, i+1))
 
+            # todo: should we apply relu here?
             relevance_at_k = sess.run(model_obj.dag.y_pred_y_target, feed_dict={
                 model_obj.dag.x: x_permuted, model_obj.dag.y_target:y,
                 model_obj.dag.rx: rr_inputs, model_obj.dag.keep_prob: 1
