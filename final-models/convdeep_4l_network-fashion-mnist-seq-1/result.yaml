@@ -1,4 +1,4 @@
-accuracy: 0.9258000254631042
+accuracy: 0.9305999875068665
 architecture: conv1:5x5x24=>2x2[2,2]|conv2:3x3x48=>2x2[2,2]|hidden:256|out1:128|out2:10--recur:1
 architecture_name: convdeep_4l_network
 batch: 50
@@ -6,11 +6,11 @@ column_at_a_time: 28
 dataset: fashion-mnist
 dims: 28
 epoch: 200
-experiment_name: convdeep_4l_network-fashion-mnist-seq-1---2018-01-29--03-02-49
+experiment_name: convdeep_4l_network-fashion-mnist-seq-1---2018-01-30--20-29-56
 keep_prob: 0.5
 lr: 0.0001
 max_seq_length: 28
 optimizer: AdamOptimizer
 regularizer: 0.0
 seq_length: 1
-val_accuracy: 0.9307500123977661
+val_accuracy: 0.9354166388511658
