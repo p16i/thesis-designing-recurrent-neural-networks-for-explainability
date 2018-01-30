@@ -45,7 +45,7 @@ class TestNetwork(unittest.TestCase):
         data = data_provider.MNISTData(dir_path=prepend_project_root('/data/mnist'))
         model = TestNetwork._load_model(model)
 
-        model.lrp(data.test2d.x[:NO_TESTING_DATA, :, :], debug=True)
+        model.lrp(data.test2d.x[:NO_TESTING_DATA, :, :], data.test2d.y[:NO_TESTING_DATA, :], debug=True)
 
     @staticmethod
     def _load_model(model):
