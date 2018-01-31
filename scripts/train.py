@@ -5,7 +5,7 @@ import fire
 import numpy as np
 import tensorflow as tf
 
-from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network, convdeep_4l_artificial_output
+from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network, tutorial_network
 from utils import logging as lg
 from utils import data_provider, experiment_artifact, network_architecture
 
@@ -16,7 +16,7 @@ NETWORKS = {
     's3_network': s3_network,
     'deep_4l_network': deep_4l_network,
     'convdeep_4l_network': convdeep_4l_network,
-    'convdeep_4l_artificial_output': convdeep_4l_artificial_output
+    'tutorial_network': tutorial_network
 }
 
 
