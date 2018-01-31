@@ -1,0 +1,11 @@
+{
+  "ImageId": "ami-3b1c8354",
+  "SecurityGroupIds": [
+    "sg-9b152cf3"
+  ],
+  "KeyName": "Pat's key",
+  "InstanceType": "p2.xlarge",
+  "Placement": {
+    "AvailabilityZone": "eu-central-1b"
+  }
+}
