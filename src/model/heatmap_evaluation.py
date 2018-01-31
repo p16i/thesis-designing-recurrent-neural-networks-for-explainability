@@ -44,6 +44,7 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
     else:
         logging.info("Using random order strategy")
         patch_indices = np.zeros((x.shape[0], max_k))
+        np.random.seed(0)
         for i in range(x.shape[0]):
             patch_indices[i, :] = np.random.choice(rel_patches_flatted.shape[1], max_k, replace=False)
 
@@ -68,8 +69,6 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
         relevances.append(relevance_at_0)
 
         x_permuted = np.copy(x)
-
-        np.random.seed(0)
 
         for i in range(max_k):
             for j in range(x_permuted.shape[0]):
@@ -143,7 +142,10 @@ def count_flip(model_obj: base.BaseNetwork, x, y_true, max_k=16, patch_size=(7,7
         logging.info("Using random order strategy")
         patch_indices = np.zeros((x.shape[0], max_k))
         for i in range(x.shape[0]):
-            patch_indices[i, :] = np.random.choice(rel_patches_flatted.shape[1], max_k, replace=False)
+            np.random.seed(0)
+            choice = np.random.choice(rel_patches_flatted.shape[1], max_k, replace=False)
+            print(choice)
+            patch_indices[i, :] = choice
 
     print('Rel patches shape')
     print(rel_patches.shape)
@@ -166,8 +168,6 @@ def count_flip(model_obj: base.BaseNetwork, x, y_true, max_k=16, patch_size=(7,7
         pred_indices[:, 0] = pred_at_0
 
         x_permuted = np.copy(x)
-
-        np.random.seed(0)
 
         for i in range(max_k):
             for j in range(x_permuted.shape[0]):
