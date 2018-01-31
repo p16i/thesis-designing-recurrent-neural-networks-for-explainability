@@ -81,7 +81,8 @@ class Layer:
 
 
 class ConvolutionalLayer(Layer):
-    def __init__(self, input_channels, kernel_size, filters, name, default_weights=None, default_biases=None):
+    def __init__(self, input_channels, kernel_size, filters, name, default_weights=None, default_biases=None,
+                 padding='SAME'):
         super().__init__(kernel_size + [input_channels, filters], name,
                                                  default_weights=default_weights, default_biases=default_biases)
 
@@ -89,7 +90,7 @@ class ConvolutionalLayer(Layer):
         self.kernel_size = kernel_size
         self.filters = filters
         self.strides = [1]*4
-        self.padding = 'SAME'
+        self.padding = padding
 
     def clone(self):
         c = ConvolutionalLayer(self.input_channels, self.kernel_size, self.filters, '%s-copy' % self.name,
@@ -154,15 +155,16 @@ class ConvolutionalLayer(Layer):
 
 
 class PoolingLayer:
-    def __init__(self, kernel_size, strides):
+    def __init__(self, kernel_size, strides, padding='SAME'):
         self.kernel_size = kernel_size
         self.strides = strides
+        self.padding = padding
 
     def pool(self, x):
         return tf.nn.avg_pool(
             x,
             ksize=[1, self.kernel_size[0], self.kernel_size[1], 1],
-            strides=[1, self.strides[0], self.strides[1], 1], padding='SAME'
+            strides=[1, self.strides[0], self.strides[1], 1], padding=self.padding
         ) * tf.constant(float(np.size(self.kernel_size)))
 
     def get_no_variables(self):
