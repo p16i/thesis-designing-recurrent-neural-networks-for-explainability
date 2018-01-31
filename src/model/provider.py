@@ -1,6 +1,6 @@
 import logging
 from utils import logging as lg
-from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network, convdeep_4l_artificial_output
+from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network, tutorial_network
 from utils import experiment_artifact
 
 lg.set_logging()
@@ -17,7 +17,7 @@ def load(path):
         's3_network': s3_network.Network,
         'deep_4l_network': deep_4l_network.Network,
         'convdeep_4l_network': convdeep_4l_network.Network,
-        'convdeep_4l_artificial_output':  convdeep_4l_artificial_output.Network
+        'tutorial_network':  tutorial_network.Network
     }
 
     return model_loaders[artifact.architecture_name](artifact)
