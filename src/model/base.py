@@ -238,13 +238,19 @@ class BaseNetwork:
                 .reshape(relevance_heatmap.shape[0], relevance_heatmap.shape[1], -1)
 
         if debug:
+            print('debug')
 
             logging.debug('Prediction before softmax')
             logging.debug(pred)
             logging.debug('Relevance')
             logging.debug(total_relevance)
 
+            print("============")
+            print(total_relevance)
+
             total_relevance_pixels = np.sum(relevance_heatmap, axis=(1, 2))
+            print(total_relevance_pixels)
+            print("============")
             np.testing.assert_allclose(total_relevance_pixels, total_relevance,
                                        rtol=1e-6, atol=0,
                                        err_msg='Conservation property isn`t hold\n'
