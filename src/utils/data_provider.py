@@ -163,7 +163,7 @@ class UFICroppedData:
 
             np.random.seed(0)
 
-            shuffled_indices = np.arange(total)
+            shuffled_indices = np.arange(total*2)
             np.random.shuffle(shuffled_indices)
 
             return new_x[shuffled_indices, :, :], new_y[shuffled_indices, :]
@@ -171,12 +171,17 @@ class UFICroppedData:
         x_train = avg_pooling(np.load('%s/train-x.npy' % dir_path).reshape(-1, 128, 128))
         y_train = np.load('%s/train-y.npy' % dir_path)
 
+        print(x_train[0])
+        print(np.argmax(y_train[0]))
+
         x_train, y_train = flip_data(x_train, y_train)
+        print('Train data', x_train.shape)
 
         x_test = avg_pooling(np.load('%s/test-x.npy' % dir_path).reshape(-1, 128, 128))
         y_test = np.load('%s/test-y.npy' % dir_path)
 
         x_test, y_test = flip_data(x_test, y_test)
+        print('Test data', x_test.shape)
 
         self.dims = (64, 64)
 
