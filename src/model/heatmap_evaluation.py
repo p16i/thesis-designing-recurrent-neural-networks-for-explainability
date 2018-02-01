@@ -43,12 +43,12 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
         patch_indices = np.argsort(-rel_patches_flatted, axis=1)[:, :max_k]
     else:
         logging.info("Using random order strategy")
+        patch_indices = np.zeros((x.shape[0], max_k))
         seed = 0
         np.random.seed(seed)
         logging.info('set seed to %d' % seed)
-        choices = np.random.choice(rel_patches_flatted.shape[1], max_k, replace=False)
-        logging.info(choices)
-        patch_indices = np.tile(choices, (x.shape[0], 1))
+        for i in range(x.shape[0]):
+            patch_indices[i, :] = np.random.choice(rel_patches_flatted.shape[1], max_k, replace=False)
 
     patch_indices_i = np.floor( patch_indices / rel_patches.shape[1] )
     patch_indices_j = patch_indices % rel_patches.shape[2]
