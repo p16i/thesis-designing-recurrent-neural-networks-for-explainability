@@ -145,20 +145,45 @@ class UFICroppedData:
     def __init__(self, dir_path='./data/ufi-cropped'):
         # subsampling_indices = list(np.arange(0, 128, 2))
 
-        x_train = np.load('%s/train-x.npy' % dir_path)\
-            .reshape(-1, 128, 128)[:, ::2, ::2]
+        def avg_pooling(x):
+            new_x = np.zeros((x.shape[0], 64, 64))
+
+            for i in range(0, x.shape[1], 2):
+                for j in range(0, x.shape[2], 2):
+                    new_x[:, int(i/2), int(j/2)] = np.mean(x[:, i:(i+2), j:(j+2)].reshape(-1, 4), axis=1)
+
+            return new_x
+
+        def flip_data(x, y):
+            total = x.shape[0]
+            new_x = np.tile(x, (2, 1, 1))
+            new_y = np.tile(y, (2, 1))
+
+            new_x[total:, :, :] = x[:, :, ::-1]
+
+            np.random.seed(0)
+
+            shuffled_indices = np.arange(total)
+            np.random.shuffle(shuffled_indices)
+
+            return new_x[shuffled_indices, :, :], new_y[shuffled_indices, :]
+
+        x_train = avg_pooling(np.load('%s/train-x.npy' % dir_path).reshape(-1, 128, 128))
         y_train = np.load('%s/train-y.npy' % dir_path)
 
-        x_test = np.load('%s/test-x.npy' % dir_path)\
-            .reshape(-1, 128, 128)[:, ::2, ::2]
+        x_train, y_train = flip_data(x_train, y_train)
+
+        x_test = avg_pooling(np.load('%s/test-x.npy' % dir_path).reshape(-1, 128, 128))
         y_test = np.load('%s/test-y.npy' % dir_path)
+
+        x_test, y_test = flip_data(x_test, y_test)
 
         self.dims = (64, 64)
 
         # This is a bad idea but we have limited amount of data
         x_val, y_val = x_test, y_test
 
-        self.no_classes = 605
+        self.no_classes = y_test.shape[1]
 
         self.train = DataSet(x_train, y_train)
         self.val = DataSet(x_val, y_val)

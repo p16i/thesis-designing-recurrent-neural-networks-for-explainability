@@ -84,6 +84,8 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
 
                 step = step + 1
 
+        print('>> Epoch %d | step %d : current train batch acc %f, loss %f | val acc %f'
+              % (i, step, acc, loss, acc_val))
         # done training
         logging.debug('Calculating test accuracy')
         rx0 = np.zeros((len(data.test2d.y), architecture.recur))
