@@ -62,7 +62,7 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
     relevances = []
 
     # reference model
-    ref_model_path = provider._model_path('convdeep_4l', model_obj._.dataset, 1)
+    ref_model_path = provider._model_path('convdeep_4l', model_obj._.dataset, model_obj._.seq_length)
     logging.info('Using reference model %s' % ref_model_path)
     ref_model = provider.load(ref_model_path)
 
