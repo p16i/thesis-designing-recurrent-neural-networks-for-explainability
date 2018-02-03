@@ -71,9 +71,9 @@ def aopc(dataset, flip_function='minus_one'):
     results = []
     for m in MODELS:
         for s in SEQS:
-            model_obj = provider.load(_model_path(m, dataset, s))
-
             for e in METHODS:
+                model_obj = provider.load(_model_path(m, dataset, s))
+
                 logging.info('>> %s-%d : %s' % (m, s, e))
                 order = 'morf'
                 if e == 'random':
@@ -89,7 +89,7 @@ def aopc(dataset, flip_function='minus_one'):
                     avg_relevance_at_k=avg_relevance_at_k
                 ))
 
-    output = './stats/aopc-%s-using-%s-flip.pkl' % (dataset, flip_function)
+    output = './stats/auc-relative-conv-%s-using-%s-flip.pkl' % (dataset, flip_function)
     with open(output, 'wb') as output:
         pickle.dump(results, output, -1)
 

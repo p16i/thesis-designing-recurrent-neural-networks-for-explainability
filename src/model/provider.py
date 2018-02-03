@@ -21,3 +21,7 @@ def load(path):
     }
 
     return model_loaders[artifact.architecture_name](artifact)
+
+
+def _model_path(network, dataset, seq):
+    return './final-models/%s_network-%s-seq-%d' % (network, dataset, seq)
