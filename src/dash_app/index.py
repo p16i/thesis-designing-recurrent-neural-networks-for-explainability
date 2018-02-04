@@ -18,8 +18,8 @@ def display_page(pathname):
     print(pathname)
     if pathname is not None:
         if re.match(r'\/pages\/auc', pathname):
-            dataset, flip_function = pathname.split('/')[-2:]
-            return auc.create_layout(dataset, flip_function)
+            ref_model, dataset, flip_function = pathname.split('/')[-3:]
+            return auc.create_layout(ref_model, dataset, flip_function)
         else:
             return '404'
     return '500'
