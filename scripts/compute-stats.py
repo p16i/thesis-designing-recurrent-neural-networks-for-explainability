@@ -62,7 +62,7 @@ def no_flips(dataset, flip_function='minus_one'):
     pd.DataFrame(results).to_csv('./stats/no-flip-%s-using-%s-flip.csv' % (dataset, flip_function), index=False)
 
 
-def aopc(dataset, flip_function='minus_one'):
+def aopc(dataset, flip_function='minus_one', ref_model='conv-seq1'):
     logging.info('Computing AOPC')
     data = DATASET[dataset]()
     x = data.test2d.x
@@ -80,7 +80,8 @@ def aopc(dataset, flip_function='minus_one'):
                     order = 'random'
 
                 avg_relevance_at_k = heatmap_evaluation.aopc(model_obj, x, y, method=e,
-                                                             order=order, flip_function=flip_function)
+                                                             order=order, flip_function=flip_function,
+                                                             ref_model=ref_model)
                 results.append(dict(
                     architecture=m,
                     seq=s,
@@ -89,7 +90,7 @@ def aopc(dataset, flip_function='minus_one'):
                     avg_relevance_at_k=avg_relevance_at_k
                 ))
 
-    output = './stats/auc-relative-conv-%s-using-%s-flip.pkl' % (dataset, flip_function)
+    output = './stats/auc-%s-morf-%s-model-using-%s-flip.pkl' % (dataset, ref_model, flip_function)
     with open(output, 'wb') as output:
         pickle.dump(results, output, -1)
 

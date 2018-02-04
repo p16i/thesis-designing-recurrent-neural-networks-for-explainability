@@ -21,6 +21,7 @@ lg.set_logging()
 
 
 def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="morf", method="deep_taylor",
+         ref_model="conv-seq1",
          verbose=False, flip_function='minus_one'):
 
     if method == 'random':
@@ -62,7 +63,15 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
     relevances = []
 
     # reference model
-    ref_model_path = provider._model_path('convdeep_4l', model_obj._.dataset, model_obj._.seq_length)
+    if ref_model == 'conv-seq1':
+        ref_model_path = provider._model_path('convdeep_4l', model_obj._.dataset, 1)
+    elif ref_model == 'conv-same-seq':
+        ref_model_path = provider._model_path('convdeep_4l', model_obj._.dataset, model_obj._.seq_length)
+    elif ref_model == 'lenet':
+        ref_model_path = './final-models/lenet-%s' % model_obj._.dataset
+    else:
+        raise SystemError('No ref_model %s defined' % ref_model)
+
     logging.info('Using reference model %s' % ref_model_path)
     ref_model = provider.load(ref_model_path)
 
