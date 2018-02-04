@@ -17,9 +17,12 @@ app.layout = html.Div([
 def display_page(pathname):
     print(pathname)
     if pathname is not None:
-        if re.match(r'\/pages\/auc', pathname):
+        if re.match(r'\/pages\/auc\/', pathname):
             ref_model, dataset, flip_function = pathname.split('/')[-3:]
             return auc.create_layout(ref_model, dataset, flip_function)
+        elif re.match(r'\/pages\/auc-summary\/', pathname):
+            ref_model, flip_function = pathname.split('/')[-2:]
+            return auc.create_summary_layout(ref_model, flip_function)
         else:
             return '404'
     return '500'
