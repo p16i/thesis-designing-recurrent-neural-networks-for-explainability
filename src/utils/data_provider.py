@@ -39,10 +39,37 @@ def get_empty_data():
 def get_data(data):
     if data == 'mnist':
         return MNISTData()
+    elif data == 'mnist-3-digits':
+        return MNIST3DigitsData()
     elif data == 'fashion-mnist':
         return FashionMNISTData()
+    elif data == 'fashion-mnist-3-items':
+        return FashionMNIST3ItemsData()
     elif data == 'ufi-cropped':
         return UFICroppedData()
+
+
+def fill_left_right_digit(x, y, seed=71):
+    new_x = np.zeros((x.shape[0], 28, 28*3))
+
+    new_x[:, :, 28:(28*2)] = x
+
+    np.random.seed(seed)
+    classes = np.argmax(y, axis=1)
+
+    for i in range(10):
+        samples_in_class_i = np.squeeze(np.argwhere(classes == i))
+        total = samples_in_class_i.shape[0]
+
+        samples_not_in_class_i = np.squeeze(np.argwhere(classes != i))
+
+        left_indices = np.random.choice(samples_not_in_class_i, total)
+        right_indices = np.random.choice(samples_not_in_class_i, total)
+
+        new_x[samples_in_class_i, :, :28] = x[left_indices, :, :]
+        new_x[samples_in_class_i, :, -28:] = x[right_indices, :, :]
+
+    return new_x, y
 
 
 class DataSet:
@@ -95,9 +122,27 @@ class MNISTData:
 
     def get_samples_for_vis(self, n=12):
 
-        x, y = ht_utils.getMNISTsample(n, path=self.dir_path, seed=1234)
+        np.random.seed(1234)
 
-        return x.reshape(-1, 28, 28), y
+        r = np.random.randint(0,  self.test2d.y.shape[0], n)
+
+        return self.test2d.x[r, :, :], self.test2d.y[r]
+
+
+class MNIST3DigitsData(MNISTData):
+    def __init__(self, **kwargs):
+        super(MNIST3DigitsData, self).__init__(**kwargs)
+
+        self.dims = (28, 28*3)
+
+        self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=0))
+        self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=1))
+        self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=3))
+
+        self.train = self.train2d
+        self.val = self.val2d
+        self.test = self.test2d
+
 
 class FashionMNISTData:
     def __init__(self, dir_path='./data/fashion-mnist'):
@@ -141,6 +186,21 @@ class FashionMNISTData:
         return self.labels[label_index]
 
 
+class FashionMNIST3ItemsData(FashionMNISTData):
+    def __init__(self, **kwargs):
+        super(FashionMNIST3ItemsData, self).__init__(**kwargs)
+
+        self.dims = (28, 28*3)
+
+        self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=20))
+        self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=21))
+        self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=23))
+
+        self.train = self.train2d
+        self.val = self.val2d
+        self.test = self.test2d
+
+
 class UFICroppedData:
     def __init__(self, dir_path='./data/ufi-cropped'):
         # subsampling_indices = list(np.arange(0, 128, 2))
@@ -171,17 +231,17 @@ class UFICroppedData:
         x_train = avg_pooling(np.load('%s/train-x.npy' % dir_path).reshape(-1, 128, 128))
         y_train = np.load('%s/train-y.npy' % dir_path)
 
-        print(x_train[0])
-        print(np.argmax(y_train[0]))
+        # print(x_train[0])
+        # print(np.argmax(y_train[0]))
 
         x_train, y_train = flip_data(x_train, y_train)
-        print('Train data', x_train.shape)
+        # print('Train data', x_train.shape)
 
         x_test = avg_pooling(np.load('%s/test-x.npy' % dir_path).reshape(-1, 128, 128))
         y_test = np.load('%s/test-y.npy' % dir_path)
 
         x_test, y_test = flip_data(x_test, y_test)
-        print('Test data', x_test.shape)
+        # print('Test data', x_test.shape)
 
         self.dims = (64, 64)
 
