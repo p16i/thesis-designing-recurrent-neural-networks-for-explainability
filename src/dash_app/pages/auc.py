@@ -110,7 +110,7 @@ def create_summary_layout(ref_model, flip_function):
                 model_indices.append(config.MODEL_INDEX[model])
 
             data.append(dict(x=model_indices, y=aucs, name=method, mode='lines+markers',
-                             marker={'symbol': config.METHOD_MARKERS[method]}))
+                             marker={'symbol': config.METHOD_MARKERS[method], 'size': 10}))
 
         g = dcc.Graph(id='%s-%s-graph' % (dataset, seq), figure={
             'data': data,

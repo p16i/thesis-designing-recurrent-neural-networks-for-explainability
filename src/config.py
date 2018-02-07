@@ -26,3 +26,10 @@ MODEL_NICKNAMES = {
     'deep_4l': 'DeepV2',
     'convdeep_4l': 'ConvDeep'
 }
+
+MODEL_INDEX = {
+    's2': 0,
+    's3': 1,
+    'deep_4l': 2,
+    'convdeep_4l': 3
+}
