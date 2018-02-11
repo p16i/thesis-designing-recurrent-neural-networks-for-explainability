@@ -2,18 +2,10 @@ import fire
 import logging
 from skopt import gp_minimize
 
-from model.s2_network import S2Network
-from model.s3_network import S3Network
-
 from utils import logging as lg
-
 lg.set_logging(logging.INFO)
 
-TRAIN_FUNCTIONS = {
-    's2_network': S2Network,
-    's3_network': S3Network,
-}
-
+import train
 
 def run(network, seq, architecture,
         batch_size=50, epoch=100,
@@ -29,6 +21,7 @@ def run(network, seq, architecture,
 
     def objective(x):
         params = {
+            'network': network,
             'seq_length': seq,
             'batch': batch_size,
             'architecture_str': architecture,
@@ -36,12 +29,16 @@ def run(network, seq, architecture,
             'keep_prob': 0.5,
             'output_dir': output_dir,
             'epoch': epoch,
-            'dataset': dataset
+            'dataset': dataset,
+            'verbose': True
         }
 
-        artifact = TRAIN_FUNCTIONS[network].train(**params)
+        logging.info('--------- PARAMS ---------')
+        logging.info(params)
 
-        return - artifact.val_accuracy
+        artifact = train.train(**params)
+
+        return 1-artifact.val_accuracy
 
     logging.info('#########################')
 
