@@ -7,12 +7,12 @@ from model import provider, heatmap_evaluation
 import pandas as pd
 import numpy as np
 import pickle
+import config
 
 
 lg.set_logging()
 
 
-SEQS = [1, 4, 7]
 MODELS = ['s2', 's3', 'deep_4l', 'convdeep_4l']
 METHODS = ['random', 'sensitivity', 'simple_taylor', 'guided_backprop',
            'lrp_alpha2_beta1', 'lrp_alpha3_beta2', 'lrp_deep_taylor']
@@ -21,7 +21,7 @@ METHODS = ['random', 'sensitivity', 'simple_taylor', 'guided_backprop',
 DATASET = {
     'mnist': data_provider.MNISTData,
     'fashion-mnist': data_provider.FashionMNISTData,
-    'ufi-cropped': data_provider.UFICroppedData
+    'ufi-cropped': data_provider.UFICroppedData,
 }
 
 
@@ -62,15 +62,18 @@ def no_flips(dataset, flip_function='minus_one'):
     pd.DataFrame(results).to_csv('./stats/no-flip-%s-using-%s-flip.csv' % (dataset, flip_function), index=False)
 
 
-def aopc(dataset, flip_function='minus_one', ref_model='conv-seq1'):
+def aopc(dataset, flip_function='minus_one', ref_model='conv-seq1', seqs=[1,4,7], dry_run=False, use_sample=False):
     logging.info('Computing AOPC')
     data = DATASET[dataset]()
-    x = data.test2d.x
-    y = data.test2d.y
+    if use_sample:
+        x, y = data.get_samples_for_vis(12)
+    else:
+        x = data.test2d.x
+        y = data.test2d.y
 
     results = []
     for m in MODELS:
-        for s in SEQS:
+        for s in seqs:
             for e in METHODS:
                 model_obj = provider.load(_model_path(m, dataset, s))
 
@@ -90,9 +93,44 @@ def aopc(dataset, flip_function='minus_one', ref_model='conv-seq1'):
                     avg_relevance_at_k=avg_relevance_at_k
                 ))
 
-    output = './stats/auc-%s-morf-%s-model-using-%s-flip.pkl' % (dataset, ref_model, flip_function)
-    with open(output, 'wb') as output:
-        pickle.dump(results, output, -1)
+    if not dry_run:
+        output = './stats/auc-%s-morf-%s-model-using-%s-flip.pkl' % (dataset, ref_model, flip_function)
+        with open(output, 'wb') as output:
+            pickle.dump(results, output, -1)
+
+
+def relevance_distribution(dataset, seqs=[12], use_sample=False, dry_run=False):
+
+    logging.info('Computing relevance distribution of %s' % dataset)
+    data = data_provider.get_data(dataset)
+    if use_sample:
+        x, y = data.get_samples_for_vis(100)
+    else:
+        x = data.test2d.x
+        y = data.test2d.y
+
+    results = []
+    methods = list(filter(lambda x: x != 'random', config.METHODS))
+
+    for m in ['s2', 's3', 'deep_4l', 'convdeep_4l']:
+        for s in seqs:
+            model_obj = provider.load(_model_path(m, dataset, s))
+            for e in methods:
+                avg_rel, std_rel = heatmap_evaluation.relevance_distributions(model_obj, x, y, method=e)
+
+                results.append(dict(
+                    architecture=m,
+                    seq=s,
+                    method=e,
+                    dataset=dataset,
+                    rel_dist=avg_rel,
+                    std=std_rel
+                ))
+
+    if not dry_run:
+        output = './stats/rel-dist-%s.pkl' % (dataset)
+        with open(output, 'wb') as output:
+            pickle.dump(results, output, -1)
 
 
 def _model_path(network, dataset, seq):
