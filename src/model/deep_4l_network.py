@@ -133,7 +133,7 @@ class Network(base.BaseNetwork):
 
             rel_to_input[-1] = self.dag.layers['input_1'].rel_z_beta_prop(
                 tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:], shape=[x_3d.shape[0], -1]),
-                rel_to_in1, beta=beta, alpha=alpha
+                rel_to_in1
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
@@ -162,7 +162,7 @@ class Network(base.BaseNetwork):
 
                 rel_to_input[i] = self.dag.layers['input_1'].rel_z_beta_prop(
                     tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[x_3d.shape[0], -1]),
-                    rel_to_in1, alpha=alpha
+                    rel_to_in1
                 )
 
             pred, heatmaps = self._build_heatmap(sess, x, y,

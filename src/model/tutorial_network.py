@@ -224,7 +224,7 @@ class Network(base.BaseNetwork):
 
             rel_to_input = self.dag.ly_conv1.rel_zbeta_prop(
                 self.dag.x_with_channels,
-                rel_pool1_to_conv1, beta=beta, alpha=alpha
+                rel_pool1_to_conv1
             )
 
             pred, heatmaps = self._build_heatmap(sess, x, y,

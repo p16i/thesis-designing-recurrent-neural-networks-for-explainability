@@ -189,7 +189,7 @@ class Network(base.BaseNetwork):
 
             rel_to_input[-1] = self.dag.layers['conv1'].rel_zbeta_prop(
                 self.dag.x_with_channels[:, :, -self.experiment_artifact.column_at_a_time:, :],
-                rel_to_conv1, beta=beta, alpha=alpha
+                rel_to_conv1
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
@@ -232,7 +232,7 @@ class Network(base.BaseNetwork):
 
                 rel_to_input[i] = self.dag.layers['conv1'].rel_zbeta_prop(
                     self.dag.x_with_channels[:, :, c_i:c_j, :],
-                    rel_to_conv1, beta=beta, alpha=alpha
+                    rel_to_conv1
                 )
 
             pred, heatmaps = self._build_heatmap(sess, x, y,
