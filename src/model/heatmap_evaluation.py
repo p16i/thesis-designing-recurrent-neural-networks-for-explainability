@@ -29,7 +29,7 @@ lg.set_logging()
 
 def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="morf", method="deep_taylor",
          ref_model="conv-seq1",
-         verbose=False, flip_function='minus_one'):
+         verbose=False, flip_function='minus_one', plot_result=False):
 
     specified_method = method
 
@@ -101,17 +101,18 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
         relevances.append(relevance_at_0)
 
         x_permuted = np.copy(x)
-        for k in range(x.shape[0]):
-            plt.subplot(9, x.shape[0], k+1)
-            plt.imshow(_make_rgb_heatmap(relevance_heatmaps[k,:, :]))
-            plt.xticks([])
-            plt.yticks([])
+        if plot_result:
+            for k in range(x.shape[0]):
+                plt.subplot(9, x.shape[0], k+1)
+                plt.imshow(_make_rgb_heatmap(relevance_heatmaps[k,:, :]))
+                plt.xticks([])
+                plt.yticks([])
 
-        for k in range(x.shape[0]):
-            plt.subplot(9, x.shape[0], k+1 + x.shape[0])
-            plt.imshow(_make_rgb_heatmap(rel_patches[k,:, :]))
-            plt.xticks([])
-            plt.yticks([])
+            for k in range(x.shape[0]):
+                plt.subplot(9, x.shape[0], k+1 + x.shape[0])
+                plt.imshow(_make_rgb_heatmap(rel_patches[k,:, :]))
+                plt.xticks([])
+                plt.yticks([])
 
         baskets = []
 
@@ -120,25 +121,13 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
                 ix, iy = ii_start[j, i], ii_end[j, i]
                 jx, jy = jj_start[j, i], jj_end[j, i]
 
-                x_j =  x_permuted[j, ix:iy, jx:jy]
-                # if flip_function == 'flip_value':
-                #     x_permuted[j, ix:iy, jx:jy] = -x_permuted[j, ix:iy, jx:jy]
-                # else:
+                x_j = x_permuted[j, ix:iy, jx:jy]
+
                 values = FLIP_FUNCTION[flip_function](x_j)
                 x_permuted[j, ix:iy, jx:jy] = values
 
-
-
-            if i%7 == 0:
+            if i%7 == 0 and plot_result:
                 baskets.append(np.copy(x_permuted))
-                #
-                # for k in range(x.shape[0]):
-                #     plt.subplot(2, 10, k+1)
-                #     plt.imshow(rel_patches[k,:, :], cmap='Reds')
-                #
-                #     plt.subplot(2, 10, k+1 + 10)
-                #     plt.imshow(x_permuted[k,:, :], cmap='Reds')
-
 
             relevance_at_k = sess.run(ref_model.dag.y_pred_y_target, feed_dict={
                 ref_model.dag.x: x_permuted, ref_model.dag.y_target:y,
@@ -149,21 +138,23 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
 
             relevances.append(relevance_at_k)
 
-        for st in range(len(baskets)):
-            xt = baskets[st]
-            for k in range(x_permuted.shape[0]):
-                plt.subplot(9, x.shape[0], k+1 + (st+1)*x.shape[0] + x.shape[0])
-                if k == 0:
-                    plt.title('step %d' % (st*7))
-                plt.imshow(xt[k,:, :], cmap='gist_gray')
-                plt.xticks([])
-                plt.yticks([])
+        if plot_result:
+            for st in range(len(baskets)):
+                xt = baskets[st]
+                for k in range(x_permuted.shape[0]):
+                    plt.subplot(9, x.shape[0], k+1 + (st+1)*x.shape[0] + x.shape[0])
+                    if k == 0:
+                        plt.title('step %d' % (st*7))
+                    plt.imshow(xt[k,:, :], cmap='gist_gray')
+                    plt.xticks([])
+                    plt.yticks([])
 
         ar_name = model_obj._.architecture_name.replace('_network', '')
-        plt.suptitle('%s-%d - %s' % (config.MODEL_NICKNAMES[ar_name], model_obj._.seq_length, method))
-        plt.savefig('./heatmap-temp/relevance-%s-refmodel-%s-%s-seq-%d-%s' %
-                    (ref_model_name, model_obj._.dataset,
-                     model_obj._.architecture_name, model_obj._.seq_length, specified_method))
+        if plot_result:
+            plt.suptitle('%s-%d - %s' % (config.MODEL_NICKNAMES[ar_name], model_obj._.seq_length, method))
+            plt.savefig('./heatmap-temp/relevance-%s-refmodel-%s-%s-seq-%d-%s' %
+                        (ref_model_name, model_obj._.dataset,
+                         model_obj._.architecture_name, model_obj._.seq_length, specified_method))
 
     return relevances
 
