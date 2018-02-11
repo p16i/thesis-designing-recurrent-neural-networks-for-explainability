@@ -1,0 +1,16 @@
+accuracy: 0.8704000115394592
+architecture: in1:512|in2:256|hidden:128|out1:64|out2:10--recur:128
+architecture_name: deep_4l_network
+batch: 50
+column_at_a_time: 7
+dataset: mnist-3-digits
+dims: 28
+epoch: 200
+experiment_name: deep_4l_network-mnist-3-digits-seq-12---2018-02-07--10-36-12
+keep_prob: 0.5
+lr: 0.0001
+max_seq_length: 84
+optimizer: AdamOptimizer
+regularizer: 0.0
+seq_length: 12
+val_accuracy: 0.8655833601951599
