@@ -32,7 +32,7 @@ class Layer:
     def get_no_variables(self):
         return int(np.prod(self.W.shape) + self.b.shape[0])
 
-    def rel_z_plus_prop(self, x, relevance, beta=0.0, alpha=1.0):
+    def rel_z_plus_prop(self, x, relevance, alpha, beta):
         wp = tf.maximum(0.0, self.W)
         wn = tf.minimum(0.0, self.W)
 
@@ -43,7 +43,7 @@ class Layer:
 
         return x * (compute_c(wp, alpha) + compute_c(wn, -beta))
 
-    def rel_z_beta_prop(self, x, relevance, lowest=-1.0, highest=1.0, beta=0.0, alpha=1.0):
+    def rel_z_beta_prop(self, x, relevance, lowest=-1.0, highest=1.0):
         w, v, u = self.W, tf.maximum(0.0, self.W), tf.minimum(0.0, self.W)
         l, h = x * 0 + lowest, x * 0 + highest
 
@@ -53,7 +53,7 @@ class Layer:
                - (l * tf.matmul(s, tf.transpose(v)) + h * tf.matmul(s, tf.transpose(u)))
 
     @staticmethod
-    def rel_z_plus_beta_prop(x_p, w_zp, x_b, w_b, relevance, alpha=1.0, beta=0.0, lowest=-1, highest=1):
+    def rel_z_plus_beta_prop(x_p, w_zp, x_b, w_b, relevance, alpha, beta, lowest=-1, highest=1):
         wp_zp = tf.maximum(0.0, w_zp)
         zp_zp = tf.matmul(x_p, wp_zp)
 
@@ -107,7 +107,7 @@ class ConvolutionalLayer(Layer):
 
         return hconv, hconv_relu
 
-    def rel_zplus_prop(self, x, relevance, alpha=1.0, beta=0.0):
+    def rel_zplus_prop(self, x, relevance, alpha, beta):
         wp = tf.maximum(0.0, self.W)
         wn = tf.minimum(0.0, self.W)
 
@@ -126,7 +126,7 @@ class ConvolutionalLayer(Layer):
 
         return x*(compute_c(wp, alpha) + compute_c(wn, -beta))
 
-    def rel_zbeta_prop(self, x, relevance, lowest=-1, highest=1, beta=1, alpha=1.0):
+    def rel_zbeta_prop(self, x, relevance, lowest=-1, highest=1):
 
         w_neg = tf.minimum(0.0, self.W)
         w_pos = tf.maximum(0.0, self.W)
