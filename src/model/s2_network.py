@@ -83,7 +83,7 @@ class Network(base.BaseNetwork):
 
             rel_to_hidden = self.dag.layers['output'].rel_z_plus_prop(
                 self.dag.ha_activations[-1],
-                self.dag.total_relevance, beta=beta
+                self.dag.total_relevance, beta=beta, alpha=alpha
             )
             weight_px_parts = self.dag.layers['input'].W[:-self.architecture.recur, :]
             weight_rr_parts = self.dag.layers['input'].W[-self.architecture.recur:, :]
