@@ -25,6 +25,7 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
           verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer', dataset='mnist', regularizer=0.0
           ):
 
+    tf.reset_default_graph()
     experiment_name = experiment_artifact.get_experiment_name('%s-%s-seq-%d--' % (network, dataset, seq_length))
 
     logging.debug('Train %s' % network)
