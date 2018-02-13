@@ -3,6 +3,7 @@ from collections import namedtuple
 import tensorflow as tf
 
 from model import base
+from model.components import layer
 from model.components.layer import Layer
 from utils import experiment_artifact
 from utils import logging as lg
@@ -49,7 +50,7 @@ class Dag(base.BaseDag):
         rr = self.rx
         rr_l2 = self.rr_l2
 
-        self.input_l2 = []
+        self.input_l2_activations = []
         self.ha_l1_activations = []
         self.ha_l2_activations = []
 
@@ -73,7 +74,7 @@ class Dag(base.BaseDag):
 
             # level 2
             xr_l2 = tf.concat([oo_l1, rr_l2], axis=1)
-            self.input_l2.append(xr_l2)
+            self.input_l2_activations.append(xr_l2)
 
             ha_l2 = tf.nn.relu(tf.matmul(xr_l2, self.ly_input_l2.W) - tf.nn.softplus(self.ly_input_l2.b))
             self.ha_l2_activations.append(ha_l2)
@@ -101,7 +102,7 @@ class Network(base.BaseNetwork):
         self.experiment_artifact = artifact
         self._ = artifact
 
-        self.name = 's2_network'
+        self.name = 'shallow_2_levels'
 
     def lrp(self, x, y, alpha=1.0, beta=0.0, debug=False):
 
@@ -118,17 +119,19 @@ class Network(base.BaseNetwork):
             )
 
             rel_to_input_l2 = self.dag.layers['input_l2'].rel_z_plus_prop(
-                self.dag.input_l2[-1],
+                self.dag.input_l2_activations[-1],
                 rel_to_hidden_l2, beta=beta, alpha=alpha
             )
 
             rel_to_output_l1 = rel_to_input_l2[:, :-self.architecture.recur_l2]
             rel_to_rr_l2 = rel_to_input_l2[:, -self.architecture.recur_l2:]
 
+
             rel_to_hidden_l1 = self.dag.layers['output_l1'].rel_z_plus_prop(
                 self.dag.ha_l1_activations[-1],
                 rel_to_output_l1,
                 alpha=alpha, beta=beta)
+
 
             weight_px_parts = self.dag.layers['input_l1'].W[:-self.architecture.recur, :]
             weight_rr_parts = self.dag.layers['input_l1'].W[-self.architecture.recur:, :]
@@ -142,6 +145,7 @@ class Network(base.BaseNetwork):
                 alpha=alpha, beta=beta
             )
 
+
             for i in range(self._.seq_length - 1)[::-1]:
                 # level 2
                 rel_to_hidden_l2 = self.dag.layers['recurrent_l2'].rel_z_plus_prop(
@@ -150,8 +154,9 @@ class Network(base.BaseNetwork):
                     alpha=alpha, beta=beta
                 )
 
+
                 rel_to_input_l2 = self.dag.layers['input_l2'].rel_z_plus_prop(
-                    self.dag.input_l2[-1],
+                    self.dag.input_l2_activations[i],
                     rel_to_hidden_l2, beta=beta, alpha=alpha
                 )
 
@@ -160,7 +165,7 @@ class Network(base.BaseNetwork):
 
                 # level 1
                 rel_to_hidden_l1_from_output1 = self.dag.layers['output_l1'].rel_z_plus_prop(
-                    self.dag.ha_l1_activations[-1],
+                    self.dag.ha_l1_activations[i],
                     rel_to_output_l1,
                     alpha=alpha, beta=beta)
 
