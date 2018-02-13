@@ -5,6 +5,7 @@ import matplotlib.gridspec as gridspec
 from utils import logging as lg
 from model import provider
 import numpy as np
+import config
 
 lg.set_logging()
 
@@ -28,7 +29,7 @@ def show_and_save(title=""):
 def plot_relevance_methods(model_path, dataset,
                            methods=['sensitivity', 'simple_taylor', 'guided_backprop',
                                     'lrp_alpha2_beta1', 'lrp_alpha3_beta2', 'lrp_deep_taylor'],
-                           skip_data=False, overlay=False, data=None, verbose=False
+                           skip_data=False, overlay=False, data=None, verbose=False, only_positive_rel=False
                            ):
 
 
@@ -66,6 +67,10 @@ def plot_relevance_methods(model_path, dataset,
                     print('Relevance score for %d  : %.4f' % (j, np.sum(heatmap)))
 
                 heatmap = heatmap / (np.abs(heatmap).max() + 1e-10)
+
+                if only_positive_rel:
+                    heatmap = heatmap * (heatmap > 0)
+
                 heatmap = make_rgb_heatmap(heatmap)
                 cmap = None
                 if overlay:
@@ -100,7 +105,7 @@ def plot_relevance_methods(model_path, dataset,
     plt.suptitle(
         'Heatmaps from different explaination methods\n%s:%s\n%s (no. variables %d ) \n(opt %s, acc %.4f, keep_prob %.2f)' %
         (
-            model_obj._.architecture_name,
+            config.MODEL_NICKNAMES[model_obj._.architecture_name.replace('_network', '')],
             model_obj._.architecture,
             model_obj._.experiment_name,
             model_obj.dag.no_variables(),
@@ -132,3 +137,9 @@ def make_rgb_heatmap(x):
 	b = hbp*(x>=0)+hbn*(x<0)
 
 	return np.concatenate([r,g,b],axis=-1)
+
+def norm_and_make_rgb_heatmap(x):
+
+    x = x / (np.abs(x).max() + 1e-10)
+
+    return make_rgb_heatmap(x)
