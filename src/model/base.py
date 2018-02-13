@@ -8,6 +8,7 @@ from model.components import layer as ComponentLayer
 
 lg.set_logging()
 
+TEST_RELEVANCE_THRESHOLD = 1e-2
 
 #### Acknowledgement to Chris Olah ####
 @tf.RegisterGradient("GuidedRelu")
@@ -88,6 +89,7 @@ class BaseDag:
     def no_variables(self):
         no_variables = 0
         for k, ly in self.layers.items():
+            logging.info('layer %s | # variables %d' % (k, ly.get_no_variables()))
             no_variables = no_variables + ly.get_no_variables()
         return no_variables
 
@@ -197,6 +199,10 @@ class BaseNetwork:
         logging.info('Explaining with alpha2, beta=1')
         return self.lrp(x, y, alpha=2.0, beta=1, debug=debug)
 
+    def rel_lrp_alpha1_2_beta_2(self, x, y, debug=False):
+        logging.info('Explaining with alpha2, beta=1')
+        return self.lrp(x, y, alpha=1.2, beta=0.2, debug=debug)
+
     def get_weight_bias_at_layers(self, layers=None):
 
         layers = []
@@ -245,16 +251,20 @@ class BaseNetwork:
             logging.debug('Relevance')
             logging.debug(total_relevance)
 
-            print("============")
-            print(total_relevance)
-
             total_relevance_pixels = np.sum(relevance_heatmap, axis=(1, 2))
-            print(total_relevance_pixels)
-            print("============")
-            np.testing.assert_allclose(total_relevance_pixels, total_relevance,
-                                       rtol=1e-6, atol=0,
-                                       err_msg='Conservation property isn`t hold\n'
-                                               ': Sum of relevance from pixels is not equal to output relevance.')
+
+            diff_greater_than_threshold = (np.abs(total_relevance_pixels - total_relevance) > TEST_RELEVANCE_THRESHOLD)
+            no_diff_greater_than_threshold = np.sum(diff_greater_than_threshold)
+
+            for i in range(total_relevance_pixels.shape[0]):
+                rp = total_relevance_pixels[i]
+                re = total_relevance[i]
+                print('%d: out: %f \t\t | exp: %f \t\t diff %f(%s)'
+                      % (i, rp, re, rp-re, diff_greater_than_threshold[i]))
+
+            print('there are %d diffs greather than threshold %f' % (no_diff_greater_than_threshold, TEST_RELEVANCE_THRESHOLD))
+            assert no_diff_greater_than_threshold == 0,\
+                'Conservation property isn`t hold\n : Sum of relevance from pixels is not equal to output relevance.'
         return np.argmax(pred, axis=1), relevance_heatmap
 
     def formal_name(self):

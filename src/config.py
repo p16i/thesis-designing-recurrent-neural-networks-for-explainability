@@ -24,7 +24,9 @@ MODEL_NICKNAMES = {
     's2': 'Shallow',
     's3': 'Deep',
     'deep_4l': 'DeepV2',
-    'convdeep_4l': 'ConvDeep'
+    'convdeep_4l': 'ConvDeep',
+    'tutorial': 'lenet',
+    'shallow_2_levels': 'shallow_2_levels'
 }
 
 MODEL_INDEX = {
