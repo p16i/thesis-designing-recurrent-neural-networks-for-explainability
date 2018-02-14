@@ -128,8 +128,8 @@ class ConvolutionalLayer(Layer):
 
     def rel_zbeta_prop(self, x, relevance, lowest=-1, highest=1):
 
-        w_neg = tf.minimum(DIVISION_ADJUSTMENT, self.W)
-        w_pos = tf.maximum(-DIVISION_ADJUSTMENT, self.W)
+        w_neg = tf.minimum(0.0, self.W)
+        w_pos = tf.maximum(0.0, self.W)
 
         l, h = x*0.0+lowest, x*0+highest
 
@@ -137,7 +137,7 @@ class ConvolutionalLayer(Layer):
         p_act = self.conv_with_w(l, w_pos)
         n_act = self.conv_with_w(h, w_neg)
 
-        s = relevance / (i_act - (p_act + n_act))
+        s = relevance / (i_act - (p_act + n_act) + DIVISION_ADJUSTMENT)
 
         shape_x = tf.shape(x)
 
