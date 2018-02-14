@@ -268,7 +268,7 @@ class BaseNetwork:
         return np.argmax(pred, axis=1), relevance_heatmap
 
     def formal_name(self):
-        return '%s-%d' % (BaseNetwork.network_nickname(self._.architecture_name), self._.seq_length)
+        return '%s-seq-%d' % (BaseNetwork.network_nickname(self._.architecture_name), self._.seq_length)
 
     @staticmethod
     def network_nickname(t):
