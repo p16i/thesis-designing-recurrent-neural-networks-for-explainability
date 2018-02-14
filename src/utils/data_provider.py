@@ -41,10 +41,14 @@ def get_data(data):
         return MNISTData()
     elif data == 'mnist-3-digits':
         return MNIST3DigitsData()
+    elif data == 'mnist-3-digits-maj':
+        return MNIST3DigitsWithMajorityData()
     elif data == 'fashion-mnist':
         return FashionMNISTData()
     elif data == 'fashion-mnist-3-items':
         return FashionMNIST3ItemsData()
+    elif data == 'fashion-mnist-3-items-maj':
+        return FashionMNIST3DigitsWithMajorityData()
     elif data == 'ufi-cropped':
         return UFICroppedData()
 
@@ -54,8 +58,19 @@ def fill_left_right_digit(x, y, seed=71):
 
     new_x[:, :, 28:(28*2)] = x
 
+    def plot_sample_propotions(indices, label):
+        y_not_in_class_i = classes[indices]
+        counts = dict()
+        for jj in range(10):
+            counts[jj] = np.sum(y_not_in_class_i == jj)
+
+        logging.info('%s | sample propotions' % (label))
+        logging.info(counts)
+
     np.random.seed(seed)
     classes = np.argmax(y, axis=1)
+
+    # plot_sample_propotions(range(classes.shape[0]), 'total')
 
     for i in range(10):
         samples_in_class_i = np.squeeze(np.argwhere(classes == i))
@@ -64,12 +79,46 @@ def fill_left_right_digit(x, y, seed=71):
         samples_not_in_class_i = np.squeeze(np.argwhere(classes != i))
 
         left_indices = np.random.choice(samples_not_in_class_i, total)
+        # plot_sample_propotions(left_indices, 'left-%d' % i)
+
         right_indices = np.random.choice(samples_not_in_class_i, total)
+        # plot_sample_propotions(right_indices, 'right-%d' % i)
 
         new_x[samples_in_class_i, :, :28] = x[left_indices, :, :]
         new_x[samples_in_class_i, :, -28:] = x[right_indices, :, :]
 
     return new_x, y
+
+
+def create_majority_data(x, y, seed=71):
+    np.random.seed(seed)
+    classes = np.argmax(y, axis=1)
+
+    new_x = np.tile(x, (1, 3))
+
+    fake_digit_positions = np.zeros((new_x.shape[0], 3))
+
+    np.random.choice([0, 1, 2], new_x.shape[0], replace=True)
+
+    for i in range(10):
+        samples_in_class_i = np.squeeze(np.argwhere(classes == i))
+        total = samples_in_class_i.shape[0]
+
+        samples_not_in_class_i = np.squeeze(np.argwhere(classes != i))
+
+        fake_digit_idx = np.random.choice(samples_not_in_class_i, total)
+        same_class_digit_idx = np.random.choice(samples_in_class_i, total)
+
+        for j, idx in zip(range(total), samples_in_class_i):
+            dd = [x[idx, :, :], x[same_class_digit_idx[j], :, :], x[fake_digit_idx[j], :, :]]
+            permuted_pos = np.random.permutation(range(3))
+
+            fake_digit_positions[idx] = permuted_pos
+            dd_permuted = [dd[jj] for jj in permuted_pos]
+
+            new_x[idx, :, :] = np.concatenate(dd_permuted, axis=1)
+
+    return new_x, y, fake_digit_positions
 
 
 class DataSet:
@@ -144,6 +193,32 @@ class MNIST3DigitsData(MNISTData):
         self.test = self.test2d
 
 
+class MNIST3DigitsWithMajorityData(MNISTData):
+    def __init__(self, **kwargs):
+        super(MNIST3DigitsWithMajorityData, self).__init__(**kwargs)
+
+        self.dims = (28, 28*3)
+
+        x, y, fake_digit_position = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
+        self.train2d = DataSet(x, y)
+        self.train2d_fake_digit_position = fake_digit_position
+        assert self.train2d_fake_digit_position.shape[0] == self.train2d.y.shape[0]
+
+        x, y, fake_digit_position = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
+        self.val2d = DataSet(x, y)
+        self.val2d_fake_digit_position = fake_digit_position
+        assert self.val2d_fake_digit_position.shape[0] == self.val2d.y.shape[0]
+
+        x, y, fake_digit_position = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
+        self.test2d = DataSet(x, y)
+        self.test2d_fake_digit_position = fake_digit_position
+        assert self.test2d_fake_digit_position.shape[0] == self.test2d.y.shape[0]
+
+        self.train = self.train2d
+        self.val = self.val2d
+        self.test = self.test2d
+
+
 class FashionMNISTData:
     def __init__(self, dir_path='./data/fashion-mnist'):
 
@@ -195,6 +270,32 @@ class FashionMNIST3ItemsData(FashionMNISTData):
         self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=20))
         self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=21))
         self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=23))
+
+        self.train = self.train2d
+        self.val = self.val2d
+        self.test = self.test2d
+
+
+class FashionMNIST3DigitsWithMajorityData(FashionMNISTData):
+    def __init__(self, **kwargs):
+        super(FashionMNIST3DigitsWithMajorityData, self).__init__(**kwargs)
+
+        self.dims = (28, 28*3)
+
+        x, y, fake_digit_position = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
+        self.train2d = DataSet(x, y)
+        self.train2d_fake_digit_position = fake_digit_position
+        assert self.train2d_fake_digit_position.shape[0] == self.train2d.y.shape[0]
+
+        x, y, fake_digit_position = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
+        self.val2d = DataSet(x, y)
+        self.val2d_fake_digit_position = fake_digit_position
+        assert self.val2d_fake_digit_position.shape[0] == self.val2d.y.shape[0]
+
+        x, y, fake_digit_position = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
+        self.test2d = DataSet(x, y)
+        self.test2d_fake_digit_position = fake_digit_position
+        assert self.test2d_fake_digit_position.shape[0] == self.test2d.y.shape[0]
 
         self.train = self.train2d
         self.val = self.val2d
