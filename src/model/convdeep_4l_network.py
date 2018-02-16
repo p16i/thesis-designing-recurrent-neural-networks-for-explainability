@@ -116,7 +116,8 @@ class Dag(base.BaseDag):
             ha = tf.nn.relu(tf.matmul(xr_do, self.ly_input_to_cell.W) - tf.nn.softplus(self.ly_input_to_cell.b))
             self.activations.hidden.append(ha)
 
-            rr = tf.nn.relu(tf.matmul(ha, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
+            ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
+            rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
             self.activations.recurrent.append(rr)
 
         last_hidden_activation = self.activations.hidden[-1]

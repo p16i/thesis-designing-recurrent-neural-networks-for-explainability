@@ -47,7 +47,8 @@ class Dag(base.BaseDag):
             ha = tf.nn.relu(tf.matmul(xr, self.ly_input.W) - tf.nn.softplus(self.ly_input.b))
             self.ha_activations.append(ha)
 
-            rr = tf.nn.relu(tf.matmul(ha, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
+            ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
+            rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
             self.rr_activations.append(rr)
 
         self.y_pred = tf.matmul(self.ha_activations[-1], self.ly_output.W) - tf.nn.softplus(self.ly_output.b)
