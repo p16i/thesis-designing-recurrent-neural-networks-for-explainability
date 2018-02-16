@@ -1,0 +1,16 @@
+accuracy: 0.8338000178337097
+architecture: in1:512|in2:256|hidden:128|out1:64|out2:10--recur:128
+architecture_name: deep_4l_network
+batch: 50
+column_at_a_time: 7
+dataset: fashion-mnist-3-items-maj
+dims: 28
+epoch: 200
+experiment_name: deep_4l_network-fashion-mnist-3-items-maj-seq-12---2018-02-14--21-49-46
+keep_prob: 0.5
+lr: 0.00025
+max_seq_length: 84
+optimizer: AdamOptimizer
+regularizer: 0.0
+seq_length: 12
+val_accuracy: 0.8359166383743286
