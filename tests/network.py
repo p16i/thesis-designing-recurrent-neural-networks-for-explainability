@@ -31,8 +31,8 @@ class TestNetwork(unittest.TestCase):
     def test_convdeep_4l(self):
         TestNetwork._test_lrp('final-models/convdeep_4l_network-mnist-seq-7')
 
-    def test_shallow_2level(self):
-        TestNetwork._test_lrp('experiment-results/shallow_2_levels/shallow_2_levels-mnist-seq-7---2018-02-11--21-05-33')
+    # def test_shallow_2level(self):
+    #     TestNetwork._test_lrp('experiment-results/shallow_2_levels/shallow_2_levels-mnist-seq-7---2018-02-11--21-05-33')
 
     def test_no_variables(self):
         networks = [('final-models/s2_network-mnist-seq-7', 291210),
