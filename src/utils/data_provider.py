@@ -96,9 +96,7 @@ def create_majority_data(x, y, seed=71):
 
     new_x = np.tile(x, (1, 3))
 
-    fake_digit_positions = np.zeros((new_x.shape[0], 3))
-
-    np.random.choice([0, 1, 2], new_x.shape[0], replace=True)
+    digit_positions = np.zeros((new_x.shape[0], 3))
 
     for i in range(10):
         samples_in_class_i = np.squeeze(np.argwhere(classes == i))
@@ -113,13 +111,36 @@ def create_majority_data(x, y, seed=71):
             dd = [x[idx, :, :], x[same_class_digit_idx[j], :, :], x[fake_digit_idx[j], :, :]]
             permuted_pos = np.random.permutation(range(3))
 
-            fake_digit_positions[idx] = permuted_pos
+            digit_positions[idx] = permuted_pos
             dd_permuted = [dd[jj] for jj in permuted_pos]
 
             new_x[idx, :, :] = np.concatenate(dd_permuted, axis=1)
 
-    return new_x, y, fake_digit_positions
+    return new_x, y, digit_positions <= 1
 
+
+def creat_middle_mark(no_x, no_digit=3):
+    zeros = np.zeros((no_x, no_digit))
+    zeros[:, 1] = 1
+    return zeros
+
+
+class DatasetLoader():
+    def __init__(self, data_dir):
+        prepend_dir = lambda p: '%s/%s' % (data_dir, p)
+
+        self.dataset = {
+            'mnist': MNISTData(dir_path=prepend_dir('mnist')),
+            'fashion-mnist': FashionMNISTData(dir_path=prepend_dir('fashion-mnist')),
+            'ufi-cropped': UFICroppedData(dir_path=prepend_dir('ufi-cropped')),
+            'mnist-3-digits': MNIST3DigitsData(dir_path=prepend_dir('mnist')),
+            'mnist-3-digits-maj': MNIST3DigitsWithMajorityData(dir_path=prepend_dir('mnist')),
+            'fashion-mnist-3-items': FashionMNIST3ItemsData(dir_path=prepend_dir('fashion-mnist')),
+            'fashion-mnist-3-items-maj': FashionMNIST3DigitsWithMajorityData(dir_path=prepend_dir('fashion-mnist')),
+        }
+
+    def load(self, dataset_name):
+        return self.dataset[dataset_name]
 
 class DataSet:
     def __init__(self, x, y):
@@ -185,8 +206,13 @@ class MNIST3DigitsData(MNISTData):
         self.dims = (28, 28*3)
 
         self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=0))
+        self.train2d_correct_digit_mark = creat_middle_mark(self.train2d.x.shape[0])
+
         self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=1))
+        self.val2d_correct_digit_mark = creat_middle_mark(self.val2d.x.shape[0])
+
         self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=3))
+        self.test2d_correct_digit_mark = creat_middle_mark(self.test2d.x.shape[0])
 
         self.train = self.train2d
         self.val = self.val2d
@@ -199,20 +225,17 @@ class MNIST3DigitsWithMajorityData(MNISTData):
 
         self.dims = (28, 28*3)
 
-        x, y, fake_digit_position = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
+        x, y, self.train2d_correct_digit_mark = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
         self.train2d = DataSet(x, y)
-        self.train2d_fake_digit_position = fake_digit_position
-        assert self.train2d_fake_digit_position.shape[0] == self.train2d.y.shape[0]
+        assert self.train2d_correct_digit_mark.shape[0] == self.train2d.y.shape[0]
 
-        x, y, fake_digit_position = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
+        x, y, self.val2d_correct_digit_mark = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
         self.val2d = DataSet(x, y)
-        self.val2d_fake_digit_position = fake_digit_position
-        assert self.val2d_fake_digit_position.shape[0] == self.val2d.y.shape[0]
+        assert self.val2d_correct_digit_mark.shape[0] == self.val2d.y.shape[0]
 
-        x, y, fake_digit_position = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
+        x, y, self.test2d_correct_digit_mark = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
         self.test2d = DataSet(x, y)
-        self.test2d_fake_digit_position = fake_digit_position
-        assert self.test2d_fake_digit_position.shape[0] == self.test2d.y.shape[0]
+        assert self.test2d_correct_digit_mark.shape[0] == self.test2d.y.shape[0]
 
         self.train = self.train2d
         self.val = self.val2d
@@ -268,8 +291,13 @@ class FashionMNIST3ItemsData(FashionMNISTData):
         self.dims = (28, 28*3)
 
         self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=20))
+        self.train2d_correct_digit_mark = creat_middle_mark(self.train2d.x.shape[0])
+
         self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=21))
+        self.val2d_correct_digit_mark = creat_middle_mark(self.val2d.x.shape[0])
+
         self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=23))
+        self.test2d_correct_digit_mark = creat_middle_mark(self.test2d.x.shape[0])
 
         self.train = self.train2d
         self.val = self.val2d
@@ -282,20 +310,17 @@ class FashionMNIST3DigitsWithMajorityData(FashionMNISTData):
 
         self.dims = (28, 28*3)
 
-        x, y, fake_digit_position = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
+        x, y, self.train2d_correct_digit_mark = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
         self.train2d = DataSet(x, y)
-        self.train2d_fake_digit_position = fake_digit_position
-        assert self.train2d_fake_digit_position.shape[0] == self.train2d.y.shape[0]
+        assert self.train2d_correct_digit_mark.shape[0] == self.train2d.y.shape[0]
 
-        x, y, fake_digit_position = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
+        x, y, self.val2d_correct_digit_mark = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
         self.val2d = DataSet(x, y)
-        self.val2d_fake_digit_position = fake_digit_position
-        assert self.val2d_fake_digit_position.shape[0] == self.val2d.y.shape[0]
+        assert self.val2d_correct_digit_mark.shape[0] == self.val2d.y.shape[0]
 
-        x, y, fake_digit_position = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
+        x, y, self.test2d_correct_digit_mark = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
         self.test2d = DataSet(x, y)
-        self.test2d_fake_digit_position = fake_digit_position
-        assert self.test2d_fake_digit_position.shape[0] == self.test2d.y.shape[0]
+        assert self.test2d_correct_digit_mark.shape[0] == self.test2d.y.shape[0]
 
         self.train = self.train2d
         self.val = self.val2d
