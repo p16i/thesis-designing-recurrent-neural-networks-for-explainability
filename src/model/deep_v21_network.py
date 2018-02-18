@@ -14,7 +14,7 @@ from utils import network_architecture
 lg.set_logging()
 
 
-Architecture = namedtuple('S3Architecture', ['in1', 'hidden', 'out1', 'out2', 'hidden_to_recur', 'recur'])
+Architecture = namedtuple('S3Architecture', ['in1', 'hidden', 'out1', 'out2', 'recur'])
 
 
 def load(model_path):
@@ -32,7 +32,6 @@ class Dag(base.BaseDag):
         self.ly_output_from_cell = Layer((architecture.hidden, architecture.out1), 's3__output_from_cell')
         self.ly_output_2 = Layer((architecture.out1, architecture.out2), 's3__final_output')
 
-        self.ly_hidden_to_recur = Layer((architecture.hidden, architecture.hidden_to_recur), 'hidden_to_recur')
         self.ly_recurrent = Layer((architecture.hidden, architecture.recur), 's3__recurrent')
 
         self.layers = {
@@ -40,7 +39,6 @@ class Dag(base.BaseDag):
             'input_to_cell': self.ly_input_to_cell,
             'output_from_cell': self.ly_output_from_cell,
             'output_2': self.ly_output_2,
-            'hidden_to_recur': self.ly_hidden_to_recur,
             'recurrent': self.ly_recurrent
         }
 
