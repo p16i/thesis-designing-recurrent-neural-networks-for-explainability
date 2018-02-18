@@ -71,8 +71,9 @@ class Dag(base.BaseDag):
             ha_from_cell = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W)
                                            - tf.nn.softplus(self.ly_output_from_cell.b))
 
+            ha_from_cell = ha_from_cell / tf.reshape(tf.reduce_max(ha_from_cell, axis=1), (-1, ))
             rr = rr_from_hidden * ha_from_cell
-            rr = rr / tf.reshape(tf.reduce_max(rr, axis=1), (-1, 1))
+            rr = rr
             self.rr_activations.append(rr)
 
         last_hidden_activation = self.ha_activations[-1]
