@@ -6,6 +6,17 @@ from utils import experiment_artifact
 
 lg.set_logging()
 
+MODEL_CLASS = {
+    's2_network': s2_network,
+    's3_network': s3_network,
+    'deep_4l_network': deep_4l_network,
+    'convdeep_4l_network': convdeep_4l_network,
+    'tutorial_network':  tutorial_network,
+    'shallow_2_levels': shallow_2_levels,
+    'deep_v21_network': deep_v21_network,
+    'convdeep_gated_network': convdeep_gated
+}
+
 
 def load(path):
     logging.debug('Load network from %s' % path)
@@ -13,18 +24,7 @@ def load(path):
 
     logging.info(artifact)
 
-    model_loaders = {
-        's2_network': s2_network.Network,
-        's3_network': s3_network.Network,
-        'deep_4l_network': deep_4l_network.Network,
-        'convdeep_4l_network': convdeep_4l_network.Network,
-        'tutorial_network':  tutorial_network.Network,
-        'shallow_2_levels': shallow_2_levels.Network,
-        'deep_v21_network': deep_v21_network.Network,
-        'convdeep_gated': convdeep_gated.Network
-    }
-
-    return model_loaders[artifact.architecture_name](artifact)
+    return MODEL_CLASS[artifact.architecture_name].Network(artifact)
 
 
 def _model_path(network, dataset, seq):

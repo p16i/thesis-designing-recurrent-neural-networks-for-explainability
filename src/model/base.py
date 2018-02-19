@@ -267,22 +267,6 @@ class BaseNetwork:
                 'Conservation property isn`t hold\n : Sum of relevance from pixels is not equal to output relevance.'
         return np.argmax(pred, axis=1), relevance_heatmap
 
-    def formal_name(self):
-        return '%s-seq-%d' % (BaseNetwork.network_nickname(self._.architecture_name), self._.seq_length)
-
-    @staticmethod
-    def network_nickname(t):
-        if t == 's2_network':
-            return 'Shallow'
-        elif t == 's3_network':
-            return 'Deep'
-        elif t == 'deep_4l_network':
-            return 'DeepV2'
-        elif t == 'convdeep_4l_network':
-            return 'ConvDeep'
-        else:
-            return t
-
     def create_graph(self):
         dag_class = self.dag.__class__
         return dag_class(self._.column_at_a_time, self.data_no_rows, self.data_no_cols, self.architecture,

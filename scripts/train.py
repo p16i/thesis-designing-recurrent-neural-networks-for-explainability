@@ -5,24 +5,11 @@ import fire
 import numpy as np
 import tensorflow as tf
 
-from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network, tutorial_network, shallow_2_levels,\
-    deep_v21_network, convdeep_gated
-
+from model import provider
 from utils import logging as lg
 from utils import data_provider, experiment_artifact, network_architecture
 
 lg.set_logging()
-
-NETWORKS = {
-    's2_network': s2_network,
-    's3_network': s3_network,
-    'deep_4l_network': deep_4l_network,
-    'convdeep_4l_network': convdeep_4l_network,
-    'tutorial_network': tutorial_network,
-    'shallow_2_levels': shallow_2_levels,
-    'deep_v21_network': deep_v21_network,
-    'convdeep_gated_network': convdeep_gated
-}
 
 
 def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, architecture_str='hidden:_|out:_|--recur:_',
@@ -34,13 +21,13 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
 
     logging.debug('Train %s' % network)
     logging.debug('Experiment name : %s' % experiment_name)
-    data = data_provider.get_data(dataset)
+    data = data_provider.DatasetLoader(data_dir='./data').load(dataset)
 
     output_dir = '%s/%s' % (output_dir, experiment_name)
 
     # no.rows and cols
     dims, max_seq_length = data.train2d.x.shape[1:]
-    architecture = NETWORKS[network].Architecture(**network_architecture.parse(architecture_str))
+    architecture = provider.MODEL_CLASS[network].Architecture(**network_architecture.parse(architecture_str))
     logging.debug('Network architecture')
     logging.debug(architecture)
 
@@ -48,7 +35,8 @@ def train(network, seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5, arc
     logging.debug('Training %d columns at a time' % no_input_cols)
     logging.debug('Optimizer %s' % optimizer)
 
-    dag = NETWORKS[network].Dag(no_input_cols, dims, max_seq_length, architecture, optimizer, data.no_classes)
+    dag = provider.MODEL_CLASS[network].Dag(no_input_cols, dims, max_seq_length,
+                                            architecture, optimizer, data.no_classes)
     train_writer = tf.summary.FileWriter(output_dir + '/boards/train')
     val_writer = tf.summary.FileWriter(output_dir + '/boards/validate')
 
