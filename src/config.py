@@ -26,7 +26,9 @@ MODEL_NICKNAMES = {
     'deep_4l': 'DeepV2',
     'convdeep_4l': 'ConvDeep',
     'tutorial': 'lenet',
-    'shallow_2_levels': 'shallow_2_levels'
+    'shallow_2_levels': 'shallow_2_levels',
+    'deep_v21': 'DeepV2.1',
+    'convdeep_gated': 'convdeep_gated'
 }
 
 MODEL_INDEX = {
@@ -35,3 +37,9 @@ MODEL_INDEX = {
     'deep_4l': 2,
     'convdeep_4l': 3
 }
+
+
+def architecture_name(str):
+    if MODEL_NICKNAMES.get(str):
+        return MODEL_NICKNAMES[str]
+    return str
