@@ -36,23 +36,6 @@ def get_empty_data():
     return np.zeros((28, 28)) - 1
 
 
-def get_data(data):
-    if data == 'mnist':
-        return MNISTData()
-    elif data == 'mnist-3-digits':
-        return MNIST3DigitsData()
-    elif data == 'mnist-3-digits-maj':
-        return MNIST3DigitsWithMajorityData()
-    elif data == 'fashion-mnist':
-        return FashionMNISTData()
-    elif data == 'fashion-mnist-3-items':
-        return FashionMNIST3ItemsData()
-    elif data == 'fashion-mnist-3-items-maj':
-        return FashionMNIST3DigitsWithMajorityData()
-    elif data == 'ufi-cropped':
-        return UFICroppedData()
-
-
 def fill_left_right_digit(x, y, seed=71):
     new_x = np.zeros((x.shape[0], 28, 28*3))
 
@@ -86,6 +69,30 @@ def fill_left_right_digit(x, y, seed=71):
 
         new_x[samples_in_class_i, :, :28] = x[left_indices, :, :]
         new_x[samples_in_class_i, :, -28:] = x[right_indices, :, :]
+
+    return new_x, y
+
+
+def expand_samples(x, y, n=7, seed=71):
+    new_x = np.zeros((x.shape[0], x.shape[1], x.shape[2]*n))
+    np.random.seed(seed)
+    classes = np.argmax(y, axis=1)
+
+    original_sample_idx = np.floor(n / 2).astype(int)
+
+    new_x[:, :, x.shape[2]*original_sample_idx:x.shape[2]*(original_sample_idx+1)] = x
+
+    for i in range(y.shape[1]):
+        samples_in_class_i = np.squeeze(np.argwhere(classes == i))
+        total = samples_in_class_i.shape[0]
+
+        samples_not_in_class_i = np.squeeze(np.argwhere(classes != i))
+
+        for j in range(n):
+            if j == original_sample_idx:
+                continue
+            indices = np.random.choice(samples_not_in_class_i, total)
+            new_x[samples_in_class_i, :, j*x.shape[2]:(j+1)*x.shape[2]] = x[indices, :, :]
 
     return new_x, y
 
@@ -127,20 +134,38 @@ def creat_middle_mark(no_x, no_digit=3):
 
 class DatasetLoader():
     def __init__(self, data_dir):
-        prepend_dir = lambda p: '%s/%s' % (data_dir, p)
-
-        self.dataset = {
-            'mnist': MNISTData(dir_path=prepend_dir('mnist')),
-            'fashion-mnist': FashionMNISTData(dir_path=prepend_dir('fashion-mnist')),
-            'ufi-cropped': UFICroppedData(dir_path=prepend_dir('ufi-cropped')),
-            'mnist-3-digits': MNIST3DigitsData(dir_path=prepend_dir('mnist')),
-            'mnist-3-digits-maj': MNIST3DigitsWithMajorityData(dir_path=prepend_dir('mnist')),
-            'fashion-mnist-3-items': FashionMNIST3ItemsData(dir_path=prepend_dir('fashion-mnist')),
-            'fashion-mnist-3-items-maj': FashionMNIST3DigitsWithMajorityData(dir_path=prepend_dir('fashion-mnist')),
-        }
+        self.prepend_dir = lambda p: '%s/%s' % (data_dir, p)
+        self.cache = dict()
 
     def load(self, dataset_name):
-        return self.dataset[dataset_name]
+
+        if self.cache.get(dataset_name):
+            return self.cache[dataset_name]
+
+        if dataset_name == 'mnist':
+            data = MNISTData(dir_path=self.prepend_dir('mnist'))
+        elif dataset_name == 'fashion-mnist':
+            data = FashionMNISTData(dir_path=self.prepend_dir('fashion-mnist'))
+        elif dataset_name == 'ufi-cropped':
+            data = UFICroppedData(dir_path=self.prepend_dir('ufi-cropped'))
+        elif dataset_name == 'mnist-3-digits':
+            data = MNIST3DigitsData(dir_path=self.prepend_dir('mnist'))
+        elif dataset_name == 'mnist-3-digits-maj':
+            data = MNIST3DigitsWithMajorityData(dir_path=self.prepend_dir('mnist'))
+        elif dataset_name == 'fashion-mnist-3-items':
+            data = FashionMNIST3ItemsData(dir_path=self.prepend_dir('fashion-mnist'))
+        elif dataset_name == 'fashion-mnist-3-items-maj':
+            data = FashionMNIST3DigitsWithMajorityData(dir_path=self.prepend_dir('fashion-mnist'))
+        elif dataset_name == 'mnist-7-digits':
+            data = MNISTMiddleSampleProblem(n=7, seed=5, dir_path=self.prepend_dir('mnist'))
+        elif dataset_name == 'fashion-mnist-7-items':
+            data = MNISTMiddleSampleProblem(n=7, seed=15, dir_path=self.prepend_dir('fashion-mnist'))
+        else:
+            raise SystemError('No dataset name `%s`' % dataset_name)
+
+        self.cache[dataset_name] = data
+
+        return self.cache[dataset_name]
 
 class DataSet:
     def __init__(self, x, y):
@@ -240,6 +265,57 @@ class MNIST3DigitsWithMajorityData(MNISTData):
         self.train = self.train2d
         self.val = self.val2d
         self.test = self.test2d
+
+
+class MNISTMiddleSampleProblem(MNISTData):
+    def __init__(self, n=7, seed=1, **kwargs):
+        super(MNISTMiddleSampleProblem, self).__init__(**kwargs)
+        self.dims = (28, 28*n)
+
+        self.train2d = DataSet(*expand_samples(self.train2d.x, self.train2d.y, n, seed=seed))
+        self.train2d_correct_digit_mark = creat_middle_mark(self.train2d.x.shape[0])
+
+        self.val2d = DataSet(*expand_samples(self.val2d.x, self.val2d.y, n, seed=seed+1))
+        self.val2d_correct_digit_mark = creat_middle_mark(self.val2d.x.shape[0])
+
+        self.test2d = DataSet(*expand_samples(self.test2d.x, self.test2d.y, n, seed=seed+2))
+        self.test2d_correct_digit_mark = creat_middle_mark(self.test2d.x.shape[0])
+
+        self.train = self.train2d
+        self.val = self.val2d
+        self.test = self.test2d
+
+        labels = {
+            0: 'Digit 0',
+            1: 'Digit 1',
+            2: 'Digit 2',
+            3: 'Digit 3',
+            4: 'Digit 4',
+            5: 'Digit 5',
+            6: 'Digit 6',
+            7: 'Digit 7',
+            8: 'Digit 8',
+            9: 'Digit 9'
+        }
+
+        if 'fashion' in kwargs['dir_path']:
+            labels = {
+                0: 'T-shirt/top',
+                1: 'Trouser',
+                2: 'Pullover',
+                3: 'Dress',
+                4: 'Coat',
+                5: 'Sandal',
+                6: 'Shirt',
+                7: 'Sneaker',
+                8: 'Bag',
+                9: 'Ankle boot'
+            }
+
+        self.labels = labels
+
+
+
 
 
 class FashionMNISTData:
