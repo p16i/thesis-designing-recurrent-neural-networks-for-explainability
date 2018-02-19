@@ -9,8 +9,12 @@ lg.set_logging()
 
 
 MINIMUM_ACCURACY = {
-    'mnist': 0.98,
-    'fashion-mnist': 0.84
+    'mnist': 0.975,
+    'fashion-mnist': 0.85,
+    'mnist-3-digits': 0.98,
+    'fashion-mnist-3-items': 0.85,
+    'mnist-3-digits-maj': 0.975,
+    'fashion-mnist-3-items-maj': 0.85
 }
 
 DIR_PATH='./final-models'
