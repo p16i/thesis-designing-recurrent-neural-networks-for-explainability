@@ -123,6 +123,8 @@ class Dag(base.BaseDag):
             ha_from_cell = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W)
                                            - tf.nn.softplus(self.ly_output_from_cell.b))
 
+            ha_from_cell = ha_from_cell / (tf.reshape(tf.reduce_max(ha_from_cell, axis=1), (-1, 1)) + 1e-100)
+
             rr = rr_from_hidden * ha_from_cell
             self.activations.recurrent.append(rr)
 
