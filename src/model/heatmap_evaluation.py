@@ -126,8 +126,12 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="m
                 values = FLIP_FUNCTION[flip_function](x_j)
                 x_permuted[j, ix:iy, jx:jy] = values
 
+
+
+
             if i%7 == 0 and plot_result:
                 baskets.append(np.copy(x_permuted))
+
 
             relevance_at_k = sess.run(ref_model.dag.y_pred_y_target, feed_dict={
                 ref_model.dag.x: x_permuted, ref_model.dag.y_target:y,
@@ -178,7 +182,7 @@ def relevance_distributions(model_obj: base.BaseNetwork, x, y, method):
     total_relevance = np.sum(relevance_for_step, axis=1).reshape(-1, 1)
     relevance_dist = relevance_for_step / (total_relevance + 1e-100)
 
-    return np.mean(relevance_dist, axis=0), np.std(relevance_dist, axis=0)
+    return np.mean(relevance_dist, axis=0), np.std(relevance_dist, axis=0), relevance_for_step
 
 
 def image_entropy(model_obj: base.BaseNetwork, x, patch_size=4):
