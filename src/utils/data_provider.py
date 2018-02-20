@@ -126,9 +126,9 @@ def create_majority_data(x, y, seed=71):
     return new_x, y, digit_positions <= 1
 
 
-def creat_middle_mark(no_x, no_digit=3):
+def create_middle_mark(no_x, no_digit=3):
     zeros = np.zeros((no_x, no_digit))
-    zeros[:, 1] = 1
+    zeros[:, int(np.floor(no_digit/2))] = 1
     return zeros
 
 
@@ -231,13 +231,13 @@ class MNIST3DigitsData(MNISTData):
         self.dims = (28, 28*3)
 
         self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=0))
-        self.train2d_correct_digit_mark = creat_middle_mark(self.train2d.x.shape[0])
+        self.train2d_correct_digit_mark = create_middle_mark(self.train2d.x.shape[0])
 
         self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=1))
-        self.val2d_correct_digit_mark = creat_middle_mark(self.val2d.x.shape[0])
+        self.val2d_correct_digit_mark = create_middle_mark(self.val2d.x.shape[0])
 
         self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=3))
-        self.test2d_correct_digit_mark = creat_middle_mark(self.test2d.x.shape[0])
+        self.test2d_correct_digit_mark = create_middle_mark(self.test2d.x.shape[0])
 
         self.train = self.train2d
         self.val = self.val2d
@@ -273,13 +273,13 @@ class MNISTMiddleSampleProblem(MNISTData):
         self.dims = (28, 28*n)
 
         self.train2d = DataSet(*expand_samples(self.train2d.x, self.train2d.y, n, seed=seed))
-        self.train2d_correct_digit_mark = creat_middle_mark(self.train2d.x.shape[0])
+        self.train2d_correct_digit_mark = create_middle_mark(self.train2d.x.shape[0], no_digit=n)
 
         self.val2d = DataSet(*expand_samples(self.val2d.x, self.val2d.y, n, seed=seed+1))
-        self.val2d_correct_digit_mark = creat_middle_mark(self.val2d.x.shape[0])
+        self.val2d_correct_digit_mark = create_middle_mark(self.val2d.x.shape[0], no_digit=n)
 
         self.test2d = DataSet(*expand_samples(self.test2d.x, self.test2d.y, n, seed=seed+2))
-        self.test2d_correct_digit_mark = creat_middle_mark(self.test2d.x.shape[0])
+        self.test2d_correct_digit_mark = create_middle_mark(self.test2d.x.shape[0], no_digit=n)
 
         self.train = self.train2d
         self.val = self.val2d
@@ -367,13 +367,13 @@ class FashionMNIST3ItemsData(FashionMNISTData):
         self.dims = (28, 28*3)
 
         self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=20))
-        self.train2d_correct_digit_mark = creat_middle_mark(self.train2d.x.shape[0])
+        self.train2d_correct_digit_mark = create_middle_mark(self.train2d.x.shape[0])
 
         self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=21))
-        self.val2d_correct_digit_mark = creat_middle_mark(self.val2d.x.shape[0])
+        self.val2d_correct_digit_mark = create_middle_mark(self.val2d.x.shape[0])
 
         self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=23))
-        self.test2d_correct_digit_mark = creat_middle_mark(self.test2d.x.shape[0])
+        self.test2d_correct_digit_mark = create_middle_mark(self.test2d.x.shape[0])
 
         self.train = self.train2d
         self.val = self.val2d
