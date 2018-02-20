@@ -9,13 +9,13 @@ DIVISION_ADJUSTMENT=1e-9
 DEFAULT_BIAS_VALUE=0.01
 
 class Layer:
-    def __init__(self, dims, name, stddev=0.1, default_weights=None, default_biases=None):
+    def __init__(self, dims, name, default_weights=None, default_biases=None):
 
         w_name = "%s_weights" % name
         b_name = "%s_bias" % name
 
         if default_weights is None:
-            self.W = tf.Variable(tf.truncated_normal(dims, stddev=stddev), name=w_name)
+            self.W = tf.Variable(tf.truncated_normal(dims, stddev=1.0/np.sqrt(dims[0])), name=w_name)
         else:
             logging.info('Set default weights manually for layer %s' % name)
             self.W = tf.identity(default_weights, name=w_name)
