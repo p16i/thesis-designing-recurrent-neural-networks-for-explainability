@@ -87,6 +87,7 @@ class Dag(base.BaseDag):
             'recurrent': self.ly_recurrent
         }
 
+        np.random.seed(71)
         mark = (np.random.uniform(0, 1, (architecture.hidden, architecture.recur)) < 0.1)*np.power(10, 0.5)
         rr_to_hidden_mark = np.ones((architecture.in1 + architecture.recur, architecture.hidden))
         rr_to_hidden_mark[-architecture.recur:, :] = mark.T
