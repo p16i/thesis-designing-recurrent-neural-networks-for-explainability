@@ -89,8 +89,9 @@ class Dag(base.BaseDag):
 
         np.random.seed(71)
         mark = (np.random.uniform(0, 1, (architecture.hidden, architecture.recur)) < 0.1)*np.power(10, 0.5)
+        mark2 = (np.random.uniform(0, 1, (architecture.recur, architecture.hidden)) < 0.1)*np.power(10, 0.5)
         rr_to_hidden_mark = np.ones((architecture.in1 + architecture.recur, architecture.hidden))
-        rr_to_hidden_mark[-architecture.recur:, :] = mark.T
+        rr_to_hidden_mark[-architecture.recur:, :] = mark2
 
         rr = self.rx
 
