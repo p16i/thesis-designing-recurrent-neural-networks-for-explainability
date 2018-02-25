@@ -1,7 +1,7 @@
 import logging
 from utils import logging as lg
 from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network,\
-    tutorial_network, shallow_2_levels, deep_v21_network, convdeep_gated, convdeep_with_mark
+    tutorial_network, shallow_2_levels, deep_v21_network, convdeep_gated, convdeep_with_mark, lstm
 from utils import experiment_artifact
 
 lg.set_logging()
@@ -15,7 +15,8 @@ MODEL_CLASS = {
     'shallow_2_levels': shallow_2_levels,
     'deep_v21_network': deep_v21_network,
     'convdeep_gated_network': convdeep_gated,
-    'convdeep_with_mark': convdeep_with_mark
+    'convdeep_with_mark': convdeep_with_mark,
+    'lstm': lstm
 }
 
 
