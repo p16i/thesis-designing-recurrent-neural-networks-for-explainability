@@ -6,7 +6,7 @@ from utils import logging as lg
 lg.set_logging()
 
 DIVISION_ADJUSTMENT=1e-9
-DEFAULT_BIAS_VALUE=0.01
+DEFAULT_BIAS_VALUE=0.0
 
 class Layer:
     def __init__(self, dims, name, default_weights=None, default_biases=None):
