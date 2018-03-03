@@ -1,13 +1,9 @@
-import logging
 from collections import namedtuple
 
-import numpy as np
 import tensorflow as tf
 
-from model import base
+from model.architectures import base
 from model.components.layer import Layer
-from utils import data_provider
-from utils import experiment_artifact
 from utils import logging as lg
 from utils import network_architecture
 
@@ -83,7 +79,7 @@ class Network(base.BaseNetwork):
 
         self.architecture = Architecture(**network_architecture.parse(artifact.architecture))
         self.dag = Dag(artifact.column_at_a_time, self.data_no_rows, self.data_no_cols,
-                       self.architecture, artifact.optimizer, self.architecture.out2)
+                       self.architecture, artifact.optimizer, self.architecture.out)
 
         self.experiment_artifact = artifact
         self._ = artifact

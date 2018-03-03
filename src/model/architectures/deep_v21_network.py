@@ -1,13 +1,9 @@
-import logging
 from collections import namedtuple
 
-import numpy as np
 import tensorflow as tf
 
-from model import base
+from model.architectures import base
 from model.components.layer import Layer
-from utils import data_provider
-from utils import experiment_artifact
 from utils import logging as lg
 from utils import network_architecture
 
@@ -45,6 +41,8 @@ class Dag(base.BaseDag):
         rr = self.rx
 
         self.ha_activations = []
+        self.hidden_to_recur_activations = []
+
         self.rr_activations = [self.rx]
         self.input_1_activations = []
         self.input_to_cell_activations = []
@@ -64,7 +62,14 @@ class Dag(base.BaseDag):
             self.ha_activations.append(ha)
 
             ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
-            rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
+            rr_from_hidden = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
+
+            ha_from_cell = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W)
+                                           - tf.nn.softplus(self.ly_output_from_cell.b))
+
+            ha_from_cell = ha_from_cell / (tf.reshape(tf.reduce_max(ha_from_cell, axis=1), (-1, 1)) + 1e-100)
+            rr = rr_from_hidden * ha_from_cell
+            rr = rr
             self.rr_activations.append(rr)
 
         last_hidden_activation = self.ha_activations[-1]

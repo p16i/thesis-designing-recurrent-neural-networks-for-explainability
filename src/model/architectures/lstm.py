@@ -2,11 +2,11 @@ from collections import namedtuple
 
 import tensorflow as tf
 
-from model import base
+from model.architectures import base
 from model.components.layer import Layer
 from utils import experiment_artifact
 from utils import logging as lg
-from utils import network_architecture, data_provider
+from utils import network_architecture
 
 lg.set_logging()
 

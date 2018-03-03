@@ -4,10 +4,8 @@ from collections import namedtuple
 import numpy as np
 import tensorflow as tf
 
-from model import base
+from model.architectures import base
 from model.components.layer import Layer, ConvolutionalLayer, PoolingLayer
-from utils import data_provider
-from utils import experiment_artifact
 from utils import logging as lg
 from utils import network_architecture
 
@@ -87,6 +85,12 @@ class Dag(base.BaseDag):
             'recurrent': self.ly_recurrent
         }
 
+        np.random.seed(71)
+        mark = (np.random.uniform(0, 1, (architecture.hidden, architecture.recur)) < 0.1)*np.power(10, 0.5)
+        mark2 = (np.random.uniform(0, 1, (architecture.recur, architecture.hidden)) < 0.1)*np.power(10, 0.5)
+        rr_to_hidden_mark = np.ones((architecture.in1 + architecture.recur, architecture.hidden))
+        rr_to_hidden_mark[-architecture.recur:, :] = mark2
+
         rr = self.rx
 
         self.activation_labels = ['conv1','pool1', 'conv2', 'pool2', 'pool2_reshaped', 'input_to_cell', 'hidden',
@@ -122,11 +126,12 @@ class Dag(base.BaseDag):
             self.activations.input_to_cell.append(xr)
             xr_do = tf.nn.dropout(xr, keep_prob=self.keep_prob)
 
-            ha = tf.nn.relu(tf.matmul(xr_do, self.ly_input_to_cell.W) - tf.nn.softplus(self.ly_input_to_cell.b))
+            ha = tf.nn.relu(tf.matmul(xr_do, self.ly_input_to_cell.W*rr_to_hidden_mark) -
+                            tf.nn.softplus(self.ly_input_to_cell.b))
             self.activations.hidden.append(ha)
 
             ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
-            rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
+            rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W*mark) - tf.nn.softplus(self.ly_recurrent.b))
             self.activations.recurrent.append(rr)
 
         last_hidden_activation = self.activations.hidden[-1]

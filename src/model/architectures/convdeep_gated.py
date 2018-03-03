@@ -4,16 +4,14 @@ from collections import namedtuple
 import numpy as np
 import tensorflow as tf
 
-from model import base
+from model.architectures import base
 from model.components.layer import Layer, ConvolutionalLayer, PoolingLayer
-from utils import data_provider
-from utils import experiment_artifact
 from utils import logging as lg
 from utils import network_architecture
 
 lg.set_logging()
 
-Architecture = namedtuple('ConvDeep4LArchitecture', ['conv1', 'conv2', 'in1', 'hidden', 'recur', 'out2'])
+Architecture = namedtuple('ConvDeep4LArchitecture', ['conv1', 'conv2', 'in1', 'hidden', 'out1', 'out2', 'recur'])
 
 ARCHITECTURE_NAME = 'convdeep_4l_network'
 
@@ -26,7 +24,6 @@ class Dag(base.BaseDag):
     def __init__(self, no_input_cols, dims, max_seq_length, architecture: Architecture, optimizer, no_classes):
         super(Dag, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer, no_classes=no_classes)
 
-        # define layers
         no_channels = 1
 
         dummy_in1 = tf.constant(0.0, shape=[1, dims, no_input_cols, no_channels])
@@ -70,7 +67,8 @@ class Dag(base.BaseDag):
         self.ly_input_to_cell = Layer((architecture.in1 + architecture.recur, architecture.hidden),
                                       'convdeep_4l__input_to_cell')
 
-        self.ly_output_2 = Layer((architecture.recur, architecture.out2), 'convdeep_4l__final_output')
+        self.ly_output_from_cell = Layer((architecture.hidden, architecture.out1), 'convdeep_4l__output_from_cell')
+        self.ly_output_2 = Layer((architecture.out1, architecture.out2), 'convdeep_4l__final_output')
 
         self.ly_recurrent = Layer((architecture.hidden, architecture.recur), 'convdeep_4l__recurrent')
 
@@ -81,6 +79,7 @@ class Dag(base.BaseDag):
             'pool2': self.ly_pool2,
             'input_1': self.ly_input1,
             'input_to_cell': self.ly_input_to_cell,
+            'output_from_cell': self.ly_output_from_cell,
             'output_2': self.ly_output_2,
             'recurrent': self.ly_recurrent
         }
@@ -90,7 +89,7 @@ class Dag(base.BaseDag):
         self.activation_labels = ['conv1','pool1', 'conv2', 'pool2', 'pool2_reshaped', 'input_to_cell', 'hidden',
                                   'output_from_cell', 'output2', 'recurrent']
 
-        self.activations = namedtuple('Activations', self.activation_labels) \
+        self.activations = namedtuple('Activations', self.activation_labels)\
             (**dict([(k, []) for k in self.activation_labels]))
 
         self.activations.recurrent.append(self.rx)
@@ -127,8 +126,27 @@ class Dag(base.BaseDag):
             rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
             self.activations.recurrent.append(rr)
 
-        self.y_pred = tf.matmul(rr, self.ly_output_2.W) \
+
+            ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
+            rr_from_hidden = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
+
+            ha_from_cell = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W)
+                                           - tf.nn.softplus(self.ly_output_from_cell.b))
+
+            ha_from_cell = ha_from_cell / (tf.reshape(tf.reduce_max(ha_from_cell, axis=1), (-1, 1)) + 1e-100)
+
+            rr = rr_from_hidden * ha_from_cell
+            self.activations.recurrent.append(rr)
+
+        last_hidden_activation = self.activations.hidden[-1]
+        ha_do = tf.nn.dropout(last_hidden_activation, keep_prob=self.keep_prob)
+        last_output_from_cell = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W)
+                                           - tf.nn.softplus(self.ly_output_from_cell.b))
+
+        self.activations.output_from_cell.append(last_output_from_cell)
+        self.y_pred = tf.matmul(last_output_from_cell, self.ly_output_2.W) \
                       - tf.nn.softplus(self.ly_output_2.b)
+
         self.setup_loss_and_opt()
 
 
@@ -254,3 +272,4 @@ class Network(base.BaseNetwork):
             pred, heatmaps = self._build_heatmap(sess, x, y,
                                                  rr_of_pixels=rel_to_input, debug=debug)
         return pred, heatmaps
+

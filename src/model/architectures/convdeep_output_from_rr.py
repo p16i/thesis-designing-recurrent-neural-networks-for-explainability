@@ -4,16 +4,14 @@ from collections import namedtuple
 import numpy as np
 import tensorflow as tf
 
-from model import base
+from model.architectures import base
 from model.components.layer import Layer, ConvolutionalLayer, PoolingLayer
-from utils import data_provider
-from utils import experiment_artifact
 from utils import logging as lg
 from utils import network_architecture
 
 lg.set_logging()
 
-Architecture = namedtuple('ConvDeep4LArchitecture', ['conv1', 'conv2', 'in1', 'hidden', 'out1', 'out2', 'recur'])
+Architecture = namedtuple('ConvDeep4LArchitecture', ['conv1', 'conv2', 'in1', 'hidden', 'recur', 'out2'])
 
 ARCHITECTURE_NAME = 'convdeep_4l_network'
 
@@ -70,8 +68,7 @@ class Dag(base.BaseDag):
         self.ly_input_to_cell = Layer((architecture.in1 + architecture.recur, architecture.hidden),
                                       'convdeep_4l__input_to_cell')
 
-        self.ly_output_from_cell = Layer((architecture.hidden, architecture.out1), 'convdeep_4l__output_from_cell')
-        self.ly_output_2 = Layer((architecture.out1, architecture.out2), 'convdeep_4l__final_output')
+        self.ly_output_2 = Layer((architecture.recur, architecture.out2), 'convdeep_4l__final_output')
 
         self.ly_recurrent = Layer((architecture.hidden, architecture.recur), 'convdeep_4l__recurrent')
 
@@ -82,23 +79,16 @@ class Dag(base.BaseDag):
             'pool2': self.ly_pool2,
             'input_1': self.ly_input1,
             'input_to_cell': self.ly_input_to_cell,
-            'output_from_cell': self.ly_output_from_cell,
             'output_2': self.ly_output_2,
             'recurrent': self.ly_recurrent
         }
-
-        np.random.seed(71)
-        mark = (np.random.uniform(0, 1, (architecture.hidden, architecture.recur)) < 0.1)*np.power(10, 0.5)
-        mark2 = (np.random.uniform(0, 1, (architecture.recur, architecture.hidden)) < 0.1)*np.power(10, 0.5)
-        rr_to_hidden_mark = np.ones((architecture.in1 + architecture.recur, architecture.hidden))
-        rr_to_hidden_mark[-architecture.recur:, :] = mark2
 
         rr = self.rx
 
         self.activation_labels = ['conv1','pool1', 'conv2', 'pool2', 'pool2_reshaped', 'input_to_cell', 'hidden',
                                   'output_from_cell', 'output2', 'recurrent']
 
-        self.activations = namedtuple('Activations', self.activation_labels)\
+        self.activations = namedtuple('Activations', self.activation_labels) \
             (**dict([(k, []) for k in self.activation_labels]))
 
         self.activations.recurrent.append(self.rx)
@@ -128,23 +118,15 @@ class Dag(base.BaseDag):
             self.activations.input_to_cell.append(xr)
             xr_do = tf.nn.dropout(xr, keep_prob=self.keep_prob)
 
-            ha = tf.nn.relu(tf.matmul(xr_do, self.ly_input_to_cell.W*rr_to_hidden_mark) -
-                            tf.nn.softplus(self.ly_input_to_cell.b))
+            ha = tf.nn.relu(tf.matmul(xr_do, self.ly_input_to_cell.W) - tf.nn.softplus(self.ly_input_to_cell.b))
             self.activations.hidden.append(ha)
 
             ha_do = tf.nn.dropout(ha, keep_prob=self.keep_prob)
-            rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W*mark) - tf.nn.softplus(self.ly_recurrent.b))
+            rr = tf.nn.relu(tf.matmul(ha_do, self.ly_recurrent.W) - tf.nn.softplus(self.ly_recurrent.b))
             self.activations.recurrent.append(rr)
 
-        last_hidden_activation = self.activations.hidden[-1]
-        ha_do = tf.nn.dropout(last_hidden_activation, keep_prob=self.keep_prob)
-        last_output_from_cell = tf.nn.relu(tf.matmul(ha_do, self.ly_output_from_cell.W)
-                                           - tf.nn.softplus(self.ly_output_from_cell.b))
-
-        self.activations.output_from_cell.append(last_output_from_cell)
-        self.y_pred = tf.matmul(last_output_from_cell, self.ly_output_2.W) \
+        self.y_pred = tf.matmul(rr, self.ly_output_2.W) \
                       - tf.nn.softplus(self.ly_output_2.b)
-
         self.setup_loss_and_opt()
 
 

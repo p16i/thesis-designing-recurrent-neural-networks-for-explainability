@@ -1,20 +1,17 @@
 import logging
-import numpy as np
-
-from model import base
-from skimage.measure import block_reduce
-from utils import logging as lg
-
-from skimage.filters.rank import entropy
-from skimage.morphology import square, disk
-from skimage import img_as_ubyte
-
-from model import provider
-from notebook_utils import plot as nb_plot
-
-import config
 
 import matplotlib.pyplot as plt
+import numpy as np
+from skimage import img_as_ubyte
+from skimage.filters.rank import entropy
+from skimage.measure import block_reduce
+from skimage.morphology import square
+
+import config
+from model import provider
+from model.architectures import base
+from notebook_utils import plot as nb_plot
+from utils import logging as lg
 
 FLIP_FUNCTION = {
     'zero': lambda x: np.zeros(x.shape),
@@ -27,7 +24,7 @@ FLIP_FUNCTION = {
 lg.set_logging()
 
 
-def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4,4), order="morf", method="deep_taylor",
+def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4, 4), order="morf", method="deep_taylor",
          ref_model="conv-seq1",
          verbose=False, flip_function='minus_one', plot_result=False):
 

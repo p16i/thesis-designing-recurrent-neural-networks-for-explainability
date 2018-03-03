@@ -1,27 +1,14 @@
 import logging
-from utils import logging as lg
-from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network,\
-    tutorial_network, shallow_2_levels, deep_v21_network, convdeep_gated, convdeep_with_mark, lstm, deep_with_sparsity,\
-    shallow_v2, convdeep_output_from_rr
+
+import model.architectures
 from utils import experiment_artifact
+from utils import logging as lg
 
 lg.set_logging()
 
-MODEL_CLASS = {
-    's2_network': s2_network,
-    's3_network': s3_network,
-    'deep_4l_network': deep_4l_network,
-    'convdeep_4l_network': convdeep_4l_network,
-    'tutorial_network':  tutorial_network,
-    'shallow_2_levels': shallow_2_levels,
-    'deep_v21_network': deep_v21_network,
-    'convdeep_gated_network': convdeep_gated,
-    'convdeep_with_mark': convdeep_with_mark,
-    'deep_with_sparsity': deep_with_sparsity,
-    'shallow_v2': shallow_v2,
-    'convdeep_output_from_rr': convdeep_output_from_rr,
-    'lstm': lstm
-}
+
+def get_architecture_class(arch):
+    return getattr(model.architectures, arch)
 
 
 def load(path):
@@ -30,7 +17,7 @@ def load(path):
 
     logging.info(artifact)
 
-    return MODEL_CLASS[artifact.architecture_name].Network(artifact)
+    return get_architecture_class(artifact.architecture_name).Network(artifact)
 
 
 def _model_path(network, dataset, seq):

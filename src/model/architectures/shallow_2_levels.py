@@ -2,8 +2,7 @@ from collections import namedtuple
 
 import tensorflow as tf
 
-from model import base
-from model.components import layer
+from model.architectures import base
 from model.components.layer import Layer
 from utils import experiment_artifact
 from utils import logging as lg
