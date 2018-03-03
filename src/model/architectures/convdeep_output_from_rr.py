@@ -151,10 +151,10 @@ class Network(base.BaseNetwork):
 
             # NOTE: lwr start here
             rel_to_out_from_cell = self.dag.layers['output_2'].rel_z_plus_prop(
-                self.dag.activations.output_from_cell[-1],
+                self.dag.activations.recurrent[-1],
                 self.dag.total_relevance, beta=beta, alpha=alpha
             )
-            rel_to_hidden = self.dag.layers['output_from_cell'].rel_z_plus_prop(
+            rel_to_hidden = self.dag.layers['recurrent'].rel_z_plus_prop(
                 self.dag.activations.hidden[-1],
                 rel_to_out_from_cell, beta=beta, alpha=alpha
             )
