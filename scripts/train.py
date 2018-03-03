@@ -29,7 +29,8 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
 
     # no.rows and cols
     dims, max_seq_length = data.train2d.x.shape[1:]
-    architecture = provider.MODEL_CLASS[network].Architecture(**network_architecture.parse(architecture_str))
+    architecture_class = provider.get_architecture_class(network)
+    architecture = architecture_class.Architecture(**network_architecture.parse(architecture_str))
     logging.debug('Network architecture')
     logging.debug(architecture)
 
@@ -37,8 +38,7 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
     logging.debug('Training %d columns at a time' % no_input_cols)
     logging.debug('Optimizer %s' % optimizer)
 
-    dag = provider.MODEL_CLASS[network].Dag(no_input_cols, dims, max_seq_length,
-                                            architecture, optimizer, data.no_classes)
+    dag = architecture_class.Dag(no_input_cols, dims, max_seq_length, architecture, optimizer, data.no_classes)
     train_writer = tf.summary.FileWriter(output_dir + '/boards/train')
     val_writer = tf.summary.FileWriter(output_dir + '/boards/validate')
 
