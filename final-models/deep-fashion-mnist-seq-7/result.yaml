@@ -1,0 +1,16 @@
+accuracy: 0.8895999789237976
+architecture: in1:256|hidden:128|out1:32|out2:10--recur:256
+architecture_name: deep
+batch: 50
+column_at_a_time: 4
+dataset: fashion-mnist
+dims: 28
+epoch: 100
+experiment_name: deep-fashion-mnist-seq-7---2018-03-02--21-47-18
+keep_prob: 0.8
+lr: 0.0002
+max_seq_length: 28
+optimizer: AdamOptimizer
+regularizer: 0.0
+seq_length: 7
+val_accuracy: 0.9017500281333923

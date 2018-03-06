@@ -1,0 +1,16 @@
+accuracy: 0.892799973487854
+architecture: hidden:256|out:10--recur:256
+architecture_name: shallow
+batch: 50
+column_at_a_time: 4
+dataset: fashion-mnist
+dims: 28
+epoch: 100
+experiment_name: shallow-fashion-mnist-seq-7---2018-03-03--05-58-59
+keep_prob: 0.8
+lr: 0.00025
+max_seq_length: 28
+optimizer: AdamOptimizer
+regularizer: 0.0
+seq_length: 7
+val_accuracy: 0.8974166512489319
