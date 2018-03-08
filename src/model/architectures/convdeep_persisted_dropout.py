@@ -103,8 +103,6 @@ class Dag(base.BaseDag):
 
         self.activations.recurrent.append(self.rx)
 
-        xin_do_mark = None
-        xr_do_mark = None
         ha_do_mark = None
 
         # define  dag
@@ -126,13 +124,11 @@ class Dag(base.BaseDag):
             self.activations.pool2_reshaped.append(in2_reshaped)
 
             xin = tf.nn.relu(tf.matmul(in2_reshaped, self.ly_input1.W) - tf.nn.softplus(self.ly_input1.b))
-            xin_do, xin_do_mark = tfx.dropout_with_mark_returned(xin, keep_prob=self.keep_prob,
-                                                                 binary_mark_tensor=xin_do_mark)
+            xin_do = tf.nn.dropout(xin, keep_prob=self.keep_prob)
 
             xr = tf.concat([xin_do, rr], axis=1)
             self.activations.input_to_cell.append(xr)
-            xr_do, xr_do_mark = tfx.dropout_with_mark_returned(xr, keep_prob=self.keep_prob,
-                                                               binary_mark_tensor=xr_do_mark)
+            xr_do = tf.nn.dropout(xr, keep_prob=self.keep_prob)
 
             ha = tf.nn.relu(tf.matmul(xr_do, self.ly_input_to_cell.W*rr_to_hidden_mark) -
                             tf.nn.softplus(self.ly_input_to_cell.b))
