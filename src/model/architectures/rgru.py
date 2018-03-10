@@ -27,27 +27,23 @@ class Dag(base.BaseDag):
 
         self.ly_input_gate = Layer((architecture.in1 + architecture.recur, architecture.recur), 'input_gate',
                                    default_biases=tf.Variable(tf.zeros([1, architecture.recur])))
-        self.ly_forget_gate = Layer((architecture.in1 + architecture.recur, architecture.recur), 'forget_gate',
-                                    default_biases=tf.Variable(tf.zeros([1, architecture.recur])))
-        self.ly_output_gate = Layer((architecture.in1 + architecture.recur, architecture.recur), 'output_gate',
+        self.ly_recurrent_gate = Layer((architecture.in1 + architecture.recur, architecture.recur), 'forget_gate',
                                     default_biases=tf.Variable(tf.zeros([1, architecture.recur])))
 
-        self.ly_new_cell_state = Layer((architecture.in1 + architecture.recur, architecture.recur), 'output_gate')
+        self.ly_new_ht = Layer((architecture.in1 + architecture.recur, architecture.recur), 'ht_candidate')
         self.ly_output = Layer((architecture.recur, architecture.out2), 'output')
 
         self.layers = {
             'input_1': self.ly_input,
             'input_gate': self.ly_input_gate,
-            'forget_gate': self.ly_forget_gate,
-            'output_gate': self.ly_output_gate,
-            'new_cell_state': self.ly_new_cell_state,
+            'recurrent_gate': self.ly_recurrent_gate,
+            'new_ht': self.ly_new_ht,
             'output': self.ly_output
         }
 
-        ct = tf.zeros([tf.shape(self.x)[0], architecture.recur])
         ht = tf.zeros([tf.shape(self.x)[0], architecture.recur])
 
-        keys = ['prev_ct_from_fg', 'ct_from_ig', 'xr', 'ct', 'ht']
+        keys = ['ht', 'xh', 'xh_scaled', 'ht_candidate_from_prev', 'ht_candidate_from_xh']
         self.activations = namedtuple('activations', keys)(**dict(map(lambda k: (k, []), keys)))
 
         # define  dag
@@ -56,29 +52,28 @@ class Dag(base.BaseDag):
             in1 = tf.nn.dropout(tf.nn.relu(tf.matmul(ii, self.ly_input.W) - tf.nn.softplus(self.ly_input.b)),
                                 keep_prob=self.keep_prob)
 
-            xr = tf.concat([in1, ht], axis=1)
-            self.activations.xr.append(xr)
+            xh = tf.concat([in1, ht], axis=1)
+            self.activations.xh.append(xh)
 
-            ig = tf.nn.dropout(tf.sigmoid(tf.matmul(xr, self.ly_input_gate.W) + self.ly_input_gate.b),
+            ig = tf.nn.dropout(tf.sigmoid(tf.matmul(xh, self.ly_input_gate.W) + self.ly_input_gate.b),
                                keep_prob=self.keep_prob)
-            fg = tf.nn.dropout(tf.sigmoid(tf.matmul(xr, self.ly_forget_gate.W) + self.ly_forget_gate.b),
-                               keep_prob=self.keep_prob)
-            og = tf.nn.dropout(tf.sigmoid(tf.matmul(xr, self.ly_output_gate.W) + self.ly_output_gate.b),
+            rg = tf.nn.dropout(tf.sigmoid(tf.matmul(xh, self.ly_recurrent_gate.W) + self.ly_recurrent_gate.b),
                                keep_prob=self.keep_prob)
 
-            new_cell_state = tf.nn.dropout(tf.nn.relu(
-                tf.matmul(xr, self.ly_new_cell_state.W) - tf.nn.softplus(self.ly_new_cell_state.b)),
+            xh_scaled = tf.concat([in1, tf.multiply(rg, ht)], axis=1)
+            self.activations.xh_scaled.append(xh_scaled)
+
+            ht_candidate = tf.nn.dropout(tf.nn.relu(
+                tf.matmul(xh_scaled, self.ly_new_ht.W) - tf.nn.softplus(self.ly_new_ht.b)),
                 keep_prob=self.keep_prob)
 
-            prev_ct_from_fg = tf.multiply(fg, ct)
-            self.activations.prev_ct_from_fg.append(prev_ct_from_fg)
-            ct_from_ig = tf.multiply(ig, new_cell_state)
-            self.activations.ct_from_ig.append(ct_from_ig)
+            ht_candidate_from_xh = tf.multiply(ig, ht_candidate)
+            self.activations.ht_candidate_from_xh.append(ht_candidate_from_xh)
 
-            ct = ct_from_ig + prev_ct_from_fg
-            self.activations.ct.append(ct)
+            ht_candidate_from_prev = tf.multiply(1-ig, ht)
+            self.activations.ht_candidate_from_prev.append(ht_candidate_from_prev)
 
-            ht = tf.nn.dropout(tf.multiply(og, ct), keep_prob=self.keep_prob)
+            ht = tf.nn.dropout(ht_candidate_from_prev + ht_candidate_from_xh, keep_prob=self.keep_prob)
             self.activations.ht.append(ht)
 
         self.y_pred = tf.matmul(ht, self.ly_output.W) - tf.nn.softplus(self.ly_output.b)
@@ -162,6 +157,7 @@ class Network(base.BaseNetwork):
 
                 rel_from_prev_ct = rel_to_prev_ct + rel_to_ht
                 rr_ct[i] = rel_from_prev_ct
+
 
             pred, heatmaps = self._build_heatmap(sess, x, y, rr_of_pixels=rel_to_input, debug=debug)
 
