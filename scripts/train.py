@@ -8,6 +8,7 @@ import tensorflow as tf
 from model import provider
 from utils import logging as lg
 from utils import data_provider, experiment_artifact, network_architecture
+import compute_stats
 
 lg.set_logging()
 
@@ -39,6 +40,8 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
     logging.debug('Optimizer %s' % optimizer)
 
     dag = architecture_class.Dag(no_input_cols, dims, max_seq_length, architecture, optimizer, data.no_classes)
+    print('no. variables %d' % dag.no_variables())
+
     train_writer = tf.summary.FileWriter(output_dir + '/boards/train')
     val_writer = tf.summary.FileWriter(output_dir + '/boards/validate')
 
@@ -113,7 +116,11 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
 
         logging.debug('\n%s\n', lg.tabularize_params(res))
 
-        return experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
+        artifact = experiment_artifact.save_artifact(sess, res, output_dir=output_dir)
+
+    compute_stats.relevance_distribution(model_path=output_dir)
+
+    return artifact
 
 
 if __name__ == '__main__':
