@@ -176,8 +176,8 @@ class DataSet:
         total = len(self.x)
 
         np.random.seed(seed)
-        logging.info('get batch with seed %d' % seed)
         shuffled_indices = np.random.permutation(total)
+
         x = self.x[shuffled_indices, :, :]
         y = self.y[shuffled_indices, :]
 
