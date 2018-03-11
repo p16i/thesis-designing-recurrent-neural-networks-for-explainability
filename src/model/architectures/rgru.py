@@ -98,6 +98,7 @@ class Network(base.BaseNetwork):
             # lwr start here
             self.dag.setup_variables_for_lrp()
             rel_to_input = [None] * self._.seq_length
+            rr_ct = [None]*self._.seq_length
 
             dag = self.dag
 
@@ -107,45 +108,41 @@ class Network(base.BaseNetwork):
                 alpha=alpha, beta=beta
             )
 
-            rr_ct = [None]*self._.seq_length
-            rel_from_ht_to_ct = rel_from_output_to_ht
+            proportion_to_prev_ht = dag.activations.ht_candidate_from_prev[-1] / (dag.activations.ht[-1] + 1e-10)
 
-            proportion_to_prev_ct = dag.activations.prev_ct_from_fg[-1] / (dag.activations.ct[-1] + 1e-10)
+            rel_from_ht_to_prev_ht = proportion_to_prev_ht * rel_from_output_to_ht
+            rel_to_data_ht = (1-proportion_to_prev_ht)*rel_from_output_to_ht
 
-            rel_to_prev_ct = proportion_to_prev_ct * rel_from_ht_to_ct
-            rel_to_data_ct = (1-proportion_to_prev_ct)*rel_from_ht_to_ct
-
-            rel_to_xr = dag.layers['new_cell_state'].rel_z_plus_prop(
-                dag.activations.xr[-1],
-                rel_to_data_ct,
+            rel_to_xh = dag.layers['new_ht'].rel_z_plus_prop(
+                dag.activations.xh[-1],
+                rel_to_data_ht,
                 alpha=alpha, beta=beta
             )
 
-            rel_to_ht = rel_to_xr[:, -self.architecture.recur:]
-            rel_to_in1 = rel_to_xr[:, :-self.architecture.recur]
+            rel_from_xh_to_ht = rel_to_xh[:, -self.architecture.recur:]
+            rel_to_in1 = rel_to_xh[:, :-self.architecture.recur]
 
             rel_to_input[-1] = self.dag.layers['input_1'].rel_z_beta_prop(
                 tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:], shape=[x_3d.shape[0], -1]),
                 rel_to_in1
             )
 
-            rel_from_prev_ct = rel_to_prev_ct + rel_to_ht
-            rr_ct[-1] = rel_from_prev_ct
+            rel_to_prev_ht = rel_from_ht_to_prev_ht + rel_from_xh_to_ht
 
             for i in range(self._.seq_length - 1)[::-1]:
-                proportion_to_prev_ct = dag.activations.prev_ct_from_fg[i] / (dag.activations.ct[i] + 1e-10)
+                proportion_to_prev_ht = dag.activations.ht_candidate_from_prev[i] / (dag.activations.ht[i] + 1e-10)
 
-                rel_to_prev_ct = proportion_to_prev_ct * rel_from_prev_ct
-                rel_to_data_ct = (1-proportion_to_prev_ct)*rel_from_prev_ct
+                rel_from_ht_to_prev_ht = proportion_to_prev_ht * rel_to_prev_ht
+                rel_to_data_ht = (1-proportion_to_prev_ht)*rel_to_prev_ht
 
-                rel_to_xr = dag.layers['new_cell_state'].rel_z_plus_prop(
-                    dag.activations.xr[i],
-                    rel_to_data_ct,
+                rel_to_xh = dag.layers['new_ht'].rel_z_plus_prop(
+                    dag.activations.xh[i],
+                    rel_to_data_ht,
                     alpha=alpha, beta=beta
                 )
 
-                rel_to_ht = rel_to_xr[:, -self.architecture.recur:]
-                rel_to_in1 = rel_to_xr[:, :-self.architecture.recur]
+                rel_from_xh_to_ht = rel_to_xh[:, -self.architecture.recur:]
+                rel_to_in1 = rel_to_xh[:, :-self.architecture.recur]
 
                 c_i = self._.column_at_a_time * i
                 c_j = c_i + self._.column_at_a_time
@@ -155,9 +152,7 @@ class Network(base.BaseNetwork):
                     rel_to_in1
                 )
 
-                rel_from_prev_ct = rel_to_prev_ct + rel_to_ht
-                rr_ct[i] = rel_from_prev_ct
-
+                rel_to_prev_ht = rel_from_ht_to_prev_ht + rel_from_xh_to_ht
 
             pred, heatmaps = self._build_heatmap(sess, x, y, rr_of_pixels=rel_to_input, debug=debug)
 
