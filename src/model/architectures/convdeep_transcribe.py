@@ -294,6 +294,8 @@ class Network(base.BaseNetwork):
                     alpha=alpha, beta=beta
                 )
 
+            rel_to_input = list(map(lambda r: tf.reshape(r, shape=[tf.shape(self.dag.x)[0], -1]), rel_to_input))
+
             pred, heatmaps = self._build_heatmap(sess, x, y,
                                                  rr_of_pixels=rel_to_input, debug=debug)
         return pred, heatmaps
