@@ -172,10 +172,17 @@ class DataSet:
         self.x = x
         self.y = y
 
-    def get_batch(self, no_batch):
+    def get_batch(self, no_batch, seed=71):
         total = len(self.x)
+
+        np.random.seed(seed)
+        logging.info('get batch with seed %d' % seed)
+        shuffled_indices = np.random.permutation(total)
+        x = self.x[shuffled_indices, :, :]
+        y = self.y[shuffled_indices, :]
+
         for ndx in range(0, total, no_batch):
-            yield (self.x[ndx:min(ndx + no_batch, total)], self.y[ndx:min(ndx + no_batch, total)])
+            yield (x[ndx:min(ndx + no_batch, total)], y[ndx:min(ndx + no_batch, total)])
 
 
 class MNISTData:
@@ -352,7 +359,7 @@ class FashionMNISTData:
 
     def get_samples_for_vis(self, n=12):
 
-        indices = [588, 314, 47, 145, 258, 641, 561, 3410, 1094, 4059, 518, 9304]
+        indices = [588, 314, 47, 145, 258, 641, 561, 3410, 1094, 4059, 518, 9304][:n]
 
         return self.test2d.x[indices, :], self.test2d.y[indices]
 
