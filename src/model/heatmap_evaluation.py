@@ -160,11 +160,18 @@ def aopc(model_obj: base.BaseNetwork, x, y, max_k=49, patch_size=(4, 4), order="
     return relevances
 
 
-def relevance_distributions(model_obj: base.BaseNetwork, x, y, method):
+def relevance_distributions(model_obj: base.BaseNetwork, x, y, method, batch_size=200):
     logging.info('Compute relevance dist of %s with %s method' % (model_obj._.architecture_name, method))
 
     cols = int(model_obj._.max_seq_length / model_obj._.seq_length)
-    _, heatmaps = getattr(model_obj, 'rel_%s' % method)(x, y)
+
+    heatmaps = np.zeros(x.shape)
+    for i in range(0, x.shape[0], batch_size):
+        st = i
+        sp = np.min([i+batch_size, x.shape[0]])
+        logging.info('data from [%d, %d)' % (st, sp))
+        _, heatmaps_batch = getattr(model_obj, 'rel_%s' % method)(x[st:sp, :, :], y[st:sp, :])
+        heatmaps[st:sp, :, :] = heatmaps_batch
 
     # select only positive relevance and sum over rows
     positive_heatmaps = heatmaps * (heatmaps > 0)
