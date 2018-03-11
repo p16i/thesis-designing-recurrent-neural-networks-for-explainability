@@ -10,6 +10,9 @@ lg.set_logging()
 
 TEST_RELEVANCE_THRESHOLD = 1e-2
 
+
+COMPUTE_BATCH_SIZE = 200
+
 #### Acknowledgement to Chris Olah ####
 @tf.RegisterGradient("GuidedRelu")
 def _GuidedReluGrad(op, grad):
@@ -118,18 +121,28 @@ class BaseNetwork:
         x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
         logging.info('Compute grad wrt. X shape %s' % (x_3d.shape,))
 
+        pred = np.zeros(y.shape)
+        grad_res = np.zeros(x.shape)
+
         with self.get_session() as sess:
-            rx = np.zeros((x_3d.shape[0], self.architecture.recur))
 
             relevance = self.dag.y_pred_y_target
 
             grad = tf.gradients(relevance, self.dag.x)
 
-            pred, grad_res = sess.run([self.dag.y_pred, grad],
-                                      feed_dict={self.dag.x: x_3d, self.dag.y_target: y,
-                                                 self.dag.rx: rx, self.dag.keep_prob: 1})
+            for i in range(0, x.shape[0], COMPUTE_BATCH_SIZE):
+                rx = np.zeros((COMPUTE_BATCH_SIZE, self.architecture.recur))
 
-            grad_res = grad_res[0]
+                st = i
+                sp = np.min([i+COMPUTE_BATCH_SIZE, x.shape[0]])
+                logging.info('data indices [%d, %d)' % (st, sp))
+
+                pred_cur, grad_res_cur = sess.run([self.dag.y_pred, grad],
+                                          feed_dict={self.dag.x: x_3d[st:sp, :, :], self.dag.y_target: y[st:sp, :],
+                                                     self.dag.rx: rx, self.dag.keep_prob: 1})
+
+                pred[st:sp, :] = pred_cur
+                grad_res[st:sp, :, :] = grad_res_cur[0]
 
             logging.info('Grad result in shape %s' % (grad_res.shape,))
 
@@ -152,6 +165,9 @@ class BaseNetwork:
         x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
 
         tf.reset_default_graph()
+
+        pred = np.zeros(y.shape)
+        grad_res = np.zeros(x.shape)
         with tf.get_default_graph().gradient_override_map({'Relu': 'GuidedRelu'}):
             dag = self.create_graph()
 
@@ -160,13 +176,25 @@ class BaseNetwork:
 
             saver.restore(sess, '%s/model.ckpt' % self._.path)
             with sess:
-                rx = np.zeros((x_3d.shape[0], self.architecture.recur))
                 relevance = dag.y_pred_y_target
 
                 grad = tf.gradients(relevance, dag.x)
-                pred, grad_res = sess.run([dag.y_pred, grad],
-                                          feed_dict={dag.x: x_3d, dag.y_target: y, dag.rx: rx, dag.keep_prob: 1})
-                grad_res = grad_res[0]
+
+                for i in range(0, x.shape[0], COMPUTE_BATCH_SIZE):
+                    rx = np.zeros((COMPUTE_BATCH_SIZE, self.architecture.recur))
+
+                    st = i
+                    sp = np.min([i+COMPUTE_BATCH_SIZE, x.shape[0]])
+                    logging.info('data indices [%d, %d)' % (st, sp))
+
+                    pred_cur, grad_res_cur = sess.run([dag.y_pred, grad],
+                                                      feed_dict={dag.x: x_3d[st:sp, :, :],
+                                                                 dag.y_target: y[st:sp, :],
+                                                                 dag.rx: rx, dag.keep_prob: 1})
+
+                    pred[st:sp, :] = pred_cur
+                    grad_res[st:sp, :, :] = grad_res_cur[0]
+
         tf.reset_default_graph()
         self.dag = self.create_graph()
         return np.argmax(pred, axis=1), np.power(grad_res, 2)
@@ -232,15 +260,30 @@ class BaseNetwork:
     def _build_heatmap(self, sess, x, y, rr_of_pixels, debug=False):
         total_relevance_reduced = tf.reduce_sum(self.dag.total_relevance, axis=1)
 
-        rx = np.zeros((x.shape[0], self.architecture.recur))
-        pred, total_relevance, rr_of_pixels = sess.run(
-            [self.dag.y_pred, total_relevance_reduced, rr_of_pixels],
-            feed_dict={self.dag.x: x, self.dag.y_target: y, self.dag.rx: rx, self.dag.keep_prob: 1})
+        pred = np.zeros(y.shape)
+        total_relevance = np.zeros(x.shape[0])
+        rr_of_pixels_store = np.zeros((x.shape[0], len(rr_of_pixels), self._.column_at_a_time*self._.dims))
+
+        for i in range(0, x.shape[0], COMPUTE_BATCH_SIZE):
+            rx = np.zeros((COMPUTE_BATCH_SIZE, self.architecture.recur))
+
+            st = i
+            sp = np.min([i+COMPUTE_BATCH_SIZE, x.shape[0]])
+            logging.info('data indices [%d, %d)' % (st, sp))
+
+            pred_cur, total_relevance_cur, rr_of_pixels_cur = sess.run(
+                [self.dag.y_pred, total_relevance_reduced, rr_of_pixels],
+                feed_dict={self.dag.x: x[st:sp, :, :], self.dag.y_target: y[st:sp, :], self.dag.rx: rx,
+                           self.dag.keep_prob: 1})
+
+            pred[st:sp, :] = pred_cur
+            total_relevance[st:sp] = total_relevance_cur
+            rr_of_pixels_store[st:sp, :, :] = np.array(rr_of_pixels_cur).transpose([1, 0, 2])
 
         relevance_heatmap = np.zeros(x.shape)
         for i in range(0, relevance_heatmap.shape[2], self._.column_at_a_time):
             t_idx = int(i / self._.column_at_a_time)
-            relevance_heatmap[:, :, i:(i + self._.column_at_a_time)] = rr_of_pixels[t_idx] \
+            relevance_heatmap[:, :, i:(i + self._.column_at_a_time)] = rr_of_pixels_store[:, t_idx, :] \
                 .reshape(relevance_heatmap.shape[0], relevance_heatmap.shape[1], -1)
 
         if debug:

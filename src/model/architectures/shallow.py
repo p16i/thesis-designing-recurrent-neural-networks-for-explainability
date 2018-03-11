@@ -75,7 +75,6 @@ class Network(base.BaseNetwork):
 
     def lrp(self, x, y, alpha=1.0, beta=0.0, debug=False):
 
-        x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
         with self.get_session() as sess:
 
             # lwr start here
@@ -92,7 +91,7 @@ class Network(base.BaseNetwork):
             rel_to_recurrent, rel_to_input[-1] = Layer.rel_z_plus_beta_prop(
                 self.dag.rr_activations[-2],
                 weight_rr_parts,
-                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:], shape=[x_3d.shape[0], -1]),
+                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:], shape=[tf.shape(self.dag.x)[0], -1]),
                 weight_px_parts,
                 rel_to_hidden,
                 beta=beta,
@@ -111,7 +110,7 @@ class Network(base.BaseNetwork):
                 rel_to_recurrent, rel_to_input[i] = Layer.rel_z_plus_beta_prop(
                     self.dag.rr_activations[i],
                     weight_rr_parts,
-                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[x_3d.shape[0], -1]),
+                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[tf.shape(self.dag.x)[0], -1]),
                     weight_px_parts,
                     rel_to_hidden,
                     beta=beta, alpha=alpha

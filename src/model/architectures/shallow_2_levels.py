@@ -138,7 +138,8 @@ class Network(base.BaseNetwork):
             rel_to_rr_l1, rel_to_input[-1] = Layer.rel_z_plus_beta_prop(
                 self.dag.rr_l1_activations[-2],
                 weight_rr_parts,
-                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:], shape=[x_3d.shape[0], -1]),
+                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:],
+                           shape=[tf.shape(self.dag.x)[0], -1]),
                 weight_px_parts,
                 rel_to_hidden_l1,
                 alpha=alpha, beta=beta
@@ -182,7 +183,7 @@ class Network(base.BaseNetwork):
                 rel_to_rr_l1, rel_to_input[i] = Layer.rel_z_plus_beta_prop(
                     self.dag.rr_l1_activations[i],
                     weight_rr_parts,
-                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[x_3d.shape[0], -1]),
+                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[tf.shape(self.dag.x)[0], -1]),
                     weight_px_parts,
                     rel_to_hidden_l1,
                     beta=beta, alpha=alpha

@@ -165,13 +165,7 @@ def relevance_distributions(model_obj: base.BaseNetwork, x, y, method, batch_siz
 
     cols = int(model_obj._.max_seq_length / model_obj._.seq_length)
 
-    heatmaps = np.zeros(x.shape)
-    for i in range(0, x.shape[0], batch_size):
-        st = i
-        sp = np.min([i+batch_size, x.shape[0]])
-        logging.info('data from [%d, %d)' % (st, sp))
-        _, heatmaps_batch = getattr(model_obj, 'rel_%s' % method)(x[st:sp, :, :], y[st:sp, :])
-        heatmaps[st:sp, :, :] = heatmaps_batch
+    _, heatmaps = getattr(model_obj, 'rel_%s' % method)(x, y)
 
     # select only positive relevance and sum over rows
     positive_heatmaps = heatmaps * (heatmaps > 0)

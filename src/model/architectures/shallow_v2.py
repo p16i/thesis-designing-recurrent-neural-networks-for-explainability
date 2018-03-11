@@ -85,7 +85,6 @@ class Network(base.BaseNetwork):
         self._ = artifact
 
     def lrp(self, x, y, beta=0.0, alpha=1.0, debug=False):
-        x_3d = x.reshape(-1, self.data_no_rows, self.data_no_cols)
         with self.get_session() as sess:
 
             # lwr start here
@@ -112,7 +111,8 @@ class Network(base.BaseNetwork):
             rel_from_hidden_to_in1 = rel_to_input_to_cell[:, :-self.architecture.recur]
 
             rel_to_input[-1] = self.dag.layers['input_1'].rel_z_beta_prop(
-                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:], shape=[x_3d.shape[0], -1]),
+                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:],
+                           shape=[tf.shape(self.dag.x)[0], -1]),
                 rel_from_hidden_to_in1
             )
 
@@ -135,7 +135,7 @@ class Network(base.BaseNetwork):
                 c_j = c_i + self._.column_at_a_time
 
                 rel_to_input[i] = self.dag.layers['input_1'].rel_z_beta_prop(
-                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[x_3d.shape[0], -1]),
+                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[tf.shape(self.dag.x)[0], -1]),
                     rel_from_hidden_to_in1
                 )
 
