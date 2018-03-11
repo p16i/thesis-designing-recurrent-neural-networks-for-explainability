@@ -43,6 +43,23 @@ class Layer:
 
         return x * (alpha*compute_c(wp) - beta*compute_c(wn))
 
+    def rel_lrp_for_lstm(self, xin, hout, relevance, delta=1, eps=0.001):
+        eps_sign = eps*tf.where(hout >= 0, tf.ones(tf.shape(hout)), -tf.ones(tf.shape(hout)))  # shape (1, M)
+
+        hout_adj = hout + eps_sign
+
+        relevance_adj = relevance / hout_adj
+
+        number_bias_unit = self.W.get_shape()[0].value
+        bias_term = (eps_sign + delta*self.b)/(1.*number_bias_unit) * relevance_adj
+
+        wr = tf.matmul(self.W, relevance_adj)
+        br = tf.matmul(bias_term, tf.ones(tf.shape(tf.transpose(self.W))))
+
+        return xin * wr + br
+
+
+
     def rel_z_beta_prop(self, x, relevance, lowest=-1.0, highest=1.0):
         w, v, u = self.W, tf.maximum(0.0, self.W), tf.minimum(0.0, self.W)
         l, h = x * 0 + lowest, x * 0 + highest
@@ -153,6 +170,44 @@ class ConvolutionalLayer(Layer):
 
         return R
 
+    def rel_conv_z_plus_beta_prop(self, x_zp, w_zp, x_beta, w_beta, relevance, alpha, beta, lowest=-1, highest=1):
+        wp_zp = tf.maximum(DIVISION_ADJUSTMENT, w_zp)
+        zp_zp = self.conv_with_w(x_zp, wp_zp)
+
+        wn_zp = tf.minimum(-DIVISION_ADJUSTMENT, w_zp)
+        zn_zp = self.conv_with_w(x_zp, wn_zp)
+
+        v_b, u_b = tf.maximum(DIVISION_ADJUSTMENT, w_beta), tf.minimum(-DIVISION_ADJUSTMENT, w_beta)
+        l_b, h_b = x_beta * 0 + lowest, x_beta * 0 + highest
+
+        z_b_x = self.conv_with_w(x_beta, w_beta)
+        z_b_lb = self.conv_with_w(l_b, v_b)
+        z_b_hb = self.conv_with_w(h_b, u_b)
+
+        z = (alpha*zp_zp-beta*zn_zp) + (z_b_x - (z_b_lb + z_b_hb))
+
+        rel_prop = relevance / z
+
+        def compute_c(shape_h, w, s):
+            return tf.nn.conv2d_backprop_input(
+                shape_h, w,
+                out_backprop=s,
+                strides=self.strides,
+                padding=self.padding
+            )
+
+        # relevance to z_plus
+        shape_r_zp = tf.shape(x_zp)
+        r_zp = x_zp*(compute_c(shape_r_zp, wp_zp, rel_prop) + compute_c(shape_r_zp, wn_zp, rel_prop))
+
+        # relevance to z-beta
+        shape_r_beta = tf.shape(x_beta)
+        r_beta = x_beta * compute_c(shape_r_beta, w_beta, rel_prop) \
+                 - (l_b * compute_c(shape_r_beta, v_b, rel_prop) + h_b * compute_c(shape_r_beta, u_b, rel_prop))
+
+        return r_zp, r_beta
+
+
 
 class PoolingLayer:
     def __init__(self, kernel_size, strides, padding='SAME'):
@@ -175,3 +230,4 @@ class PoolingLayer:
         c = tf.gradients(activations, x, grad_ys=s)[0]
 
         return x*c
+

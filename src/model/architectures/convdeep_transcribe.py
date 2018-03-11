@@ -95,8 +95,8 @@ class Dag(base.BaseDag):
 
         rr = self.rx
 
-        self.activation_labels = ['conv1','pool1', 'conv2', 'pool2', 'pool2_reshaped', 'input_to_cell', 'hidden',
-                                  'output_from_cell', 'output2', 'recurrent']
+        self.activation_labels = ['conv1', 'pool1', 'conv2', 'pool2', 'pool2_reshaped', 'input_to_cell', 'hidden',
+                                  'conv2_concat_pool1', 'x_concat_conv1', 'output_from_cell', 'output2', 'recurrent']
 
         self.activations = namedtuple('Activations', self.activation_labels)\
             (**dict([(k, []) for k in self.activation_labels]))
@@ -112,6 +112,8 @@ class Dag(base.BaseDag):
             x_4d = self.x_with_channels[:, :, i:i + no_input_cols, :]
 
             x_4d_concat = tf.concat([x_4d, c1_recur], axis=3)
+            self.activations.x_concat_conv1.append(x_4d_concat)
+
             _, in1 = self.ly_conv1.conv(x_4d_concat)
             self.activations.conv1.append(in1)
 
@@ -119,6 +121,8 @@ class Dag(base.BaseDag):
             self.activations.pool1.append(pin1)
 
             pin1_concat = tf.concat([pin1, c2_recur], axis=3)
+            self.activations.conv2_concat_pool1.append(pin1_concat)
+
             _, in2 = self.ly_conv2.conv(pin1_concat)
             self.activations.conv2.append(in2)
 
@@ -178,6 +182,7 @@ class Network(base.BaseNetwork):
                 self.dag.activations.output_from_cell[-1],
                 self.dag.total_relevance, beta=beta, alpha=alpha
             )
+
             rel_to_hidden = self.dag.layers['output_from_cell'].rel_z_plus_prop(
                 self.dag.activations.hidden[-1],
                 rel_to_out_from_cell, beta=beta, alpha=alpha
@@ -207,10 +212,14 @@ class Network(base.BaseNetwork):
                 rel_from_input1_to_pool2
             )
 
-            rel_to_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
-                self.dag.activations.pool1[-1],
-                rel_to_conv2, beta=beta, alpha=alpha
+            rel_to_conv2_concat_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
+                self.dag.activations.conv2_concat_pool1[-1],
+                rel_to_conv2,
+                alpha=alpha, beta=beta
             )
+
+            rel_to_pool1 = rel_to_conv2_concat_pool1[:, :, :, :-self.architecture.conv2['conv']['filters']]
+            rel_to_prev_conv2 = rel_to_conv2_concat_pool1[:, :, :, -self.architecture.conv2['conv']['filters']:]
 
             rel_to_conv1 = self.dag.layers['pool1'].rel_prop(
                 self.dag.activations.conv1[-1],
@@ -218,13 +227,20 @@ class Network(base.BaseNetwork):
                 rel_to_pool1
             )
 
-            rel_to_input[-1] = self.dag.layers['conv1'].rel_zbeta_prop(
-                self.dag.x_with_channels[:, :, -self.experiment_artifact.column_at_a_time:, :],
-                rel_to_conv1
+            conv1_filters = self.architecture.conv1['conv']['filters']
+            # print(conv1_input_channel, conv1_filters)
+            # print(self.dag.activations.x_concat_conv1[-1][:, :, :, -conv1_filters:].get_shape())
+
+            rel_to_prev_conv1, rel_to_input[-1] = self.dag.layers['conv1'].rel_conv_z_plus_beta_prop(
+                self.dag.activations.x_concat_conv1[-1][:, :, :, -conv1_filters:],
+                self.dag.layers['conv1'].W[:, :, -conv1_filters:, :],
+                self.dag.activations.x_concat_conv1[-1][:, :, :, :-conv1_filters],
+                self.dag.layers['conv1'].W[:, :, :-conv1_filters, :],
+                rel_to_conv1,
+                alpha=alpha, beta=beta
             )
 
             for i in range(self._.seq_length - 1)[::-1]:
-
                 rel_to_hidden = self.dag.layers['recurrent'].rel_z_plus_prop(
                     self.dag.activations.hidden[i],
                     rel_to_recurrent, beta=beta, alpha=alpha
@@ -254,10 +270,14 @@ class Network(base.BaseNetwork):
                     rel_from_input1_to_pool2
                 )
 
-                rel_to_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
-                    self.dag.activations.pool1[i],
-                    rel_to_conv2, beta=beta, alpha=alpha
+                rel_to_conv2_concat_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
+                    self.dag.activations.conv2_concat_pool1[i],
+                    rel_to_conv2 + rel_to_prev_conv2,
+                    alpha=alpha, beta=beta
                 )
+
+                rel_to_pool1 = rel_to_conv2_concat_pool1[:, :, :, :-self.architecture.conv2['conv']['filters']]
+                rel_to_prev_conv2 = rel_to_conv2_concat_pool1[:, :, :, -self.architecture.conv2['conv']['filters']:]
 
                 rel_to_conv1 = self.dag.layers['pool1'].rel_prop(
                     self.dag.activations.conv1[i],
@@ -265,12 +285,13 @@ class Network(base.BaseNetwork):
                     rel_to_pool1
                 )
 
-                c_i = self._.column_at_a_time * i
-                c_j = c_i + self._.column_at_a_time
-
-                rel_to_input[i] = self.dag.layers['conv1'].rel_zbeta_prop(
-                    self.dag.x_with_channels[:, :, c_i:c_j, :],
-                    rel_to_conv1
+                rel_to_prev_conv1, rel_to_input[i] = self.dag.layers['conv1'].rel_conv_z_plus_beta_prop(
+                    self.dag.activations.x_concat_conv1[i][:, :, :, -conv1_filters:],
+                    self.dag.layers['conv1'].W[:, :, -conv1_filters:, :],
+                    self.dag.activations.x_concat_conv1[i][:, :, :, :-conv1_filters],
+                    self.dag.layers['conv1'].W[:, :, :-conv1_filters, :],
+                    rel_to_conv1 + rel_to_prev_conv1,
+                    alpha=alpha, beta=beta
                 )
 
             pred, heatmaps = self._build_heatmap(sess, x, y,
