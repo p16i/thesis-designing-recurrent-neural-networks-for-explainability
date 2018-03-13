@@ -59,12 +59,9 @@ class Dag(base.BaseDag):
             xr = tf.concat([in1, ht], axis=1)
             self.activations.xr.append(xr)
 
-            ig = tf.nn.dropout(tf.sigmoid(tf.matmul(xr, self.ly_input_gate.W) + self.ly_input_gate.b),
-                               keep_prob=self.keep_prob)
-            fg = tf.nn.dropout(tf.sigmoid(tf.matmul(xr, self.ly_forget_gate.W) + self.ly_forget_gate.b),
-                               keep_prob=self.keep_prob)
-            og = tf.nn.dropout(tf.sigmoid(tf.matmul(xr, self.ly_output_gate.W) + self.ly_output_gate.b),
-                               keep_prob=self.keep_prob)
+            ig = tf.sigmoid(tf.matmul(xr, self.ly_input_gate.W) + self.ly_input_gate.b)
+            fg = tf.sigmoid(tf.matmul(xr, self.ly_forget_gate.W) + self.ly_forget_gate.b)
+            og = tf.sigmoid(tf.matmul(xr, self.ly_output_gate.W) + self.ly_output_gate.b)
 
             new_cell_state = tf.nn.relu(
                 tf.matmul(xr, self.ly_new_cell_state.W) - tf.nn.softplus(self.ly_new_cell_state.b))
