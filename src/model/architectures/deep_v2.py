@@ -128,7 +128,8 @@ class Network(base.BaseNetwork):
             )
 
             rel_to_input[-1] = self.dag.layers['input_1'].rel_z_beta_prop(
-                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:], shape=[tf.shape(x)[0], -1]),
+                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:],
+                           shape=[tf.shape(self.dag.x)[0], -1]),
                 rel_to_in1
             )
 
@@ -157,7 +158,7 @@ class Network(base.BaseNetwork):
                 c_j = c_i + self._.column_at_a_time
 
                 rel_to_input[i] = self.dag.layers['input_1'].rel_z_beta_prop(
-                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[tf.shape(x)[0], -1]),
+                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[tf.shape(self.dag.x)[0], -1]),
                     rel_to_in1
                 )
 

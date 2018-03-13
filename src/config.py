@@ -1,12 +1,9 @@
 SEQS = [1, 4, 7]
 MODELS = ['s2', 's3', 'deep_4l', 'convdeep_4l']
 METHODS = [
-    'random',
     'sensitivity',
-    'simple_taylor',
     'guided_backprop',
     'lrp_alpha2_beta1',
-    'lrp_alpha3_beta2',
     'lrp_deep_taylor'
 ]
 
@@ -22,9 +19,13 @@ METHOD_MARKERS = {
 
 MODEL_NICKNAMES = {
     's2': 'Shallow',
+    'shallow': 'Shallow',
     's3': 'Deep',
+    'deep': 'Deep',
     'deep_4l': 'DeepV2',
+    'deep_v2': 'DeepV2',
     'convdeep_4l': 'ConvDeep',
+    'convdeep': 'ConvDeep',
     'tutorial': 'lenet',
     'shallow_2_levels': 'shallow_2_levels',
     'deep_v21': 'DeepV2.1',
@@ -40,6 +41,7 @@ MODEL_INDEX = {
 
 
 def architecture_name(str):
+    str = str.replace('_network', '')
     if MODEL_NICKNAMES.get(str):
         return MODEL_NICKNAMES[str]
     return str
