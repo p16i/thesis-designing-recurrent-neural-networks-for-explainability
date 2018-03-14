@@ -15,7 +15,7 @@ lg.set_logging()
 
 def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, lr=0.01, batch=100, keep_prob=0.5,
           verbose=False, output_dir='./experiment-result', optimizer='AdamOptimizer', dataset='mnist', regularizer=0.0,
-          no_runs=1, should_compute_stat=True
+          cv_folds=0, should_compute_stat=True
           ):
 
     network, architecture_str = architecture.split('::')
@@ -23,23 +23,35 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
 
     experiment_name_base = experiment_artifact.get_experiment_name('%s-%s-seq-%d--' % (network, dataset, seq_length))
 
-    data = data_provider.DatasetLoader(data_dir='./data').load(dataset)
-
     # no.rows and cols
-    dims, max_seq_length = data.train2d.x.shape[1:]
     architecture_class = provider.get_architecture_class(network)
     architecture = architecture_class.Architecture(**network_architecture.parse(architecture_str))
     logging.debug('Network architecture')
     logging.debug(architecture)
 
+    data = data_provider.DatasetLoader(data_dir='./data').load(dataset)
+    dims, max_seq_length = data.train2d.x.shape[1:]
+
     no_input_cols = max_seq_length // seq_length
     logging.debug('Training %d columns at a time' % no_input_cols)
     logging.debug('Optimizer %s' % optimizer)
 
-    for run in range(no_runs):
+    if cv_folds >= 2:
+        # build cv data
+        logging.info('Building %d-fold data' % cv_folds)
+        cv_datasets = data_provider.build_cvdataset(data, k=cv_folds)
+    else:
+        logging.info('Using original training & testing set')
+        cv_datasets = [(data.train2d, data.val2d, data.test2d)]
+
+    for (fold, (dtrain, dval, dtest)) in enumerate(cv_datasets):
         tf.reset_default_graph()
 
-        experiment_name = '%s--run-%d' % (experiment_name_base, run)
+        if cv_folds >= 2:
+            experiment_name = '%s--fold-%d' % (experiment_name_base, fold)
+        else:
+            experiment_name = experiment_name_base
+
         logging.debug('Experiment name : %s' % experiment_name)
 
         output_dir_run = '%s/%s' % (output_dir, experiment_name)
@@ -59,7 +71,7 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
             sess.run(dag.init_op)
             step = 1
             for i in range(epoch):
-                for bx, by in data.train2d.get_batch(no_batch=batch, seed=run):
+                for bx, by in dtrain.get_batch(no_batch=batch):
 
                     rx0 = np.zeros((bx.shape[0], architecture.recur))
                     sess.run(dag.train_op,
@@ -67,7 +79,7 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
                                         dag.keep_prob: keep_prob, dag.regularizer: regularizer})
 
                     if (step % 100 == 0 or step < 10) and verbose:
-                        rx0 = np.zeros((len(by), architecture.recur))
+                        rx0 = np.zeros((by.shape[0], architecture.recur))
                         summary, acc, loss = sess.run([dag.summary, dag.accuracy, dag.loss_op],
                                                         feed_dict={
                                                                     dag.x: bx, dag.y_target: by, dag.rx: rx0,
@@ -76,29 +88,29 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
                                                       )
 
                         train_writer.add_summary(summary, step)
-                        rx0 = np.zeros((len(data.val2d.y), architecture.recur))
+                        rx0 = np.zeros((dval.y.shape[0], architecture.recur))
 
                         summary, acc_val = sess.run([dag.summary, dag.accuracy],
-                                                    feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
+                                                    feed_dict={dag.x: dval.x, dag.y_target: dval.y,
                                                                     dag.rx: rx0, dag.keep_prob: 1,
                                                                dag.regularizer: regularizer})
                         val_writer.add_summary(summary, step)
-                        print('>> Epoch %d | step %d : current train batch acc %f, loss %f | val acc %f'
-                              % (i, step, acc, loss, acc_val), end='\r', flush=True)
+                        print('>>Fold-%d | Epoch %d | step %d : current train batch acc %f, loss %f | val acc %f'
+                              % (fold, i, step, acc, loss, acc_val), end='\r', flush=True)
 
                     step = step + 1
 
-            print('>> Epoch %d | step %d : current train batch acc %f, loss %f | val acc %f'
-                  % (i, step, acc, loss, acc_val))
+            print('>>Fold-%d | Epoch %d | step %d : current train batch acc %f, loss %f | val acc %f'
+                  % (fold, i, step, acc, loss, acc_val))
             # done training
             logging.debug('Calculating test accuracy')
-            rx0 = np.zeros((len(data.test2d.y), architecture.recur))
+            rx0 = np.zeros((dtest.y.shape[0], architecture.recur))
             acc = float(sess.run(dag.accuracy,
-                                 feed_dict={dag.x: data.test2d.x, dag.y_target: data.test2d.y,
+                                 feed_dict={dag.x: dtest.x, dag.y_target: dtest.y,
                                             dag.rx: rx0, dag.keep_prob: 1}))
 
-            rx0 = np.zeros((len(data.val2d.y), architecture.recur))
-            val_acc = float(sess.run(dag.accuracy, feed_dict={dag.x: data.val2d.x, dag.y_target: data.val2d.y,
+            rx0 = np.zeros((dval.y.shape[0], architecture.recur))
+            val_acc = float(sess.run(dag.accuracy, feed_dict={dag.x: dval.x, dag.y_target: dval.y,
                                                               dag.rx: rx0, dag.keep_prob: 1}))
             res = dict(
                 experiment_name=experiment_name,
@@ -119,12 +131,12 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
                 regularizer=regularizer
             )
 
-            logging.debug('\n%s\n', lg.tabularize_params(res))
-
             artifact = experiment_artifact.save_artifact(sess, res, output_dir=output_dir_run)
 
         if should_compute_stat:
-            compute_stats.relevance_distribution(model_path=output_dir_run)
+            compute_stats.relevance_distribution(model_path=output_dir_run, data=dtest)
+
+        logging.debug('\n%s\n', lg.tabularize_params(res))
 
     return artifact
 

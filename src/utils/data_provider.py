@@ -1,7 +1,7 @@
 import logging
 
 import numpy as np
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, StratifiedKFold
 
 from utils import logging as lg
 from heatmap_tutorial import utils as ht_utils
@@ -132,6 +132,40 @@ def create_middle_mark(no_x, no_digit=3):
     return zeros
 
 
+def build_cvdataset(data, k=10):
+
+    xar = []
+    yar = []
+    mar = []
+
+    total_data = 0
+    for d in [data.train2d, data.test2d, data.val2d]:
+        xar.append(d.x)
+        yar.append(d.y)
+        mar.append(d.correct_digit_mark)
+
+        total_data += d.y.shape[0]
+
+    datasets = []
+
+    x = np.vstack(xar)
+    logging.info('total x shape : %s ' % ','.join(x.shape))
+
+    y = np.vstack(yar)
+    logging.info('total y shape : %s' % ','.join(y.shape))
+
+    mark = np.vstack(mar)
+    logging.info('total mark shape : %s' % ','.join(mark.shape))
+
+    skf = StratifiedKFold(n_splits=k, random_state=71, shuffle=True)
+    for train_indices, test_indices in skf.split(x, np.argmax(y, axis=1)):
+        dtrain = DataSet(x=x[train_indices, ...], y=y[train_indices, ...], correct_digit_mark=mark[train_indices, ...])
+        dtest = DataSet(x=x[test_indices, ...], y=y[test_indices, ...], correct_digit_mark=mark[test_indices, ...])
+        datasets.append((dtrain, dtest, dtest))
+
+    return datasets
+
+
 class DatasetLoader():
     def __init__(self, data_dir):
         self.prepend_dir = lambda p: '%s/%s' % (data_dir, p)
@@ -168,9 +202,10 @@ class DatasetLoader():
         return self.cache[dataset_name]
 
 class DataSet:
-    def __init__(self, x, y):
+    def __init__(self, x, y, correct_digit_mark=None):
         self.x = x
         self.y = y
+        self.correct_digit_mark = correct_digit_mark
 
     def get_batch(self, no_batch, seed=71):
         total = len(self.x)
@@ -237,14 +272,16 @@ class MNIST3DigitsData(MNISTData):
 
         self.dims = (28, 28*3)
 
-        self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=0))
-        self.train2d_correct_digit_mark = create_middle_mark(self.train2d.x.shape[0])
+        self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=0),
+                               correct_digit_mark=create_middle_mark(self.train2d.x.shape[0]))
 
-        self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=1))
-        self.val2d_correct_digit_mark = create_middle_mark(self.val2d.x.shape[0])
+        self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=1),
+                             correct_digit_mark=create_middle_mark(self.val2d.x.shape[0])
+                             )
 
-        self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=3))
-        self.test2d_correct_digit_mark = create_middle_mark(self.test2d.x.shape[0])
+        self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=3),
+                              correct_digit_mark=create_middle_mark(self.test2d.x.shape[0])
+                              )
 
         self.train = self.train2d
         self.val = self.val2d
@@ -257,17 +294,17 @@ class MNIST3DigitsWithMajorityData(MNISTData):
 
         self.dims = (28, 28*3)
 
-        x, y, self.train2d_correct_digit_mark = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
-        self.train2d = DataSet(x, y)
-        assert self.train2d_correct_digit_mark.shape[0] == self.train2d.y.shape[0]
+        x, y, train2d_correct_digit_mark = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
+        self.train2d = DataSet(x, y, correct_digit_mark=train2d_correct_digit_mark)
+        assert self.train2d.correct_digit_mark.shape[0] == self.train2d.y.shape[0]
 
-        x, y, self.val2d_correct_digit_mark = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
-        self.val2d = DataSet(x, y)
-        assert self.val2d_correct_digit_mark.shape[0] == self.val2d.y.shape[0]
+        x, y, val2d_correct_digit_mark = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
+        self.val2d = DataSet(x, y, correct_digit_mark=val2d_correct_digit_mark)
+        assert self.val2d.correct_digit_mark.shape[0] == self.val2d.y.shape[0]
 
-        x, y, self.test2d_correct_digit_mark = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
-        self.test2d = DataSet(x, y)
-        assert self.test2d_correct_digit_mark.shape[0] == self.test2d.y.shape[0]
+        x, y, test2d_correct_digit_mark = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
+        self.test2d = DataSet(x, y, correct_digit_mark=test2d_correct_digit_mark)
+        assert self.test2d.correct_digit_mark.shape[0] == self.test2d.y.shape[0]
 
         self.train = self.train2d
         self.val = self.val2d
@@ -322,9 +359,6 @@ class MNISTMiddleSampleProblem(MNISTData):
         self.labels = labels
 
 
-
-
-
 class FashionMNISTData:
     def __init__(self, dir_path='./data/fashion-mnist'):
 
@@ -373,14 +407,16 @@ class FashionMNIST3ItemsData(FashionMNISTData):
 
         self.dims = (28, 28*3)
 
-        self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=20))
-        self.train2d_correct_digit_mark = create_middle_mark(self.train2d.x.shape[0])
+        self.train2d = DataSet(*fill_left_right_digit(self.train2d.x, self.train2d.y, seed=20),
+                               correct_digit_mark=create_middle_mark(self.train2d.x.shape[0]))
 
-        self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=21))
-        self.val2d_correct_digit_mark = create_middle_mark(self.val2d.x.shape[0])
+        self.val2d = DataSet(*fill_left_right_digit(self.val2d.x, self.val2d.y, seed=21),
+                             correct_digit_mark=create_middle_mark(self.val2d.x.shape[0])
+                             )
 
-        self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=23))
-        self.test2d_correct_digit_mark = create_middle_mark(self.test2d.x.shape[0])
+        self.test2d = DataSet(*fill_left_right_digit(self.test2d.x, self.test2d.y, seed=23),
+                              correct_digit_mark=create_middle_mark(self.test2d.x.shape[0])
+                              )
 
         self.train = self.train2d
         self.val = self.val2d
@@ -393,17 +429,17 @@ class FashionMNIST3DigitsWithMajorityData(FashionMNISTData):
 
         self.dims = (28, 28*3)
 
-        x, y, self.train2d_correct_digit_mark = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
-        self.train2d = DataSet(x, y)
-        assert self.train2d_correct_digit_mark.shape[0] == self.train2d.y.shape[0]
+        x, y, train2d_correct_digit_mark = create_majority_data(self.train2d.x, self.train2d.y, seed=0)
+        self.train2d = DataSet(x, y, correct_digit_mark=train2d_correct_digit_mark)
+        assert self.train2d.correct_digit_mark.shape[0] == self.train2d.y.shape[0]
 
-        x, y, self.val2d_correct_digit_mark = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
-        self.val2d = DataSet(x, y)
-        assert self.val2d_correct_digit_mark.shape[0] == self.val2d.y.shape[0]
+        x, y, val2d_correct_digit_mark = create_majority_data(self.val2d.x, self.val2d.y, seed=1)
+        self.val2d = DataSet(x, y, correct_digit_mark=val2d_correct_digit_mark)
+        assert self.val2d.correct_digit_mark.shape[0] == self.val2d.y.shape[0]
 
-        x, y, self.test2d_correct_digit_mark = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
-        self.test2d = DataSet(x, y)
-        assert self.test2d_correct_digit_mark.shape[0] == self.test2d.y.shape[0]
+        x, y, test2d_correct_digit_mark = create_majority_data(self.test2d.x, self.test2d.y, seed=3)
+        self.test2d = DataSet(x, y, correct_digit_mark=test2d_correct_digit_mark)
+        assert self.test2d.correct_digit_mark.shape[0] == self.test2d.y.shape[0]
 
         self.train = self.train2d
         self.val = self.val2d
