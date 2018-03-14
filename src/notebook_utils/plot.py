@@ -7,7 +7,8 @@ from model import provider
 import numpy as np
 import config
 import pandas as pd
-
+import glob
+import pickle
 import seaborn as sns
 
 lg.set_logging()
@@ -29,7 +30,7 @@ def show_and_save(title=""):
     plt.show()
 
 
-def show_model_accuracy(dataset, models=['s2', 's3', 'deep_4l', 'convdeep_4l'], seqs=[1, 4, 7]):
+def show_model_accuracy(dataset, models=['shallow', 'deep', 'deep_', 'convdeep_4l_network'], seqs=[1, 4, 7]):
     results = []
     print("%s accuracy" % dataset)
     model_names = list(map(lambda m: config.architecture_name(m), models))
@@ -178,26 +179,46 @@ def architecture_idx(a):
 
 # taken from http://heatmapping.org/tutorial/utils.py.txt
 def make_rgb_heatmap(x):
-	x = x[...,np.newaxis]
+    x = x[...,np.newaxis]
 
-	# positive relevance
-	hrp = 0.9 - np.clip(x-0.3,0,0.7)/0.7*0.5
-	hgp = 0.9 - np.clip(x-0.0,0,0.3)/0.3*0.5 - np.clip(x-0.3,0,0.7)/0.7*0.4
-	hbp = 0.9 - np.clip(x-0.0,0,0.3)/0.3*0.5 - np.clip(x-0.3,0,0.7)/0.7*0.4
+    # positive relevance
+    hrp = 0.9 - np.clip(x-0.3,0,0.7)/0.7*0.5
+    hgp = 0.9 - np.clip(x-0.0,0,0.3)/0.3*0.5 - np.clip(x-0.3,0,0.7)/0.7*0.4
+    hbp = 0.9 - np.clip(x-0.0,0,0.3)/0.3*0.5 - np.clip(x-0.3,0,0.7)/0.7*0.4
 
-	# negative relevance
-	hrn = 0.9 - np.clip(-x-0.0,0,0.3)/0.3*0.5 - np.clip(-x-0.3,0,0.7)/0.7*0.4
-	hgn = 0.9 - np.clip(-x-0.0,0,0.3)/0.3*0.5 - np.clip(-x-0.3,0,0.7)/0.7*0.4
-	hbn = 0.9 - np.clip(-x-0.3,0,0.7)/0.7*0.5
+    # negative relevance
+    hrn = 0.9 - np.clip(-x-0.0,0,0.3)/0.3*0.5 - np.clip(-x-0.3,0,0.7)/0.7*0.4
+    hgn = 0.9 - np.clip(-x-0.0,0,0.3)/0.3*0.5 - np.clip(-x-0.3,0,0.7)/0.7*0.4
+    hbn = 0.9 - np.clip(-x-0.3,0,0.7)/0.7*0.5
 
-	r = hrp*(x>=0)+hrn*(x<0)
-	g = hgp*(x>=0)+hgn*(x<0)
-	b = hbp*(x>=0)+hbn*(x<0)
+    r = hrp*(x>=0)+hrn*(x<0)
+    g = hgp*(x>=0)+hgn*(x<0)
+    b = hbp*(x>=0)+hbn*(x<0)
 
-	return np.concatenate([r,g,b],axis=-1)
+    return np.concatenate([r,g,b],axis=-1)
+
 
 def norm_and_make_rgb_heatmap(x):
 
     x = x / (np.abs(x).max() + 1e-10)
 
     return make_rgb_heatmap(x)
+
+
+def get_stats_from_models(models):
+    results = []
+    for m in models:
+        if '*' in m:
+            mm = glob.glob(m)
+        else:
+            mm = [m]
+        for _m in mm:
+            file = "%s/rel-dist.pkl" % _m
+            try:
+                data = pickle.load(open(file, "rb"))
+                results = results + data
+            except:
+                print('%s not found' % file)
+
+    return pd.DataFrame(results)
+
