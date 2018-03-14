@@ -131,10 +131,10 @@ class BaseNetwork:
             grad = tf.gradients(relevance, self.dag.x)
 
             for i in range(0, x.shape[0], COMPUTE_BATCH_SIZE):
-                rx = np.zeros((COMPUTE_BATCH_SIZE, self.architecture.recur))
 
                 st = i
                 sp = np.min([i+COMPUTE_BATCH_SIZE, x.shape[0]])
+                rx = np.zeros((sp-st, self.architecture.recur))
                 logging.info('data indices [%d, %d)' % (st, sp))
 
                 pred_cur, grad_res_cur = sess.run([self.dag.y_pred, grad],
@@ -181,10 +181,10 @@ class BaseNetwork:
                 grad = tf.gradients(relevance, dag.x)
 
                 for i in range(0, x.shape[0], COMPUTE_BATCH_SIZE):
-                    rx = np.zeros((COMPUTE_BATCH_SIZE, self.architecture.recur))
-
                     st = i
                     sp = np.min([i+COMPUTE_BATCH_SIZE, x.shape[0]])
+
+                    rx = np.zeros((sp-st, self.architecture.recur))
                     logging.info('data indices [%d, %d)' % (st, sp))
 
                     pred_cur, grad_res_cur = sess.run([dag.y_pred, grad],
@@ -265,10 +265,12 @@ class BaseNetwork:
         rr_of_pixels_store = np.zeros((x.shape[0], len(rr_of_pixels), self._.column_at_a_time*self._.dims))
 
         for i in range(0, x.shape[0], COMPUTE_BATCH_SIZE):
-            rx = np.zeros((COMPUTE_BATCH_SIZE, self.architecture.recur))
 
             st = i
             sp = np.min([i+COMPUTE_BATCH_SIZE, x.shape[0]])
+
+            rx = np.zeros((sp-st, self.architecture.recur))
+
             logging.info('data indices [%d, %d)' % (st, sp))
 
             pred_cur, total_relevance_cur, rr_of_pixels_cur = sess.run(
