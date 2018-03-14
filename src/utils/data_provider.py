@@ -149,13 +149,16 @@ def build_cvdataset(data, k=10):
     datasets = []
 
     x = np.vstack(xar)
-    logging.info('total x shape : %s ' % ','.join(x.shape))
+    logging.info('total x shape')
+    logging.info(x.shape)
 
     y = np.vstack(yar)
-    logging.info('total y shape : %s' % ','.join(y.shape))
+    logging.info('total y shape')
+    logging.info(y.shape)
 
     mark = np.vstack(mar)
-    logging.info('total mark shape : %s' % ','.join(mark.shape))
+    logging.info('total mark shape')
+    logging.info(mark.shape)
 
     skf = StratifiedKFold(n_splits=k, random_state=71, shuffle=True)
     for train_indices, test_indices in skf.split(x, np.argmax(y, axis=1)):
