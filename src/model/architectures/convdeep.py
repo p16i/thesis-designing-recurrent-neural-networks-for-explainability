@@ -9,6 +9,8 @@ from model.components.layer import Layer, ConvolutionalLayer, PoolingLayer
 from utils import logging as lg
 from utils import network_architecture
 
+NO_CHANNELS = 1
+
 lg.set_logging()
 
 Architecture = namedtuple('ConvDeep4LArchitecture', ['conv1', 'conv2', 'in1', 'hidden', 'out1', 'out2', 'recur'])
@@ -25,11 +27,9 @@ class Dag(base.BaseDag):
         super(Dag, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer, no_classes=no_classes)
 
         # define layers
-        no_channels = 1
-
-        dummy_in1 = tf.constant(0.0, shape=[1, dims, no_input_cols, no_channels])
+        dummy_in1 = tf.constant(0.0, shape=[1, dims, no_input_cols, NO_CHANNELS])
         self.ly_conv1 = ConvolutionalLayer(name='convdeep_4l__conv1',
-                                           input_channels=no_channels,
+                                           input_channels=NO_CHANNELS,
                                            **architecture.conv1['conv'])
 
         self.ly_pool1 =PoolingLayer(**architecture.conv1['pooling'])
