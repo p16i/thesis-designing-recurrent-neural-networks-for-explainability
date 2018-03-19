@@ -195,11 +195,6 @@ class Network(base.BaseNetwork):
 
             rel_from_input1_to_pool2 = tf.reshape(rel_from_input1_to_pool2, self.dag.shape_pool2_output)
 
-            # print('rel ii')
-            # print(rel_ii.get_shape())
-            # print('shape pool2')
-            # print(self.dag.shape_pool2_output)
-
             rel_to_conv2 = self.dag.layers['pool2'].rel_prop(
                 self.dag.activations.conv2[-1],
                 self.dag.activations.pool2[-1],
