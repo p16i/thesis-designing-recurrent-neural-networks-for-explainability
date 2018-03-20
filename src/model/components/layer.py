@@ -179,13 +179,13 @@ class ConvolutionalLayer(Layer):
         return R
 
     def rel_conv_z_plus_beta_prop(self, x_zp, w_zp, x_beta, w_beta, relevance, alpha, beta, lowest=-1, highest=1):
-        wp_zp = tf.maximum(DIVISION_ADJUSTMENT, w_zp)
+        wp_zp = tf.maximum(0.0, w_zp)
         zp_zp = self.conv_with_w(x_zp, wp_zp)
 
-        wn_zp = tf.minimum(-DIVISION_ADJUSTMENT, w_zp)
+        wn_zp = tf.minimum(0.0, w_zp)
         zn_zp = self.conv_with_w(x_zp, wn_zp)
 
-        v_b, u_b = tf.maximum(DIVISION_ADJUSTMENT, w_beta), tf.minimum(-DIVISION_ADJUSTMENT, w_beta)
+        v_b, u_b = tf.maximum(0.0, w_beta), tf.minimum(0.0, w_beta)
         l_b, h_b = x_beta * 0 + lowest, x_beta * 0 + highest
 
         z_b_x = self.conv_with_w(x_beta, w_beta)
@@ -194,7 +194,7 @@ class ConvolutionalLayer(Layer):
 
         z = (alpha*zp_zp-beta*zn_zp) + (z_b_x - (z_b_lb + z_b_hb))
 
-        rel_prop = relevance / z
+        rel_prop = relevance / (z + DIVISION_ADJUSTMENT)
 
         def compute_c(shape_h, w, s):
             return tf.nn.conv2d_backprop_input(
