@@ -14,8 +14,12 @@ class Layer:
         w_name = "%s_weights" % name
         b_name = "%s_bias" % name
 
-        if no_input_activations is None:
-            no_input_activations = dims[0]
+        if no_input_activations is None and len(dims) == 2:
+            if len(dims) == 2:
+                no_input_activations = dims[0]
+                logging.info('setting no_input_activations to %d' % no_input_activations)
+            else:
+                logging.error('no_input_activations should be specified when dims`s range > 2')
 
         logging.info("Layer %s with %d input activations" % (name,no_input_activations))
 
