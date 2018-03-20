@@ -9,13 +9,18 @@ DIVISION_ADJUSTMENT=1e-9
 DEFAULT_BIAS_VALUE=0.0
 
 class Layer:
-    def __init__(self, dims, name, default_weights=None, default_biases=None):
+    def __init__(self, dims, name, default_weights=None, default_biases=None, no_input_activations=None):
 
         w_name = "%s_weights" % name
         b_name = "%s_bias" % name
 
+        if no_input_activations is None:
+            no_input_activations = dims[0]
+
+        logging.info("Layer %s with %d input activations" % (name,no_input_activations))
+
         if default_weights is None:
-            self.W = tf.Variable(tf.truncated_normal(dims, stddev=1.0/np.sqrt(dims[0])), name=w_name)
+            self.W = tf.Variable(tf.truncated_normal(dims, stddev=1.0/np.sqrt(no_input_activations)), name=w_name)
         else:
             logging.info('Set default weights manually for layer %s' % name)
             self.W = tf.identity(default_weights, name=w_name)
@@ -100,8 +105,11 @@ class Layer:
 class ConvolutionalLayer(Layer):
     def __init__(self, input_channels, kernel_size, filters, name, default_weights=None, default_biases=None,
                  padding='SAME'):
+
         super().__init__(kernel_size + [input_channels, filters], name,
-                                                 default_weights=default_weights, default_biases=default_biases)
+                         default_weights=default_weights, default_biases=default_biases,
+                         no_input_activations=np.prod(kernel_size + [input_channels])
+                         )
 
         self.input_channels = input_channels
         self.kernel_size = kernel_size
