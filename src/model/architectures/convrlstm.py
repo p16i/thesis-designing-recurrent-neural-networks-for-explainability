@@ -184,9 +184,9 @@ class Network(base.BaseNetwork):
             rel_to_ht = rel_to_xr[:, -self.architecture.recur:]
             rel_to_in1 = rel_to_xr[:, :-self.architecture.recur]
 
-            rel_from_input1_to_pool2 = self.dag.layers['input_1'].rel_z_beta_prop(
+            rel_from_input1_to_pool2 = self.dag.layers['input_1'].rel_z_plus_prop(
                 self.dag.activations.pool2_reshaped[-1],
-                rel_to_in1
+                rel_to_in1, alpha=alpha, beta=beta
             )
 
             rel_from_input1_to_pool2 = tf.reshape(rel_from_input1_to_pool2, self.dag.shape_pool2_output)
@@ -231,9 +231,9 @@ class Network(base.BaseNetwork):
                 rel_to_ht = rel_to_xr[:, -self.architecture.recur:]
                 rel_to_in1 = rel_to_xr[:, :-self.architecture.recur]
 
-                rel_from_input1_to_pool2 = self.dag.layers['input_1'].rel_z_beta_prop(
+                rel_from_input1_to_pool2 = self.dag.layers['input_1'].rel_z_plus_prop(
                     self.dag.activations.pool2_reshaped[i],
-                    rel_to_in1
+                    rel_to_in1, alpha=alpha, beta=beta
                 )
 
                 rel_from_input1_to_pool2 = tf.reshape(rel_from_input1_to_pool2, self.dag.shape_pool2_output)
@@ -267,6 +267,7 @@ class Network(base.BaseNetwork):
                 rr_ct[i] = rel_from_prev_ct
 
             rel_to_input = list(map(lambda r: tf.reshape(r, shape=[tf.shape(self.dag.x)[0], -1]), rel_to_input))
+
             pred, heatmaps = self._build_heatmap(sess, x, y, rr_of_pixels=rel_to_input, debug=debug)
 
         return pred, heatmaps
