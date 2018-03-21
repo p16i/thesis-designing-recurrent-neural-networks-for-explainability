@@ -2,7 +2,7 @@ from collections import namedtuple
 
 import tensorflow as tf
 
-from model.architectures import base
+from model.architectures import base, deep
 from model.components.layer import Layer
 from utils import logging as lg
 from utils import network_architecture
@@ -74,73 +74,5 @@ class Dag(base.BaseDag):
         self.setup_loss_and_opt()
 
 
-class Network(base.BaseNetwork):
-    def __init__(self, artifact):
-        super(Network, self).__init__(artifact)
-
-        self.architecture = Architecture(**network_architecture.parse(artifact.architecture))
-        self.dag = Dag(artifact.column_at_a_time, self.data_no_rows, self.data_no_cols,
-                       self.architecture, artifact.optimizer, self.architecture.out2)
-
-        self.experiment_artifact = artifact
-        self._ = artifact
-
-    def lrp(self, x, y, beta=0.0, alpha=1.0, debug=False):
-        with self.get_session() as sess:
-
-            # lwr start here
-            self.dag.setup_variables_for_lrp()
-            rel_to_input = [None]*self._.seq_length
-
-            rel_to_output_from_cell = self.dag.layers['output_2'].rel_z_plus_prop(
-                self.dag.output_from_cell_activations[-1],
-                self.dag.total_relevance, beta=beta, alpha=alpha
-            )
-
-            rel_to_hidden = self.dag.layers['output_from_cell'].rel_z_plus_prop(
-                self.dag.ha_activations[-1],
-                rel_to_output_from_cell, beta=beta, alpha=alpha
-            )
-
-            rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
-                self.dag.input_to_cell_activations[-1],
-                rel_to_hidden, beta=beta, alpha=alpha
-            )
-
-            rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
-
-            rel_from_hidden_to_in1 = rel_to_input_to_cell[:, :-self.architecture.recur]
-
-            rel_to_input[-1] = self.dag.layers['input_1'].rel_z_beta_prop(
-                tf.reshape(self.dag.x[:, :, -self.experiment_artifact.column_at_a_time:],
-                           shape=[tf.shape(self.dag.x)[0], -1]),
-                rel_from_hidden_to_in1
-            )
-
-            for i in range(self._.seq_length - 1)[::-1]:
-                rel_to_hidden = self.dag.layers['recurrent'].rel_z_plus_prop(
-                    self.dag.ha_activations[i],
-                    rel_to_recurrent, beta=beta, alpha=alpha
-                )
-
-                rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
-                    self.dag.input_to_cell_activations[i],
-                    rel_to_hidden, beta=beta, alpha=alpha
-                )
-
-                rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
-
-                rel_from_hidden_to_in1 = rel_to_input_to_cell[:, :-self.architecture.recur]
-
-                c_i = self._.column_at_a_time * i
-                c_j = c_i + self._.column_at_a_time
-
-                rel_to_input[i] = self.dag.layers['input_1'].rel_z_beta_prop(
-                    tf.reshape(self.dag.x[:, :, c_i:c_j], shape=[tf.shape(self.dag.x)[0], -1]),
-                    rel_from_hidden_to_in1
-                )
-
-            pred, heatmaps = self._build_heatmap(sess, x, y, rr_of_pixels=rel_to_input, debug=debug)
-
-        return pred, heatmaps
-
+class Network(deep.Network):
+    pass

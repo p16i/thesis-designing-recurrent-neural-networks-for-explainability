@@ -4,7 +4,7 @@ from collections import namedtuple
 import numpy as np
 import tensorflow as tf
 
-from model.architectures import base
+from model.architectures import base, convdeep
 from model.components.layer import Layer, ConvolutionalLayer, PoolingLayer
 from utils import logging as lg
 from utils import network_architecture
@@ -27,7 +27,7 @@ class Dag(base.BaseDag):
         super(Dag, self).__init__(architecture, dims, max_seq_length, optimizer=optimizer, no_classes=no_classes)
 
         # define layers
-        no_channels = 1
+        no_channels = convdeep.NO_CHANNELS
 
         dummy_in1 = tf.constant(0.0, shape=[1, dims, no_input_cols, no_channels])
         self.ly_conv1 = ConvolutionalLayer(name='convdeep_4l__conv1',
@@ -151,126 +151,5 @@ class Dag(base.BaseDag):
         self.setup_loss_and_opt()
 
 
-class Network(base.BaseNetwork):
-    def __init__(self, artifact):
-        super(Network, self).__init__(artifact)
-
-        self.architecture = Architecture(**network_architecture.parse(artifact.architecture))
-        self.dag = Dag(artifact.column_at_a_time, self.data_no_rows, self.data_no_cols, self.architecture,
-                       artifact.optimizer, self.architecture.out2)
-
-        self.experiment_artifact = artifact
-        self._ = artifact
-
-    def lrp(self, x, y, beta=0.0, alpha=1.0, debug=False):
-
-        with self.get_session() as sess:
-
-            self.dag.setup_variables_for_lrp()
-
-            rel_to_input = [None]*self._.seq_length
-
-            # NOTE: lwr start here
-            rel_to_out_from_cell = self.dag.layers['output_2'].rel_z_plus_prop(
-                self.dag.activations.output_from_cell[-1],
-                self.dag.total_relevance, beta=beta, alpha=alpha
-            )
-            rel_to_hidden = self.dag.layers['output_from_cell'].rel_z_plus_prop(
-                self.dag.activations.hidden[-1],
-                rel_to_out_from_cell, beta=beta, alpha=alpha
-            )
-
-            rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
-                self.dag.activations.input_to_cell[-1],
-                rel_to_hidden, beta=beta, alpha=alpha
-            )
-
-            rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
-
-            rel_from_hidden_to_input1 = rel_to_input_to_cell[:, :-self.architecture.recur]
-
-            rel_from_input1_to_pool2 = self.dag.layers['input_1'].rel_z_plus_prop(
-                self.dag.activations.pool2_reshaped[-1],
-                rel_from_hidden_to_input1,
-                alpha=alpha, beta=beta
-            )
-
-            rel_from_input1_to_pool2 = tf.reshape(rel_from_input1_to_pool2,
-                                                  self.dag.shape_pool2_output)
-
-            rel_to_conv2 = self.dag.layers['pool2'].rel_prop(
-                self.dag.activations.conv2[-1],
-                self.dag.activations.pool2[-1],
-                rel_from_input1_to_pool2
-            )
-
-            rel_to_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
-                self.dag.activations.pool1[-1],
-                rel_to_conv2, beta=beta, alpha=alpha
-            )
-
-            rel_to_conv1 = self.dag.layers['pool1'].rel_prop(
-                self.dag.activations.conv1[-1],
-                self.dag.activations.pool1[-1],
-                rel_to_pool1
-            )
-
-            rel_to_input[-1] = self.dag.layers['conv1'].rel_zbeta_prop(
-                self.dag.x_with_channels[:, :, -self.experiment_artifact.column_at_a_time:, :],
-                rel_to_conv1
-            )
-
-            for i in range(self._.seq_length - 1)[::-1]:
-
-                rel_to_hidden = self.dag.layers['recurrent'].rel_z_plus_prop(
-                    self.dag.activations.hidden[i],
-                    rel_to_recurrent, beta=beta, alpha=alpha
-                )
-
-                rel_to_input_to_cell = self.dag.layers['input_to_cell'].rel_z_plus_prop(
-                    self.dag.activations.input_to_cell[i],
-                    rel_to_hidden, beta=beta, alpha=alpha
-                )
-
-                rel_to_recurrent = rel_to_input_to_cell[:, -self.architecture.recur:]
-
-                rel_from_hidden_to_input1 = rel_to_input_to_cell[:, :-self.architecture.recur]
-
-                rel_from_input1_to_pool2 = self.dag.layers['input_1'].rel_z_plus_prop(
-                    self.dag.activations.pool2_reshaped[i],
-                    rel_from_hidden_to_input1,
-                    alpha=alpha, beta=beta
-                )
-
-                rel_from_input1_to_pool2 = tf.reshape(rel_from_input1_to_pool2,
-                                                      self.dag.shape_pool2_output)
-
-                rel_to_conv2 = self.dag.layers['pool2'].rel_prop(
-                    self.dag.activations.conv2[i],
-                    self.dag.activations.pool2[i],
-                    rel_from_input1_to_pool2
-                )
-
-                rel_to_pool1 = self.dag.layers['conv2'].rel_zplus_prop(
-                    self.dag.activations.pool1[i],
-                    rel_to_conv2, beta=beta, alpha=alpha
-                )
-
-                rel_to_conv1 = self.dag.layers['pool1'].rel_prop(
-                    self.dag.activations.conv1[i],
-                    self.dag.activations.pool1[i],
-                    rel_to_pool1
-                )
-
-                c_i = self._.column_at_a_time * i
-                c_j = c_i + self._.column_at_a_time
-
-                rel_to_input[i] = self.dag.layers['conv1'].rel_zbeta_prop(
-                    self.dag.x_with_channels[:, :, c_i:c_j, :],
-                    rel_to_conv1
-                )
-
-            rel_to_input = list(map(lambda r: tf.reshape(r, shape=[tf.shape(self.dag.x)[0], -1]), rel_to_input))
-            pred, heatmaps = self._build_heatmap(sess, x, y,
-                                                 rr_of_pixels=rel_to_input, debug=debug)
-        return pred, heatmaps
+class Network(convdeep.Network):
+    pass
