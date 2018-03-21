@@ -26,9 +26,9 @@ class BaseDag:
 
         self.no_classes = no_classes
 
-        self.rx = tf.placeholder(tf.float32, shape=(None, architecture.recur), name='recurrent_input')
         self.x = tf.placeholder(tf.float32, shape=(None, dims, max_seq_length), name='input')
         self.x_with_channels = tf.expand_dims(self.x, -1)
+        self.rx = tf.zeros((tf.shape(self.x)[0], architecture.recur))
 
         self.y_target = tf.placeholder(tf.float32, [None, no_classes], name='output_target')
         self.lr = tf.placeholder(tf.float32, name='lr')
@@ -134,12 +134,12 @@ class BaseNetwork:
 
                 st = i
                 sp = np.min([i+COMPUTE_BATCH_SIZE, x.shape[0]])
-                rx = np.zeros((sp-st, self.architecture.recur))
                 logging.info('data indices [%d, %d)' % (st, sp))
 
                 pred_cur, grad_res_cur = sess.run([self.dag.y_pred, grad],
-                                          feed_dict={self.dag.x: x_3d[st:sp, :, :], self.dag.y_target: y[st:sp, :],
-                                                     self.dag.rx: rx, self.dag.keep_prob: 1})
+                                                  feed_dict={self.dag.x: x_3d[st:sp, :, :],
+                                                             self.dag.y_target: y[st:sp, :],
+                                                             self.dag.keep_prob: 1})
 
                 pred[st:sp, :] = pred_cur
                 grad_res[st:sp, :, :] = grad_res_cur[0]
@@ -184,13 +184,12 @@ class BaseNetwork:
                     st = i
                     sp = np.min([i+COMPUTE_BATCH_SIZE, x.shape[0]])
 
-                    rx = np.zeros((sp-st, self.architecture.recur))
                     logging.info('data indices [%d, %d)' % (st, sp))
 
                     pred_cur, grad_res_cur = sess.run([dag.y_pred, grad],
                                                       feed_dict={dag.x: x_3d[st:sp, :, :],
                                                                  dag.y_target: y[st:sp, :],
-                                                                 dag.rx: rx, dag.keep_prob: 1})
+                                                                 dag.keep_prob: 1})
 
                     pred[st:sp, :] = pred_cur
                     grad_res[st:sp, :, :] = grad_res_cur[0]
@@ -269,13 +268,11 @@ class BaseNetwork:
             st = i
             sp = np.min([i+COMPUTE_BATCH_SIZE, x.shape[0]])
 
-            rx = np.zeros((sp-st, self.architecture.recur))
-
             logging.info('data indices [%d, %d)' % (st, sp))
 
             pred_cur, total_relevance_cur, rr_of_pixels_cur = sess.run(
                 [self.dag.y_pred, total_relevance_reduced, rr_of_pixels],
-                feed_dict={self.dag.x: x[st:sp, :, :], self.dag.y_target: y[st:sp, :], self.dag.rx: rx,
+                feed_dict={self.dag.x: x[st:sp, :, :], self.dag.y_target: y[st:sp, :],
                            self.dag.keep_prob: 1})
 
             pred[st:sp, :] = pred_cur
