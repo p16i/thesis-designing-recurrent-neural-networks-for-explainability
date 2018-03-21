@@ -4,6 +4,8 @@ METHODS = [
     'sensitivity',
     'guided_backprop',
     'lrp_alpha2_beta1',
+    'lrp_alpha1_5_beta_5',
+    'lrp_alpha1_2_beta_2',
     'lrp_deep_taylor'
 ]
 
@@ -18,25 +20,20 @@ METHOD_MARKERS = {
 }
 
 MODEL_NICKNAMES = {
-    's2': 'Shallow',
     'shallow': 'Shallow',
-    's3': 'Deep',
     'deep': 'Deep',
-    'deep_4l': 'DeepV2',
     'deep_v2': 'DeepV2',
-    'convdeep_4l': 'ConvDeep',
     'convdeep': 'ConvDeep',
-    'tutorial': 'lenet',
-    'shallow_2_levels': 'shallow_2_levels',
+    'lenet': 'Lenet',
     'deep_v21': 'DeepV2.1',
-    'convdeep_gated': 'convdeep_gated'
+    'rlstm': 'R-LSTM'
 }
 
 MODEL_INDEX = {
-    's2': 0,
-    's3': 1,
-    'deep_4l': 2,
-    'convdeep_4l': 3
+    'shallow': 0,
+    'deep': 1,
+    'deep_v2': 2,
+    'convdeep': 3
 }
 
 

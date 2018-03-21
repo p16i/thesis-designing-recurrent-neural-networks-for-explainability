@@ -226,9 +226,14 @@ class BaseNetwork:
         logging.info('Explaining with alpha2, beta=1')
         return self.lrp(x, y, alpha=2.0, beta=1, debug=debug)
 
+    def rel_lrp_alpha1_5_beta_5(self, x, y, debug=False):
+        logging.info('Explaining with alpha=1.5, beta=0.5')
+        return self.lrp(x, y, alpha=1.5, beta=0.5, debug=debug)
+
     def rel_lrp_alpha1_2_beta_2(self, x, y, debug=False):
-        logging.info('Explaining with alpha2, beta=1')
+        logging.info('Explaining with alpha1.2, beta=0.2')
         return self.lrp(x, y, alpha=1.2, beta=0.2, debug=debug)
+
 
     def get_weight_bias_at_layers(self, layers=None):
 
