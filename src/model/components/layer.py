@@ -42,12 +42,12 @@ class Layer:
         return int(np.prod(self.W.shape) + self.b.shape[0])
 
     def rel_z_plus_prop(self, x, relevance, alpha, beta):
-        wp = tf.maximum(0.0, self.W)
-        wn = tf.minimum(0.0, self.W)
+        wp = tf.maximum(DIVISION_ADJUSTMENT, self.W)
+        wn = tf.minimum(-DIVISION_ADJUSTMENT, self.W)
 
         def compute_c(w):
             z = tf.matmul(x, w)
-            s = relevance / (z + DIVISION_ADJUSTMENT)
+            s = relevance / (z)
             return tf.matmul(s, tf.transpose(w))
 
         return x * (alpha*compute_c(wp) - beta*compute_c(wn))
