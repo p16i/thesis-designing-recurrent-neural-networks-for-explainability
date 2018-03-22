@@ -224,7 +224,7 @@ class Network(base.BaseNetwork):
                 rel_pool1_to_conv1
             )
 
-            pred, heatmaps = self._build_heatmap(sess, x, y,
-                                                 rr_of_pixels=[rel_to_input], debug=debug)
+            rel_to_input = tf.reshape(rel_to_input, shape=[tf.shape(self.dag.x)[0], -1])
+            pred, heatmaps = self._build_heatmap(sess, x, y, rr_of_pixels=[rel_to_input], debug=debug)
         return pred, heatmaps
 
