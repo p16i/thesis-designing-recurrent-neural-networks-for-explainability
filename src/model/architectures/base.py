@@ -20,6 +20,10 @@ def _GuidedReluGrad(op, grad):
     gate_y = tf.cast(op.outputs[0] > 0, "float32")
     return gate_y * gate_g * grad
 
+@tf.RegisterGradient("ConstantSigmoid")
+def _ConstantSigmoidGrad(op, grad):
+    return grad*0.0
+
 
 class BaseDag:
     def __init__(self, architecture, dims, max_seq_length, optimizer, no_classes):
@@ -168,7 +172,7 @@ class BaseNetwork:
 
         pred = np.zeros(y.shape)
         grad_res = np.zeros(x.shape)
-        with tf.get_default_graph().gradient_override_map({'Relu': 'GuidedRelu'}):
+        with tf.get_default_graph().gradient_override_map({'Relu': 'GuidedRelu', 'Sigmoid': 'ConstantSigmoid'}):
             dag = self.create_graph()
 
             saver = tf.train.Saver()
