@@ -1,3 +1,5 @@
+MAX_RELEVANCE_PERCENTAGE_PER_SAMPLE=0.8
+
 SEQS = [1, 4, 7]
 MODELS = ['s2', 's3', 'deep_4l', 'convdeep_4l']
 METHODS = [
@@ -24,9 +26,15 @@ MODEL_NICKNAMES = {
     'deep': 'Deep',
     'deep_v2': 'DeepV2',
     'convdeep': 'ConvDeep',
+    'convdeep_transcribe':  'Conv$^+$Deep',
+    'convrlstm_persisted_dropout': 'ConvR-LSTM-SD',
+    'conv_transribe_rlstm': 'Conv$^+$R-LSTM-SD',
     'lenet': 'Lenet',
     'deep_v21': 'DeepV2.1',
-    'rlstm': 'R-LSTM'
+    'rlstm': 'R-LSTM',
+    'rlstm_persisted_dropout': 'R-LSTM-SD',
+    'deep_persisted_dropout': 'Deep-SD',
+    'deep_do_xh': 'Deep$^+$'
 }
 
 MODEL_INDEX = {
@@ -36,6 +44,14 @@ MODEL_INDEX = {
     'convdeep': 3
 }
 
+METHOD_ABBREVATIONS = {
+    'sensitivity': 'SA',
+    'guided_backprop': 'GB',
+    'lrp_deep_taylor': 'DTD',
+    'lrp_alpha2_beta1': '$LRP_{\\alpha_2\\beta_1}$',
+    'lrp_alpha1_5_beta_5': '$LRP_{\\alpha_{1.5}\\beta_{0.5}}$',
+    'lrp_alpha1_2_beta_2': '$LRP_{\\alpha_{1.2}\\beta_{0.2}}$',
+}
 
 def architecture_name(str):
     str = str.replace('_network', '')
