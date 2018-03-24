@@ -139,12 +139,10 @@ def relevance_distribution(model_path, data=None, use_sample=False, dry_run=Fals
 
         relevance_of_correct_digits = rel_dist_for_digits * digit_mark
 
-        rel_dist_above_threshold_indices = np.argwhere(
-            relevance_of_correct_digits > config.MAX_RELEVANCE_PERCENTAGE_PER_SAMPLE)
-
-        adjusted_relevance_of_correct_digits = np.copy(relevance_of_correct_digits)
-        adjusted_relevance_of_correct_digits[
-            rel_dist_above_threshold_indices] = config.MAX_RELEVANCE_PERCENTAGE_PER_SAMPLE
+        adjusted_relevance_of_correct_digits = np.where(
+            relevance_of_correct_digits <= config.MAX_RELEVANCE_PERCENTAGE_PER_SAMPLE, relevance_of_correct_digits,
+            config.MAX_RELEVANCE_PERCENTAGE_PER_SAMPLE)
+        print(adjusted_relevance_of_correct_digits.shape)
         adjusted_rel_dist_in_data_region = np.mean(np.sum(adjusted_relevance_of_correct_digits, axis=1), axis=0)
         print(adjusted_rel_dist_in_data_region)
 
