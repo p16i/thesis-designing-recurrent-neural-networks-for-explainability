@@ -32,17 +32,17 @@ class Dag(base.BaseDag):
                                            input_channels=no_channels,
                                            **architecture.conv1['conv'])
 
-        self.ly_pool1 =PoolingLayer(**architecture.conv1['pooling'])
+        self.ly_pool1 = PoolingLayer(**architecture.conv1['pooling'])
 
         self.ly_conv2 = ConvolutionalLayer(name='convdeep_4l__conv2',
                                            input_channels=architecture.conv1['conv']['filters'] +
                                                           architecture.conv2['conv']['filters'],
                                            **architecture.conv2['conv'])
 
-        self.ly_pool2 =PoolingLayer(**architecture.conv2['pooling'])
+        self.ly_pool2 = PoolingLayer(**architecture.conv2['pooling'])
 
         _, cin1 = self.ly_conv1.conv(dummy_in1)
-        self.shape_conv1_output = [-1] + cin1.get_shape().as_list()[1:] #ignore batch_size
+        self.shape_conv1_output = [-1] + cin1.get_shape().as_list()[1:]  # ignore batch_size
         logging.info('conv1 shape ')
         logging.info(self.shape_conv1_output)
 
@@ -98,7 +98,7 @@ class Dag(base.BaseDag):
         self.activation_labels = ['conv1', 'pool1', 'conv2', 'pool2', 'pool2_reshaped', 'input_to_cell', 'hidden',
                                   'conv2_concat_pool1', 'x_concat_conv1', 'output_from_cell', 'output2', 'recurrent']
 
-        self.activations = namedtuple('Activations', self.activation_labels)\
+        self.activations = namedtuple('Activations', self.activation_labels) \
             (**dict([(k, []) for k in self.activation_labels]))
 
         self.activations.recurrent.append(self.rx)
@@ -116,6 +116,7 @@ class Dag(base.BaseDag):
 
             _, in1 = self.ly_conv1.conv(x_4d_concat)
             self.activations.conv1.append(in1)
+            c1_recur = in1
 
             pin1 = self.ly_pool1.pool(in1)
             self.activations.pool1.append(pin1)
@@ -125,6 +126,7 @@ class Dag(base.BaseDag):
 
             _, in2 = self.ly_conv2.conv(pin1_concat)
             self.activations.conv2.append(in2)
+            c2_recur = in2
 
             pin2 = self.ly_pool2.pool(in2)
             self.activations.pool2.append(pin2)
@@ -152,8 +154,7 @@ class Dag(base.BaseDag):
                                            - tf.nn.softplus(self.ly_output_from_cell.b))
 
         self.activations.output_from_cell.append(last_output_from_cell)
-        self.y_pred = tf.matmul(last_output_from_cell, self.ly_output_2.W) \
-                      - tf.nn.softplus(self.ly_output_2.b)
+        self.y_pred = tf.matmul(last_output_from_cell, self.ly_output_2.W) - tf.nn.softplus(self.ly_output_2.b)
 
         self.setup_loss_and_opt()
 
@@ -170,12 +171,10 @@ class Network(base.BaseNetwork):
         self._ = artifact
 
     def lrp(self, x, y, beta=0.0, alpha=1.0, debug=False):
-
         with self.get_session() as sess:
-
             self.dag.setup_variables_for_lrp()
 
-            rel_to_input = [None]*self._.seq_length
+            rel_to_input = [None] * self._.seq_length
 
             # NOTE: lwr start here
             rel_to_out_from_cell = self.dag.layers['output_2'].rel_z_plus_prop(
@@ -228,8 +227,6 @@ class Network(base.BaseNetwork):
             )
 
             conv1_filters = self.architecture.conv1['conv']['filters']
-            # print(conv1_input_channel, conv1_filters)
-            # print(self.dag.activations.x_concat_conv1[-1][:, :, :, -conv1_filters:].get_shape())
 
             rel_to_prev_conv1, rel_to_input[-1] = self.dag.layers['conv1'].rel_conv_z_plus_beta_prop(
                 self.dag.activations.x_concat_conv1[-1][:, :, :, -conv1_filters:],
