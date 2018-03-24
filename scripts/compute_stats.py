@@ -139,6 +139,15 @@ def relevance_distribution(model_path, data=None, use_sample=False, dry_run=Fals
 
         relevance_of_correct_digits = rel_dist_for_digits * digit_mark
 
+        rel_dist_above_threshold_indices = np.argwhere(
+            relevance_of_correct_digits > config.MAX_RELEVANCE_PERCENTAGE_PER_SAMPLE)
+
+        adjusted_relevance_of_correct_digits = np.copy(relevance_of_correct_digits)
+        adjusted_relevance_of_correct_digits[
+            rel_dist_above_threshold_indices] = config.MAX_RELEVANCE_PERCENTAGE_PER_SAMPLE
+        adjusted_rel_dist_in_data_region = np.mean(np.sum(adjusted_relevance_of_correct_digits, axis=1), axis=0)
+        print(adjusted_rel_dist_in_data_region)
+
         total_relevance_of_correct_digits = np.sum(relevance_of_correct_digits, axis=1)
         avg_std_total_dist = np.mean(np.std(relevance_of_correct_digits, axis=1))
 
@@ -165,7 +174,7 @@ def relevance_distribution(model_path, data=None, use_sample=False, dry_run=Fals
             std=std_rel,
             raw_relevance=raw_relevance,
             rel_dist_in_data_region=rel_dist_in_data_region,
-            rel_dist_in_data_region_no_avg=total_relevance_of_correct_digits,
+            adjusted_rel_dist_in_data_region=adjusted_rel_dist_in_data_region,
             avg_std_total_dist=avg_std_total_dist,
             avg_percentage_relevance_to_max=avg_percentage_relevance_to_max
         )
