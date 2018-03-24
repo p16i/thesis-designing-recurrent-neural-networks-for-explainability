@@ -208,7 +208,7 @@ class ConvolutionalLayer(Layer):
 
         # relevance to z_plus
         shape_r_zp = tf.shape(x_zp)
-        r_zp = x_zp*(compute_c(shape_r_zp, wp_zp, rel_prop) + compute_c(shape_r_zp, wn_zp, rel_prop))
+        r_zp = x_zp*(compute_c(shape_r_zp, wp_zp, alpha*rel_prop) - compute_c(shape_r_zp, wn_zp, beta*rel_prop))
 
         # relevance to z-beta
         shape_r_beta = tf.shape(x_beta)
