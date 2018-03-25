@@ -27,7 +27,6 @@ class Dag(base.BaseDag):
         # define layers
         no_channels = 1 + architecture.conv1['conv']['filters']
 
-        dummy_in1 = tf.constant(0.0, shape=[1, dims, no_input_cols, no_channels])
         self.ly_conv1 = ConvolutionalLayer(name='convdeep_4l__conv1',
                                            input_channels=no_channels,
                                            **architecture.conv1['conv'])
@@ -41,6 +40,7 @@ class Dag(base.BaseDag):
 
         self.ly_pool2 = PoolingLayer(**architecture.conv2['pooling'])
 
+        dummy_in1 = tf.constant(0.0, shape=[1, dims, no_input_cols, no_channels])
         _, cin1 = self.ly_conv1.conv(dummy_in1)
         self.shape_conv1_output = [-1] + cin1.get_shape().as_list()[1:]  # ignore batch_size
         logging.info('conv1 shape ')
@@ -51,13 +51,15 @@ class Dag(base.BaseDag):
         logging.info('pool1 shape ')
         logging.info(self.shape_pool1_output)
 
-        logging.info('after merge with c2 recurr')
+        logging.info('after merge with c3 recurr')
 
         dummy_c2_recur_shape = [1] + self.shape_pool1_output[1:3] + [architecture.conv2['conv']['filters']]
         logging.info(dummy_c2_recur_shape)
 
         dummy_c2_recur = tf.constant(0.0, shape=dummy_c2_recur_shape)
         dummy_in2 = tf.concat([dummy_in2, dummy_c2_recur], axis=3)
+
+        # conv2
         _, cin2 = self.ly_conv2.conv(dummy_in2)
         self.shape_conv2_output = [-1] + cin2.get_shape().as_list()[1:]
         logging.info('conv2 shape ')
