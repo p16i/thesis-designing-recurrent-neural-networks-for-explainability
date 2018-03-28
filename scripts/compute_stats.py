@@ -1,5 +1,6 @@
 import logging
 import pickle
+import re
 
 import fire
 import numpy as np
@@ -98,7 +99,7 @@ def aopc(dataset, flip_function='minus_one', ref_model='conv-seq1', seqs=[1, 4, 
             pickle.dump(results, output, -1)
 
 
-def relevance_distribution(model_path, data=None, use_sample=False, dry_run=False):
+def relevance_distribution(model_path, data=None, use_sample=False, dry_run=False, cv_folds=1):
     # TODO make this configurable
     original_data_width = 28
 
@@ -107,7 +108,22 @@ def relevance_distribution(model_path, data=None, use_sample=False, dry_run=Fals
 
     if data is None:
         data_loader = data_provider.DatasetLoader(data_dir='./data')
-        data = data_loader.load(model_obj._.dataset).test2d
+
+        dataset = data_loader.load(model_obj._.dataset)
+
+        if cv_folds == 1:
+            if 'fold' in model_path:
+                raise ValueError('this is cross-validation training model. Please specify cv_folds=x')
+
+            data = dataset.test2d
+        else:
+            datasets = data_provider.build_cvdataset(dataset, k=cv_folds)
+
+            fold_idx = int(re.match('.+fold-(\d+)$', model_path).group(1))
+
+            data = datasets[fold_idx][1]
+
+            logging.info('using cv-fold data with fold-%d with %d test samples' % (fold_idx, data.x.shape[0]))
 
     x, y, digit_mark = data.x, data.y, data.correct_digit_mark
 
