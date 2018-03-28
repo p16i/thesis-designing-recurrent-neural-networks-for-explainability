@@ -19,12 +19,23 @@ MINIMUM_ACCURACY = {
     'fashion-mnist-7-items': 0.85,
 }
 
-DIR_PATH='./final-models'
+DIR_PATH = './final-models'
+
 
 def main(path, skip_test=False):
+
     artifact = experiment_artifact.get_result(path)
 
-    dest_dir = '%s/%s-%s-seq-%d' % (DIR_PATH, artifact.architecture_name, artifact.dataset, artifact.seq_length)
+    if 'fold' in path:
+        dir_path = '%s-group' % DIR_PATH
+        suffix = '-fold-%s' % path.split('fold-')[-1]
+    else:
+        suffix = ''
+        dir_path = DIR_PATH
+
+    dest_dir = '%s/%s-%s-seq-%d%s' % (
+        dir_path, artifact.architecture_name, artifact.dataset, artifact.seq_length, suffix)
+
     logging.info('Copying %s to %s' % (path, dest_dir))
 
     if not skip_test:
