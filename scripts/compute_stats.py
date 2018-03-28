@@ -7,8 +7,9 @@ import pandas as pd
 
 import config
 from model import provider, heatmap_evaluation
-from utils import data_provider
+from utils import data_provider, math
 from utils import logging as lg
+
 
 lg.set_logging()
 
@@ -139,6 +140,9 @@ def relevance_distribution(model_path, data=None, use_sample=False, dry_run=Fals
 
         relevance_of_correct_digits = rel_dist_for_digits * digit_mark
 
+        cosine_sim_relevance = math.cosine_similarity(rel_dist_for_digits, digit_mark)
+        avg_cosine_sim_relevance = np.mean(cosine_sim_relevance)
+
         adjusted_relevance_of_correct_digits = np.where(
             relevance_of_correct_digits <= config.MAX_RELEVANCE_PERCENTAGE_PER_SAMPLE, relevance_of_correct_digits,
             config.MAX_RELEVANCE_PERCENTAGE_PER_SAMPLE)
@@ -174,7 +178,8 @@ def relevance_distribution(model_path, data=None, use_sample=False, dry_run=Fals
             rel_dist_in_data_region=rel_dist_in_data_region,
             adjusted_rel_dist_in_data_region=adjusted_rel_dist_in_data_region,
             avg_std_total_dist=avg_std_total_dist,
-            avg_percentage_relevance_to_max=avg_percentage_relevance_to_max
+            avg_percentage_relevance_to_max=avg_percentage_relevance_to_max,
+            avg_cosine_sim_relevance=avg_cosine_sim_relevance
         )
 
         results.append(res)
