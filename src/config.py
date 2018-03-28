@@ -28,6 +28,7 @@ MODEL_NICKNAMES = {
     'convdeep': 'ConvDeep',
     'convdeep_transcribe':  'Conv$^+$Deep',
     'convrlstm_persisted_dropout': 'ConvR-LSTM-SD',
+    'convtran_rlstm_persisted_dropout': 'Conv$^+$R-LSTM-SD',
     'conv_transribe_rlstm': 'Conv$^+$R-LSTM-SD',
     'lenet': 'Lenet',
     'deep_v21': 'DeepV2.1',
