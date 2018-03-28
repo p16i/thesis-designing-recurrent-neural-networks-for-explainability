@@ -12,8 +12,6 @@ lg.set_logging()
 
 Architecture = namedtuple('ConvDeep4LArchitecture', ['conv1', 'conv2', 'hidden', 'out1', 'out2', 'recur'])
 
-ARCHITECTURE_NAME = 'tutorial_network_network'
-
 
 def load(model_path):
     return Network.load(model_path)
@@ -73,7 +71,6 @@ class Dag(base.BaseDag):
         logging.info(dummy_in3.get_shape())
 
         self.layers = dict()
-
 
         dummy_in3_squeezed = tf.reshape(dummy_in3, shape=[-1, 100])
 
