@@ -7,7 +7,7 @@ def normalize_vector(x):
 
 
 def cosine_similarity(u, v):
-    normed_u = normalize(u)
-    normed_v = normalize(v)
+    normed_u = normalize_vector(u)
+    normed_v = normalize_vector(v)
 
     return np.sum(normed_u * normed_v, axis=1)
