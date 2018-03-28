@@ -73,18 +73,16 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
             for i in range(epoch):
                 for bx, by in dtrain.get_batch(no_batch=batch):
 
-                    rx0 = np.zeros((bx.shape[0], architecture.recur))
                     sess.run(dag.train_op,
-                             feed_dict={dag.x: bx, dag.y_target: by, dag.rx: rx0, dag.lr: lr,
+                             feed_dict={dag.x: bx, dag.y_target: by, dag.lr: lr,
                                         dag.keep_prob: keep_prob, dag.regularizer: regularizer})
 
                     if (step % 100 == 0 or step < 10) and verbose:
-                        rx0 = np.zeros((by.shape[0], architecture.recur))
                         summary, acc, loss = sess.run([dag.summary, dag.accuracy, dag.loss_op],
-                                                        feed_dict={
-                                                                    dag.x: bx, dag.y_target: by, dag.rx: rx0,
-                                                                    dag.keep_prob: 1, dag.regularizer: regularizer
-                                                                  }
+                                                      feed_dict={
+                                                          dag.x: bx, dag.y_target: by,
+                                                          dag.keep_prob: 1, dag.regularizer: regularizer
+                                                      }
                                                       )
 
                         train_writer.add_summary(summary, step)
@@ -104,14 +102,11 @@ def train(architecture='<network>::<architecture_str>', seq_length=1, epoch=1, l
                   % (fold, i, step, acc, loss, acc_val))
             # done training
             logging.debug('Calculating test accuracy')
-            rx0 = np.zeros((dtest.y.shape[0], architecture.recur))
             acc = float(sess.run(dag.accuracy,
-                                 feed_dict={dag.x: dtest.x, dag.y_target: dtest.y,
-                                            dag.rx: rx0, dag.keep_prob: 1}))
+                                 feed_dict={dag.x: dtest.x, dag.y_target: dtest.y, dag.keep_prob: 1}))
 
-            rx0 = np.zeros((dval.y.shape[0], architecture.recur))
-            val_acc = float(sess.run(dag.accuracy, feed_dict={dag.x: dval.x, dag.y_target: dval.y,
-                                                              dag.rx: rx0, dag.keep_prob: 1}))
+            val_acc = float(sess.run(dag.accuracy, feed_dict={dag.x: dval.x, dag.y_target: dval.y, dag.keep_prob: 1}))
+
             res = dict(
                 experiment_name=experiment_name,
                 seq_length=seq_length,
