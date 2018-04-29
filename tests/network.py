@@ -9,7 +9,7 @@ from model import provider
 tf.logging.set_verbosity(tf.logging.ERROR)
 logging.disable(logging.DEBUG)
 
-NO_TESTING_DATA = 100
+NO_TESTING_DATA = 10
 
 PROJECT_ROOT = '/'.join(os.path.abspath(__file__).split('/')[:-2])
 
@@ -31,11 +31,20 @@ class TestNetwork(unittest.TestCase):
     def test_convdeep(self):
         TestNetwork._test_lrp('final-models/convdeep-mnist-seq-7')
 
-    # def test_rlstm(self):
-    #     TestNetwork._test_lrp('final-models/rlstm-mnist-3-digits-maj-seq-12')
+    def test_convdeep_transcribe(self):
+        TestNetwork._test_lrp('final-models/convdeep_transcribe-mnist-3-digits-maj-seq-12')
 
-    # def test_shallow_2level(self):
-    #     TestNetwork._test_lrp('experiment-results/shallow_2_levels/shallow_2_levels-mnist-seq-7---2018-02-11--21-05-33')
+    def test_rlstm(self):
+        TestNetwork._test_lrp('final-models/rlstm-mnist-3-digits-maj-seq-12')
+
+    def test_rgru(self):
+        TestNetwork._test_lrp('experiment-results/models-for-exp3-100epoches/rgru-mnist-3-digits-maj-seq-12---2018-04-08--23-41-58')
+
+    def test_convrlstm(self):
+        TestNetwork._test_lrp('final-models/convrlstm-mnist-3-digits-maj-seq-12')
+
+    def test_convtran_rlstm(self):
+        TestNetwork._test_lrp('experiment-results/mnist-3-digits/convtran_rlstm_persisted_dropout-fashion-mnist-3-items-maj-seq-12---2018-03-25--09-39-44')
 
     def test_no_variables(self):
         networks = [('final-models/shallow-mnist-seq-7', 162826),
@@ -49,14 +58,14 @@ class TestNetwork(unittest.TestCase):
 
     @staticmethod
     def _test_lrp(model):
-        data = data_provider.MNISTData(dir_path=prepend_project_root('/data/mnist'))
         model = TestNetwork._load_model(model)
+        data = data_provider.DatasetLoader(data_dir=prepend_project_root('/data/')).load(model._.dataset)
 
         start_idx = 100
         x = data.test2d.x[start_idx:(start_idx+NO_TESTING_DATA), :, :]
         y = data.test2d.y[start_idx:(start_idx+NO_TESTING_DATA), :]
         model.rel_lrp_deep_taylor(x, y, debug=True)
-        model.rel_lrp_alpha2_beta1(x, y, debug=True)
+        # model.rel_lrp_alpha2_beta1(x, y, debug=True)
 
     @staticmethod
     def _load_model(model):

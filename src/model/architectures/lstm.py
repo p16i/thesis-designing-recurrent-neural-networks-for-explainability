@@ -175,9 +175,8 @@ class Dag(base.BaseDag):
 
                 new_c = tf.tanh(tf.matmul(xh, ly_new_cell_state.W) + ly_new_cell_state.b)
                 self.activations.input_cell_state.append(new_c)
-                new_c_do = tf.nn.dropout(new_c, keep_prob=self.keep_prob)
 
-                ct = ct*fg_do + new_c_do*ig_do
+                ct = ct*fg_do + new_co*ig_do
                 ct_do = tf.nn.dropout(ct, keep_prob=self.keep_prob)
                 self.activations.new_cell_state.append(ct)
 
@@ -216,15 +215,18 @@ class Network(base.BaseNetwork):
     def lrp(self, x, y, alpha=1.0, beta=0.0, debug=False):
 
         with self.get_session() as sess:
+            dummy_layer = Layer((self.architecture.size, self.architecture.size),
+                                default_weights=tf.ones([self.architecture.size, self.architecture.size]),
+                                default_biases=tf.zeros([1, self.architecture.size]),
+                                name='dummy_llayer')
 
             self.dag.setup_variables_for_lrp()
 
             rel_to_input = [None]*self._.seq_length
 
-            rx = np.zeros((x.shape[0], self.architecture.recur))
-            total_relevance_reduced = tf.reduce_sum(self.dag.total_relevance, axis=1)
-
             # NOTE: lwr start here
+
+            # def rel_lrp_for_lstm(self, xin, hout, relevance, delta=1, eps=0.001):
             rel_to_ht = self.dag.layers['final_output'].rel_z_plus_prop(
                 self.dag.activations.output[-1],
                 self.dag.total_relevance, beta=beta, alpha=alpha
@@ -233,30 +235,55 @@ class Network(base.BaseNetwork):
 
             rel_to_ct = rel_to_ht
 
-            rel_to_g = lrp_linear(self.dag.activations.input_gate[-1] * self.dag.activations.input_cell_state[-1],
-                                  tf.eye(self.architecture.size), tf.zeros(self.architecture.size),
-                                  self.dag.activations.output[-1], rel_to_ct)
+            # concated_gates = tf.stack([
+            #     self.dag.activations.input_gate[-1] * self.dag.activations.input_cell_state[-1],
+            #     self.dag.activations.forget_gate[-1]* self.dag.activations.new_cell_state[-2]
+            # ], axis=2)
+            #
+            # gmin = tf.reduce_min(concated_gates, axis=2)
+            # gmax = tf.reduce_max(concated_gates, axis=2)
+            #
+            # proportion_xh = (self.dag.activations.input_gate[-1] * self.dag.activations.input_cell_state[-1] - gmin) \
+            #                 / (gmax - gmin)
 
+            # rel_to_ct = rel_to_ct*(1-proportion_xh)
+            # rel_to_input_cell_state = rel_to_ct*proportion_xh
 
-            rel_to_xh = lrp_linear(self.dag.activations.xh[-1],
-                                   self.dag.layers['new_cell_state'].W, self.dag.layers['new_cell_state'].b,
-                                   self.dag.activations.output[-1], rel_to_g)
+            rel_to_input_cell_state = dummy_layer.rel_z_plus_prop(
+                self.dag.activations.input_cell_state[-1]*self.dag.activations.input_gate[-1],
+                rel_to_ct,
+                alpha=alpha, beta=beta
+            )
+
+            rel_to_ct = dummy_layer.rel_z_plus_prop(
+                self.dag.activations.new_cell_state[-2]*self.dag.activations.forget_gate[-1],
+                rel_to_ct,
+                alpha=alpha, beta=beta
+            )
+
+            rel_to_xh = self.dag.layers['new_cell_state'].rel_z_plus_prop(
+                self.dag.activations.xh[-1],
+                rel_to_input_cell_state,
+                alpha=alpha, beta=beta
+            )
 
             rel_to_input[-1] = rel_to_xh[:, :-self.architecture.size]
             rel_to_ht = rel_to_xh[:, -self.architecture.size:]
 
-            rel_to_ct = lrp_linear(self.dag.activations.forget_gate[-1]*self.dag.activations.new_cell_state[-2],
-                                   tf.eye(self.architecture.size), tf.zeros(self.architecture.size),
-                                   self.dag.activations.new_cell_state[-1], rel_to_ct)
+            total_relevance_reduced = tf.reduce_sum(self.dag.total_relevance, axis=1)
+            rx = np.zeros((x.shape[0], self.architecture.recur))
 
-            rr_x, rr_ht, rr_ct, tt_rr = sess.run([rel_to_input[-1], rel_to_ht, rel_to_ct, total_relevance_reduced],
-                                 feed_dict={self.dag.x: x, self.dag.y_target: y, self.dag.rx: rx, self.dag.keep_prob: 1})
+            rr_ct, rr_xh, rr_x, rr_ht, tt_rr = sess.run([
+                rel_to_ct, rel_to_xh, rel_to_input[-1], rel_to_ht, total_relevance_reduced],
+                feed_dict={self.dag.x: x, self.dag.y_target: y, self.dag.rx: rx, self.dag.keep_prob: 1})
 
-            print(rr_x.shape)
+            print('==============')
             print('total relevance', tt_rr)
+            print('rr_ct relevance', np.sum(rr_ct, axis=1))
+            print('rr_xh relevance', np.sum(rr_xh, axis=1))
+            print('-----')
             print('rr_x relevance', np.sum(rr_x, axis=1))
             print('rr_ht relevance', np.sum(rr_ht, axis=1))
-            print('rr_ct relevance', np.sum(rr_ct, axis=1))
             raise 'Force Exit'
 
             rel_to_ct = rel_to_ct + rel_to_ht
@@ -264,22 +291,34 @@ class Network(base.BaseNetwork):
 
 
             for i in range(self._.seq_length - 1)[::-1]:
-                rel_to_g = lrp_linear(self.dag.activations.input_gate[i] * self.dag.activations.input_cell_state[i],
-                                      tf.eye(self.architecture.size), tf.zeros(self.architecture.size),
-                                      self.dag.activations.output[i], rel_to_ct)
+                rel_to_input_cell_state = dummy_layer.rel_z_plus_prop(
+                    self.dag.activations.input_cell_state[i]*self.dag.activations.input_gate[i],
+                    rel_to_ct,
+                    alpha=alpha, beta=beta
+                )
 
-                rel_to_xh = lrp_linear(self.dag.activations.xh[i],
-                                       self.dag.layers['new_cell_state'].W, self.dag.layers['new_cell_state'].b,
-                                       self.dag.activations.output[i], rel_to_g)
+                rel_to_ct = dummy_layer.rel_z_plus_prop(
+                    self.dag.activations.new_cell_state[i-1]*self.dag.activations.forget_gate[i],
+                    rel_to_ct,
+                    alpha=alpha, beta=beta
+                )
+
+                rel_to_xh = self.dag.layers['new_cell_state'].rel_z_plus_prop(
+                    self.dag.activations.xh[i],
+                    rel_to_input_cell_state,
+                    alpha=alpha, beta=beta
+                )
 
                 rel_to_input[i] = rel_to_xh[:, :-self.architecture.size]
                 rel_to_ht = rel_to_xh[:, -self.architecture.size:]
 
-                rel_to_ct = lrp_linear(self.dag.activations.forget_gate[i]*self.dag.activations.new_cell_state[i-1],
-                                       tf.eye(self.architecture.size), tf.zeros(self.architecture.size),
-                                       self.dag.activations.new_cell_state[i], rel_to_ct)
-
                 rel_to_ct = rel_to_ct + rel_to_ht
+
+            # rr_ct = sess.run([rel_to_input],
+            #     feed_dict={self.dag.x: x, self.dag.y_target: y, self.dag.rx: rx, self.dag.keep_prob: 1})
+            #
+            # print('rr_to_input', rr_ct[0][1])
+            # raise 'Force Exit'
 
             pred, heatmaps = self._build_heatmap(sess, x, y,
                                                  rr_of_pixels=rel_to_input, debug=debug)

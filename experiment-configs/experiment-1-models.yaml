@@ -8,7 +8,7 @@ parameters:
     - 'convdeep_4l_network::conv1:5x5x24=>2x2[2,2]|conv2:3x3x32=>2x2[2,2]|in1:128|hidden:128|out1:32|out2:10--recur:256'
 
 command: |
-  python scripts/train.py \
+  python3 scripts/train.py \
     --seq-length {seq} \
     --epoch 100 \
     --lr 0.0002 \

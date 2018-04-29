@@ -1,10 +1,8 @@
 import tensorflow as tf
 from sklearn.model_selection import ParameterGrid
 
-from rnn_network import RNNNetwork
-
 from model import s3_network
-from model import s2_network
+from model.architectures import shallow
 
 
 def run():
@@ -54,7 +52,7 @@ def run():
                         ]
         },
         {
-            'train': s2_network.Network.train,
+            'train': shallow.Network.train,
             'param_set': [
                 # {
                 #     'seq_length': 7,  # 4 columns at a time (28)
