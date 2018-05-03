@@ -1,9 +1,14 @@
 import logging
-from utils import logging as lg
-from model import s2_network, s3_network, deep_4l_network, convdeep_4l_network, convdeep_4l_artificial_output
+
+import model.architectures
 from utils import experiment_artifact
+from utils import logging as lg
 
 lg.set_logging()
+
+
+def get_architecture_class(arch):
+    return getattr(model.architectures, arch)
 
 
 def load(path):
@@ -12,12 +17,8 @@ def load(path):
 
     logging.info(artifact)
 
-    model_loaders = {
-        's2_network': s2_network.Network,
-        's3_network': s3_network.Network,
-        'deep_4l_network': deep_4l_network.Network,
-        'convdeep_4l_network': convdeep_4l_network.Network,
-        'convdeep_4l_artificial_output':  convdeep_4l_artificial_output.Network
-    }
+    return get_architecture_class(artifact.architecture_name).Network(artifact)
 
-    return model_loaders[artifact.architecture_name](artifact)
+
+def _model_path(network, dataset, seq):
+    return './final-models/%s-%s-seq-%d' % (network, dataset, seq)

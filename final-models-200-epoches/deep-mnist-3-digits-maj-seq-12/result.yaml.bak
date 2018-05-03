@@ -1,0 +1,16 @@
+accuracy: 0.9839000105857849
+architecture: in1:256|hidden:128|out1:32|out2:10--recur:256
+architecture_name: s3_network
+batch: 50
+column_at_a_time: 7
+dataset: mnist-3-digits-maj
+dims: 28
+epoch: 200
+experiment_name: s3_network-mnist-3-digits-maj-seq-12---2018-02-20--21-57-01
+keep_prob: 0.8
+lr: 0.00025
+max_seq_length: 84
+optimizer: AdamOptimizer
+regularizer: 0.0
+seq_length: 12
+val_accuracy: 0.9789166450500488

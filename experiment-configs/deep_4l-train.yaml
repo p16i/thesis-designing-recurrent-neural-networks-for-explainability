@@ -1,5 +1,5 @@
 parameters:
-  seq_length: [4, 7, 14]
+  seq_length: [4, 7]
   dataset: ['mnist', 'fashion-mnist']
 
 command: |
@@ -9,4 +9,4 @@ command: |
     --lr 0.0001 \
     --batch 50 \
     --architecture-str 'in1:512|in2:256|hidden:128|out1:64|out2:10--recur:128' \
-    --keep_prob 0.5 --verbose --output_dir ./experiment-results/aws-train --dataset {dataset}
+    --keep_prob 0.5 --verbose --output_dir ./experiment-results/aws-training --dataset {dataset}

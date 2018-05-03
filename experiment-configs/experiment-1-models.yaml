@@ -1,0 +1,18 @@
+parameters:
+  seq: [7, 4, 1]
+  dataset: ['mnist', 'fashion-mnist']
+  architecture:
+    - 's2_network::hidden:256|out:10--recur:256'
+    - 's3_network::in1:256|hidden:128|out1:32|out2:10--recur:256'
+    - 'deep_4l_network::in1:128|in2:256|hidden:128|out1:32|out2:10--recur:256'
+    - 'convdeep_4l_network::conv1:5x5x24=>2x2[2,2]|conv2:3x3x32=>2x2[2,2]|in1:128|hidden:128|out1:32|out2:10--recur:256'
+
+command: |
+  python3 scripts/train.py \
+    --seq-length {seq} \
+    --epoch 100 \
+    --lr 0.0002 \
+    --batch 50 \
+    --architecture '{architecture}' \
+    --keep_prob 0.8  \
+    --verbose --output_dir ./experiment-results/models-for-exp1 --dataset {dataset}

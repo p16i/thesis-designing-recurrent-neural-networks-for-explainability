@@ -1,0 +1,16 @@
+accuracy: 0.9848985075950623
+architecture: hidden:256|out:10--recur:256
+architecture_name: shallow
+batch: 50
+column_at_a_time: 7
+dataset: mnist-3-digits-maj
+dims: 28
+epoch: 100
+experiment_name: shallow-mnist-3-digits-maj-seq-12---2018-03-25--09-54-58--fold-5
+keep_prob: 0.8
+lr: 0.0002
+max_seq_length: 84
+optimizer: AdamOptimizer
+regularizer: 0.0
+seq_length: 12
+val_accuracy: 0.9848985075950623
