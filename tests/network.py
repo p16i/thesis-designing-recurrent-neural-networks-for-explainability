@@ -37,14 +37,14 @@ class TestNetwork(unittest.TestCase):
     def test_rlstm(self):
         TestNetwork._test_lrp('final-models/rlstm-mnist-3-digits-maj-seq-12')
 
-    def test_rgru(self):
-        TestNetwork._test_lrp('experiment-results/models-for-exp3-100epoches/rgru-mnist-3-digits-maj-seq-12---2018-04-08--23-41-58')
+    # def test_rgru(self):
+    #     TestNetwork._test_lrp('experiment-results/models-for-exp3-100epoches/rgru-mnist-3-digits-maj-seq-12---2018-04-08--23-41-58')
 
     def test_convrlstm(self):
         TestNetwork._test_lrp('final-models/convrlstm-mnist-3-digits-maj-seq-12')
 
     def test_convtran_rlstm(self):
-        TestNetwork._test_lrp('experiment-results/mnist-3-digits/convtran_rlstm_persisted_dropout-fashion-mnist-3-items-maj-seq-12---2018-03-25--09-39-44')
+        TestNetwork._test_lrp('final-models/convtran_rlstm_persisted_dropout-fashion-mnist-3-items-maj-seq-12')
 
     def test_no_variables(self):
         networks = [('final-models/shallow-mnist-seq-7', 162826),
