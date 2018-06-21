@@ -9,5 +9,5 @@ Neural networks (NNs) are becoming increasingly popular and are being used in ma
 [[ **PDF** ]](http://bit.ly/2KOe8ZF)
 
 ### Poster
-**Presented at DS^3 Data Science Summer School 2018,  École Polytechnique, Paris**
+**Presented at Data Science Summer School (DS^3) 2018,  École Polytechnique, Paris**
 ![](https://i.imgur.com/FduaFZP.jpg)
