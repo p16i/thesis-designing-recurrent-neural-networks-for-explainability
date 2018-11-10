@@ -20,35 +20,35 @@ def prepend_project_root(path):
 
 class TestNetwork(unittest.TestCase):
     def test_shallow(self):
-        TestNetwork._test_lrp('final-models/shallow-mnist-seq-7')
+        TestNetwork._test_lrp('test-models/shallow-mnist-seq-7')
 
     def test_deep(self):
-        TestNetwork._test_lrp('final-models/deep-mnist-seq-7')
+        TestNetwork._test_lrp('test-models/deep-mnist-seq-7')
 
     def test_deep_v2(self):
-        TestNetwork._test_lrp('final-models/deep_v2-mnist-seq-7')
+        TestNetwork._test_lrp('test-models/deep_v2-mnist-seq-7')
 
     def test_convdeep(self):
-        TestNetwork._test_lrp('final-models/convdeep-mnist-seq-7')
+        TestNetwork._test_lrp('test-models/convdeep-mnist-seq-7')
 
     def test_convdeep_transcribe(self):
-        TestNetwork._test_lrp('final-models/convdeep_transcribe-mnist-3-digits-maj-seq-12')
+        TestNetwork._test_lrp('test-models/convdeep_transcribe-mnist-3-digits-maj-seq-12')
 
     def test_rlstm(self):
-        TestNetwork._test_lrp('final-models/rlstm-mnist-3-digits-maj-seq-12')
+        TestNetwork._test_lrp('test-models/rlstm-mnist-3-digits-maj-seq-12')
 
     # def test_rgru(self):
     #     TestNetwork._test_lrp('experiment-results/models-for-exp3-100epoches/rgru-mnist-3-digits-maj-seq-12---2018-04-08--23-41-58')
 
     def test_convrlstm(self):
-        TestNetwork._test_lrp('final-models/convrlstm-mnist-3-digits-maj-seq-12')
+        TestNetwork._test_lrp('test-models/convrlstm-mnist-3-digits-maj-seq-12')
 
     def test_convtran_rlstm(self):
-        TestNetwork._test_lrp('final-models/convtran_rlstm_persisted_dropout-fashion-mnist-3-items-maj-seq-12')
+        TestNetwork._test_lrp('test-models/convtran_rlstm_persisted_dropout-fashion-mnist-3-items-maj-seq-12')
 
     def test_no_variables(self):
-        networks = [('final-models/shallow-mnist-seq-7', 162826),
-                    ('final-models/deep-mnist-seq-7', 132074)]
+        networks = [('test-models/shallow-mnist-seq-7', 162826),
+                    ('test-models/deep-mnist-seq-7', 132074)]
         for network, expected in networks:
             model_obj = TestNetwork._load_model(network)
             no_variables = model_obj.dag.no_variables()
