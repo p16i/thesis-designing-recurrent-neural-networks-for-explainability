@@ -1,5 +1,5 @@
 ## Designing Recurrent Neural Networks for Explainability
-![](https://travis-ci.org/heytitle/thesis-designing-recurrent-neural-networks-for-explainability.svg?branch=master)
+[![To Travis](https://travis-ci.org/heytitle/thesis-designing-recurrent-neural-networks-for-explainability.svg?branch=master)](https://travis-ci.org/heytitle/thesis-designing-recurrent-neural-networks-for-explainability)
 
 Supervised by : **[Prof. Dr. Klaus-Robert Müller](http://www.ml.tu-berlin.de/menue/members/klaus_robert_mueller/)**, **[Dr. Grégoire Montavon](http://gregoire.montavon.name)**
 
