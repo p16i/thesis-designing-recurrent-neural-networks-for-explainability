@@ -15,3 +15,8 @@ Based on our evaluations, the deeper and LSTM-type RNNs have more explainable pr
 ### Poster
 **Presented at Data Science Summer School (DS^3) 2018,  École Polytechnique, Paris**
 ![](https://i.imgur.com/FduaFZP.jpg)
+
+
+### Other repos
+- Writing https://github.com/heytitle/thesis-writing
+- Presentation https://github.com/heytitle/thesis-presentation
